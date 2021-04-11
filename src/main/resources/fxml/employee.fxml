@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.EmployeeController">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="35.0" size="20" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.85714340209961" />
+                <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
+                <ListView fx:id="listView" layoutX="14.0" layoutY="74.0" prefHeight="785.0" prefWidth="434.0" style="-fx-background-color: white; -fx-selection-bar: darkgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
+                    <effect>
+                        <DropShadow />
+                    </effect></ListView>
+                <FontAwesomeIconView fx:id="addButton" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="652.0" style="-fx-background-color: #E3DAD8;">
+            <children>
+            <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="256.0" prefHeight="230.0" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
+               <children>
+                      <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="123.0" />
+                      <Label text="Telefono" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="125.0">
+                          <font>
+                              <Font name="Roboto Light" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label layoutX="41.0" layoutY="45.0" text="Nombres" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="45.0">
+                          <font>
+                              <Font name="Roboto Light" size="20.0" />
+                          </font>
+                      </Label>
+                      <Label text="Apellidos" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="85.0">
+                          <font>
+                              <Font name="Roboto Light" size="20.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="nombresField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="43.0" />
+                      <Label text="Contraseña" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="165.0">
+                          <font>
+                              <Font name="Roboto Light" size="20.0" />
+                          </font>
+                      </Label>
+                      <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="83.0" />
+                      <TextField fx:id="contraseñaField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="163.0" />
+               </children>
+            </AnchorPane>
+                <Label alignment="CENTER" layoutY="486.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
+                    <font>
+                        <Font name="Roboto Light" size="27.0" />
+                    </font>
+                    <effect>
+                        <DropShadow blurType="TWO_PASS_BOX">
+                            <color>
+                                <Color red="0.5" green="0.5" blue="0.5" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Label>
+                <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <ImageView fx:id="userImage" fitHeight="180.0" fitWidth="231.0" layoutX="171.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="171.66586303710938" AnchorPane.topAnchor="49.0">
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                            <image>
+                                <Image url="@../Images/user.png" />
+                            </image>
+                        </ImageView>
+                        <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <FontAwesomeIconView fx:id="saveButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="122.4285717010498" AnchorPane.topAnchor="4.285715103149414" />
+                                <ToggleSwitch fx:id="editSwitch" layoutX="410.0" layoutY="10.0" prefWidth="90.0" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+                                    <font>
+                                        <Font name="Roboto Thin" size="13.0" />
+                                    </font>
+                                </ToggleSwitch>
+                                <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <effect>
+                        <DropShadow />
+                    </effect></AnchorPane>
+            <ListView fx:id="departmentList" layoutX="116.0" layoutY="531.0" prefHeight="328.0" prefWidth="517.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="531.0" />
+                  <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" layoutX="451.0" layoutY="519.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="493.2857151031494" />
+            </children></AnchorPane>
+    </items>
+</SplitPane>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="principalPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.HomeController">
+    <left>
+        <AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+                <VBox layoutX="7.0" layoutY="130.0" prefHeight="568.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
+                    <children>
+                        <JFXButton fx:id="productosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Productos" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" text="" />
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="empleadosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Empleados" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" text="" />
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="proveedoresButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Proveedores" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" text="" />
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="almacenButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Almacen" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" text="" />
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="catalogosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Catálogo" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" text="" />
+                            </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="clientesButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Clientes" textFill="WHITE">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                            <graphic>
+                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" text="" />
+                            </graphic>
+                        </JFXButton>
+                    </children></VBox>
+                <FontAwesomeIconView glyphName="USER" layoutX="82.0" layoutY="68.0" size="50" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="82.28571319580078" AnchorPane.topAnchor="10.0" />
+                <Label layoutX="83.0" layoutY="69.0" text="USER" />
+                <FontAwesomeIconView glyphName="COG" layoutX="62.0" layoutY="114.0" size="20" />
+                <FontAwesomeIconView glyphName="CLOSE" layoutX="110.0" layoutY="113.0" size="20" />
+            </children>
+        </AnchorPane>
+    </left>
+    <top>
+        <AnchorPane fx:id="topPane" prefHeight="85.0" prefWidth="1067.0" style="-fx-background-color: black;" BorderPane.alignment="TOP_CENTER">
+            <children>
+                <FontAwesomeIconView fx:id="menuButton" fill="WHITE" glyphName="BARS" layoutX="14.0" layoutY="53.0" size="30" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="27.285715103149414" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="442.0" layoutY="15.0" prefHeight="55.0" prefWidth="204.0" text="MAKALA" textFill="WHITE" AnchorPane.leftAnchor="442.0" AnchorPane.rightAnchor="441.0" AnchorPane.topAnchor="15.0">
+               <font>
+                  <Font name="Roboto Light" size="40.0" />
+               </font>
+            </Label>
+            </children>
+            <padding>
+                <Insets left="10.0" right="10.0" />
+            </padding></AnchorPane>
+    </top>
+   <center>
+       <AnchorPane fx:id="universalPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="867.0" BorderPane.alignment="CENTER">
+
+       </AnchorPane>
+   </center>
+</BorderPane>

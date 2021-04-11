@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.3910323253388947" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <children>
+                <FontAwesomeIconView glyphName="SEARCH" layoutX="338.0" layoutY="35.0" size="20" />
+                <TextField fx:id="searchField" layoutX="14.0" layoutY="15.0" prefHeight="27.0" prefWidth="305.0" />
+                <ComboBox fx:id="comboBox" layoutX="80.0" layoutY="64.0" prefHeight="27.0" prefWidth="211.0" />
+                <Line endX="341.0" layoutX="30.0" layoutY="54.0" startX="-100.0" />
+                <ListView fx:id="listView" layoutX="14.0" layoutY="115.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="115.0" />
+            </children></AnchorPane>
+        <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="652.0">
+            <children>
+                <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="175.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                <Line endX="457.0" layoutX="115.0" layoutY="215.0" startX="-115.0" />
+                <Label layoutX="58.0" layoutY="243.0" text="Nombre">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="57.0" layoutY="298.0" text="Clasificación">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="nombreField" disable="true" layoutX="185.0" layoutY="236.0" prefHeight="27.0" prefWidth="248.0" />
+                <Label layoutX="56.0" layoutY="360.0" text="Catidad Total">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <JFXTextField fx:id="cantidadField" layoutX="215.0" layoutY="360.0" />
+                <JFXTextField fx:id="clasificacionField" disable="true" layoutX="185.0" layoutY="291.0" prefHeight="27.0" prefWidth="248.0" />
+                <Button fx:id="updateButton" layoutX="433.0" layoutY="84.0" mnemonicParsing="false" style="-fx-background-color: black;" text="Update" textFill="WHITE">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Button>
+            </children></AnchorPane>
+    </items>
+</SplitPane>
