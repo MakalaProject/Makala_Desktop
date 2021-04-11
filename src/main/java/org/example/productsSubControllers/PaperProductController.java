@@ -31,13 +31,13 @@ public class PaperProductController implements Initializable, IControllerProduct
     @Override
     public PaperProduct getObject() {
         PaperProduct paperProduct = new PaperProduct();
-        paperProduct.setColor(colorPicker.getValue().toString());
+        paperProduct.setRgb(colorPicker.getValue().toString());
         return paperProduct;
     }
 
     @Override
     public void setObject(PaperProduct paperProduct) {
-        colorPicker.setValue(Color.web(paperProduct.getColor()));
+        colorPicker.setValue(Color.web(paperProduct.getRgb()));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class PaperProductController implements Initializable, IControllerProduct
     }
 
     @Override
-    public PaperProduct findObject(Product Objcet) {
-        return null;
+    public PaperProduct findObject(Product object) {
+        return findObject( object,"products/papers", PaperProduct.class);
     }
 }

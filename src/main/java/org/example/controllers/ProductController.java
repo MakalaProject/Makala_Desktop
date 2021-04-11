@@ -354,6 +354,7 @@ public class ProductController  implements Initializable, IListController<Produc
         index = productObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
+            //Find the controller to the type product
             if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductType())){
                 changeType(controller);
                 actualPropertiesController = controller;

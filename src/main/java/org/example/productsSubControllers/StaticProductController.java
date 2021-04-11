@@ -6,6 +6,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
 import org.example.model.products.Product;
+import org.example.model.products.RibbonProduct;
 import org.example.model.products.StaticProduct;
 import org.example.services.Request;
 
@@ -46,10 +47,8 @@ public class StaticProductController implements Initializable, IControllerProduc
 
 
     @Override
-    public StaticProduct findObject(Product product) {
-        StaticProduct staticProduct = (StaticProduct) Request.find("products/statics", product.getIdProduct(), StaticProduct.class);
-        setObject(staticProduct);
-        return staticProduct;
+    public StaticProduct findObject(Product object) {
+        return findObject( object,"products/statics", StaticProduct.class);
     }
 
 
@@ -67,6 +66,5 @@ public class StaticProductController implements Initializable, IControllerProduc
         anchoField.setText(String.valueOf(staticProduct.getMeasures().getX()));
         altoField.setText(String.valueOf(staticProduct.getMeasures().getY()));
         largoField.setText(String.valueOf(staticProduct.getMeasures().getZ()));
-
     }
 }

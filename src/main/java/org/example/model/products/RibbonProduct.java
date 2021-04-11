@@ -1,13 +1,10 @@
 package org.example.model.products;
 
-import org.example.model.products.Product;
-
 import java.math.BigDecimal;
 
 public class RibbonProduct extends Product {
     private BigDecimal widthCm;
-    private String color;
-    private BigDecimal totalLengthCm;
+    private String rgb;
 
     public BigDecimal getWidthCm() {
         return widthCm;
@@ -17,21 +14,14 @@ public class RibbonProduct extends Product {
         this.widthCm = widthCm;
     }
 
-    public String getColor() {
-        return color;
+    public String getRgb() {
+        return rgb;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setRgb(String rgb) {
+        this.rgb = rgb;
     }
 
-    public BigDecimal getTotalLengthCm() {
-        return totalLengthCm;
-    }
-
-    public void setTotalLengthCm(BigDecimal totalLengthCm) {
-        this.totalLengthCm = totalLengthCm;
-    }
     @Override
     public String getRoute(){
         return route + "/ribbons";

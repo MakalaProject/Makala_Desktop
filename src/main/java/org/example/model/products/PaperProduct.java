@@ -1,26 +1,18 @@
 package org.example.model.products;
 
 public class PaperProduct extends Product {
-    private String color;
-    private float TotalWeightGr;
+    private String rgb;
 
-    public String getColor() {
-        return color;
+    public String getRgb() {
+        return rgb;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setRgb(String rgb) {
+        this.rgb = rgb;
     }
 
     public PaperProduct(){
         super();
-    }
-    public float getTotalWeightGr() {
-        return TotalWeightGr;
-    }
-
-    public void setTotalWeightGr(float totalWeightGr) {
-        TotalWeightGr = totalWeightGr;
     }
 
     @Override

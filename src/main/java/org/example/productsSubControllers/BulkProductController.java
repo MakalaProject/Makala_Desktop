@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
 import org.example.model.products.BulkProduct;
+import org.example.model.products.PaperProduct;
 import org.example.model.products.Product;
 
 import java.math.BigDecimal;
@@ -54,7 +55,7 @@ public class BulkProductController implements Initializable, IControllerProducts
     }
 
     @Override
-    public BulkProduct findObject(Product Objcet) {
-        return null;
+    public BulkProduct findObject(Product object) {
+        return findObject( object,"products/bulks", BulkProduct.class);
     }
 }

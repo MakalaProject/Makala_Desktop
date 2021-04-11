@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public class BulkProduct extends Product {
     private BigDecimal lossPercent;
-    private BigDecimal totalAmountGr;
 
     public BulkProduct() {
         super();
@@ -16,14 +15,6 @@ public class BulkProduct extends Product {
 
     public void setLossPercentage(BigDecimal lossPercentage) {
         this.lossPercent = lossPercentage;
-    }
-
-    public BigDecimal getTotalAmount() {
-        return totalAmountGr;
-    }
-
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmountGr = totalAmount;
     }
 
     @Override
