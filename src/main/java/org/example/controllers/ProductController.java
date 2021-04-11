@@ -66,7 +66,7 @@ public class ProductController  implements Initializable, IListController<Produc
     Product actualProduct;
 
     //Combo box lists
-    private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestible", "Papel", "Liston","Creado","Caja");
+    private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestible", "Papeles", "Listones","Creado","Caja");
     private static final ObservableList<String> privacyItems = FXCollections.observableArrayList("Publico", "Privado");
     private static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ( "classifications/products", ProductClassDto[].class, false));
 

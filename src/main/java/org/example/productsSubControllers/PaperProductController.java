@@ -20,7 +20,7 @@ public class PaperProductController implements Initializable, IControllerProduct
 
     @Override
     public String[] getIdentifier() {
-        return new String[]{"Papel"};
+        return new String[]{"Papeles"};
     }
 
     @Override

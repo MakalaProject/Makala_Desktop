@@ -23,7 +23,7 @@ public class RibbonProductController implements Initializable, IControllerProduc
 
     @Override
     public String[] getIdentifier() {
-        return new String[]{"Liston"};
+        return new String[]{"Listones"};
     }
 
     @Override
