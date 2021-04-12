@@ -60,8 +60,8 @@
                             </children>
                         </AnchorPane>
                         <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="369.0" layoutY="240.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="212.0" />
-                  <Button fx:id="previousImage" layoutX="75.0" layoutY="127.0" mnemonicParsing="false" text="Anterior" />
-                  <Button fx:id="nextImage" layoutX="382.0" layoutY="127.0" mnemonicParsing="false" text="Siguiente" />
+                        <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="SEARCH" layoutX="405.0" layoutY="151.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="84.42857170104992" AnchorPane.topAnchor="125.28571510314941" />
+                        <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="PLUS" layoutX="84.0" layoutY="165.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="405.4285717010499" AnchorPane.topAnchor="139.2857151031494" />
                   <Button fx:id="deleteImage" layoutX="442.0" layoutY="55.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 30;" text="X" textFill="#f55353">
                      <font>
                         <Font name="Franklin Gothic Heavy" size="12.0" />
