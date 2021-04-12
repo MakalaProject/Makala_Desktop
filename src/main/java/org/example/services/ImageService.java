@@ -18,13 +18,20 @@ public class ImageService {
             "api_key", "346552885155737",
             "api_secret", "WCVb9nnKC2tpQkCgyrAkoO5CNwY"));
 
-    public static List<String> sendImageList(List<File> images){
+
+    public static List<String> uploadImages(List<String> images){
         List<String> urls = new ArrayList<>();
+        List<String> currentImages = new ArrayList<>();
+        for (String f: images){
+            if(!f.contains("http://res.cloudinary.com")){
+                currentImages.add(f);
+            }
+        }
         try {
-            for(File image: images){
+            for(String i: currentImages){
+                File image = new File(i);
                 Map uploadResult = cloudinary.uploader().upload(image, ObjectUtils.asMap(
-                        "folder", "Makala",
-                                "public_id"));
+                        "folder", "Makala"));
                 urls.add((String)uploadResult.get("url"));
             }
             return urls;
@@ -34,21 +41,18 @@ public class ImageService {
         return null;
     }
 
-    public static List<String> updateImageList(List<File> images, List<Picture> pictures){
-
-        List<String> urls = new ArrayList<>();
+    public static void deleteImages(List<String> images){
         try {
-            for(File image: images){
-                Map uploadResult = cloudinary.uploader().upload(image, ObjectUtils.asMap(
-                        "folder", "Makala",
-                        "public_id"));
-                urls.add((String)uploadResult.get("url"));
+            for(String i: images){
+                if(i.contains("http://res.cloudinary.com")){
+                    String publicId = i.substring(i.length()-24, i.length()-4);
+                    Map uploadResult = cloudinary.uploader().destroy("Makala/" + publicId, ObjectUtils.emptyMap());
+                    uploadResult.entrySet();
+                }
             }
-            return urls;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 }

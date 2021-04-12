@@ -37,6 +37,13 @@
                             </image>
                         </ImageView>
                         <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="369.0" layoutY="240.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="212.0" />
+                  <Button fx:id="previousImage" layoutX="75.0" layoutY="127.0" mnemonicParsing="false" text="Anterior" />
+                  <Button fx:id="nextImage" layoutX="382.0" layoutY="127.0" mnemonicParsing="false" text="Siguiente" />
+                  <Button fx:id="deleteImage" layoutX="442.0" layoutY="55.0" mnemonicParsing="false" style="-fx-background-color: white; -fx-border-radius: 30;" text="X" textFill="#f55353">
+                     <font>
+                        <Font name="Franklin Gothic Heavy" size="12.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="previousImage" layoutX="75.0" layoutY="127.0" mnemonicParsing="false" text="Anterior" AnchorPane.leftAnchor="381.0" AnchorPane.topAnchor="128.0" />
                   <Button fx:id="nextImage" layoutX="382.0" layoutY="127.0" mnemonicParsing="false" text="Siguiente" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="127.0" />
                     </children>
