@@ -9,6 +9,7 @@ public interface IControllerProducts<D> {
     D getObject();
     void setObject(D object);
     D getObjectByFields();
+    default void clearController(){}
 
     /**
      * Function to get the specific information of the object with an external server

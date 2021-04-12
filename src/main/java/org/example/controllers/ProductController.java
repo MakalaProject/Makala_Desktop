@@ -236,6 +236,9 @@ public class ProductController  implements Initializable, IListController<Produc
                     product.getPictures().add(new Picture(s));
                 }
                 Request.putJ( product.getRoute(), product);
+                //actualPropertiesController.clearController();
+                //actualProduct = (Product) actualPropertiesController.findObject(product);
+                updateView();
             }else {
                 showAlertEmptyFields();
             }

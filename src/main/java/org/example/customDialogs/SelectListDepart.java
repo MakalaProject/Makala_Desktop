@@ -9,8 +9,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
+import org.example.interfaces.ListToChangeTools;
 import org.example.model.Department;
 import org.example.model.Employee;
+import org.example.model.products.Hole;
 import org.example.services.Request;
 
 import java.net.URL;
@@ -32,6 +34,7 @@ public class SelectListDepart implements Initializable {
 
 
         saveButton.setOnMouseClicked(mouseEvent -> {
+            //new ListToChangeTools<Hole,Integer>().setToDeleteItems(employee.getDepartments(), checkListView.getCheckModel().getCheckedItems());
             employee.setDepartments(checkListView.getCheckModel().getCheckedItems());
             Request.putJ(employee.getRoute(), employee);
             Node source = (Node)  mouseEvent.getSource();

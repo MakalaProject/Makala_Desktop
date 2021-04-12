@@ -34,14 +34,14 @@ public class RibbonProductController implements Initializable, IControllerProduc
     @Override
     public RibbonProduct getObject() {
         RibbonProduct ribbonProduct = new RibbonProduct();
-        ribbonProduct.setWidthCm(new BigDecimal(anchoField.getWidth()));
-        ribbonProduct.setRgb(colorPicker.getValue().toString());
+        ribbonProduct.setWidthIn(new BigDecimal(anchoField.getText()));
+        ribbonProduct.setRgb(colorPicker.getValue().toString().substring(2));
         return ribbonProduct;
     }
 
     @Override
     public void setObject(RibbonProduct ribbonProduct) {
-        anchoField.setText(ribbonProduct.getWidthCm().toString());
+        anchoField.setText(ribbonProduct.getWidthIn().toString());
         colorPicker.setValue(Color.web(ribbonProduct.getRgb()));
     }
 

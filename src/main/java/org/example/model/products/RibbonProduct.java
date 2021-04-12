@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 public class RibbonProduct extends Product {
-    private BigDecimal widthCm;
+    private BigDecimal widthIn;
     private String rgb;
     @Override
     public String getRoute(){

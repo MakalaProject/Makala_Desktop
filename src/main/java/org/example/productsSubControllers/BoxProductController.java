@@ -18,9 +18,8 @@ import org.example.model.products.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BoxProductController extends StaticParentProductController<BoxProduct> {
     @FXML public TextField altoIntField;
@@ -29,7 +28,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
     private final ObservableList<Hole> holeList = FXCollections.observableArrayList();
-    private final List<Hole> originalHoleList = new ArrayList<>();
+    private final Set<Hole> originalHoleList = new HashSet<>();
 
 
     @Override
@@ -41,7 +40,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     }
 
     public void showList(){
-        holesListView.setItems(FXCollections.observableList(holeList));
+        holesListView.setItems(FXCollections.observableList(holeList.stream().filter(hole -> !hole.isToDelete()).collect(Collectors.toList())));
     }
 
     @Override
@@ -67,15 +66,26 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         BoxProduct boxProduct = super.getObject(BoxProduct.class);
         new ListToChangeTools<Hole,Integer>().setToDeleteItems(originalHoleList, holeList);
         boxProduct.setHolesDimensions(holeList);
-        boxProduct.getInternalMeasures().setX(new BigDecimal(anchoField.getText()));
-        boxProduct.getInternalMeasures().setY(new BigDecimal(altoField.getText()));
-        boxProduct.getInternalMeasures().setZ(new BigDecimal(largoField.getText()));
+        boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
+        boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
+        boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
         return boxProduct;
+
+    }
+
+    public void clearController(){
+        holeList.clear();
+        originalHoleList.clear();
     }
 
     @Override
     public void setObject(BoxProduct boxProduct){
-        originalHoleList.addAll(boxProduct.getHolesDimensions());
+        clearController();
+        if (boxProduct.getHolesDimensions() != null){
+            for (Hole hole : boxProduct.getHolesDimensions()) {
+                originalHoleList.add(new Hole(hole.getHoleNumber(), hole.getHoleDimensions(),false));
+            }
+        }
         holeList.setAll(boxProduct.getHolesDimensions());
         showList();
         anchoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getX()));
@@ -117,7 +127,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                         holeList.add(hole.getHole());
                     }else {
                         if (hole.getAction() == Action.DELETE){
-
                             holeList.remove(hole.getHole());
                         }else {
                             holeList.set(holeList.indexOf(holesListView.getSelectionModel().getSelectedItem()), hole.getHole());
