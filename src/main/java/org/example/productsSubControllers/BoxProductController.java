@@ -3,20 +3,18 @@ package org.example.productsSubControllers;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.shape.Box;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.controllers.ProductController;
-import org.example.model.products.BoxProduct;
-import org.example.model.products.Hole;
-import org.example.model.products.Product;
+import org.example.interfaces.ListToChangeTools;
+import org.example.model.products.*;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -39,29 +37,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        addHoleButton.setOnMouseClicked(mouseEvent -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/box_hole_properties.fxml"));
-            try {
-                Parent parent = fxmlLoader.load();
-                HoleController dialogController = fxmlLoader.<HoleController>getController();
-                Scene scene = new Scene(parent);
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
-                stage.showAndWait();
-                Hole hole = (Hole) stage.getUserData();
-                if (hole != null) {
-                    holeList.add(hole);
-                    showList();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        addHoleButton.setOnMouseClicked(new ShowDialog(true));
 
-        holesListView.
-
-
+        holesListView.setOnMouseClicked(new ShowDialog(false));
     }
 
     public void showList(){
@@ -89,6 +67,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @Override
     public BoxProduct getObject(){
         BoxProduct boxProduct = super.getObject(BoxProduct.class);
+        new ListToChangeTools<Hole,Integer>().setToDeleteItems(originalHoleList, holeList);
         boxProduct.setHolesDimensions(holeList);
         boxProduct.getInternalMeasures().setX(new BigDecimal(anchoField.getText()));
         boxProduct.getInternalMeasures().setY(new BigDecimal(altoField.getText()));
@@ -110,5 +89,46 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @Override
     public BoxProduct findObject(Product object) {
         return (BoxProduct) Request.find("products/boxes", object.getIdProduct(), BoxProduct.class);
+    }
+
+    class ShowDialog implements EventHandler<MouseEvent> {
+        private final boolean isCreate;
+        ShowDialog(boolean isCreate){
+            this.isCreate = isCreate;
+        }
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/box_hole_properties.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                HoleController dialogController = fxmlLoader.<HoleController>getController();
+                if (!isCreate){
+                    dialogController.deleteButton.setVisible(false);
+                    dialogController.setHole(holesListView.getSelectionModel().getSelectedItem());
+                }else {
+                    dialogController.deleteButton.setVisible(true);
+                }
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                HoleToSend hole = (HoleToSend) stage.getUserData();
+                if (hole != null) {
+                    if (isCreate){
+                        holeList.add(hole.getHole());
+                    }else {
+                        if (hole.getAction() == Action.DELETE){
+                            holeList.remove(hole.getHole());
+                        }else {
+                            holeList.set(holeList.indexOf(holesListView.getSelectionModel().getSelectedItem()), hole.getHole());
+                        }
+                    }
+                    showList();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
