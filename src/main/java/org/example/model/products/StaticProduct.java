@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class StaticProduct extends Product implements IPaths {
+public class StaticProduct extends Product {
     protected Measure3Dimensions measures;
     private int totalAmount = 0;
 
@@ -21,7 +21,7 @@ public class StaticProduct extends Product implements IPaths {
     }
 
     @Override
-    public String getRout() {
+    public String getRoute() {
         return route + "/statics";
     }
 }

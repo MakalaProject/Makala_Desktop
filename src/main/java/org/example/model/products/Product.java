@@ -29,7 +29,7 @@ public class Product implements IPaths {
     }
 
     @Override
-    public String getRout() {
+    public String getRoute() {
         return route;
     }
 }

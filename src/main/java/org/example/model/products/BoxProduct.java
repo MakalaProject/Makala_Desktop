@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.example.interfaces.IPaths;
 
 import java.util.List;
 
@@ -11,7 +12,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoxProduct extends StaticProduct{
+public class BoxProduct extends StaticProduct {
     private Measure3Dimensions internalMeasures = new Measure3Dimensions();
     private List<Hole> holesDimensions;
+
+    @Override
+    public String getRoute() {
+        return route + "/boxes";
+    }
 }
