@@ -62,6 +62,9 @@ public class ProductController  implements Initializable, IListController<Produc
     @FXML AnchorPane fieldsAnchorPane;
     @FXML ToggleSwitch editSwitch;
     @FXML SplitPane principalSplitPane;
+    @FXML Button nextImage;
+    @FXML Button previousImage;
+    @FXML Button deleteImage;
 
     Product actualProduct;
 
@@ -76,7 +79,9 @@ public class ProductController  implements Initializable, IListController<Produc
     private static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new RibbonProductController(), new PaperProductController(), new BulkProductController()};
     private IControllerProducts actualPropertiesController;
     private int index;
-    private List<File> files = new ArrayList<>();
+    private int imageIndex = 0;
+    private List<String> files = new ArrayList<>();
+    private List<String> deleteFiles = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -135,6 +140,7 @@ public class ProductController  implements Initializable, IListController<Produc
             }
         });
 
+
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView();
@@ -188,8 +194,56 @@ public class ProductController  implements Initializable, IListController<Produc
             Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
             uploadImage(s);
         });
-    }
 
+        previousImage.setOnMouseClicked(mouseEvent -> {
+            imageIndex--;
+            checkIndex();
+        });
+
+        nextImage.setOnMouseClicked(mouseEvent -> {
+            imageIndex++;
+            checkIndex();
+        });
+
+        deleteImage.setOnMouseClicked(mouseEvent -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Eliminar imagen");
+            alert.setContentText("¿Seguro quieres eliminarla?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                deleteFiles.add(files.get(imageIndex));
+                files.remove(imageIndex);
+                if(imageIndex!=0){
+                    imageIndex--;
+                }
+                checkIndex();
+            }
+        });
+    }
+    private void checkIndex(){
+        if(imageIndex == files.size()-1){
+            nextImage.setDisable(true);
+            previousImage.setDisable(false);
+        }else if(files.size() == 0){
+            nextImage.setDisable(true);
+            previousImage.setDisable(true);
+        }else if(imageIndex == 0){
+            nextImage.setDisable(false);
+            previousImage.setDisable(true);
+        }else{
+            previousImage.setDisable(false);
+            nextImage.setDisable(false);
+        }
+        if(files.get(imageIndex).contains("http://res.cloudinary.com")){
+            Image image = new Image(files.get(imageIndex));
+            productImage.setImage(image);
+        }else{
+            File file = new File(files.get(imageIndex));
+            Image  image = new Image(file.toURI().toString());
+            productImage.setImage(image);
+        }
+
+    }
     //Filter products by classifications
     public void selectClassification(){
         ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductType().equals(comboBox.getValue()))
@@ -207,6 +261,11 @@ public class ProductController  implements Initializable, IListController<Produc
 
     @Override
     public void delete() {
+        deleteFiles = new ArrayList<>();
+        for(Picture p: actualProduct.getPictures()){
+            deleteFiles.add(p.getPath());
+        }
+        ImageService.deleteImages(deleteFiles);
         Request.deleteJ( actualProduct.getRoute(), actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
@@ -230,11 +289,17 @@ public class ProductController  implements Initializable, IListController<Produc
                 selectClassification();
                 listView.getSelectionModel().select(product);
                 listView.scrollTo(product);
-                List<String> urls = ImageService.sendImageList(files);
+                List<String> urls = ImageService.uploadImages(files);
+                files = urls;
                 for(String s: urls){
                     product.getPictures().add(new Picture(s));
                 }
-                Request.putJ( product.getRoute(), product);
+                files = new ArrayList<>();
+                for(Picture p: product.getPictures()){
+                    files.add(p.getPath());
+                }
+                ImageService.deleteImages(deleteFiles);
+                actualProduct = (Product) Request.putJ( product.getRoute(), product);
             }else {
                 showAlertEmptyFields();
             }
@@ -349,9 +414,11 @@ public class ProductController  implements Initializable, IListController<Produc
         //Disable edit option
         editSwitch.setSelected(false);
         editView();
+
         //Update the actual product
         actualProduct = listView.getSelectionModel().getSelectedItem();
         index = productObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
             if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductType())){
@@ -359,6 +426,10 @@ public class ProductController  implements Initializable, IListController<Produc
                 actualPropertiesController = controller;
                 actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
                 putFields();
+                files = new ArrayList<>();
+                deleteFiles = new ArrayList<>();
+                fillImageList();
+                checkIndex();
                 return;
             }
         }
@@ -381,6 +452,7 @@ public class ProductController  implements Initializable, IListController<Produc
     }
 
     public void uploadImage(Stage s){
+
         FileChooser fileChooser = new FileChooser();
         //Set extension filter
         FileChooser.ExtensionFilter extFilterJPG
@@ -397,10 +469,19 @@ public class ProductController  implements Initializable, IListController<Produc
         File file = fileChooser.showOpenDialog(s);
         if (file != null){
             Image img = new Image(file.toURI().toString());
-            files.add(file);
+            files.add(file.getPath());
             productImage.setImage(img);
+            imageIndex++;
+            checkIndex();
         }
     }
 
+    private void fillImageList(){
+        if(!actualProduct.getPictures().isEmpty()){
+            for(Picture p : actualProduct.getPictures()){
+                files.add(p.getPath());
+            }
+        }
+    }
 }
 

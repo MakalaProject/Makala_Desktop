@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="DesktopMakala" />
+        <module name="Makala_Desktop" />
       </profile>
     </annotationProcessing>
   </component>
