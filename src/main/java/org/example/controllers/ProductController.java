@@ -62,9 +62,9 @@ public class ProductController  implements Initializable, IListController<Produc
     @FXML AnchorPane fieldsAnchorPane;
     @FXML ToggleSwitch editSwitch;
     @FXML SplitPane principalSplitPane;
-    @FXML Button nextImage;
-    @FXML Button previousImage;
-    @FXML Button deleteImage;
+    @FXML FontAwesomeIconView deletePicture;
+    @FXML FontAwesomeIconView nextPicture;
+    @FXML FontAwesomeIconView previousPicture;
 
     Product actualProduct;
 
@@ -195,17 +195,17 @@ public class ProductController  implements Initializable, IListController<Produc
             uploadImage(s);
         });
 
-        previousImage.setOnMouseClicked(mouseEvent -> {
+        previousPicture.setOnMouseClicked(mouseEvent -> {
             imageIndex--;
             checkIndex();
         });
 
-        nextImage.setOnMouseClicked(mouseEvent -> {
+        nextPicture.setOnMouseClicked(mouseEvent -> {
             imageIndex++;
             checkIndex();
         });
 
-        deleteImage.setOnMouseClicked(mouseEvent -> {
+        deletePicture.setOnMouseClicked(mouseEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Eliminar imagen");
             alert.setContentText("¿Seguro quieres eliminarla?");
@@ -222,17 +222,17 @@ public class ProductController  implements Initializable, IListController<Produc
     }
     private void checkIndex(){
         if(imageIndex == files.size()-1){
-            nextImage.setDisable(true);
-            previousImage.setDisable(false);
+            nextPicture.setDisable(true);
+            previousPicture.setDisable(false);
         }else if(files.size() == 0){
-            nextImage.setDisable(true);
-            previousImage.setDisable(true);
+            nextPicture.setDisable(true);
+            previousPicture.setDisable(true);
         }else if(imageIndex == 0){
-            nextImage.setDisable(false);
-            previousImage.setDisable(true);
+            nextPicture.setDisable(false);
+            previousPicture.setDisable(true);
         }else{
-            previousImage.setDisable(false);
-            nextImage.setDisable(false);
+            previousPicture.setDisable(false);
+            nextPicture.setDisable(false);
         }
         if(files.get(imageIndex).contains("http://res.cloudinary.com")){
             Image image = new Image(files.get(imageIndex));
