@@ -15,8 +15,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.products.*;
-import org.example.services.Request;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -48,18 +46,18 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public String[] getIdentifier() {
-        return new String[]{"Caja"};
+        return new String[]{"Cajas"};
     }
 
     @Override
     public String getResource() {
-        return "/fxml/static_box_properties.fxml";
+        return "/fxml/box_product_properties.fxml";
     }
 
 
     public BoxProduct getObjectByFields() {
         if(!altoIntField.getText().isEmpty() || !anchoIntField.getText().isEmpty() || !largoIntField.getText().isEmpty()) {
-            super.getObjectByFields();
+            return super.getObjectByFields();
         }
         return null;
     }
@@ -78,17 +76,17 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @Override
     public void setObject(BoxProduct boxProduct){
         originalHoleList.addAll(boxProduct.getHolesDimensions());
-        super.setObject(boxProduct);
         holeList.setAll(boxProduct.getHolesDimensions());
         showList();
         anchoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getX()));
         altoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getY()));
         largoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getZ()));
+        super.setObject(boxProduct);
     }
 
     @Override
     public BoxProduct findObject(Product object) {
-        return (BoxProduct) Request.find("products/boxes", object.getIdProduct(), BoxProduct.class);
+        return findObject(object,"products/boxes", BoxProduct.class );
     }
 
     class ShowDialog implements EventHandler<MouseEvent> {
@@ -103,10 +101,10 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                 Parent parent = fxmlLoader.load();
                 HoleController dialogController = fxmlLoader.<HoleController>getController();
                 if (!isCreate){
-                    dialogController.deleteButton.setVisible(false);
+                    dialogController.deleteButton.setVisible(true);
                     dialogController.setHole(holesListView.getSelectionModel().getSelectedItem());
                 }else {
-                    dialogController.deleteButton.setVisible(true);
+                    dialogController.deleteButton.setVisible(false);
                 }
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
@@ -114,15 +112,21 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                 stage.setScene(scene);
                 stage.showAndWait();
                 HoleToSend hole = (HoleToSend) stage.getUserData();
-                if (hole != null) {
+                if (hole.getHole() != null) {
                     if (isCreate){
                         holeList.add(hole.getHole());
                     }else {
                         if (hole.getAction() == Action.DELETE){
+
                             holeList.remove(hole.getHole());
                         }else {
                             holeList.set(holeList.indexOf(holesListView.getSelectionModel().getSelectedItem()), hole.getHole());
                         }
+                    }
+                    int index = 1;
+                    for (Hole holeIn : holeList){
+                        holeIn.setHoleNumber(index);
+                        index ++;
                     }
                     showList();
                 }

@@ -7,9 +7,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.control.skin.SliderSkin;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.products.Action;
@@ -26,16 +23,15 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
     @FXML public TextField anchoField;
     @FXML public FontAwesomeIconView updateButton;
     @FXML public FontAwesomeIconView deleteButton;
-    private Hole actualHole;
+    private Hole actualHole = new Hole();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateButton.setOnMouseClicked(mouseEvent -> {
             if(!altoField.getText().isEmpty() || !anchoField.getText().isEmpty() ){
-                Hole hole = setInfo(new Hole());
                 Node source = (Node)  mouseEvent.getSource();
                 Stage stage  = (Stage) source.getScene().getWindow();
                 stage.close();
-                stage.setUserData(new HoleToSend(actualHole, Action.UPDATE));
+                stage.setUserData(new HoleToSend(setInfo(actualHole), Action.UPDATE));
             }else{
                 showAlertEmptyFields();
             }
