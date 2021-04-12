@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="297.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.productsSubControllers.HoleController">
+   <children>
+      <Pane prefHeight="61.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="230.0" layoutY="20.0" text="Hueco" textFill="WHITE">
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font>
+            </Label>
+         </children></Pane>
+      <Label layoutX="80.0" layoutY="173.0" prefHeight="28.0" prefWidth="76.0" text="Alto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="173.0">
+         <font>
+            <Font name="Roboto Light" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="altoField" layoutX="225.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="168.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="80.0" layoutY="119.0" prefHeight="28.0" prefWidth="95.0" text="Ancho" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="119.0">
+         <font>
+            <Font name="Roboto Light" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="anchoField" layoutX="225.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="114.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="548.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+   </children>
+</AnchorPane>

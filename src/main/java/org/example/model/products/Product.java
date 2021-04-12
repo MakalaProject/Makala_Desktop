@@ -3,15 +3,11 @@ package org.example.model.products;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.example.interfaces.IPaths;
 import org.example.model.Picture;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-
-
 
 @Data
 @AllArgsConstructor

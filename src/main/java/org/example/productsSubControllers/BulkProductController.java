@@ -37,13 +37,13 @@ public class BulkProductController implements Initializable, IControllerProducts
     @Override
     public BulkProduct getObject() {
         BulkProduct bulkProduct = new BulkProduct();
-        bulkProduct.setLossPercentage(new BigDecimal(porcentajeField.getText()));
+        bulkProduct.setLossPercent(new BigDecimal(porcentajeField.getText()));
         return bulkProduct;
     }
 
     @Override
     public void setObject(BulkProduct bulkProduct) {
-        porcentajeField.setText(bulkProduct.getLossPercentage().toString());
+        porcentajeField.setText(bulkProduct.getLossPercent().toString());
     }
 
     @Override

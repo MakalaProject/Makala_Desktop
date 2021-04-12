@@ -20,25 +20,6 @@ public class StaticProduct extends Product implements IPaths {
         measures = new Measure3Dimensions();
     }
 
-
-    /*@Override
-    public boolean compareProduct(Product p){
-        StaticProduct product = (StaticProduct) p;
-        if(name.equals(product.name)
-                && privacy.equals(product.privacy)
-                && productType.equals(product.getProductType())
-                && price.equals(product.getPrice())
-                && max == product.getMax()
-                && min == product.getMin()
-                && productClassDto.getClassification().equals((product.getProductClass().getClassification()))
-                && dimensions.getZ().compareTo(product.dimensions.getZ()) == 0
-                && dimensions.getX().compareTo(product.dimensions.getX()) == 0
-                && dimensions.getY().compareTo(product.dimensions.getY()) == 0){
-            return true;
-        }
-        return false;
-    }*/
-
     @Override
     public String getRout() {
         return route + "/statics";

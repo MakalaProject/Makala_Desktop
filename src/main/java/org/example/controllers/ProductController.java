@@ -6,12 +6,9 @@ import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
-import org.example.productsSubControllers.PaperProductController;
+import org.example.productsSubControllers.*;
 import org.example.services.*;
-import org.example.productsSubControllers.BulkProductController;
 import org.example.interfaces.IControllerProducts;
-import org.example.productsSubControllers.RibbonProductController;
-import org.example.productsSubControllers.StaticProductController;
 import org.example.customCells.ProductListViewCell;
 import org.example.customDialogs.ProductCreateController;
 import javafx.fxml.FXMLLoader;
@@ -73,7 +70,7 @@ public class ProductController  implements Initializable, IListController<Produc
     //Products list
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
     //Properties controller
-    private static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new RibbonProductController(), new PaperProductController(), new BulkProductController()};
+    private static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new BoxProductController(), new RibbonProductController(), new PaperProductController(), new BulkProductController()};
     private IControllerProducts actualPropertiesController;
     private int index;
     private List<File> files = new ArrayList<>();
@@ -143,6 +140,7 @@ public class ProductController  implements Initializable, IListController<Produc
         //Search filter
         FilteredList<Product> filteredProducts = new FilteredList<>(productObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
+            if (!existChanges()) {
                 filteredProducts.setPredicate(product -> {
                     if (newValue.isEmpty()) {
                         return true;
@@ -161,6 +159,7 @@ public class ProductController  implements Initializable, IListController<Produc
                 if (!filteredProducts.isEmpty()) {
                     showList(FXCollections.observableList(filteredProducts), listView, ProductListViewCell.class);
                 }
+            }
         } );
 
         //Select item list
@@ -192,16 +191,18 @@ public class ProductController  implements Initializable, IListController<Produc
 
     //Filter products by classifications
     public void selectClassification(){
-        ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductType().equals(comboBox.getValue()))
-                .collect(Collectors.toCollection(FXCollections::observableArrayList));
-        //check if list is empty
-        if (products.isEmpty()){
-            listView.setDisable(true);
-            listView.getItems().clear();
-            cleanForm();
-        }else {
-            listView.setDisable(false);
-            showList(products, listView, ProductListViewCell.class);
+        if (!existChanges()) {
+            ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductType().equals(comboBox.getValue()))
+                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
+            //check if list is empty
+            if (products.isEmpty()) {
+                listView.setDisable(true);
+                listView.getItems().clear();
+                cleanForm();
+            } else {
+                listView.setDisable(false);
+                showList(products, listView, ProductListViewCell.class);
+            }
         }
     }
 
