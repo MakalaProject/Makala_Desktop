@@ -3,11 +3,15 @@
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="85.0" prefWidth="427.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="fullName" layoutX="41.0" layoutY="34.0" text="Label" />
+      <Label fx:id="fullName" layoutX="97.0" layoutY="24.0" prefHeight="37.0" prefWidth="256.0" text="Label">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
       <Label layoutX="106.0" layoutY="37.0" />
-       <FontAwesomeIconView glyphName="USER" layoutX="354.0" layoutY="69.0" size="70" wrappingWidth="58.142860412597656" />
+       <FontAwesomeIconView glyphName="USER" layoutX="14.0" layoutY="68.0" size="70" wrappingWidth="58.142860412597656" />
    </children>
 </AnchorPane>

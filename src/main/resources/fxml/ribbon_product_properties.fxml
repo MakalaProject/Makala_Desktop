@@ -21,5 +21,9 @@
         </font>
     </TextField>
    <ColorPicker fx:id="colorPicker" layoutX="216.0" layoutY="184.0" />
+    <Label layoutX="387.0" layoutY="126.0" text="&quot;">
+      <font>
+         <Font size="15.0" />
+      </font></Label>
 
 </AnchorPane>

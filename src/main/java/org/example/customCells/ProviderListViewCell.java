@@ -31,7 +31,7 @@ public class ProviderListViewCell extends ListCell<Provider> {
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/employee_list_view.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/user_list_view.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();

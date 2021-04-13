@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.customCells.IConstructor;
 import org.example.customCells.ProductListViewCell;
@@ -53,12 +54,12 @@ public interface IListController<D>{
     void add ();
     boolean existChanges();
     void putFields();
-    default void editView(ScrollPane scrollPane, ToggleSwitch editSwitch, FontAwesomeIconView updateButton){
+    default void editView(AnchorPane anchorPane, ToggleSwitch editSwitch, FontAwesomeIconView updateButton){
         if (editSwitch.isSelected()){
-            scrollPane.setDisable(false);
+            anchorPane.setDisable(false);
             updateButton.setVisible(true);
         }else {
-            scrollPane.setDisable(true);
+            anchorPane.setDisable(true);
             updateButton.setVisible(false);
         }
     }

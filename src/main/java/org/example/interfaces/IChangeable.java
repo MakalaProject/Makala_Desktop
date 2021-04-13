@@ -14,5 +14,4 @@ public interface IChangeable<I> {
      */
     void setToDelete(boolean toDelete);
 
-
 }
