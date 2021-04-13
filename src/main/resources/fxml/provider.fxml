@@ -25,7 +25,8 @@
         </AnchorPane>
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="506.0" style="-fx-background-color: #E3DAD8;">
             <children>
-            <AnchorPane fx:id="fieldsAnchorPane" disable="true" prefHeight="434.0" prefWidth="512.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
+                <ScrollPane>
+            <AnchorPane fx:id="fieldsAnchorPane" disable="true" prefHeight="796.0" prefWidth="512.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
                <children>
                       <Label prefHeight="28.0" prefWidth="61.0" text="Email" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="426.0" AnchorPane.topAnchor="265.0">
                           <font>
@@ -88,19 +89,19 @@
                       <RadioButton fx:id="siRadio" mnemonicParsing="false" text="Si" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="390.0" />
                       <RadioButton fx:id="noRadio" mnemonicParsing="false" text="No" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="390.0" />
                   <ComboBox fx:id="classificationComboBox" layoutX="175.0" layoutY="345.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="345.0" />
+                      <Label alignment="CENTER" layoutY="519.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="519.0">
+                          <font>
+                              <Font name="Roboto Light" size="27.0" />
+                          </font>
+                          <effect>
+                              <DropShadow blurType="TWO_PASS_BOX">
+                                  <color>
+                                      <Color red="0.5" green="0.5" blue="0.5" />
+                                  </color>
+                              </DropShadow>
+                          </effect>
+                      </Label>
                </children></AnchorPane>
-                <Label alignment="CENTER" layoutY="695.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="695.0">
-                    <font>
-                        <Font name="Roboto Light" size="27.0" />
-                    </font>
-                    <effect>
-                        <DropShadow blurType="TWO_PASS_BOX">
-                            <color>
-                                <Color red="0.5" green="0.5" blue="0.5" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Label>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="169.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="168.66586303710938" AnchorPane.topAnchor="47.0">
@@ -130,5 +131,6 @@
                         <DropShadow />
                     </effect></AnchorPane>
             </children></AnchorPane>
+    </ScrollPane>
     </items>
 </SplitPane>

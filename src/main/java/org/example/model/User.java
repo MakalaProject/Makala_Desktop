@@ -14,4 +14,5 @@ public class User {
     protected String lastName;
     protected String phone;
     protected final String route = "users";
+    protected final String identifier = "Usuario";
 }

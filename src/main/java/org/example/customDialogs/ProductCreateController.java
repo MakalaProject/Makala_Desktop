@@ -84,7 +84,8 @@ public class ProductCreateController implements Initializable, IControllerCreate
             if( !nombreField.getText().isEmpty()){
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
-                    Product newProduct = (Product) Request.postJ(product.getRoute(), setInfo(product));
+                    setInfo(product);
+                    Product newProduct = (Product) Request.postJ(product.getRoute(), product);
                     product.setIdProduct(newProduct.getIdProduct());
                     Node source = (Node)  mouseEvent.getSource();
                     Stage stage  = (Stage) source.getScene().getWindow();
@@ -102,7 +103,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
     }
 
     @Override
-    public Product setInfo(Product product){
+    public void setInfo(Product product){
         product.setName(nombreField.getText());
         product.setPrice(new BigDecimal(precioField.getText()));
         product.setMin(Integer.parseInt(minField.getText()));
@@ -110,7 +111,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
         product.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
         product.setProductType(tipoComboBox.getSelectionModel().getSelectedItem());
         product.setProductClassDto(clasificacionComboBox.getSelectionModel().getSelectedItem());
-        return product;
+        product.setStock(0);
     }
 
     private void changeType(IControllerProducts controller) {

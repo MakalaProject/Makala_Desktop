@@ -2,14 +2,20 @@ package org.example.interfaces;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.customCells.IConstructor;
 import org.example.customCells.ProductListViewCell;
+import org.example.model.Client;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -51,7 +57,6 @@ public interface IListController<D>{
     void delete(
     );
     void update();
-    void add ();
     boolean existChanges();
     void putFields();
     default void editView(AnchorPane anchorPane, ToggleSwitch editSwitch, FontAwesomeIconView updateButton){
@@ -76,4 +81,25 @@ public interface IListController<D>{
         });
     }
     void cleanForm();
+    default void add(String resource, ListView<D> listView, ObservableList<D> observableList, Class<?> controllerCell) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resource));
+        try {
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            D object = (D) stage.getUserData();
+            if(object != null){
+                observableList.add(object);
+                showList(observableList,listView,controllerCell);
+                listView.getSelectionModel().select(object);
+                listView.scrollTo(object);
+                updateView();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

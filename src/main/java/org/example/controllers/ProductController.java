@@ -280,7 +280,6 @@ public class ProductController  implements Initializable, IListController<Produc
         editView(fieldsAnchorPane, editSwitch, updateButton);
     }
 
-    @Override
     public void add() {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/product_create.fxml"));
         try {
