@@ -35,5 +35,8 @@
             <Font size="15.0" />
         </font>
     </TextField>
+    <Label layoutX="389.0" layoutY="98.0" text="cm" />
+    <Label layoutX="389.0" layoutY="203.0" text="cm" />
+    <Label layoutX="389.0" layoutY="151.0" text="cm" />
 
 </AnchorPane>

@@ -27,10 +27,6 @@ public class StorageController implements Initializable, IListController<Product
 
     }
 
-    @Override
-    public void add() {
-
-    }
 
     @Override
     public boolean existChanges() {
@@ -58,7 +54,7 @@ public class StorageController implements Initializable, IListController<Product
     }
 
     @Override
-    public Product setInfo(Product product) {
-        return null;
+    public void setInfo(Product product) {
+        return;
     }
 }

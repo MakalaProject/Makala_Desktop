@@ -52,7 +52,6 @@ public class ProviderController extends UserParentController<Provider> {
         tipoComboBox.getItems().addAll(typeItems);
         siRadio.setToggleGroup(returnRadioGroup);
         noRadio.setToggleGroup(returnRadioGroup);
-        userObservableList = FXCollections.observableList(ProviderService.getProviders());
         classificationComboBox.itemsProperty().setValue(productClassObservableList);
         showListProviders(userObservableList);
         //Check if the list is empty to update the view and show its values at the beggining
@@ -79,7 +78,6 @@ public class ProviderController extends UserParentController<Provider> {
 
             });
             SortedList<Provider> sortedProviders = new SortedList<>(filteredProviders);
-            userObservableList = FXCollections.observableList(sortedProviders);
             showListProviders(userObservableList);
         } );
 
@@ -105,9 +103,6 @@ public class ProviderController extends UserParentController<Provider> {
             //editView();
         });
 
-        principalSplitPane.setOnMouseExited(mouseEvent -> {
-            updateView();
-        });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -211,14 +206,20 @@ public class ProviderController extends UserParentController<Provider> {
     }
 
     @Override
+    protected void showList() {
+
+    }
+
+    @Override
     public void update() {
 
     }
 
     @Override
-    public void add() {
-
+    protected Provider instanceObject() {
+        return null;
     }
+
 
     @Override
     public boolean existChanges() {
@@ -298,7 +299,7 @@ public class ProviderController extends UserParentController<Provider> {
     }
 
     @Override
-    public Provider setInfo(Provider object) {
-        return null;
+    public void setInfo(Provider object) {
+        return;
     }
 }

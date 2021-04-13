@@ -94,6 +94,5 @@ public class ClientController extends UserParentController<Client> {
     public void setInfo(Client client) {
         super.setInfo(client);
         client.setMail(correoField.getText());
-        return client;
     }
 }

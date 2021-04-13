@@ -59,7 +59,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
     @FXML FontAwesomeIconView previousPicture;
     @FXML FontAwesomeIconView imageButton;
 
-    private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestible","Creado","Caja");
+    private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestibles","Creado","Cajas");
     private static final ObservableList<String> privacyItems = FXCollections.observableArrayList("Publico", "Privado");
     private static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ("classifications/products", ProductClassDto[].class, false));
     private IControllerProducts[] controllers;
@@ -87,7 +87,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 for (IControllerProducts controller : controllers) {
-                    if (controller.getIdentifier().equals(t1)){
+                    if (Arrays.asList(controller.getIdentifier()).contains(t1)){
                         actualPropertiesController = controller;
                         changeType(controller);
                     }
@@ -100,7 +100,6 @@ public class ProductCreateController implements Initializable, IControllerCreate
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
                     setInfo(product);
-                    Product newProduct = (Product) Request.postJ(product.getRoute(), product);
                     ArrayList<Picture> pictures = new ArrayList<>();
                     files = ImageService.uploadImages(files);
                     if(files != null){
@@ -109,9 +108,13 @@ public class ProductCreateController implements Initializable, IControllerCreate
                         }
                     }
                     product.setPictures(pictures);
+                    Product newProduct = (Product) Request.postJ(product.getRoute(), product);
                     product.setIdProduct(newProduct.getIdProduct());
                     Node source = (Node)  mouseEvent.getSource();
                     Stage stage  = (Stage) source.getScene().getWindow();
+                    files = new ArrayList<>();
+                    deleteFiles = new ArrayList<>();
+                    imageIndex = 0;
                     stage.close();
                     stage.setUserData(product);
                 }

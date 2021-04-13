@@ -68,7 +68,7 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label alignment="CENTER" layoutY="293.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Divisiones" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="293.0">
+    <Label fx:id="labelDivisions" alignment="CENTER" layoutY="293.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Divisiones" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="293.0">
         <font>
             <Font name="Roboto Light" size="27.0" />
         </font>

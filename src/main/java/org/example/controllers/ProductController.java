@@ -237,7 +237,7 @@ public class ProductController  implements Initializable, IListController<Produc
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( actualProduct.getRoute(), actualProduct.getIdProduct());
+        Request.deleteJ( "products", actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
             listView.getSelectionModel().select(0);
