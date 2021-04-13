@@ -14,7 +14,7 @@ public class CatalogCreateController implements Initializable, IControllerCreate
     }
 
     @Override
-    public Catalog setInfo(Catalog object) {
-        return null;
+    public void setInfo(Catalog object) {
+
     }
 }

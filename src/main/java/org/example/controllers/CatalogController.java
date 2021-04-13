@@ -131,10 +131,6 @@ public class CatalogController implements Initializable, IListController<Catalog
 
     }
 
-    @Override
-    public void add() {
-
-    }
 
     @Override
     public boolean existChanges() {
@@ -169,7 +165,7 @@ public class CatalogController implements Initializable, IListController<Catalog
         listView.setCellFactory(employeeListView -> new CatalogListViewCell());
     }
     @Override
-    public Catalog setInfo(Catalog object) {
-        return null;
+    public void setInfo(Catalog object) {
+
     }
 }

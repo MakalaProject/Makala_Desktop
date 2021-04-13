@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.model.Adress.City;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.model.Provider;
@@ -35,6 +36,8 @@ public class ProviderController extends UserParentController<Provider> {
     @FXML TextField tarjetaField;
     @FXML TextField claveField;
     @FXML TextField emailField;
+    @FXML ComboBox<City> ciudadComboBox;
+    @FXML TextField codigoPostalTextField;
     @FXML ComboBox<String> tipoComboBox;
     @FXML ComboBox<ProductClassDto> classificationComboBox;
     @FXML RadioButton siRadio;

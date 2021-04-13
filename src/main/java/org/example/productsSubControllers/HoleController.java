@@ -38,7 +38,9 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.close();
-            stage.setUserData(new HoleToSend(setInfo(actualHole), Action.UPDATE));
+            Hole hole = new Hole();
+            setInfo(hole);
+            stage.setUserData(new HoleToSend(hole, Action.UPDATE));
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -56,10 +58,9 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
     }
 
     @Override
-    public Hole setInfo(Hole hole) {
+    public void setInfo(Hole hole) {
         hole.getHoleDimensions().setX(new BigDecimal(anchoField.getText()));
         hole.getHoleDimensions().setY(new BigDecimal(altoField.getText()));
-        return hole;
     }
 
     public void setHole(Hole hole){
