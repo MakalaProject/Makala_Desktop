@@ -1,36 +1,29 @@
 package org.example.customCells;
-
-import org.example.model.Employee;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import org.example.model.User;
 
 import java.io.IOException;
 
-public class EmployeeListViewCell extends ListCell<Employee> {
-    @FXML
-    Label fullName;
-
-
-    @FXML
-    private AnchorPane anchorPane;
-
-
+public class EmployeeListViewCell extends ListCell<User> {
+    @FXML Label fullName;
+    @FXML private AnchorPane anchorPane;
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(Employee employee, boolean empty) {
-        super.updateItem(employee, empty);
+    protected void updateItem(User user, boolean empty) {
+        super.updateItem(user, empty);
 
-        if(empty || employee == null) {
+        if(empty || user == null) {
             setText(null);
             setGraphic(null);
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/employee_list_view.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/user_list_view.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();
@@ -39,8 +32,7 @@ public class EmployeeListViewCell extends ListCell<Employee> {
                 }
 
             }
-
-            fullName.setText(String.valueOf(employee.getFirstName()) +" "+ String.valueOf(employee.getLastName()));
+            fullName.setText(String.valueOf(user.getFirstName()) +" "+ String.valueOf(user.getLastName()));
             setText(null);
             setGraphic(anchorPane);
         }

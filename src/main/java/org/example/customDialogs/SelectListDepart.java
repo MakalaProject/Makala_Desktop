@@ -16,11 +16,10 @@ import org.example.model.products.Hole;
 import org.example.services.Request;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class SelectListDepart implements Initializable {
-    @FXML
-    ListView<Department> listView;
     @FXML
     FontAwesomeIconView saveButton;
     @FXML
@@ -32,24 +31,23 @@ public class SelectListDepart implements Initializable {
         checkListView.setItems(FXCollections.observableArrayList(Request.getJ("departments", Department[].class, false)));
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-
         saveButton.setOnMouseClicked(mouseEvent -> {
-            //new ListToChangeTools<Hole,Integer>().setToDeleteItems(employee.getDepartments(), checkListView.getCheckModel().getCheckedItems());
-            employee.setDepartments(checkListView.getCheckModel().getCheckedItems());
+            List<Department> departmentList = checkListView.getCheckModel().getCheckedItems();
+            new ListToChangeTools<Department,Integer>().setToDeleteItems(employee.getDepartments(), departmentList);
+            employee.setDepartments(departmentList);
             Request.putJ(employee.getRoute(), employee);
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.close();
             stage.setUserData(employee);
         });
-
     }
 
     public void setEmployee(Employee employee){
         this.employee = employee;
         for (Department department : checkListView.getItems()) {
             for (Department departmentE : employee.getDepartments()) {
-                if (department.getIdDepartment() == departmentE.getIdDepartment())
+                if (department.getIdDepartment().equals(departmentE.getIdDepartment()))
                     checkListView.getCheckModel().check(department);
             }
         }

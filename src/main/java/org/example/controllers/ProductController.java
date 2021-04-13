@@ -57,7 +57,7 @@ public class ProductController  implements Initializable, IListController<Produc
     @FXML ComboBox<String> tipoComboBox;
     @FXML AnchorPane propertiesAnchorPane;
     @FXML ToggleSwitch editSwitch;
-    @FXML ScrollPane scrollPane;
+    @FXML AnchorPane fieldsAnchorPane;
     @FXML FontAwesomeIconView deletePicture;
     @FXML FontAwesomeIconView nextPicture;
     @FXML FontAwesomeIconView previousPicture;
@@ -105,7 +105,7 @@ public class ProductController  implements Initializable, IListController<Produc
 
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView(scrollPane, editSwitch, updateButton);
+            editView(fieldsAnchorPane, editSwitch, updateButton);
         });
 
         //Search filter
@@ -268,8 +268,6 @@ public class ProductController  implements Initializable, IListController<Produc
                     ImageService.deleteImages(deleteFiles);
                     actualProduct = (Product) Request.putJ(product.getRoute(), product);
                     Request.putJ(product.getRoute(), product);
-                    //actualPropertiesController.clearController();
-                    //actualProduct = (Product) actualPropertiesController.findObject(product);
                     updateView();
                 }
             }else {
@@ -279,7 +277,7 @@ public class ProductController  implements Initializable, IListController<Produc
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
         editSwitch.setSelected(false);
-        editView(scrollPane, editSwitch, updateButton);
+        editView(fieldsAnchorPane, editSwitch, updateButton);
     }
 
     @Override
@@ -305,7 +303,6 @@ public class ProductController  implements Initializable, IListController<Produc
         } catch (IOException e) {
             e.printStackTrace();
         }
-        updateView();
 
     }
 
@@ -375,7 +372,7 @@ public class ProductController  implements Initializable, IListController<Produc
 
         //Disable edit option
         editSwitch.setSelected(false);
-        editView(scrollPane, editSwitch, updateButton);
+        editView(fieldsAnchorPane, editSwitch, updateButton);
 
         //Update the actual product
         actualProduct = listView.getSelectionModel().getSelectedItem();

@@ -25,6 +25,8 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import org.example.model.RegexVerificationFields;
+import org.example.model.User;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -65,40 +67,33 @@ public class EmployeeController implements Initializable, IListController<Employ
 
         FilteredList<Employee> filteredEmployees = new FilteredList<>(FXCollections.observableArrayList(employeeObservableList), p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredEmployees.setPredicate(employee -> {
-                if (newValue.isEmpty()){
-                    return true;
-                }
-                String lowerCaseText = newValue.toLowerCase();
-                if (employee.getFirstName().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else if(employee.getLastName().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else if(employee.getPhone().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else if(employee.isDepartment(lowerCaseText)){
-                    return true;
-                }else {
-                    return false;
-                }
+            if (!existChanges()) {
+                filteredEmployees.setPredicate(employee -> {
+                    if (newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseText = newValue.toLowerCase();
+                    if (employee.getFirstName().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (employee.getLastName().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (employee.getPhone().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (employee.isDepartment(lowerCaseText)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
 
-            });
-            SortedList<Employee> sortedEmployees = new SortedList<>(filteredEmployees);
-            showList(sortedEmployees);
+                });
+            }
+            showList(filteredEmployees);
         } );
 
-        telefonoField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    telefonoField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
+        telefonoField.textProperty().addListener(new RegexVerificationFields(telefonoField,false,10));
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            //editView();
+            editView(fieldsAnchorPane,editSwitch, saveButton);
         });
 
         listView.setOnMouseClicked(mouseEvent -> {
@@ -153,7 +148,7 @@ public class EmployeeController implements Initializable, IListController<Employ
 
     @Override
     public void delete() {
-        Request.deleteJ( actualEmployee.getRoute(), actualEmployee.getId());
+        Request.deleteJ( actualEmployee.getRoute(), actualEmployee.getIdUser());
         if (listView.getItems().size() > 1) {
             employeeObservableList.remove(actualEmployee);
             listView.getSelectionModel().select(0);
@@ -168,12 +163,13 @@ public class EmployeeController implements Initializable, IListController<Employ
 
     @Override
     public void update() {
-        if(!nombresField.getText().isEmpty() || apellidosField.getText().isEmpty() || telefonoField.getText().isEmpty() ){
-            employeeObservableList.set(employeeObservableList.indexOf(actualEmployee), setInfo(actualEmployee));
+        if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() ){
+            setInfo(actualEmployee);
             showList(employeeObservableList);
             Request.putJ(actualEmployee.getRoute(), actualEmployee);
+            updateView();
             editSwitch.setSelected(false);
-            //editView();
+            editView(fieldsAnchorPane,editSwitch, saveButton);
         }else{
             showAlertEmptyFields("No puedes dejar campos indispensables vacios");
         }
@@ -204,24 +200,22 @@ public class EmployeeController implements Initializable, IListController<Employ
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
     public boolean existChanges() {
         if (actualEmployee == null){
-            return true;
+            return false;
         }
-        if (actualEmployee.compareEmployee(setInfo(new Employee()))){
+        if (actualEmployee.equals(setInfo(new Employee()))){
             if(!showAlertUnsavedElement(actualEmployee.getFirstName(), "Empleado")) {
                 listView.getSelectionModel().select(actualEmployee);
             }else{
                 updateView();
             }
-            return false;
-        }else {
             return true;
+        }else {
+            return false;
         }
     }
 
@@ -241,7 +235,7 @@ public class EmployeeController implements Initializable, IListController<Employ
     @Override
     public void updateView(){
         editSwitch.setSelected(false);
-        //editView();
+        editView(fieldsAnchorPane,editSwitch, saveButton);
         actualEmployee = listView.getSelectionModel().getSelectedItem();
         putFields();
     }
@@ -250,7 +244,7 @@ public class EmployeeController implements Initializable, IListController<Employ
         if (!employeeList.isEmpty()){
             listView.setDisable(false);
             listView.setItems(employeeList);
-            listView.setCellFactory(employeeListView -> new EmployeeListViewCell());
+            //listView.setCellFactory( employeeListView -> new EmployeeListViewCell());
         }else {
             listView.setDisable(true);
             cleanForm();
@@ -265,7 +259,6 @@ public class EmployeeController implements Initializable, IListController<Employ
         contraseñaField.setText("");
         departmentList.getItems().clear();
     }
-
 
     @Override
     public Employee setInfo(Employee employee) {

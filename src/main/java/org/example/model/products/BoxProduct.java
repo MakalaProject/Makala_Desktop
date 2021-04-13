@@ -22,7 +22,7 @@ public class BoxProduct extends StaticProduct {
         return route + "/boxes";
     }
 
-    private BigDecimal getArea(){
+    public BigDecimal getArea(){
         return internalMeasures.getY().multiply(internalMeasures.getX());
     }
 
@@ -31,6 +31,7 @@ public class BoxProduct extends StaticProduct {
         for (Hole hole : holesDimensions) {
             totalHolesArea = totalHolesArea.add(hole.getArea());
         }
-        return getArea().subtract(totalHolesArea);
+        BigDecimal returned = getArea().subtract(totalHolesArea);
+        return returned;
     }
 }

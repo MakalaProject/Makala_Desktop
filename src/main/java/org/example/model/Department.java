@@ -1,32 +1,25 @@
 package org.example.model;
 
 
-public class Department {
-    private int idDepartment;
-    private String departName;
-    public Department(){
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.example.interfaces.IChangeable;
 
-    }
+@Data
+@AllArgsConstructor
+public class Department implements IChangeable<Integer> {
+    private Integer idDepartment;
+    private String departName;
+    private boolean toDelete;
 
     @Override
     public String toString() {
         return departName;
     }
 
-    public int getIdDepartment() {
+    @Override
+    public Integer getId() {
         return idDepartment;
     }
 
-    public void setIdDepartment(int idDepartment) {
-        this.idDepartment = idDepartment;
-    }
-
-    public String getDepartName() {
-        return departName;
-    }
-
-
-    public void setDepartName(String departName) {
-        this.departName = departName;
-    }
 }

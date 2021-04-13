@@ -15,6 +15,7 @@ import org.example.model.RegexVerificationFields;
 import org.example.model.products.Action;
 import org.example.model.products.Hole;
 import org.example.model.products.HoleToSend;
+import org.example.model.products.Measure2Dimensions;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -62,7 +63,8 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
     }
 
     public void setHole(Hole hole){
-        this.actualHole = hole;
+
+        this.actualHole =  new Hole(hole.getHoleNumber(), new Measure2Dimensions(hole.getHoleDimensions().getX(), hole.getHoleDimensions().getY()),false);
         anchoField.setText(hole.getHoleDimensions().getX().toString());
         altoField.setText(hole.getHoleDimensions().getX().toString());
     }

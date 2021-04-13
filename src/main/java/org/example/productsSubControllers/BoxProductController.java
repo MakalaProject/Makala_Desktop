@@ -82,7 +82,8 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     }
 
     public void verifyAvailableArea(){
-        addHoleButton.setVisible(actualBoxProduct.getAvailableArea().equals(new BigDecimal(0)));
+        boolean t = actualBoxProduct.getAvailableArea().compareTo(new BigDecimal(0)) != 0;
+        addHoleButton.setVisible(t);
     }
 
     @Override
@@ -106,6 +107,13 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @Override
     public BoxProduct findObject(Product object) {
         return findObject(object,"products/boxes", BoxProduct.class );
+    }
+
+    public void alertOutOfBounds(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Medidas fuera de rango");
+        alert.setContentText("El orificio que intentas crear excede el area de la caja, espacio disponible: " + actualBoxProduct.getAvailableArea() + "cm");
+        alert.showAndWait();
     }
 
     class ShowDialog implements EventHandler<MouseEvent> {
@@ -133,18 +141,19 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                 HoleToSend hole = (HoleToSend) stage.getUserData();
                 if (hole.getHole() != null) {
                     if (isCreate){
-                        if (hole.getHole().getArea().compareTo(actualBoxProduct.getAvailableArea()) <= 0){
-                            holeList.add(hole.getHole());
-                        }else {
-                            Alert alert = new Alert(Alert.AlertType.WARNING);
-                            alert.setTitle("Medidas fuera de rango");
-                            alert.setContentText("El orificio que intentas crear excede el area de la caja, espacio disponible: " + actualBoxProduct.getAvailableArea());
-                            alert.showAndWait();
+                        if (hole.getHole().getArea().compareTo(actualBoxProduct.getAvailableArea()) > 0){
+                            alertOutOfBounds();
+                            return;
                         }
+                        holeList.add(hole.getHole());
                     }else {
                         if (hole.getAction() == Action.DELETE){
                             holeList.remove(hole.getHole());
                         }else {
+                            if (hole.getHole().getArea().compareTo(actualBoxProduct.getAvailableArea().add(holesListView.getSelectionModel().getSelectedItem().getArea())) > 0){
+                                alertOutOfBounds();
+                                return;
+                            }
                             holeList.set(holeList.indexOf(holesListView.getSelectionModel().getSelectedItem()), hole.getHole());
                         }
                     }
