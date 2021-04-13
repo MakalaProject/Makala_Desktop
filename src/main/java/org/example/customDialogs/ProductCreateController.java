@@ -3,7 +3,11 @@ package org.example.customDialogs;
 import org.example.interfaces.IControllerCreate;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import org.example.interfaces.IPictureController;
+import org.example.model.Client;
+import org.example.model.Picture;
 import org.example.model.RegexVerificationFields;
+import org.example.services.ImageService;
 import org.example.services.Request;
 import org.example.interfaces.IControllerProducts;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -25,9 +29,12 @@ import org.example.model.products.ProductClassDto;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class ProductCreateController implements Initializable, IControllerCreate<Product> {
+public class ProductCreateController implements Initializable, IControllerCreate<Product>, IPictureController {
     @FXML
     TextField nombreField;
     @FXML
@@ -47,12 +54,20 @@ public class ProductCreateController implements Initializable, IControllerCreate
     @FXML
     ComboBox<String> tipoComboBox;
     @FXML AnchorPane propertiesAnchorPane;
+    @FXML FontAwesomeIconView deletePicture;
+    @FXML FontAwesomeIconView nextPicture;
+    @FXML FontAwesomeIconView previousPicture;
+    @FXML FontAwesomeIconView imageButton;
 
     private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestible","Creado","Caja");
     private static final ObservableList<String> privacyItems = FXCollections.observableArrayList("Publico", "Privado");
-    private static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ(Request.REST_URL + "classifications/products", ProductClassDto[].class, false));
+    private static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ("classifications/products", ProductClassDto[].class, false));
     private IControllerProducts[] controllers;
     private IControllerProducts actualPropertiesController;
+    private int imageIndex = 0;
+    private List<String> files = new ArrayList<>();
+    private List<String> deleteFiles = new ArrayList<>();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         privacidadComboBox.getItems().addAll(privacyItems);
@@ -62,7 +77,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
         tipoComboBox.getSelectionModel().select(0);
         privacidadComboBox.getSelectionModel().select(0);
         nombreField.setText("Nuevo Producto");
-
+        checkIndex();
         //Verifications with regex
         maxField.textProperty().addListener(new RegexVerificationFields(maxField, true, 3));
         minField.textProperty().addListener(new RegexVerificationFields(minField, true, 3));
@@ -72,7 +87,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 for (IControllerProducts controller : controllers) {
-                    if (controller.getIdentifier().equals(t1)){
+                    if (Arrays.asList(controller.getIdentifier()).contains(t1)){
                         actualPropertiesController = controller;
                         changeType(controller);
                     }
@@ -84,6 +99,14 @@ public class ProductCreateController implements Initializable, IControllerCreate
             if( !nombreField.getText().isEmpty()){
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
+                    ArrayList<Picture> pictures = new ArrayList<>();
+                    files = ImageService.uploadImages(files);
+                    if(files != null){
+                        for(String s: files){
+                            pictures.add(new Picture(s));
+                        }
+                    }
+                    product.setPictures(pictures);
                     Product newProduct = (Product) Request.postJ(product.getRoute(), setInfo(product));
                     product.setIdProduct(newProduct.getIdProduct());
                     Node source = (Node)  mouseEvent.getSource();
@@ -94,6 +117,25 @@ public class ProductCreateController implements Initializable, IControllerCreate
             }else{
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
+        });
+
+        previousPicture.setOnMouseClicked(mouseEvent -> {
+            imageIndex--;
+            checkIndex();
+        });
+
+        nextPicture.setOnMouseClicked(mouseEvent -> {
+            imageIndex++;
+            checkIndex();
+        });
+
+        deletePicture.setOnMouseClicked(mouseEvent -> {
+            files = deletePicture();
+        });
+
+        imageButton.setOnMouseClicked(mouseEvent -> {
+            Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
+            files = uploadImage(s);
         });
     }
 
@@ -110,6 +152,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
         product.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
         product.setProductType(tipoComboBox.getSelectionModel().getSelectedItem());
         product.setProductClassDto(clasificacionComboBox.getSelectionModel().getSelectedItem());
+        product.setStock(0);
         return product;
     }
 
@@ -126,5 +169,45 @@ public class ProductCreateController implements Initializable, IControllerCreate
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void decreaseIndex() {
+        imageIndex--;
+    }
+
+    @Override
+    public List<String> getFiles() {
+        return files;
+    }
+
+    @Override
+    public FontAwesomeIconView getNextPicture() {
+
+        return nextPicture;
+    }
+    @Override
+    public FontAwesomeIconView getPreviousPicture() {
+        return previousPicture;
+    }
+
+    @Override
+    public List<String> getDeleteFiles() {
+        return deleteFiles;
+    }
+
+    @Override
+    public ImageView getImage() {
+        return productImage;
+    }
+
+    @Override
+    public int getImageIndex() {
+        return imageIndex;
+    }
+
+    @Override
+    public void updateIndex() {
+        imageIndex = files.size() -1;
     }
 }

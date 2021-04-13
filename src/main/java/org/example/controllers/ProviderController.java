@@ -135,7 +135,7 @@ public class ProviderController  implements Initializable, IListController<Provi
             alert.setContentText("¿Seguro quieres eliminarlo?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
-                ProviderService.DeleteProvider(listView.getSelectionModel().getSelectedItem().getId());
+                ProviderService.DeleteProvider(listView.getSelectionModel().getSelectedItem().getIdUser());
                 providerObservableList.remove(listView.getSelectionModel().getSelectedItem());
                 showListProviders(providerObservableList);
                 updateView();

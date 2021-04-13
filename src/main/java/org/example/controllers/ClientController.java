@@ -119,7 +119,7 @@ public class ClientController implements Initializable, IListController<Client>,
 
     @Override
     public void delete() {
-        Request.deleteJ( actualClient.getRoute(), actualClient.getId());
+        Request.deleteJ( actualClient.getRoute(), actualClient.getIdUser());
         if (listView.getItems().size() > 1) {
             clientObservableList.remove(actualClient);
             listView.getSelectionModel().select(0);

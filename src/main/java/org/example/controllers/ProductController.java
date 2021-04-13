@@ -312,10 +312,10 @@ public class ProductController  implements Initializable, IListController<Produc
             Product product = (Product) stage.getUserData();
             if (product != null) {
                 productObservableList.add(product);
-                selectClassification();
                 listView.getSelectionModel().select(product);
                 listView.scrollTo(product);
                 updateView();
+                selectClassification();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -386,7 +386,6 @@ public class ProductController  implements Initializable, IListController<Produc
 
     @Override
     public void updateView() {
-
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
