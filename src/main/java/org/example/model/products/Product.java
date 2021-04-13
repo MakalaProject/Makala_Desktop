@@ -3,6 +3,7 @@ package org.example.model.products;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.example.interfaces.IChangeable;
 import org.example.interfaces.IPaths;
 import org.example.model.Picture;
 
@@ -11,8 +12,8 @@ import java.util.ArrayList;
 
 @Data
 @AllArgsConstructor
-public class Product implements IPaths {
-    protected int idProduct;
+public class Product implements IPaths, IChangeable<Integer> {
+    protected Integer idProduct;
     protected String name;
     protected ProductClassDto productClassDto;
     protected String privacy;
@@ -23,6 +24,7 @@ public class Product implements IPaths {
     protected Integer stock;
     protected ArrayList<Picture> pictures;
     protected String route = "products";
+    private boolean toDelete;
 
     public Product (){
         pictures = new ArrayList<>();
@@ -31,5 +33,10 @@ public class Product implements IPaths {
     @Override
     public String getRoute() {
         return route;
+    }
+
+    @Override
+    public Integer getId() {
+        return idProduct;
     }
 }

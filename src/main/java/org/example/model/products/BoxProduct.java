@@ -13,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class BoxProduct extends StaticProduct {
     private Measure3Dimensions internalMeasures = new Measure3Dimensions();
     private List<Hole> holesDimensions = new ArrayList<>();
@@ -26,18 +27,16 @@ public class BoxProduct extends StaticProduct {
         return internalMeasures.getY().multiply(internalMeasures.getX());
     }
 
-    public BigDecimal getAvailableArea() {
+    public BigDecimal getTotalHolesArea(){
         BigDecimal totalHolesArea = new BigDecimal(0);
         for (Hole hole : holesDimensions) {
             totalHolesArea = totalHolesArea.add(hole.getArea());
         }
-        return getArea().subtract(totalHolesArea);
+        return totalHolesArea;
     }
 
-    public BoxProduct(){
-        this.internalMeasures.setZ(new BigDecimal(0));
-        this.internalMeasures.setX(new BigDecimal(0));
-        this.internalMeasures.setY(new BigDecimal(0));
-
+    public BigDecimal getAvailableArea() {
+        BigDecimal returned = getArea().subtract(getTotalHolesArea());
+        return returned;
     }
 }

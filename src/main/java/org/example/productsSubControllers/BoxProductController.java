@@ -72,6 +72,13 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
         boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
         boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
+        if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) > 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Medidas fuera de rango");
+            alert.setContentText("Las medidas de la caja son invalidas");
+            alert.showAndWait();
+            return null;
+        }
         return boxProduct;
 
     }

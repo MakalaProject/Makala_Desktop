@@ -44,12 +44,15 @@ public class SelectListDepart implements Initializable {
 
     public void setEmployee(Employee employee){
         this.employee = employee;
-        for (Department department : checkListView.getItems()) {
-            for (Department departmentE : employee.getDepartments()) {
-                if (department.getIdDepartment().equals(departmentE.getIdDepartment()))
-                    checkListView.getCheckModel().check(department);
+        if (employee.getDepartments() != null){
+            for (Department department : checkListView.getItems()) {
+                for (Department departmentE : employee.getDepartments()) {
+                    if (department.getIdDepartment().equals(departmentE.getIdDepartment()))
+                        checkListView.getCheckModel().check(department);
+                }
             }
         }
+
     }
 
 }
