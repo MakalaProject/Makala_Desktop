@@ -1,6 +1,7 @@
 package org.example.controllers;
 
 import org.example.customCells.ClientListViewCell;
+import org.example.customCells.EmployeeListViewCell;
 import org.example.customDialogs.ClientCreateController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,7 +51,7 @@ public class ClientController implements Initializable, IListController<Client>,
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clientObservableList.addAll(Request.getJ("clients", Client[].class, true));
 
-        showList(clientObservableList);
+        showList(clientObservableList, listView,ClientListViewCell.class);
         if(!listView.getItems().isEmpty()){
             listView.getSelectionModel().select(0);
             updateView();
@@ -58,26 +59,28 @@ public class ClientController implements Initializable, IListController<Client>,
 
         FilteredList<Client> filteredClients = new FilteredList<>(FXCollections.observableArrayList(clientObservableList), p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredClients.setPredicate(client -> {
-                if (newValue.isEmpty()){
-                    return true;
+            if (!existChanges()) {
+                filteredClients.setPredicate(client -> {
+                    if (newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseText = newValue.toLowerCase();
+                    if (client.getFirstName().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (client.getLastName().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (client.getPhone().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (client.getMail().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                if (!filteredClients.isEmpty()) {
+                    showList(FXCollections.observableList(filteredClients), listView, EmployeeListViewCell.class);
                 }
-                String lowerCaseText = newValue.toLowerCase();
-                if (client.getFirstName().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else if(client.getLastName().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else if(client.getPhone().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else if(client.getMail().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }else {
-                    return false;
-                }
-
-            });
-            SortedList<Client> sortedEmployees = new SortedList<>(filteredClients);
-            showList(FXCollections.observableList(sortedEmployees));
+            }
         } );
 
         telefonoField.textProperty().addListener(new ChangeListener<String>() {
@@ -114,12 +117,9 @@ public class ClientController implements Initializable, IListController<Client>,
         });
     }
 
-
-
-
     @Override
     public void delete() {
-        Request.deleteJ( actualClient.getRoute(), actualClient.getId());
+        Request.deleteJ( actualClient.getRoute(), actualClient.getIdUser());
         if (listView.getItems().size() > 1) {
             clientObservableList.remove(actualClient);
             listView.getSelectionModel().select(0);

@@ -312,7 +312,8 @@ public class ProductController  implements Initializable, IListController<Produc
             return false;
         }
         Product product = (Product) actualPropertiesController.getObject();
-        if (!actualProduct.equals(setInfo(product))){
+        setInfo(product);
+        if (!actualProduct.equals(product)){
             if(!showAlertUnsavedElement(product.getName(), "Producto")) {
                 listView.getSelectionModel().select(actualProduct);
             }else{
@@ -352,7 +353,7 @@ public class ProductController  implements Initializable, IListController<Produc
         //actualPropertiesController.cleanForm
     }
 
-    public Product setInfo(Product product){
+    public void setInfo(Product product){
         product.setStock(actualProduct.getStock());
         product.setName(nombreField.getText());
         product.setIdProduct(actualProduct.getIdProduct());
@@ -363,7 +364,6 @@ public class ProductController  implements Initializable, IListController<Produc
         product.setProductType(actualProduct.getProductType());
         product.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
         product.setPictures(actualProduct.getPictures());
-        return product;
     }
 
 

@@ -4,17 +4,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import org.example.model.Employee;
 import org.example.model.User;
 
 import java.io.IOException;
 
-public class EmployeeListViewCell extends ListCell<User> {
+public class EmployeeListViewCell extends ListCell<Employee> {
     @FXML Label fullName;
     @FXML private AnchorPane anchorPane;
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(User user, boolean empty) {
+    protected void updateItem(Employee user, boolean empty) {
         super.updateItem(user, empty);
 
         if(empty || user == null) {

@@ -2,6 +2,7 @@ package org.example.controllers;
 
 import org.example.customCells.DepartmentListViewCell;
 import org.example.customCells.EmployeeListViewCell;
+import org.example.customCells.ProductListViewCell;
 import org.example.customDialogs.EmployeeCreateController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -57,7 +58,7 @@ public class EmployeeController implements Initializable, IListController<Employ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         employeeObservableList.addAll(Request.getJ("users/employees", Employee[].class, true));
-        showList(employeeObservableList);
+        showList(employeeObservableList, listView, EmployeeListViewCell.class);
 
         //Check if the list is empty to update the view and show its values at the beggining
         if(!employeeObservableList.isEmpty()){
@@ -84,10 +85,12 @@ public class EmployeeController implements Initializable, IListController<Employ
                     } else {
                         return false;
                     }
-
                 });
+                if (!filteredEmployees.isEmpty()) {
+                    showList(FXCollections.observableList(filteredEmployees), listView, EmployeeListViewCell.class);
+                }
             }
-            showList(filteredEmployees);
+
         } );
 
         telefonoField.textProperty().addListener(new RegexVerificationFields(telefonoField,false,10));
@@ -152,11 +155,11 @@ public class EmployeeController implements Initializable, IListController<Employ
         if (listView.getItems().size() > 1) {
             employeeObservableList.remove(actualEmployee);
             listView.getSelectionModel().select(0);
-            showList(employeeObservableList);
+            showList(employeeObservableList, listView, EmployeeListViewCell.class);
             updateView();
         }else {
             employeeObservableList.remove(actualEmployee);
-            showList(employeeObservableList);
+            showList(employeeObservableList, listView, EmployeeListViewCell.class);
         }
 
     }
@@ -165,7 +168,7 @@ public class EmployeeController implements Initializable, IListController<Employ
     public void update() {
         if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() ){
             setInfo(actualEmployee);
-            showList(employeeObservableList);
+            showList(employeeObservableList, listView, EmployeeListViewCell.class);
             Request.putJ(actualEmployee.getRoute(), actualEmployee);
             updateView();
             editSwitch.setSelected(false);
@@ -192,7 +195,7 @@ public class EmployeeController implements Initializable, IListController<Employ
             Employee employee = (Employee) stage.getUserData();
             if(employee != null){
                 employeeObservableList.add(employee);
-                showList(employeeObservableList);
+                showList(employeeObservableList, listView, EmployeeListViewCell.class);
                 listView.getSelectionModel().select(employee);
                 listView.scrollTo(employee);
                 updateView();
@@ -238,17 +241,6 @@ public class EmployeeController implements Initializable, IListController<Employ
         editView(fieldsAnchorPane,editSwitch, saveButton);
         actualEmployee = listView.getSelectionModel().getSelectedItem();
         putFields();
-    }
-
-    public void showList(ObservableList<Employee> employeeList) {
-        if (!employeeList.isEmpty()){
-            listView.setDisable(false);
-            listView.setItems(employeeList);
-            //listView.setCellFactory( employeeListView -> new EmployeeListViewCell());
-        }else {
-            listView.setDisable(true);
-            cleanForm();
-        }
     }
 
     @Override
