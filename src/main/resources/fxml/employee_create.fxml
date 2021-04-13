@@ -6,10 +6,9 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="731.0" prefWidth="582.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.customDialogs.EmployeeCreateController">
+<AnchorPane prefHeight="488.0" prefWidth="595.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.customDialogs.EmployeeCreateController">
             <Label layoutX="41.0" layoutY="302.0" text="Nombres" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="302.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
@@ -34,18 +33,6 @@
             <TextField fx:id="apellidosField" layoutX="175.0" layoutY="342.0" prefHeight="27.0" prefWidth="248.0" promptText="Lopez" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="342.0" />
             <TextField fx:id="telefonoField" layoutX="175.0" layoutY="381.0" prefHeight="31.0" prefWidth="405.0" promptText="33542..." style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="381.0" />
             <TextField fx:id="contraseñaField" layoutX="175.0" layoutY="418.0" prefHeight="27.0" prefWidth="248.0" promptText="*****" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="418.0" />
-            <Label alignment="CENTER" layoutY="486.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
-                <font>
-                    <Font name="Roboto Light" size="27.0" />
-                </font>
-                <effect>
-                    <DropShadow blurType="TWO_PASS_BOX">
-                        <color>
-                            <Color red="0.5" green="0.5" blue="0.5" />
-                        </color>
-                    </DropShadow>
-                </effect>
-            </Label>
             <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
                     <ImageView fx:id="userImage" fitHeight="180.0" fitWidth="231.0" layoutX="209.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="209.66586303710938" AnchorPane.topAnchor="49.0">
@@ -68,6 +55,5 @@
                 <effect>
                     <DropShadow />
                 </effect></AnchorPane>
-            <ListView fx:id="departmentList" layoutX="116.0" layoutY="531.0" prefHeight="328.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="531.0" />
-
+    
 </AnchorPane>

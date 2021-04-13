@@ -20,9 +20,9 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        altoField.textProperty().addListener(new RegexVerificationFields(altoField, true, 3,2));
-        largoField.textProperty().addListener(new RegexVerificationFields(largoField, true, 3,2));
-        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 3,2));
+        altoField.textProperty().addListener(new RegexVerificationFields(altoField, true, 2,2));
+        largoField.textProperty().addListener(new RegexVerificationFields(largoField, true, 2,2));
+        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 2,2));
 
     }
 

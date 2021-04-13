@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.example.interfaces.IPaths;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -15,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class BoxProduct extends StaticProduct {
     private Measure3Dimensions internalMeasures = new Measure3Dimensions();
-    private List<Hole> holesDimensions;
+    private List<Hole> holesDimensions = new ArrayList<>();
 
     @Override
     public String getRoute() {
@@ -26,12 +27,16 @@ public class BoxProduct extends StaticProduct {
         return internalMeasures.getY().multiply(internalMeasures.getX());
     }
 
-    public BigDecimal getAvailableArea() {
+    public BigDecimal getTotalHolesArea(){
         BigDecimal totalHolesArea = new BigDecimal(0);
         for (Hole hole : holesDimensions) {
             totalHolesArea = totalHolesArea.add(hole.getArea());
         }
-        BigDecimal returned = getArea().subtract(totalHolesArea);
+        return totalHolesArea;
+    }
+
+    public BigDecimal getAvailableArea() {
+        BigDecimal returned = getArea().subtract(getTotalHolesArea());
         return returned;
     }
 }

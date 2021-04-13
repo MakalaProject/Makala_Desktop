@@ -63,7 +63,7 @@ public class EmployeeController extends UserParentController<Employee> {
                     }
                 });
                 if (!filteredUsers.isEmpty()) {
-                    showList();
+                    showList(filteredUsers, listView,EmployeeListViewCell.class);
                 }
             }
 
