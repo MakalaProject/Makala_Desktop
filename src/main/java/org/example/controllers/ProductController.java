@@ -2,13 +2,11 @@ package org.example.controllers;
 
 import javafx.scene.Node;
 import javafx.stage.FileChooser;
-import org.example.interfaces.IControllerCreate;
-import org.example.interfaces.IListController;
+import org.example.interfaces.*;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.productsSubControllers.*;
 import org.example.services.*;
-import org.example.interfaces.IControllerProducts;
 import org.example.customCells.ProductListViewCell;
 import org.example.customDialogs.ProductCreateController;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +36,7 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ProductController  implements Initializable, IListController<Product>, IControllerCreate<Product> {
+public class ProductController  implements Initializable, IListController<Product>, IControllerCreate<Product>, IPictureController {
     //Resources xml
     @FXML TextField searchField;
     @FXML ComboBox<String> comboBox;
@@ -136,6 +134,7 @@ public class ProductController  implements Initializable, IListController<Produc
         //Select item list
         listView.setOnMouseClicked(mouseEvent -> {
             if (!existChanges()) {
+                imageIndex = 0;
                 updateView();
             }
         });
@@ -156,7 +155,7 @@ public class ProductController  implements Initializable, IListController<Produc
 
         imageButton.setOnMouseClicked(mouseEvent -> {
             Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
-            uploadImage(s);
+            files = uploadImage(s);
         });
 
         previousPicture.setOnMouseClicked(mouseEvent -> {
@@ -170,44 +169,50 @@ public class ProductController  implements Initializable, IListController<Produc
         });
 
         deletePicture.setOnMouseClicked(mouseEvent -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Eliminar imagen");
-            alert.setContentText("¿Seguro quieres eliminarla?");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                deleteFiles.add(files.get(imageIndex));
-                files.remove(imageIndex);
-                if(imageIndex!=0){
-                    imageIndex--;
-                }
-                checkIndex();
-            }
+            files = deletePicture();
         });
     }
-    private void checkIndex(){
-        if(imageIndex == files.size()-1){
-            nextPicture.setDisable(true);
-            previousPicture.setDisable(false);
-        }else if(files.size() == 0){
-            nextPicture.setDisable(true);
-            previousPicture.setDisable(true);
-        }else if(imageIndex == 0){
-            nextPicture.setDisable(false);
-            previousPicture.setDisable(true);
-        }else{
-            previousPicture.setDisable(false);
-            nextPicture.setDisable(false);
-        }
-        if(files.get(imageIndex).contains("http://res.cloudinary.com")){
-            Image image = new Image(files.get(imageIndex));
-            productImage.setImage(image);
-        }else{
-            File file = new File(files.get(imageIndex));
-            Image  image = new Image(file.toURI().toString());
-            productImage.setImage(image);
-        }
 
+    @Override
+    public void decreaseIndex() {
+        imageIndex--;
     }
+
+    @Override
+    public List<String> getFiles() {
+        return files;
+    }
+
+    @Override
+    public FontAwesomeIconView getNextPicture() {
+
+        return nextPicture;
+    }
+    @Override
+    public FontAwesomeIconView getPreviousPicture() {
+        return previousPicture;
+    }
+
+    @Override
+    public List<String> getDeleteFiles() {
+        return deleteFiles;
+    }
+
+    @Override
+    public ImageView getImage() {
+        return productImage;
+    }
+
+    @Override
+    public int getImageIndex() {
+        return imageIndex;
+    }
+
+    @Override
+    public void updateIndex() {
+        imageIndex = files.size() -1;
+    }
+
     //Filter products by classifications
     public void selectClassification(){
         if (!existChanges()) {
@@ -232,7 +237,7 @@ public class ProductController  implements Initializable, IListController<Produc
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( actualProduct.getRoute(), actualProduct.getIdProduct());
+        Request.deleteJ( "products", actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
             listView.getSelectionModel().select(0);
@@ -262,12 +267,24 @@ public class ProductController  implements Initializable, IListController<Produc
                         product.getPictures().add(new Picture(s));
                     }
                     files = new ArrayList<>();
-                    for (Picture p : product.getPictures()) {
-                        files.add(p.getPath());
+                    if(deleteFiles.size() != 0){
+                        ArrayList<Picture> picturesToRemove = new ArrayList<>(product.getPictures());
+                        int counter = 0;
+                        for (Picture p : product.getPictures()) {
+                            files.add(p.getPath());
+                            for(String s: deleteFiles){
+                                if(s.equals(picturesToRemove.get(counter).getPath())){
+                                    picturesToRemove.remove(counter);
+                                    counter--;
+                                }
+                            }
+                            counter++;
+                        }
+                        new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualProduct.getPictures(), picturesToRemove);
+                        product.setPictures(picturesToRemove);
+                        ImageService.deleteImages(deleteFiles);
                     }
-                    ImageService.deleteImages(deleteFiles);
                     actualProduct = (Product) Request.putJ(product.getRoute(), product);
-                    Request.putJ(product.getRoute(), product);
                     updateView();
                 }
             }else {
@@ -294,10 +311,10 @@ public class ProductController  implements Initializable, IListController<Produc
             Product product = (Product) stage.getUserData();
             if (product != null) {
                 productObservableList.add(product);
-                selectClassification();
                 listView.getSelectionModel().select(product);
                 listView.scrollTo(product);
                 updateView();
+                selectClassification();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -368,7 +385,6 @@ public class ProductController  implements Initializable, IListController<Produc
 
     @Override
     public void updateView() {
-
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
@@ -407,31 +423,6 @@ public class ProductController  implements Initializable, IListController<Produc
             AnchorPane.setLeftAnchor(root,0D);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public void uploadImage(Stage s){
-
-        FileChooser fileChooser = new FileChooser();
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilterJPG
-                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterjpg
-                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
-        FileChooser.ExtensionFilter extFilterPNG
-                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
-        FileChooser.ExtensionFilter extFilterpng
-                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
-        fileChooser.getExtensionFilters()
-                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
-        //Show open file dialog
-        File file = fileChooser.showOpenDialog(s);
-        if (file != null){
-            Image img = new Image(file.toURI().toString());
-            files.add(file.getPath());
-            productImage.setImage(img);
-            imageIndex++;
-            checkIndex();
         }
     }
 

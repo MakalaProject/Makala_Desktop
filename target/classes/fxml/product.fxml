@@ -27,8 +27,8 @@
 
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
             <children>
-                <ScrollPane fx:id="scrollPane" disable="true" fitToWidth="true" layoutY="258.0" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutY="258.0" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
+                    <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="257.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                 <Label layoutX="49.0" layoutY="396.0" text="Tipo" AnchorPane.topAnchor="143.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />

@@ -11,10 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,11 +28,12 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public TextField altoIntField;
     @FXML public TextField anchoIntField;
     @FXML public TextField largoIntField;
+    @FXML public Label labelDivisions;
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
     private final ObservableList<Hole> holeList = FXCollections.observableArrayList();
     private final Set<Hole> originalHoleList = new HashSet<>();
-    private BoxProduct actualBoxProduct;
+    private BoxProduct actualBoxProduct = new BoxProduct();
 
 
     @Override
@@ -43,7 +41,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         super.initialize(url,resourceBundle);
         addHoleButton.setOnMouseClicked(new ShowDialog(true));
         holesListView.setOnMouseClicked(new ShowDialog(false));
-
+        addHoleButton.setVisible(false);
+        holesListView.setVisible(false);
+        labelDivisions.setVisible(false);
         altoIntField.textProperty().addListener(new RegexVerificationFields(altoIntField, true, 3,2));
         largoIntField.textProperty().addListener(new RegexVerificationFields(largoIntField, true, 3,2));
         anchoIntField.textProperty().addListener(new RegexVerificationFields(anchoIntField, true, 3,2));
@@ -95,6 +95,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public void setObject(BoxProduct boxProduct){
+        addHoleButton.setVisible(true);
+        holesListView.setVisible(true);
+        labelDivisions.setVisible(true);
         actualBoxProduct = boxProduct;
         verifyAvailableArea();
         clearController();
@@ -138,6 +141,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                     dialogController.deleteButton.setVisible(true);
                     dialogController.setHole(holesListView.getSelectionModel().getSelectedItem());
                 }else {
+
                     dialogController.deleteButton.setVisible(false);
                 }
                 Scene scene = new Scene(parent);

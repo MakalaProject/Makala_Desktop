@@ -68,7 +68,10 @@
                             <FontAwesomeIconView fx:id="saveButton" fill="WHITE" glyphName="SAVE" layoutX="585.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" />
                         </children>
                     </AnchorPane>
-                    <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="361.0" layoutY="239.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="128.42857170104992" AnchorPane.topAnchor="213.2857151031494" />
+                    <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="411.0" layoutY="256.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="411.0" AnchorPane.rightAnchor="201.42857170104992" AnchorPane.topAnchor="230.2857151031494" />
+                    <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="488.0" layoutY="159.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="488.0" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="125.57143020629883" />
+                    <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="118.0" layoutY="160.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="118.0" AnchorPane.rightAnchor="492.4285717010499" AnchorPane.topAnchor="126.57143020629883" />
+                    <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES" layoutX="451.0" layoutY="76.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="451.0" AnchorPane.rightAnchor="163.42857170104992" AnchorPane.topAnchor="50.285715103149414" />
                 </children>
                 <opaqueInsets>
                     <Insets />

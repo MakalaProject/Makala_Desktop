@@ -71,7 +71,7 @@ public class ProviderCreateController implements Initializable, IControllerCreat
     }
 
     @Override
-    public Provider setInfo(Provider object) {
-        return null;
+    public void setInfo(Provider object) {
+        return;
     }
 }
