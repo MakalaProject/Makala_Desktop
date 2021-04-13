@@ -2,6 +2,7 @@ package org.example.interfaces;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import org.example.model.products.Product;
 
 import java.util.Optional;
 
@@ -13,5 +14,5 @@ public interface IControllerCreate<D> {
         alert.setContentText("Por favor verifica los campos");
         Optional<ButtonType> result = alert.showAndWait();
     }
-     D setInfo(D object);
+     void setInfo(D object);
 }

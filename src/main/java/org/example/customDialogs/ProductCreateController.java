@@ -77,7 +77,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
         tipoComboBox.getSelectionModel().select(0);
         privacidadComboBox.getSelectionModel().select(0);
         nombreField.setText("Nuevo Producto");
-        checkIndex();
+
         //Verifications with regex
         maxField.textProperty().addListener(new RegexVerificationFields(maxField, true, 3));
         minField.textProperty().addListener(new RegexVerificationFields(minField, true, 3));
@@ -87,7 +87,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 for (IControllerProducts controller : controllers) {
-                    if (Arrays.asList(controller.getIdentifier()).contains(t1)){
+                    if (controller.getIdentifier().equals(t1)){
                         actualPropertiesController = controller;
                         changeType(controller);
                     }
@@ -99,6 +99,8 @@ public class ProductCreateController implements Initializable, IControllerCreate
             if( !nombreField.getText().isEmpty()){
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
+                    setInfo(product);
+                    Product newProduct = (Product) Request.postJ(product.getRoute(), product);
                     ArrayList<Picture> pictures = new ArrayList<>();
                     files = ImageService.uploadImages(files);
                     if(files != null){
@@ -107,7 +109,6 @@ public class ProductCreateController implements Initializable, IControllerCreate
                         }
                     }
                     product.setPictures(pictures);
-                    Product newProduct = (Product) Request.postJ(product.getRoute(), setInfo(product));
                     product.setIdProduct(newProduct.getIdProduct());
                     Node source = (Node)  mouseEvent.getSource();
                     Stage stage  = (Stage) source.getScene().getWindow();
@@ -144,7 +145,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
     }
 
     @Override
-    public Product setInfo(Product product){
+    public void setInfo(Product product){
         product.setName(nombreField.getText());
         product.setPrice(new BigDecimal(precioField.getText()));
         product.setMin(Integer.parseInt(minField.getText()));
@@ -153,7 +154,6 @@ public class ProductCreateController implements Initializable, IControllerCreate
         product.setProductType(tipoComboBox.getSelectionModel().getSelectedItem());
         product.setProductClassDto(clasificacionComboBox.getSelectionModel().getSelectedItem());
         product.setStock(0);
-        return product;
     }
 
     private void changeType(IControllerProducts controller) {

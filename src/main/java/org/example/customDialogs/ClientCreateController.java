@@ -28,18 +28,16 @@ public class ClientCreateController implements Initializable, IControllerCreate<
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         saveButton.setOnMouseClicked(mouseEvent -> {
-            if(nombresField.getText().isEmpty() ||  telefonoField.getText().isEmpty() ){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Campos vacios");
-                alert.setHeaderText("No puedes dejar campos 'Nombre' y 'Telefono' sin llenar'");
-                alert.setContentText("Por favor completa los datos ");
-                Optional<ButtonType> result = alert.showAndWait();
-            }else{
-                Client returnedClient = (Client) Request.postJ("clients", setInfo(new Client()));
+            if(!nombresField.getText().isEmpty() ||  !telefonoField.getText().isEmpty() ){
+                Client newClient = new Client();
+                setInfo(newClient);
+                Client returnedClient = (Client) Request.postJ(newClient.getRoute(), newClient);
                 Node source = (Node)  mouseEvent.getSource();
                 Stage stage  = (Stage) source.getScene().getWindow();
                 stage.close();
                 stage.setUserData(returnedClient);
+            }else {
+                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
         });
 
@@ -47,11 +45,10 @@ public class ClientCreateController implements Initializable, IControllerCreate<
 
 
     @Override
-    public Client setInfo(Client client) {
+    public void setInfo(Client client) {
         client.setFirstName(nombresField.getText());
         client.setLastName(apellidosField.getText());
         client.setPhone(telefonoField.getText());
         client.setMail(correoField.getText());
-        return client;
     }
 }

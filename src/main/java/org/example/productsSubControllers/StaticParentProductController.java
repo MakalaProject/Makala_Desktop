@@ -1,8 +1,11 @@
 package org.example.productsSubControllers;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
+import org.example.model.Client;
 import org.example.model.RegexVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;

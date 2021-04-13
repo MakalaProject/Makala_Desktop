@@ -35,7 +35,6 @@ public class SelectListDepart implements Initializable {
             List<Department> departmentList = checkListView.getCheckModel().getCheckedItems();
             new ListToChangeTools<Department,Integer>().setToDeleteItems(employee.getDepartments(), departmentList);
             employee.setDepartments(departmentList);
-            Request.putJ(employee.getRoute(), employee);
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.close();

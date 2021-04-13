@@ -17,12 +17,16 @@ public class Employee extends User {
         password = "";
     }
 
+    @Override
+    public String getIdentifier(){
+        return "Empleado";
+    }
+
     public boolean isDepartment(String departName){
         for (Department department: departments) {
             if (department.getDepartName().toLowerCase().contains(departName)){
                 return true;
             }
-
         }
         return false;
 

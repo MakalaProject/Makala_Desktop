@@ -7,17 +7,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.controlsfx.control.ToggleSwitch;
-import org.example.interfaces.IControllerCreate;
-import org.example.interfaces.IListController;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.model.Provider;
 import org.example.services.ProviderService;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -25,7 +20,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import org.example.services.Request;
@@ -35,48 +29,35 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ProviderController  implements Initializable, IListController<Provider>, IControllerCreate<Provider> {
-    @FXML FontAwesomeIconView  updateButton;
-    @FXML FontAwesomeIconView deleteButton;
-    @FXML FontAwesomeIconView addButton;
-    @FXML ListView<Provider> listView;
+public class ProviderController extends UserParentController<Provider> {
     @FXML ListView<Product> productsList;
-    @FXML TextField searchField;
-    @FXML TextField nombresField;
-    @FXML TextField apellidosField;
     @FXML TextField tiempoField;
     @FXML TextField tarjetaField;
     @FXML TextField claveField;
-    @FXML TextField telefonoField;
     @FXML TextField emailField;
     @FXML ComboBox<String> tipoComboBox;
     @FXML ComboBox<ProductClassDto> classificationComboBox;
     @FXML RadioButton siRadio;
     @FXML RadioButton noRadio;
-    @FXML AnchorPane fieldsAnchorPane;
-    @FXML SplitPane principalSplitPane;
-    @FXML ToggleSwitch editSwitch;
 
     final ToggleGroup returnRadioGroup = new ToggleGroup();
-    private ObservableList<Provider> providerObservableList;
     private static final ObservableList<ProductClassDto> productClassObservableList = FXCollections.observableArrayList(Request.getJ("classifications/products", ProductClassDto[].class, false));
     private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Emprendedor","Artesano","Comunidad","Empresa");
-    Provider actualProvider;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tipoComboBox.getItems().addAll(typeItems);
         siRadio.setToggleGroup(returnRadioGroup);
         noRadio.setToggleGroup(returnRadioGroup);
-        providerObservableList = FXCollections.observableList(ProviderService.getProviders());
+        userObservableList = FXCollections.observableList(ProviderService.getProviders());
         classificationComboBox.itemsProperty().setValue(productClassObservableList);
-        showListProviders(providerObservableList);
+        showListProviders(userObservableList);
         //Check if the list is empty to update the view and show its values at the beggining
-        if(!providerObservableList.isEmpty()){
+        if(!userObservableList.isEmpty()){
             listView.getSelectionModel().select(0);
             updateView();
         }
-        FilteredList<Provider> filteredProviders = new FilteredList<>(FXCollections.observableArrayList(providerObservableList), p ->true);
+        FilteredList<Provider> filteredProviders = new FilteredList<>(FXCollections.observableArrayList(userObservableList), p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             filteredProviders.setPredicate(employee -> {
                 if (newValue.isEmpty()){
@@ -95,8 +76,8 @@ public class ProviderController  implements Initializable, IListController<Provi
 
             });
             SortedList<Provider> sortedProviders = new SortedList<>(filteredProviders);
-            providerObservableList = FXCollections.observableList(sortedProviders);
-            showListProviders(providerObservableList);
+            userObservableList = FXCollections.observableList(sortedProviders);
+            showListProviders(userObservableList);
         } );
 
         telefonoField.textProperty().addListener(new ChangeListener<String>() {
@@ -114,7 +95,7 @@ public class ProviderController  implements Initializable, IListController<Provi
         });
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            updateProvider(actualProvider);
+            updateProvider(actualUser);
         });
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
@@ -136,8 +117,8 @@ public class ProviderController  implements Initializable, IListController<Provi
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 ProviderService.DeleteProvider(listView.getSelectionModel().getSelectedItem().getIdUser());
-                providerObservableList.remove(listView.getSelectionModel().getSelectedItem());
-                showListProviders(providerObservableList);
+                userObservableList.remove(listView.getSelectionModel().getSelectedItem());
+                showListProviders(userObservableList);
                 updateView();
             }
         });
@@ -156,8 +137,8 @@ public class ProviderController  implements Initializable, IListController<Provi
                 stage.showAndWait();
                 Provider provider = (Provider) stage.getUserData();
                 if(provider != null){
-                    providerObservableList.add(provider);
-                    showListProviders(providerObservableList);
+                    userObservableList.add(provider);
+                    showListProviders(userObservableList);
                     listView.getSelectionModel().select(provider);
                     listView.scrollTo(provider);
                     updateView();
@@ -187,8 +168,8 @@ public class ProviderController  implements Initializable, IListController<Provi
             provider.setType(tipoComboBox.getSelectionModel().getSelectedItem());
             boolean isReturn = siRadio.isSelected();
             provider.setProductReturn(isReturn);
-            providerObservableList.set(providerObservableList.indexOf(actualProvider), provider);
-            showListProviders(providerObservableList);
+            userObservableList.set(userObservableList.indexOf(actualUser), provider);
+            showListProviders(userObservableList);
             ProviderService.UpdateProvider(provider);
             listView.scrollTo(provider);
             listView.getSelectionModel().select(provider);
@@ -203,11 +184,11 @@ public class ProviderController  implements Initializable, IListController<Provi
         ImageView imageView = new ImageView(image);
         alert.setGraphic(imageView);
         alert.setTitle("Empleado sin guardar");
-        alert.setHeaderText("Tienes cambios sin guardar de '" + actualProvider.getFirstName() + "'");
+        alert.setHeaderText("Tienes cambios sin guardar de '" + actualUser.getFirstName() + "'");
         alert.setContentText("¿Quieres mantener los cambios?");
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
-            updateProvider(actualProvider);
+            updateProvider(actualUser);
         }
     }
 
@@ -253,16 +234,16 @@ public class ProviderController  implements Initializable, IListController<Provi
         }
         editSwitch.setSelected(false);
         //editView();
-        actualProvider = listView.getSelectionModel().getSelectedItem();
-        nombresField.setText(actualProvider.getFirstName());
-        apellidosField.setText(actualProvider.getLastName());
-        telefonoField.setText(actualProvider.getPhone());
-        tiempoField.setText(Integer.toString(actualProvider.getShippingTime()));
-        emailField.setText(actualProvider.getEmail());
-        tarjetaField.setText(actualProvider.getCardNumber());
-        tipoComboBox.setValue(actualProvider.getType());
-        classificationComboBox.setValue(actualProvider.getProductClass());
-        claveField.setText(actualProvider.getClabe());
+        actualUser = listView.getSelectionModel().getSelectedItem();
+        nombresField.setText(actualUser.getFirstName());
+        apellidosField.setText(actualUser.getLastName());
+        telefonoField.setText(actualUser.getPhone());
+        tiempoField.setText(Integer.toString(actualUser.getShippingTime()));
+        emailField.setText(actualUser.getEmail());
+        tarjetaField.setText(actualUser.getCardNumber());
+        tipoComboBox.setValue(actualUser.getType());
+        classificationComboBox.setValue(actualUser.getProductClass());
+        claveField.setText(actualUser.getClabe());
         classificationComboBox.setConverter(new StringConverter<>() {
             @Override
             public String toString(ProductClassDto classification) {
@@ -273,7 +254,7 @@ public class ProviderController  implements Initializable, IListController<Provi
                 return classificationComboBox.getItems().stream().filter(classification -> classification.getClassification().equals(string)).findFirst().orElse(null);
             }
         });
-        if(actualProvider.isProductReturn()){
+        if(actualUser.isProductReturn()){
             siRadio.setSelected(true);
         }else{
             noRadio.setSelected(true);
@@ -291,7 +272,7 @@ public class ProviderController  implements Initializable, IListController<Provi
     }
 
     private boolean compareProvider(){
-        if (actualProvider == null){
+        if (actualUser == null){
             return true;
         }
         Provider provider = new Provider();
@@ -305,7 +286,7 @@ public class ProviderController  implements Initializable, IListController<Provi
         provider.setEmail(emailField.getText());
         provider.setType(tipoComboBox.getSelectionModel().getSelectedItem());
         provider.setProductReturn(siRadio.isSelected());
-        return provider.CompareProvider(actualProvider);
+        return provider.CompareProvider(actualUser);
     }
 
     private void showListProviders(ObservableList<Provider> providersList){
