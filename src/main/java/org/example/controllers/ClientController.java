@@ -102,7 +102,7 @@ public class ClientController implements Initializable, IListController<Client>,
         });
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView();
+            //editView();
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -115,10 +115,7 @@ public class ClientController implements Initializable, IListController<Client>,
     }
 
 
-    @Override
-    public void editView(){
-        fieldsAnchorPane.setDisable(!editSwitch.isSelected());
-    }
+
 
     @Override
     public void delete() {
@@ -136,14 +133,14 @@ public class ClientController implements Initializable, IListController<Client>,
 
     @Override
     public void update() {
-        if (!nombresField.getText().isEmpty() || !telefonoField.getText().isEmpty() ){
+        if (!nombresField.getText().isEmpty() ){
             clientObservableList.set(clientObservableList.indexOf(actualClient), setInfo(actualClient));
             showList(clientObservableList);
             Request.putJ(actualClient.getRoute(), actualClient);
             editSwitch.setSelected(false);
-            editView();
+            //editView();
         }else{
-            showAlertEmptyFields();
+            showAlertEmptyFields("No puedes dejar campos indispensables vacios");
         }
     }
 
@@ -201,7 +198,7 @@ public class ClientController implements Initializable, IListController<Client>,
     @Override
     public void updateView(){
         editSwitch.setSelected(false);
-        editView();
+        //editView();
         actualClient = listView.getSelectionModel().getSelectedItem();
         putFields();
     }

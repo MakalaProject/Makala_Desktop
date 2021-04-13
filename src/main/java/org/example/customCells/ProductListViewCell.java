@@ -45,10 +45,7 @@ public class ProductListViewCell extends ListCell<Product> implements IConstruct
             }
 
             productName.setText(String.valueOf(product.getName()));
-            /*if(!product.getPictures().isEmpty()){
-                Image image = new Image(product.getPictures().get(0).getPath(), 100, 100, false, false);
-                productImage.setImage(image);
-            }*/
+
 
             setText(null);
             setGraphic(anchorPane);

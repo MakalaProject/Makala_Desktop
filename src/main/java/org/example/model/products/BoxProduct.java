@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.example.interfaces.IPaths;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -19,5 +20,17 @@ public class BoxProduct extends StaticProduct {
     @Override
     public String getRoute() {
         return route + "/boxes";
+    }
+
+    private BigDecimal getArea(){
+        return internalMeasures.getY().multiply(internalMeasures.getX());
+    }
+
+    public BigDecimal getAvailableArea() {
+        BigDecimal totalHolesArea = new BigDecimal(0);
+        for (Hole hole : holesDimensions) {
+            totalHolesArea = totalHolesArea.add(hole.getArea());
+        }
+        return getArea().subtract(totalHolesArea);
     }
 }

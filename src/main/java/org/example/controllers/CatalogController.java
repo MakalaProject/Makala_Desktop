@@ -146,10 +146,7 @@ public class CatalogController implements Initializable, IListController<Catalog
 
     }
 
-    @Override
-    public void editView() {
 
-    }
 
     @Override
     public void updateView(){

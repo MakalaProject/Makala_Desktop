@@ -3,6 +3,7 @@ package org.example.customDialogs;
 import org.example.interfaces.IControllerCreate;
 import javafx.scene.Node;
 import javafx.stage.Stage;
+import org.example.model.RegexVerificationFields;
 import org.example.services.Request;
 import org.example.interfaces.IControllerProducts;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -60,38 +61,12 @@ public class ProductCreateController implements Initializable, IControllerCreate
         clasificacionComboBox.getSelectionModel().select(0);
         tipoComboBox.getSelectionModel().select(0);
         privacidadComboBox.getSelectionModel().select(0);
-        minField.setText("0");
-        maxField.setText("0");
-        precioField.setText("0");
         nombreField.setText("Nuevo Producto");
 
-        maxField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    maxField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-        minField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    minField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-        precioField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    precioField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
+        //Verifications with regex
+        maxField.textProperty().addListener(new RegexVerificationFields(maxField, true, 3));
+        minField.textProperty().addListener(new RegexVerificationFields(minField, true, 3));
+        precioField.textProperty().addListener(new RegexVerificationFields(precioField, true, 4,2));
 
         tipoComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -106,8 +81,8 @@ public class ProductCreateController implements Initializable, IControllerCreate
         });
 
         saveButton.setOnMouseClicked(mouseEvent -> {
-            if(!maxField.getText().isEmpty() || !minField.getText().isEmpty() || !precioField.getText().isEmpty() || !nombreField.getText().isEmpty()){
-                Product product = (Product) actualPropertiesController.getObjectByFields();
+            if( !nombreField.getText().isEmpty()){
+                Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
                     Product newProduct = (Product) Request.postJ(product.getRoute(), setInfo(product));
                     product.setIdProduct(newProduct.getIdProduct());
@@ -115,11 +90,9 @@ public class ProductCreateController implements Initializable, IControllerCreate
                     Stage stage  = (Stage) source.getScene().getWindow();
                     stage.close();
                     stage.setUserData(product);
-                }else {
-                    showAlertEmptyFields();
                 }
             }else{
-                showAlertEmptyFields();
+                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
         });
     }
@@ -127,6 +100,7 @@ public class ProductCreateController implements Initializable, IControllerCreate
     public void setControllersArray(IControllerProducts[] controllersArray){
         controllers = controllersArray;
     }
+
     @Override
     public Product setInfo(Product product){
         product.setName(nombreField.getText());

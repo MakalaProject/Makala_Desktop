@@ -15,7 +15,7 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <TextField fx:id="anchoField" layoutX="215.0" layoutY="118.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="5/16&quot;" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="118.0">
+    <TextField fx:id="anchoField" layoutX="215.0" layoutY="118.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="118.0">
         <font>
             <Font size="15.0" />
         </font>

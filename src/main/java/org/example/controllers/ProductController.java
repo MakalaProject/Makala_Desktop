@@ -56,9 +56,8 @@ public class ProductController  implements Initializable, IListController<Produc
     @FXML ComboBox<ProductClassDto> clasificacionComboBox;
     @FXML ComboBox<String> tipoComboBox;
     @FXML AnchorPane propertiesAnchorPane;
-    @FXML AnchorPane fieldsAnchorPane;
     @FXML ToggleSwitch editSwitch;
-    @FXML SplitPane principalSplitPane;
+    @FXML ScrollPane scrollPane;
     @FXML FontAwesomeIconView deletePicture;
     @FXML FontAwesomeIconView nextPicture;
     @FXML FontAwesomeIconView previousPicture;
@@ -100,47 +99,13 @@ public class ProductController  implements Initializable, IListController<Produc
         }
 
         //Verifications with regex
-        maxField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if(newValue.length()>3){
-                    maxField.setText(oldValue);
-                }
-                if (!newValue.matches("\\d*")) {
-                    maxField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-        minField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if(newValue.length()>3){
-                    minField.setText(oldValue);
-                }
-                if (!newValue.matches("\\d*")) {
-                    minField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-        precioField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                if(newValue.length()>7){
-                    precioField.setText(oldValue);
-                }
-                if (!newValue.matches("\\d+(\\.\\d{1,2})?")) {
-                    precioField.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-
+        maxField.textProperty().addListener(new RegexVerificationFields(maxField, true, 3));
+        minField.textProperty().addListener(new RegexVerificationFields(minField, true, 3));
+        precioField.textProperty().addListener(new RegexVerificationFields(precioField, true, 4,2));
 
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView();
+            editView(scrollPane, editSwitch, updateButton);
         });
 
         //Search filter
@@ -281,38 +246,40 @@ public class ProductController  implements Initializable, IListController<Produc
 
     @Override
     public void update() {
-        if(!maxField.getText().isEmpty() || !minField.getText().isEmpty() || !precioField.getText().isEmpty() || !nombreField.getText().isEmpty()){
-            Product product = (Product) actualPropertiesController.getObjectByFields();
-            if (product != null){
-                setInfo(product);
-                productObservableList.set(index, product);
-                actualProduct = product;
-                selectClassification();
-                listView.getSelectionModel().select(product);
-                listView.scrollTo(product);
-                List<String> urls = ImageService.uploadImages(files);
-                files = urls;
-                for(String s: urls){
-                    product.getPictures().add(new Picture(s));
+        if(!nombreField.getText().isEmpty()){
+            if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())){
+                Product product = (Product) actualPropertiesController.getObject();
+                if (product != null) {
+                    setInfo(product);
+                    productObservableList.set(index, product);
+                    actualProduct = product;
+                    selectClassification();
+                    listView.getSelectionModel().select(product);
+                    listView.scrollTo(product);
+                    List<String> urls = ImageService.uploadImages(files);
+                    files = urls;
+                    for (String s : urls) {
+                        product.getPictures().add(new Picture(s));
+                    }
+                    files = new ArrayList<>();
+                    for (Picture p : product.getPictures()) {
+                        files.add(p.getPath());
+                    }
+                    ImageService.deleteImages(deleteFiles);
+                    actualProduct = (Product) Request.putJ(product.getRoute(), product);
+                    Request.putJ(product.getRoute(), product);
+                    //actualPropertiesController.clearController();
+                    //actualProduct = (Product) actualPropertiesController.findObject(product);
+                    updateView();
                 }
-                files = new ArrayList<>();
-                for(Picture p: product.getPictures()){
-                    files.add(p.getPath());
-                }
-                ImageService.deleteImages(deleteFiles);
-                actualProduct = (Product) Request.putJ( product.getRoute(), product);
-                Request.putJ( product.getRoute(), product);
-                //actualPropertiesController.clearController();
-                //actualProduct = (Product) actualPropertiesController.findObject(product);
-                updateView();
             }else {
-                showAlertEmptyFields();
+                showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
             }
         }else{
-            showAlertEmptyFields();
+            showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
         editSwitch.setSelected(false);
-        editView();
+        editView(scrollPane, editSwitch, updateButton);
     }
 
     @Override
@@ -402,23 +369,13 @@ public class ProductController  implements Initializable, IListController<Produc
         return product;
     }
 
-    @Override
-    public void editView(){
-        if (editSwitch.isSelected()){
-            fieldsAnchorPane.setDisable(false);
-            propertiesAnchorPane.setDisable(false);
-        }else {
-            fieldsAnchorPane.setDisable(true);
-            propertiesAnchorPane.setDisable(true);
-        }
-    }
 
     @Override
     public void updateView() {
 
         //Disable edit option
         editSwitch.setSelected(false);
-        editView();
+        editView(scrollPane, editSwitch, updateButton);
 
         //Update the actual product
         actualProduct = listView.getSelectionModel().getSelectedItem();

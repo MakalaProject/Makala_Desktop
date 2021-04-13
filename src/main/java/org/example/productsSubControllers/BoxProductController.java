@@ -1,19 +1,25 @@
 package org.example.productsSubControllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.interfaces.ListToChangeTools;
+import org.example.model.RegexVerificationFields;
 import org.example.model.products.*;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -29,14 +35,18 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public ListView<Hole> holesListView;
     private final ObservableList<Hole> holeList = FXCollections.observableArrayList();
     private final Set<Hole> originalHoleList = new HashSet<>();
+    private BoxProduct actualBoxProduct;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        super.initialize(url,resourceBundle);
         addHoleButton.setOnMouseClicked(new ShowDialog(true));
-
         holesListView.setOnMouseClicked(new ShowDialog(false));
+
+        altoIntField.textProperty().addListener(new RegexVerificationFields(altoIntField, true, 3,2));
+        largoIntField.textProperty().addListener(new RegexVerificationFields(largoIntField, true, 3,2));
+        anchoIntField.textProperty().addListener(new RegexVerificationFields(anchoIntField, true, 3,2));
     }
 
     public void showList(){
@@ -53,13 +63,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         return "/fxml/box_product_properties.fxml";
     }
 
-
-    public BoxProduct getObjectByFields() {
-        if(!altoIntField.getText().isEmpty() || !anchoIntField.getText().isEmpty() || !largoIntField.getText().isEmpty()) {
-            return super.getObjectByFields();
-        }
-        return null;
-    }
 
     @Override
     public BoxProduct getObject(){
@@ -78,8 +81,14 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         originalHoleList.clear();
     }
 
+    public void verifyAvailableArea(){
+        addHoleButton.setVisible(actualBoxProduct.getAvailableArea().equals(new BigDecimal(0)));
+    }
+
     @Override
     public void setObject(BoxProduct boxProduct){
+        actualBoxProduct = boxProduct;
+        verifyAvailableArea();
         clearController();
         if (boxProduct.getHolesDimensions() != null){
             for (Hole hole : boxProduct.getHolesDimensions()) {
@@ -124,7 +133,14 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                 HoleToSend hole = (HoleToSend) stage.getUserData();
                 if (hole.getHole() != null) {
                     if (isCreate){
-                        holeList.add(hole.getHole());
+                        if (hole.getHole().getArea().compareTo(actualBoxProduct.getAvailableArea()) <= 0){
+                            holeList.add(hole.getHole());
+                        }else {
+                            Alert alert = new Alert(Alert.AlertType.WARNING);
+                            alert.setTitle("Medidas fuera de rango");
+                            alert.setContentText("El orificio que intentas crear excede el area de la caja, espacio disponible: " + actualBoxProduct.getAvailableArea());
+                            alert.showAndWait();
+                        }
                     }else {
                         if (hole.getAction() == Action.DELETE){
                             holeList.remove(hole.getHole());
@@ -138,6 +154,8 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                         index ++;
                     }
                     showList();
+                    actualBoxProduct.setHolesDimensions(holeList);
+                    verifyAvailableArea();
                 }
             } catch (IOException e) {
                 e.printStackTrace();

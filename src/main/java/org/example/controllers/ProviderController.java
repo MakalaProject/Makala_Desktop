@@ -118,7 +118,7 @@ public class ProviderController  implements Initializable, IListController<Provi
         });
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView();
+            //editView();
         });
 
         principalSplitPane.setOnMouseExited(mouseEvent -> {
@@ -193,7 +193,7 @@ public class ProviderController  implements Initializable, IListController<Provi
             listView.scrollTo(provider);
             listView.getSelectionModel().select(provider);
             editSwitch.setSelected(false);
-            editView();
+            //editView();
         }
     }
 
@@ -211,14 +211,14 @@ public class ProviderController  implements Initializable, IListController<Provi
         }
     }
 
-    @Override
+    /*@Override
     public void editView(){
         if (editSwitch.isSelected()){
             fieldsAnchorPane.setDisable(false);
         }else {
             fieldsAnchorPane.setDisable(true);
         }
-    }
+    }*/
 
 
     @Override
@@ -252,7 +252,7 @@ public class ProviderController  implements Initializable, IListController<Provi
             showAlertUnsavedProvider();
         }
         editSwitch.setSelected(false);
-        editView();
+        //editView();
         actualProvider = listView.getSelectionModel().getSelectedItem();
         nombresField.setText(actualProvider.getFirstName());
         apellidosField.setText(actualProvider.getLastName());

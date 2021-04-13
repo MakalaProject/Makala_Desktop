@@ -18,7 +18,7 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" text="" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" />
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="empleadosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Empleados" textFill="WHITE">
@@ -26,7 +26,7 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" text="" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="proveedoresButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Proveedores" textFill="WHITE">
@@ -34,7 +34,7 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" text="" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="almacenButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Almacen" textFill="WHITE">
@@ -42,7 +42,7 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" text="" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="BOX_OPEN" size="20" />
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="catalogosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Catálogo" textFill="WHITE">
@@ -50,7 +50,7 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" text="" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" />
                             </graphic>
                         </JFXButton>
                         <JFXButton fx:id="clientesButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Clientes" textFill="WHITE">
@@ -58,7 +58,7 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" text="" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="USER_FRIENDS" size="20" />
                             </graphic>
                         </JFXButton>
                     </children></VBox>

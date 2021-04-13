@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="productName" layoutX="14.0" layoutY="41.0" prefHeight="22.0" prefWidth="296.0" text="Producto" />
+      <Label fx:id="productName" layoutX="55.0" layoutY="33.0" prefHeight="28.0" prefWidth="276.0" text="Producto">
+         <font>
+            <Font name="Roboto Light" size="20.0" />
+         </font></Label>
+      <FontAwesomeIconView glyphName="FEMALE" layoutX="14.0" layoutY="57.0" size="30">
+         
+      </FontAwesomeIconView>
    </children>
 </AnchorPane>

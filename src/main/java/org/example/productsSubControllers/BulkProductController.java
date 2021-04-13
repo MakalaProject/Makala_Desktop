@@ -1,9 +1,12 @@
 package org.example.productsSubControllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
+import org.example.model.RegexVerificationFields;
 import org.example.model.products.BulkProduct;
 import org.example.model.products.PaperProduct;
 import org.example.model.products.Product;
@@ -15,13 +18,9 @@ import java.util.ResourceBundle;
 public class BulkProductController implements Initializable, IControllerProducts<BulkProduct> {
     @FXML public TextField porcentajeField;
 
-    public BulkProductController(){
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        porcentajeField.textProperty().addListener(new RegexVerificationFields(porcentajeField, true, 2,2));
     }
 
     @Override
@@ -44,14 +43,6 @@ public class BulkProductController implements Initializable, IControllerProducts
     @Override
     public void setObject(BulkProduct bulkProduct) {
         porcentajeField.setText(bulkProduct.getLossPercent().toString());
-    }
-
-    @Override
-    public BulkProduct getObjectByFields() {
-        if (!porcentajeField.getText().isEmpty()){
-            return getObject();
-        }
-        return null;
     }
 
     @Override

@@ -8,7 +8,6 @@ public interface IControllerProducts<D> {
     String getResource();
     D getObject();
     void setObject(D object);
-    D getObjectByFields();
     default void clearController(){}
 
     /**

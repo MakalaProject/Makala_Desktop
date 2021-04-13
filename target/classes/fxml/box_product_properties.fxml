@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="603.0" prefWidth="515.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="92.0" layoutY="93.0" prefHeight="28.0" prefWidth="89.0" text="Alto ext." AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="40.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
@@ -81,7 +81,7 @@
         </effect>
     </Label>
     <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="429.0" layoutY="328.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="58.42857170104992" AnchorPane.topAnchor="302.2857151031494" />
-   <ListView fx:id="holesListView" layoutX="7.0" layoutY="344.0" prefHeight="266.0" prefWidth="515.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+   <ListView fx:id="holesListView" layoutX="7.0" layoutY="344.0" prefHeight="266.0" prefWidth="515.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="337.0" />
 
 
 </AnchorPane>

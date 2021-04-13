@@ -98,7 +98,7 @@ public class EmployeeController implements Initializable, IListController<Employ
         });
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView();
+            //editView();
         });
 
         listView.setOnMouseClicked(mouseEvent -> {
@@ -144,10 +144,7 @@ public class EmployeeController implements Initializable, IListController<Employ
 
 
     }
-    @Override
-    public void editView(){
-        fieldsAnchorPane.setDisable(!editSwitch.isSelected());
-    }
+
 
     private void showListDepartments(ObservableList<Department> departmentsList){
         departmentList.setItems(departmentsList);
@@ -176,9 +173,9 @@ public class EmployeeController implements Initializable, IListController<Employ
             showList(employeeObservableList);
             Request.putJ(actualEmployee.getRoute(), actualEmployee);
             editSwitch.setSelected(false);
-            editView();
+            //editView();
         }else{
-            showAlertEmptyFields();
+            showAlertEmptyFields("No puedes dejar campos indispensables vacios");
         }
 
     }
@@ -244,7 +241,7 @@ public class EmployeeController implements Initializable, IListController<Employ
     @Override
     public void updateView(){
         editSwitch.setSelected(false);
-        editView();
+        //editView();
         actualEmployee = listView.getSelectionModel().getSelectedItem();
         putFields();
     }

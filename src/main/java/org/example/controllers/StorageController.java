@@ -42,10 +42,6 @@ public class StorageController implements Initializable, IListController<Product
 
     }
 
-    @Override
-    public void editView() {
-
-    }
 
     @Override
     public void updateView() throws IOException {

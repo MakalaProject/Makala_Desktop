@@ -1,6 +1,8 @@
 package org.example.productsSubControllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -9,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
+import org.example.model.RegexVerificationFields;
 import org.example.model.products.Action;
 import org.example.model.products.Hole;
 import org.example.model.products.HoleToSend;
@@ -26,15 +29,15 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
     private Hole actualHole = new Hole();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        altoField.textProperty().addListener(new RegexVerificationFields(altoField, true, 3,2));
+        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 3,2));
+
         updateButton.setOnMouseClicked(mouseEvent -> {
-            if(!altoField.getText().isEmpty() || !anchoField.getText().isEmpty() ){
-                Node source = (Node)  mouseEvent.getSource();
-                Stage stage  = (Stage) source.getScene().getWindow();
-                stage.close();
-                stage.setUserData(new HoleToSend(setInfo(actualHole), Action.UPDATE));
-            }else{
-                showAlertEmptyFields();
-            }
+            Node source = (Node)  mouseEvent.getSource();
+            Stage stage  = (Stage) source.getScene().getWindow();
+            stage.close();
+            stage.setUserData(new HoleToSend(setInfo(actualHole), Action.UPDATE));
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {

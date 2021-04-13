@@ -1,9 +1,9 @@
 package org.example.productsSubControllers;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
+import org.example.model.RegexVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;
 import java.math.BigDecimal;
@@ -17,6 +17,10 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        altoField.textProperty().addListener(new RegexVerificationFields(altoField, true, 3,2));
+        largoField.textProperty().addListener(new RegexVerificationFields(largoField, true, 3,2));
+        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 3,2));
+
     }
 
     @Override
@@ -29,13 +33,6 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
         return "/fxml/static_product_properties.fxml";
     }
 
-    @Override
-    public D getObjectByFields() {
-        if(!altoField.getText().isEmpty() || !anchoField.getText().isEmpty() || !largoField.getText().isEmpty()) {
-            return getObject();
-        }
-        return null;
-    }
 
     @Override
     public abstract  D findObject(Product object);

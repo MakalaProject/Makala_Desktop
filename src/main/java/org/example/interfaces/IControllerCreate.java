@@ -6,11 +6,11 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
 public interface IControllerCreate<D> {
-    default void showAlertEmptyFields(){
+    default void showAlertEmptyFields(String message){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Campos vacios");
-        alert.setHeaderText("No puedes dejar campos sin llenar'");
-        alert.setContentText("Por favor completa los datos ");
+        alert.setTitle("Información incompleta");
+        alert.setHeaderText(message);
+        alert.setContentText("Por favor verifica los campos");
         Optional<ButtonType> result = alert.showAndWait();
     }
      D setInfo(D object);

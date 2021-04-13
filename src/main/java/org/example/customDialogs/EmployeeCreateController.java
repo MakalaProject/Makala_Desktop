@@ -48,7 +48,7 @@ public class EmployeeCreateController implements Initializable, IControllerCreat
                 stage.close();
                 stage.setUserData(returnedEmployee);
             }else{
-                showAlertEmptyFields();
+                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
         });
     }

@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.example.interfaces.IChangeable;
 
+import java.math.BigDecimal;
+
 @Data
 @AllArgsConstructor
 public class Hole implements IChangeable<Integer> {
@@ -22,5 +24,9 @@ public class Hole implements IChangeable<Integer> {
     @Override
     public Integer getId() {
         return holeNumber;
+    }
+
+    public BigDecimal getArea(){
+        return holeDimensions.getX().multiply(holeDimensions.getY());
     }
 }
