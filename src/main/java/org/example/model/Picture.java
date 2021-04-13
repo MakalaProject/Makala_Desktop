@@ -1,46 +1,21 @@
 package org.example.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import org.example.interfaces.IChangeable;
+
 import java.io.File;
 
-public class Picture {
-    private int id;
+@Data
+@AllArgsConstructor
+public class Picture implements IChangeable<Integer> {
+    private Integer id;
     private String path;
-    // private File image;
-    private boolean toDelete = false;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
+    private boolean toDelete;
 
     public Picture(String path){
         this.path = path;
     }
 
-    /*public File getImage() {
-        return image;
-    }
 
-    public void setImage(File image) {
-        this.image = image;
-    }*/
-
-    public boolean isToDelete() {
-        return toDelete;
-    }
-
-    public void setToDelete(boolean toDelete) {
-        this.toDelete = toDelete;
-    }
 }
