@@ -13,9 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
-import org.example.customCells.IConstructor;
-import org.example.customCells.ProductListViewCell;
-import org.example.model.Client;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -85,8 +82,9 @@ public interface IListController<D>{
             listView.getSelectionModel().select(0);
             updateView();
         }
-
     }
+
+
     void cleanForm();
     default void add(String resource, ListView<D> listView, ObservableList<D> observableList, Class<?> controllerCell) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resource));

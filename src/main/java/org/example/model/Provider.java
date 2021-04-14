@@ -6,6 +6,7 @@ import org.example.model.Adress.Address;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -19,7 +20,7 @@ public class Provider extends User {
     private String typeProvider;
     private String clabe;
     private Address address;
-    private List<Product> products = new List<Product>();
+    private List<Product> products = new ArrayList<>();
 
     public Provider(){
         super();

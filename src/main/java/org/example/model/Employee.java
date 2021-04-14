@@ -29,7 +29,10 @@ public class Employee extends User {
             }
         }
         return false;
+    }
 
+    public void setSelectedDepartments(){
+        departments.removeIf(Department::isToDelete);
     }
 
     @Override

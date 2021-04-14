@@ -1,4 +1,4 @@
-package org.example.productsSubControllers;
+package org.example.controllers.products.subcontrollers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

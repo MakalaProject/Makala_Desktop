@@ -1,4 +1,4 @@
-package org.example.customDialogs;
+package org.example.controllers.create.controllers;
 
 import javafx.fxml.Initializable;
 import org.example.interfaces.IControllerCreate;

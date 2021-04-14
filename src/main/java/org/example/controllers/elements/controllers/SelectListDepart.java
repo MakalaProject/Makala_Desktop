@@ -1,18 +1,17 @@
-package org.example.customDialogs;
+package org.example.controllers.elements.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.Department;
 import org.example.model.Employee;
-import org.example.model.products.Hole;
 import org.example.services.Request;
 
 import java.net.URL;
@@ -21,6 +20,8 @@ import java.util.ResourceBundle;
 
 public class SelectListDepart implements Initializable {
     @FXML
+    TextField titleLabel;
+    @FXML
     FontAwesomeIconView saveButton;
     @FXML
     CheckListView<Department> checkListView;
@@ -28,6 +29,7 @@ public class SelectListDepart implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        titleLabel.setText("Departamentos");
         checkListView.setItems(FXCollections.observableArrayList(Request.getJ("departments", Department[].class, false)));
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 

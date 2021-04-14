@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.list.controllers;
 
 import org.example.customCells.CatalogListViewCell;
 import org.example.customCells.GiftListViewCell;

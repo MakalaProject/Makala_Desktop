@@ -1,24 +1,28 @@
 package org.example.customCells;
+
+import org.example.model.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
-import org.example.model.Employee;
 import org.example.model.User;
 
 import java.io.IOException;
 
-public class EmployeeListViewCell extends ListCell<Employee> {
-    @FXML Label fullName;
-    @FXML private AnchorPane anchorPane;
+public class UserListViewCell<D extends User> extends ListCell<D> {
+    @FXML
+    Label fullName;
+    @FXML
+    private AnchorPane anchorPane;
+
     private FXMLLoader mLLoader;
 
     @Override
-    protected void updateItem(Employee user, boolean empty) {
-        super.updateItem(user, empty);
+    protected void updateItem(D client, boolean empty) {
+        super.updateItem(client, empty);
 
-        if(empty || user == null) {
+        if (empty || client == null) {
             setText(null);
             setGraphic(null);
 
@@ -31,14 +35,11 @@ public class EmployeeListViewCell extends ListCell<Employee> {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
-            fullName.setText(String.valueOf(user.getFirstName()) +" "+ String.valueOf(user.getLastName()));
+            fullName.setText(String.valueOf(client.getFirstName()) + " " + String.valueOf(client.getLastName()));
             setText(null);
             setGraphic(anchorPane);
         }
 
     }
-
-
 }

@@ -1,14 +1,14 @@
-package org.example.controllers;
+package org.example.controllers.list.controllers;
 
-import org.example.customCells.DepartmentListViewCell;
-import org.example.customCells.EmployeeListViewCell;
+import org.example.controllers.parent.controllers.UserParentController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.customDialogs.SelectListDepart;
+import org.example.controllers.elements.controllers.SelectListDepart;
+import org.example.customCells.UserListViewCell;
 import org.example.model.Department;
 import org.example.model.Employee;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -35,7 +35,7 @@ public class EmployeeController extends UserParentController<Employee> {
         super.initialize(url,resourceBundle);
         //Check if the list is empty to update the view and show its values at the beggining
         addButton.setOnMouseClicked(mouseEvent -> {
-            add("/fxml/employee_create.fxml", listView, userObservableList, EmployeeListViewCell.class);
+            add("/fxml/employee_create.fxml", listView, userObservableList, UserListViewCell.class);
         });
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
@@ -57,10 +57,9 @@ public class EmployeeController extends UserParentController<Employee> {
                     }
                 });
                 if (!filteredUsers.isEmpty()) {
-                    showList(filteredUsers, listView,EmployeeListViewCell.class);
+                    showList(filteredUsers, listView, UserListViewCell.class);
                 }
             }
-
         } );
 
         editDepartmentButton.setOnMouseClicked(mouseEvent -> {
@@ -77,6 +76,7 @@ public class EmployeeController extends UserParentController<Employee> {
                 Employee employee = (Employee) stage.getUserData();
                 if (employee!=null) {
                     Request.putJ(employee.getRoute(), employee);
+                    employee.setSelectedDepartments();
                     userObservableList.set(userObservableList.indexOf(actualUser), employee);
                     listView.getSelectionModel().select(employee);
                     listView.scrollTo(employee);
@@ -86,16 +86,6 @@ public class EmployeeController extends UserParentController<Employee> {
                 e.printStackTrace();
             }
         });
-    }
-
-    private void showListDepartments(ObservableList<Department> departmentsList){
-        departmentList.setItems(departmentsList);
-        departmentList.setCellFactory(employeeListView -> new DepartmentListViewCell());
-    }
-
-    @Override
-    protected void showList() {
-        showList(userObservableList, listView, EmployeeListViewCell.class);
     }
 
     @Override
@@ -110,8 +100,12 @@ public class EmployeeController extends UserParentController<Employee> {
         contraseñaField.setText("");
         if (actualUser.getDepartments() != null) {
             departmentsItems.addAll(actualUser.getDepartments());
-            showListDepartments(departmentsItems);
+            showDepartmentsList(departmentsItems);
         }
+    }
+
+    private void showDepartmentsList(ObservableList<Department> list){
+        departmentList.setItems(list);
     }
 
     @Override

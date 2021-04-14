@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.ToggleSwitch;
-import org.example.interfaces.IControllerCreate;
+import org.example.customCells.UserListViewCell;
 import org.example.interfaces.IListController;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.User;
@@ -18,17 +18,14 @@ import org.example.services.Request;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public abstract class UserParentController <D extends User> implements Initializable, IListController<D>, IControllerCreate<D> {
-    @FXML TextField nombresField;
-    @FXML TextField apellidosField;
-    @FXML TextField telefonoField;
-    @FXML AnchorPane fieldsAnchorPane;
-    @FXML ToggleSwitch editSwitch;
-    @FXML TextField searchField;
-    @FXML FontAwesomeIconView updateButton;
-    @FXML FontAwesomeIconView deleteButton;
-    @FXML FontAwesomeIconView addButton;
-    @FXML ListView<D> listView;
+public abstract class UserParentController <D extends User> extends UserGenericController<D> implements IListController<D> {
+
+    @FXML protected AnchorPane fieldsAnchorPane;
+    @FXML protected ToggleSwitch editSwitch;
+    @FXML protected TextField searchField;
+    @FXML protected FontAwesomeIconView deleteButton;
+    @FXML protected FontAwesomeIconView addButton;
+    @FXML protected ListView<D> listView;
     protected D actualUser;
     protected final ObservableList<D> userObservableList = FXCollections.observableArrayList();
     protected final FilteredList<D> filteredUsers = new FilteredList<>(FXCollections.observableArrayList(userObservableList), p ->true);
@@ -37,7 +34,7 @@ public abstract class UserParentController <D extends User> implements Initializ
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showList();
         initialList(listView);
-        telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
+
         listView.setOnMouseClicked(mouseEvent -> {
             if (existChanges()) {
                 updateView();
@@ -70,14 +67,10 @@ public abstract class UserParentController <D extends User> implements Initializ
         }
     }
 
-    protected abstract void showList();
-
-    @Override
-    public void setInfo(D object) {
-        object.setFirstName(nombresField.getText());
-        object.setLastName(apellidosField.getText());
-        object.setPhone(telefonoField.getText());
+    public void showList(){
+        showList(userObservableList, listView, UserListViewCell.class);
     }
+
 
     protected void editView() {
         editView(fieldsAnchorPane,editSwitch,updateButton);

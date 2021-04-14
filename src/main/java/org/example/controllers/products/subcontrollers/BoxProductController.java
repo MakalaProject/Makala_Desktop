@@ -1,4 +1,4 @@
-package org.example.productsSubControllers;
+package org.example.controllers.products.subcontrollers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Box;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.interfaces.ListToChangeTools;
