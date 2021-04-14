@@ -1,6 +1,6 @@
-package org.example.customDialogs;
+package org.example.controllers.create.controllers;
 
-import org.example.controllers.ProductParentController;
+import org.example.controllers.parent.controllers.ProductParentController;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import org.example.model.Picture;

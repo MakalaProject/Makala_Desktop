@@ -1,4 +1,4 @@
-package org.example.productsSubControllers;
+package org.example.controllers.products.subcontrollers;
 
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;

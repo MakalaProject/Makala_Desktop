@@ -15,9 +15,9 @@ module org.example {
     opens org.example;
     opens org.example.controllers;
     opens org.example.customCells;
-    opens org.example.customDialogs;
+    opens org.example.controllers.elements.controllers;
     opens org.example.services;
-    opens org.example.productsSubControllers;
+    opens org.example.controllers.products.subcontrollers;
     opens org.example.model;
     opens org.example.model.products;
     opens org.example.interfaces;
@@ -26,9 +26,9 @@ module org.example {
     exports org.example;
     exports org.example.controllers;
     exports org.example.customCells;
-    exports org.example.customDialogs;
+    exports org.example.controllers.elements.controllers;
     exports org.example.services;
-    exports org.example.productsSubControllers;
+    exports org.example.controllers.products.subcontrollers;
     exports org.example.model;
     exports org.example.model.products;
     exports org.example.model.Adress;

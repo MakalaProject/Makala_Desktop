@@ -1,4 +1,4 @@
-package org.example.productsSubControllers;
+package org.example.controllers.products.subcontrollers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;

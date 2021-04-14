@@ -1,34 +1,22 @@
-package org.example.controllers;
+package org.example.controllers.list.controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.scene.Node;
+import org.example.controllers.parent.controllers.ProductParentController;
 import org.example.interfaces.*;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.services.*;
 import org.example.customCells.ProductListViewCell;
-import org.example.customDialogs.ProductCreateController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.example.model.*;
 import org.controlsfx.control.ToggleSwitch;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;

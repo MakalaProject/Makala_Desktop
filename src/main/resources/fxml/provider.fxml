@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1058.0" prefWidth="951.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.ProviderController">
+<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1058.0" prefWidth="951.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ProviderController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
@@ -56,7 +56,7 @@
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                   <FontAwesomeIconView fx:id="ProductsButton" fill="WHITE" glyphName="EDIT" layoutX="464.0" layoutY="573.0" size="30" AnchorPane.rightAnchor="29.428571701049805" AnchorPane.topAnchor="555.8571434020996" />
+                   <FontAwesomeIconView fx:id="productsButton" fill="WHITE" glyphName="EDIT" layoutX="464.0" layoutY="573.0" size="30" AnchorPane.rightAnchor="29.428571701049805" AnchorPane.topAnchor="555.8571434020996" />
                    <TextField fx:id="tiempoField" prefHeight="27.0" prefWidth="227.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="143.0" />
                       <Label prefHeight="28.0" prefWidth="73.0" text="Tarjeta" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="403.0" AnchorPane.topAnchor="185.0">
                           <font>

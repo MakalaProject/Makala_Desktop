@@ -1,5 +1,6 @@
 package org.example.customCells;
 
+import org.example.interfaces.IConstructor;
 import org.example.model.products.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class ProductListViewCell extends ListCell<Product> implements IConstructor<ProductListViewCell>{
+public class ProductListViewCell extends ListCell<Product> implements IConstructor<ProductListViewCell> {
     @FXML
     Label productName;
 

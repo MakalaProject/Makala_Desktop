@@ -4,15 +4,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
 
-<?import org.controlsfx.control.CheckListView?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.customDialogs.SelectListDepart">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.SelectListDepart">
     <CheckListView fx:id="checkListView" layoutY="52.0" prefHeight="348.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         
     </CheckListView>
    <TitledPane animated="false" layoutY="-90.0" text="untitled" />
     <FontAwesomeIconView fx:id="saveButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
-   <Label layoutX="28.0" layoutY="14.0" text="Departamentos " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
+   <Label fx:id="titleLabel" layoutX="28.0" layoutY="14.0" text="Departamentos " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
       <font>
          <Font name="Roboto Light" size="20.0" />
       </font>

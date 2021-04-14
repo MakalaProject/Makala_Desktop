@@ -1,9 +1,10 @@
-package org.example.customDialogs;
+package org.example.controllers.create.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,7 +12,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.interfaces.IControllerCreate;
+import org.example.controllers.elements.controllers.SelectListDepart;
+import org.example.controllers.parent.controllers.UserGenericController;
 import org.example.model.Department;
 import org.example.model.Employee;
 import org.example.model.ChangedVerificationFields;
@@ -21,21 +23,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeeCreateController implements Initializable, IControllerCreate<Employee> {
-    @FXML FontAwesomeIconView saveButton;
+public class EmployeeCreateController extends UserGenericController<Employee> {
     @FXML FontAwesomeIconView editDepartmentButton;
     @FXML ListView<Department> departmentList;
-    @FXML TextField nombresField;
-    @FXML TextField apellidosField;
     @FXML TextField contraseñaField;
-    @FXML TextField telefonoField;
     Employee employee = new Employee();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
 
-        saveButton.setOnMouseClicked(mouseEvent -> {
+        updateButton.setOnMouseClicked(mouseEvent -> {
             if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() || !telefonoField.getText().isEmpty() || !contraseñaField.getText().isEmpty()){
                 setInfo(employee);
                 Employee returnedEmployee = (Employee) Request.postJ(employee.getRoute(),employee);
@@ -60,20 +58,22 @@ public class EmployeeCreateController implements Initializable, IControllerCreat
                 stage.setScene(scene);
                 stage.showAndWait();
                 Employee employeeDepartmentsInstance = (Employee) stage.getUserData();
-                if (employee!=null) {
+                if (employeeDepartmentsInstance!=null) {
                     employee.setDepartments(employeeDepartmentsInstance.getDepartments());
+                    showListDepartments(employee);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
+    private void showListDepartments(Employee employee){
+        departmentList.setItems(FXCollections.observableArrayList(employee.getDepartments()));
+    }
 
     @Override
     public void setInfo(Employee employee) {
-        employee.setFirstName(nombresField.getText());
-        employee.setLastName(apellidosField.getText());
-        employee.setPhone(telefonoField.getText());
+        super.setInfo(employee);
         employee.setPassword(contraseñaField.getText());
     }
 }

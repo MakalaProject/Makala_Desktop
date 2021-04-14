@@ -1,14 +1,19 @@
-package org.example.customDialogs;
+package org.example.controllers.elements.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.example.interfaces.ListToChangeTools;
+import org.example.model.Department;
 import org.example.model.Provider;
 import org.example.model.products.Product;
+import org.example.services.Request;
 
 import java.net.URL;
 import java.util.List;
@@ -16,12 +21,17 @@ import java.util.ResourceBundle;
 
 public class SelectListProduct implements Initializable {
     @FXML
+    TextField titleLabel;
+    @FXML
     FontAwesomeIconView saveButton;
     @FXML
     CheckListView<Product> checkListView;
     private Provider provider;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        titleLabel.setText("Productos");
+        checkListView.setItems(FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?idClass="+provider.getProductClassDto(), Product[].class, false)));
+        checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         saveButton.setOnMouseClicked(mouseEvent -> {
             List<Product> productList = checkListView.getCheckModel().getCheckedItems();
             new ListToChangeTools<Product,Integer>().setToDeleteItems(provider.getProducts(), productList);

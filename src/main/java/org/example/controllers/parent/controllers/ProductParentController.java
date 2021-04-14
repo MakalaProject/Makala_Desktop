@@ -1,8 +1,6 @@
-package org.example.controllers;
+package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.controllers.products.subcontrollers.*;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IControllerProducts;
 import org.example.interfaces.IPictureController;
@@ -22,7 +21,6 @@ import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
-import org.example.productsSubControllers.*;
 import org.example.services.Request;
 
 import java.io.IOException;
