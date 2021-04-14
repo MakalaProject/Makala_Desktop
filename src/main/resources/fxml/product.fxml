@@ -89,6 +89,11 @@
                         </DropShadow>
                     </effect>
                 </Label>
+                  <Label layoutX="51.0" layoutY="302.0" text="Stock"  style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+                     <font>
+                        <Font name="Roboto Light" size="20.0" />
+                     </font></Label>
+                  <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" />
             </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="251.0" prefWidth="516.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

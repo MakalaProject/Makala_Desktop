@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class StaticProduct extends Product {
     protected Measure3Dimensions measures;
-    private int totalAmount = 0;
 
     public StaticProduct(){
         super();
