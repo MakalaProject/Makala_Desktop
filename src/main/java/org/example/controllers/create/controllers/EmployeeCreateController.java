@@ -68,7 +68,10 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
         });
     }
     private void showListDepartments(Employee employee){
-        departmentList.setItems(FXCollections.observableArrayList(employee.getDepartments()));
+        if (employee.getDepartments() != null){
+            departmentList.setItems(FXCollections.observableArrayList(employee.getDepartments()));
+        }
+
     }
 
     @Override

@@ -19,7 +19,7 @@ public class Provider extends User {
     private int shippingTime;
     private String typeProvider;
     private String clabe;
-    private Address address;
+    private Address address = new Address();
     private List<Product> products = new ArrayList<>();
 
     public Provider(){
@@ -40,4 +40,7 @@ public class Provider extends User {
         return "Proovedor";
     }
 
+    public void setSelectedProducts() {
+        products.removeIf(Product::isToDelete);
+    }
 }

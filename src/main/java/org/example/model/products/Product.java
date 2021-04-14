@@ -38,6 +38,10 @@ public class Product implements IPaths, IChangeable<Integer> {
     }
 
     @Override
+    public String toString(){
+        return name;
+    }
+    @Override
     public Integer getId() {
         return idProduct;
     }

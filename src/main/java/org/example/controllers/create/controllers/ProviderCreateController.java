@@ -17,6 +17,7 @@ import org.example.controllers.parent.controllers.UserGenericController;
 import org.example.model.Adress.Address;
 import org.example.model.Adress.City;
 import org.example.model.Employee;
+import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.model.Provider;
 import org.example.services.ProviderService;
@@ -30,8 +31,10 @@ import java.util.ResourceBundle;
 public class ProviderCreateController extends UserGenericController<Provider> {
     @FXML TextField tiempoField;
     @FXML TextField tarjetaField;
+    @FXML TextField addressField;
     @FXML TextField claveField;
     @FXML ComboBox<City> ciudadComboBox;
+    @FXML ListView<Product> productsListView;
     @FXML TextField codigoPostalField;
     @FXML TextField emailField;
     @FXML ComboBox<String> tipoComboBox;
@@ -78,14 +81,21 @@ public class ProviderCreateController extends UserGenericController<Provider> {
                 stage.setScene(scene);
                 stage.showAndWait();
                 Provider providerInstance = (Provider) stage.getUserData();
-                if (employeeDepartmentsInstance!=null) {
-                    employee.setDepartments(employeeDepartmentsInstance.getDepartments());
-                    showListDepartments(employee);
+                if (providerInstance!=null) {
+                    provider.setProducts(providerInstance.getProducts());
+                    showProductsList(provider);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+    }
+
+    public void showProductsList(Provider provider){
+        if (provider.getProducts() != null){
+            productsListView.setItems(FXCollections.observableArrayList(provider.getProducts()));
+        }
+
     }
 
     @Override
@@ -96,7 +106,7 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         provider.setClabe(claveField.getText());
         provider.setTypeProvider(tipoComboBox.getSelectionModel().getSelectedItem());
         provider.setProductReturn(siRadio.isSelected());
-        Address address = new Address(0, "",Integer.parseInt(codigoPostalField.getText()),ciudadComboBox.getValue());
+        Address address = new Address(0, addressField.getText(),Integer.parseInt(codigoPostalField.getText()),ciudadComboBox.getValue());
         provider.setAddress(address);
     }
 }

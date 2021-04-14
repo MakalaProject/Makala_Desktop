@@ -1,7 +1,14 @@
 package org.example.controllers.list.controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.example.controllers.elements.controllers.SelectListProduct;
 import org.example.controllers.parent.controllers.UserParentController;
-import org.example.customCells.ProviderListViewCell;
+import org.example.customCells.UserListViewCell;
 import org.example.model.Adress.Address;
 import org.example.model.Adress.City;
 import org.example.model.products.Product;
@@ -13,13 +20,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.services.Request;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProviderController extends UserParentController<Provider> {
-    @FXML ListView<Product> productsList;
+    @FXML ListView<Product> productsListView;
     @FXML TextField tiempoField;
     @FXML TextField tarjetaField;
+    @FXML TextField addressField;
     @FXML TextField claveField;
     @FXML TextField emailField;
     @FXML ComboBox<City> ciudadComboBox;
@@ -27,6 +36,7 @@ public class ProviderController extends UserParentController<Provider> {
     @FXML ComboBox<String> tipoComboBox;
     @FXML ComboBox<ProductClassDto> classificationComboBox;
     @FXML RadioButton siRadio;
+    @FXML FontAwesomeIconView productsButton;
     @FXML RadioButton noRadio;
 
     final ToggleGroup returnRadioGroup = new ToggleGroup();
@@ -65,13 +75,44 @@ public class ProviderController extends UserParentController<Provider> {
 
                 });
                 if (!filteredUsers.isEmpty()) {
-                    showList(filteredUsers, listView, ProviderListViewCell.class);
+                    showList(filteredUsers, listView, UserListViewCell.class);
                 }
             }
         } );
-        addButton.setOnMouseClicked(mouseEvent -> {
-            add("/fxml/provider_create.fxml",listView,userObservableList,ProviderListViewCell.class);
+
+        productsButton.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                SelectListProduct dialogController = fxmlLoader.<SelectListProduct>getController();
+                dialogController.setProvider(actualUser);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                Provider provider = (Provider) stage.getUserData();
+                if (provider!=null) {
+                    Request.putJ(provider.getRoute(), provider);
+                    provider.setSelectedProducts();
+                    userObservableList.set(userObservableList.indexOf(actualUser), provider);
+                    listView.getSelectionModel().select(provider);
+                    listView.scrollTo(provider);
+                    updateView();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
+        addButton.setOnMouseClicked(mouseEvent -> {
+            add("/fxml/provider_create.fxml",listView,userObservableList, UserListViewCell.class);
+        });
+
+    }
+    public void showProductsList(Provider provider){
+        if (provider.getProducts() != null){
+            productsListView.setItems(FXCollections.observableArrayList(provider.getProducts()));
+        }
 
     }
 
@@ -102,7 +143,7 @@ public class ProviderController extends UserParentController<Provider> {
         if (actualUser.getAddress() != null){
             codigoPostalField.setText(actualUser.getAddress().getCp().toString());
             ciudadComboBox.setValue(actualUser.getAddress().getCity());
-            //address
+            addressField.setText(actualUser.getAddress().getAddress());
         }
     }
 
@@ -115,7 +156,7 @@ public class ProviderController extends UserParentController<Provider> {
         emailField.setText("");
         claveField.setText("");
         codigoPostalField.setText("");
-        //address
+        addressField.setText("");
 
     }
 
@@ -127,7 +168,7 @@ public class ProviderController extends UserParentController<Provider> {
         provider.setClabe(claveField.getText());
         provider.setTypeProvider(tipoComboBox.getSelectionModel().getSelectedItem());
         provider.setProductReturn(siRadio.isSelected());
-        Address address = new Address(0, "",Integer.parseInt(codigoPostalField.getText()),ciudadComboBox.getValue());
+        Address address = new Address(0, addressField.getText(),Integer.parseInt(codigoPostalField.getText()),ciudadComboBox.getValue());
         provider.setAddress(address);
     }
 }
