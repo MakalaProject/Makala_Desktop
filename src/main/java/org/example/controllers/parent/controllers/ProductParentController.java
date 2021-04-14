@@ -1,6 +1,8 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -34,6 +36,7 @@ public abstract class ProductParentController implements Initializable, IControl
     @FXML protected TextField nombreField;
     @FXML protected TextField minField;
     @FXML protected TextField maxField;
+    @FXML protected TextField stockField;
     @FXML protected FontAwesomeIconView updateButton;
     @FXML protected FontAwesomeIconView imageButton;
     @FXML protected FontAwesomeIconView deleteButton;
@@ -85,9 +88,12 @@ public abstract class ProductParentController implements Initializable, IControl
         //Verifications with regex
         maxField.focusedProperty().addListener(new FocusVerificationFields(maxField, true, 3));
         minField.focusedProperty().addListener(new FocusVerificationFields(minField, true, 3));
+        stockField.focusedProperty().addListener(new FocusVerificationFields(stockField, true, 7));
+        stockField.textProperty().addListener(new ChangedVerificationFields(stockField, true, 7));
         precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
         maxField.textProperty().addListener(new ChangedVerificationFields(maxField, true, 3));
         minField.textProperty().addListener(new ChangedVerificationFields(minField, true, 3));
+        stockField.textProperty().addListener(new ChangedVerificationFields(maxField, true, 7));
         precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
     }
 
@@ -132,6 +138,7 @@ public abstract class ProductParentController implements Initializable, IControl
 
     public void setInfo(Product product){
         product.setName(nombreField.getText());
+        product.setStock(Integer.parseInt(stockField.getText()));
         product.setMax(Integer.parseInt(maxField.getText()));
         product.setMin(Integer.parseInt(minField.getText()));
         product.setPrice(new BigDecimal(precioField.getText()));

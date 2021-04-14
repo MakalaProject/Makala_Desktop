@@ -9,7 +9,6 @@ public class CraftedProduct {
     private int id;
     private Product containerProduct;
     private Product internalProduct;
-    private float weightGr;
 
     public CraftedProduct (Product cProduct, Product iProduct){
         this.containerProduct = cProduct;
