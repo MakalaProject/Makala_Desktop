@@ -88,12 +88,11 @@ public abstract class ProductParentController implements Initializable, IControl
         //Verifications with regex
         maxField.focusedProperty().addListener(new FocusVerificationFields(maxField, true, 3));
         minField.focusedProperty().addListener(new FocusVerificationFields(minField, true, 3));
-        stockField.focusedProperty().addListener(new FocusVerificationFields(stockField, true, 7));
-        stockField.textProperty().addListener(new ChangedVerificationFields(stockField, true, 7));
+        stockField.focusedProperty().addListener(new FocusVerificationFields(stockField, false, 3));
+        stockField.textProperty().addListener(new ChangedVerificationFields(stockField, false, 3));
         precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
         maxField.textProperty().addListener(new ChangedVerificationFields(maxField, true, 3));
         minField.textProperty().addListener(new ChangedVerificationFields(minField, true, 3));
-        stockField.textProperty().addListener(new ChangedVerificationFields(maxField, true, 7));
         precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
     }
 

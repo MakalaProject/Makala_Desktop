@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class SelectListDepart implements Initializable {
     @FXML
-    TextField titleLabel;
+    Label titleLabel;
     @FXML
     FontAwesomeIconView saveButton;
     @FXML

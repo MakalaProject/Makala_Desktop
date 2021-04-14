@@ -83,8 +83,9 @@ public class ProviderController extends UserParentController<Provider> {
         productsButton.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
             try {
+                SelectListProduct dialogController = new SelectListProduct();
+                fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                SelectListProduct dialogController = fxmlLoader.<SelectListProduct>getController();
                 dialogController.setProvider(actualUser);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
@@ -93,7 +94,8 @@ public class ProviderController extends UserParentController<Provider> {
                 stage.showAndWait();
                 Provider provider = (Provider) stage.getUserData();
                 if (provider!=null) {
-                    Request.putJ(provider.getRoute(), provider);
+                    actualUser.setProducts(provider.getProducts());
+                    Request.putJ(provider.getRoute(), actualUser);
                     provider.setSelectedProducts();
                     userObservableList.set(userObservableList.indexOf(actualUser), provider);
                     listView.getSelectionModel().select(provider);

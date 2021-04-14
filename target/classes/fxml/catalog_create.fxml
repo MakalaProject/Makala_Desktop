@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.customDialogs.CatalogCreateController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.CatalogCreateController">
             <Label layoutX="53.0" layoutY="274.0" prefHeight="1.0" prefWidth="76.0" text="Nombre" AnchorPane.leftAnchor="53.0" AnchorPane.rightAnchor="388.0" AnchorPane.topAnchor="274.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />

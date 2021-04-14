@@ -72,8 +72,9 @@ public class ProviderCreateController extends UserGenericController<Provider> {
             try {
                 Provider provider = new Provider();
                 provider.setProductClassDto(classificationComboBox.getSelectionModel().getSelectedItem());
+                SelectListProduct dialogController = new SelectListProduct();
+                fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                SelectListProduct dialogController = fxmlLoader.<SelectListProduct>getController();
                 dialogController.setProvider(provider);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
