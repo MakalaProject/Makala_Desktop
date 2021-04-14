@@ -1,8 +1,6 @@
 package org.example.productsSubControllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -11,7 +9,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.model.products.Action;
 import org.example.model.products.Hole;
 import org.example.model.products.HoleToSend;
@@ -31,8 +29,8 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        altoField.textProperty().addListener(new RegexVerificationFields(altoField, true, 3,2));
-        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 3,2));
+        altoField.textProperty().addListener(new ChangedVerificationFields(altoField, true, 3,2));
+        anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 3,2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();

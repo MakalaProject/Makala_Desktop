@@ -68,7 +68,7 @@ public interface IListController<D>{
             updateButton.setVisible(false);
         }
     }
-    void updateView() throws IOException;
+    void updateView();
     default void showList(ObservableList<D> List, ListView<D> listView, Class<?> controllerCell){
         listView.setItems(List);
         listView.setCellFactory(cellList -> {
@@ -79,6 +79,13 @@ public interface IListController<D>{
             }
             return null;
         });
+    }
+    default void initialList(ListView listView){
+        if (!listView.getItems().isEmpty()){
+            listView.getSelectionModel().select(0);
+            updateView();
+        }
+
     }
     void cleanForm();
     default void add(String resource, ListView<D> listView, ObservableList<D> observableList, Class<?> controllerCell) {

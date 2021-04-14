@@ -1,14 +1,11 @@
 package org.example.productsSubControllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.model.products.BulkProduct;
-import org.example.model.products.PaperProduct;
 import org.example.model.products.Product;
 
 import java.math.BigDecimal;
@@ -20,7 +17,7 @@ public class BulkProductController implements Initializable, IControllerProducts
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        porcentajeField.textProperty().addListener(new RegexVerificationFields(porcentajeField, true, 2,2));
+        porcentajeField.textProperty().addListener(new ChangedVerificationFields(porcentajeField, true, 2,2));
     }
 
     @Override

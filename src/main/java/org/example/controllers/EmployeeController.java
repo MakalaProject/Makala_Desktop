@@ -1,26 +1,20 @@
 package org.example.controllers;
 
-import org.example.customCells.ClientListViewCell;
 import org.example.customCells.DepartmentListViewCell;
 import org.example.customCells.EmployeeListViewCell;
-import org.example.customDialogs.EmployeeCreateController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.customDialogs.SelectListDepart;
 import org.example.model.Department;
 import org.example.model.Employee;
-import org.controlsfx.control.ToggleSwitch;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import org.example.model.RegexVerificationFields;
 import org.example.services.Request;
 
 import java.io.IOException;

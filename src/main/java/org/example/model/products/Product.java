@@ -17,7 +17,6 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected String name;
     protected ProductClassDto productClassDto;
     protected String privacy;
-    protected String productType;
     protected BigDecimal price;
     protected Integer max;
     protected Integer min;
@@ -30,6 +29,9 @@ public class Product implements IPaths, IChangeable<Integer> {
         pictures = new ArrayList<>();
     }
 
+    public String getIdentifier(){
+        return "Producto";
+    }
     @Override
     public String getRoute() {
         return route;

@@ -1,22 +1,20 @@
 package org.example.productsSubControllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Box;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.interfaces.ListToChangeTools;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.model.products.*;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -28,12 +26,11 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public TextField altoIntField;
     @FXML public TextField anchoIntField;
     @FXML public TextField largoIntField;
-    @FXML public Label labelDivisions;
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
     private final ObservableList<Hole> holeList = FXCollections.observableArrayList();
     private final Set<Hole> originalHoleList = new HashSet<>();
-    private BoxProduct actualBoxProduct = new BoxProduct();
+    private BoxProduct actualBoxProduct;
 
 
     @Override
@@ -41,12 +38,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         super.initialize(url,resourceBundle);
         addHoleButton.setOnMouseClicked(new ShowDialog(true));
         holesListView.setOnMouseClicked(new ShowDialog(false));
-        addHoleButton.setVisible(false);
-        holesListView.setVisible(false);
-        labelDivisions.setVisible(false);
-        altoIntField.textProperty().addListener(new RegexVerificationFields(altoIntField, true, 3,2));
-        largoIntField.textProperty().addListener(new RegexVerificationFields(largoIntField, true, 3,2));
-        anchoIntField.textProperty().addListener(new RegexVerificationFields(anchoIntField, true, 3,2));
+        altoIntField.textProperty().addListener(new ChangedVerificationFields(altoIntField, true, 3,2));
+        largoIntField.textProperty().addListener(new ChangedVerificationFields(largoIntField, true, 3,2));
+        anchoIntField.textProperty().addListener(new ChangedVerificationFields(anchoIntField, true, 3,2));
     }
 
     public void showList(){
@@ -72,15 +66,18 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
         boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
         boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
-        if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) > 0){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Medidas fuera de rango");
-            alert.setContentText("Las medidas de la caja son invalidas");
-            alert.showAndWait();
-            return null;
+        Measure3Dimensions internalMeasure = boxProduct.getInternalMeasures();
+        Measure3Dimensions externalMeasures = boxProduct.getMeasures();
+        if (internalMeasure.getZ().compareTo(externalMeasures.getZ()) > 0 || internalMeasure.getX().compareTo(externalMeasures.getX()) > 0 || internalMeasure.getY().compareTo(externalMeasures.getY()) > 0) {
+            if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) > 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Medidas fuera de rango");
+                alert.setContentText("Las medidas de la caja son invalidas");
+                alert.showAndWait();
+                return null;
+            }
         }
         return boxProduct;
-
     }
 
     public void clearController(){
@@ -95,9 +92,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public void setObject(BoxProduct boxProduct){
-        addHoleButton.setVisible(true);
-        holesListView.setVisible(true);
-        labelDivisions.setVisible(true);
         actualBoxProduct = boxProduct;
         verifyAvailableArea();
         clearController();
@@ -133,6 +127,10 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         }
         @Override
         public void handle(MouseEvent mouseEvent) {
+            if (actualBoxProduct == null){
+                actualBoxProduct = new BoxProduct();
+
+            }
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/box_hole_properties.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
@@ -141,7 +139,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                     dialogController.deleteButton.setVisible(true);
                     dialogController.setHole(holesListView.getSelectionModel().getSelectedItem());
                 }else {
-
                     dialogController.deleteButton.setVisible(false);
                 }
                 Scene scene = new Scene(parent);

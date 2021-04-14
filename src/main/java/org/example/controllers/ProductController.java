@@ -1,11 +1,11 @@
 package org.example.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
-import javafx.stage.FileChooser;
 import org.example.interfaces.*;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
-import org.example.productsSubControllers.*;
 import org.example.services.*;
 import org.example.customCells.ProductListViewCell;
 import org.example.customDialogs.ProductCreateController;
@@ -18,8 +18,6 @@ import javafx.stage.Stage;
 import org.example.model.*;
 import org.controlsfx.control.ToggleSwitch;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -29,77 +27,43 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ProductController  implements Initializable, IListController<Product>, IControllerCreate<Product>, IPictureController {
+public class ProductController extends ProductParentController implements IListController<Product> {
     //Resources xml
     @FXML TextField searchField;
     @FXML ComboBox<String> comboBox;
     @FXML ListView<Product> listView;
-    @FXML TextField nombreField;
-    @FXML TextField minField;
-    @FXML TextField maxField;
-    @FXML FontAwesomeIconView updateButton;
-    @FXML FontAwesomeIconView imageButton;
-    @FXML FontAwesomeIconView deleteButton;
-    @FXML FontAwesomeIconView addButton;
-    @FXML TextField precioField;
-    @FXML ImageView productImage;
-    @FXML ComboBox<String> privacidadComboBox;
-    @FXML ComboBox<ProductClassDto> clasificacionComboBox;
-    @FXML ComboBox<String> tipoComboBox;
     @FXML AnchorPane propertiesAnchorPane;
     @FXML ToggleSwitch editSwitch;
-    @FXML AnchorPane fieldsAnchorPane;
-    @FXML FontAwesomeIconView deletePicture;
-    @FXML FontAwesomeIconView nextPicture;
-    @FXML FontAwesomeIconView previousPicture;
 
     Product actualProduct;
-
-    //Combo box lists
-    private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestible", "Papeles", "Listones","Creado","Cajas");
-    private static final ObservableList<String> privacyItems = FXCollections.observableArrayList("Publico", "Privado");
-    private static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ( "classifications/products", ProductClassDto[].class, false));
-
-    //Products list
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
     //Properties controller
-    private static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new BoxProductController(), new RibbonProductController(), new PaperProductController(), new BulkProductController()};
-    private IControllerProducts actualPropertiesController;
     private int index;
-    private int imageIndex = 0;
-    private List<String> files = new ArrayList<>();
-    private List<String> deleteFiles = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        clasificacionComboBox.itemsProperty().setValue(classificationItems);
-        privacidadComboBox.getItems().addAll(privacyItems);
-        tipoComboBox.getItems().addAll(typeItems);
+        super.initialize(url,resourceBundle);
         comboBox.getItems().addAll(typeItems);
+
+        clasificacionComboBox.valueProperty().addListener(new ChangeListener<ProductClassDto>() {
+            @Override
+            public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
+                tipoComboBox.setValue(t1.getProductType());
+            }
+        });
 
         //Get all products
         productObservableList.addAll(Request.getJ("products/basics/list", Product[].class, false));
         //Select default classification and show list
         comboBox.getSelectionModel().select(0);
-
         selectClassification();
-
-        if (!listView.getItems().isEmpty()){
-            listView.getSelectionModel().select(0);
-            updateView();
-        }
-
-        //Verifications with regex
-        maxField.textProperty().addListener(new RegexVerificationFields(maxField, true, 3));
-        minField.textProperty().addListener(new RegexVerificationFields(minField, true, 3));
-        precioField.textProperty().addListener(new RegexVerificationFields(precioField, true, 4,2));
+        initialList(listView);
 
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
@@ -117,11 +81,9 @@ public class ProductController  implements Initializable, IListController<Produc
                     String lowerCaseText = newValue.toLowerCase();
                     if (product.getName().toLowerCase().contains(lowerCaseText)) {
                         return true;
-                    } else if (product.getProductType().toLowerCase().contains(lowerCaseText)) {
+                    } else if (product.getProductClassDto().getProductType().toLowerCase().contains(lowerCaseText)) {
                         return true;
-                    }/*else if(product.getProductClass().getClassification().toLowerCase().contains(lowerCaseText)){
-                    return true;
-                }*/ else {
+                    } else {
                         return false;
                     }
                 });
@@ -152,71 +114,12 @@ public class ProductController  implements Initializable, IListController<Produc
         addButton.setOnMouseClicked(mouseEvent -> {
             add();
         });
-
-        imageButton.setOnMouseClicked(mouseEvent -> {
-            Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
-            files = uploadImage(s);
-        });
-
-        previousPicture.setOnMouseClicked(mouseEvent -> {
-            imageIndex--;
-            checkIndex();
-        });
-
-        nextPicture.setOnMouseClicked(mouseEvent -> {
-            imageIndex++;
-            checkIndex();
-        });
-
-        deletePicture.setOnMouseClicked(mouseEvent -> {
-            files = deletePicture();
-        });
-    }
-
-    @Override
-    public void decreaseIndex() {
-        imageIndex--;
-    }
-
-    @Override
-    public List<String> getFiles() {
-        return files;
-    }
-
-    @Override
-    public FontAwesomeIconView getNextPicture() {
-
-        return nextPicture;
-    }
-    @Override
-    public FontAwesomeIconView getPreviousPicture() {
-        return previousPicture;
-    }
-
-    @Override
-    public List<String> getDeleteFiles() {
-        return deleteFiles;
-    }
-
-    @Override
-    public ImageView getImage() {
-        return productImage;
-    }
-
-    @Override
-    public int getImageIndex() {
-        return imageIndex;
-    }
-
-    @Override
-    public void updateIndex() {
-        imageIndex = files.size() -1;
     }
 
     //Filter products by classifications
     public void selectClassification(){
         if (!existChanges()) {
-            ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductType().equals(comboBox.getValue()))
+            ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductClassDto().getProductType().equals(comboBox.getValue()))
                     .collect(Collectors.toCollection(FXCollections::observableArrayList));
             //check if list is empty
             if (products.isEmpty()) {
@@ -237,7 +140,7 @@ public class ProductController  implements Initializable, IListController<Produc
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( "products", actualProduct.getIdProduct());
+        Request.deleteJ( actualProduct.getIdentifier().toLowerCase(), actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
             listView.getSelectionModel().select(0);
@@ -298,28 +201,7 @@ public class ProductController  implements Initializable, IListController<Produc
     }
 
     public void add() {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/product_create.fxml"));
-        try {
-            Parent parent = fxmlLoader.load();
-            ProductCreateController dialogController = fxmlLoader.<ProductCreateController>getController();
-            dialogController.setControllersArray(propertiesControllers);
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.showAndWait();
-            Product product = (Product) stage.getUserData();
-            if (product != null) {
-                productObservableList.add(product);
-                listView.getSelectionModel().select(product);
-                listView.scrollTo(product);
-                updateView();
-                selectClassification();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        add("/fxml/product_create.fxml",listView,productObservableList, ProductListViewCell.class);
     }
 
     @Override
@@ -330,7 +212,7 @@ public class ProductController  implements Initializable, IListController<Produc
         Product product = (Product) actualPropertiesController.getObject();
         setInfo(product);
         if (!actualProduct.equals(product)){
-            if(!showAlertUnsavedElement(product.getName(), "Producto")) {
+            if(!showAlertUnsavedElement(product.getName(), product.getIdentifier())) {
                 listView.getSelectionModel().select(actualProduct);
             }else{
                 updateView();
@@ -348,15 +230,8 @@ public class ProductController  implements Initializable, IListController<Produc
         minField.setText(actualProduct.getMin().toString());
         maxField.setText(actualProduct.getMax().toString());
         privacidadComboBox.setValue(actualProduct.getPrivacy());
-        tipoComboBox.setValue(actualProduct.getProductType());
+        tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());
-        Image image;
-        /*if(!actualProduct.getPictures().isEmpty()){
-            image = new Image(actualProduct.getPictures().get(0).getPath(), 225, 171, false, false);
-        }else{
-            image = new Image(getClass().getResource("/Images/product.png").toString());
-        }
-        productImage.setImage(image);*/
     }
 
     @Override
@@ -366,37 +241,28 @@ public class ProductController  implements Initializable, IListController<Produc
         minField.setText("");
         precioField.setText("");
         propertiesAnchorPane.getChildren().clear();
-        //actualPropertiesController.cleanForm
     }
 
+    @Override
     public void setInfo(Product product){
+        super.setInfo(product);
         product.setStock(actualProduct.getStock());
-        product.setName(nombreField.getText());
         product.setIdProduct(actualProduct.getIdProduct());
-        product.setMax(Integer.parseInt(maxField.getText()));
-        product.setMin(Integer.parseInt(minField.getText()));
-        product.setPrice(new BigDecimal(precioField.getText()));
-        product.setProductClassDto(clasificacionComboBox.getSelectionModel().getSelectedItem());
-        product.setProductType(actualProduct.getProductType());
-        product.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
         product.setPictures(actualProduct.getPictures());
     }
-
 
     @Override
     public void updateView() {
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
-
         //Update the actual product
         actualProduct = listView.getSelectionModel().getSelectedItem();
         index = productObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
-
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
             //Find the controller to the type product
-            if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductType())){
+            if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductClassDto().getProductType())){
                 changeType(controller);
                 actualPropertiesController = controller;
                 actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
@@ -407,22 +273,6 @@ public class ProductController  implements Initializable, IListController<Produc
                 checkIndex();
                 return;
             }
-        }
-
-    }
-
-    private void changeType(IControllerProducts controller) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(controller.getResource()));
-            fxmlLoader.setController(controller);
-            Parent root = fxmlLoader.load();
-            propertiesAnchorPane.getChildren().add(root);
-            AnchorPane.setTopAnchor(root,0D);
-            AnchorPane.setBottomAnchor(root,0D);
-            AnchorPane.setRightAnchor(root,0D);
-            AnchorPane.setLeftAnchor(root,0D);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

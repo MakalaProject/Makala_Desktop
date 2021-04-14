@@ -1,10 +1,6 @@
 package org.example.customDialogs;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +14,7 @@ import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.Department;
 import org.example.model.Employee;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -37,7 +33,7 @@ public class EmployeeCreateController implements Initializable, IControllerCreat
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        telefonoField.textProperty().addListener(new RegexVerificationFields(telefonoField,false,10));
+        telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
 
         saveButton.setOnMouseClicked(mouseEvent -> {
             if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() || !telefonoField.getText().isEmpty() || !contraseñaField.getText().isEmpty()){

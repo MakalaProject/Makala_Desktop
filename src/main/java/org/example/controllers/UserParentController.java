@@ -10,11 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.ToggleSwitch;
-import org.example.customCells.ClientListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
-import org.example.model.Client;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.model.User;
 import org.example.services.Request;
 import java.net.URL;
@@ -38,11 +36,8 @@ public abstract class UserParentController <D extends User> implements Initializ
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showList();
-        if (listView.getItems().isEmpty()){
-            listView.getSelectionModel().select(0);
-            updateView();
-        }
-        telefonoField.textProperty().addListener(new RegexVerificationFields(telefonoField,false,10));
+        initialList(listView);
+        telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
         listView.setOnMouseClicked(mouseEvent -> {
             if (existChanges()) {
                 updateView();

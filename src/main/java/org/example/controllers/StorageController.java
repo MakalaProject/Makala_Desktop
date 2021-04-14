@@ -40,7 +40,7 @@ public class StorageController implements Initializable, IListController<Product
 
 
     @Override
-    public void updateView() throws IOException {
+    public void updateView()  {
 
     }
 

@@ -1,12 +1,9 @@
 package org.example.productsSubControllers;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
-import org.example.model.Client;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;
 import java.math.BigDecimal;
@@ -20,9 +17,9 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        altoField.textProperty().addListener(new RegexVerificationFields(altoField, true, 2,2));
-        largoField.textProperty().addListener(new RegexVerificationFields(largoField, true, 2,2));
-        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 2,2));
+        altoField.textProperty().addListener(new ChangedVerificationFields(altoField, true, 2,2));
+        largoField.textProperty().addListener(new ChangedVerificationFields(largoField, true, 2,2));
+        anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 2,2));
 
     }
 

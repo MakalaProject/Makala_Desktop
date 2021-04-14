@@ -10,6 +10,7 @@ public class ProductClassDto {
 
     private int idClassification;
     private String classification;
+    protected String productType;
 
     @Override
     public String toString() {

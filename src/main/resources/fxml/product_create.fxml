@@ -65,7 +65,7 @@
                     </ImageView>
                     <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
-                            <FontAwesomeIconView fx:id="saveButton" fill="WHITE" glyphName="SAVE" layoutX="585.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" />
+                            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="585.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" />
                         </children>
                     </AnchorPane>
                     <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="411.0" layoutY="256.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="411.0" AnchorPane.rightAnchor="201.42857170104992" AnchorPane.topAnchor="230.2857151031494" />

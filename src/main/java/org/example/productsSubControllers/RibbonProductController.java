@@ -1,14 +1,12 @@
 package org.example.productsSubControllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.example.interfaces.IControllerProducts;
-import org.example.model.RegexVerificationFields;
+import org.example.model.ChangedVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.RibbonProduct;
 
@@ -22,7 +20,7 @@ public class RibbonProductController implements Initializable, IControllerProduc
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        anchoField.textProperty().addListener(new RegexVerificationFields(anchoField, true, 1,2));
+        anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 1,2));
     }
 
     @Override
