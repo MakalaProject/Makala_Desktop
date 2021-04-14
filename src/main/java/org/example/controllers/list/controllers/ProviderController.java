@@ -96,7 +96,8 @@ public class ProviderController extends UserParentController<Provider> {
                 if (provider!=null) {
                     actualUser.setProducts(provider.getProducts());
                     Request.putJ(provider.getRoute(), actualUser);
-                    provider.setSelectedProducts();
+                    actualUser.setSelectedProducts();
+                    showProductsList(actualUser);
                     userObservableList.set(userObservableList.indexOf(actualUser), provider);
                     listView.getSelectionModel().select(provider);
                     listView.scrollTo(provider);

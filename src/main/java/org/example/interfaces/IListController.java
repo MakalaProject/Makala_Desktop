@@ -51,8 +51,7 @@ public interface IListController<D>{
             return false;
         }else return result.get().getText().equals("No guardar");
     }
-    void delete(
-    );
+    void delete();
     void update();
     boolean existChanges();
     void putFields();

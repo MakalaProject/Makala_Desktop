@@ -31,7 +31,6 @@ public class SelectListDepart implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         titleLabel.setText("Departamentos");
-        checkListView.setItems(FXCollections.observableArrayList(Request.getJ("departments", Department[].class, false)));
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         saveButton.setOnMouseClicked(mouseEvent -> {
@@ -46,6 +45,7 @@ public class SelectListDepart implements Initializable {
     }
 
     public void setEmployee(Employee employee){
+        checkListView.setItems(FXCollections.observableArrayList(Request.getJ("departments", Department[].class, false)));
         this.employee = employee;
         if (employee.getDepartments() != null){
             for (Department department : checkListView.getItems()) {

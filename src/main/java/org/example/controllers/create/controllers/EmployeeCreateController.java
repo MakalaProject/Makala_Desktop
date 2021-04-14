@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.SelectListDepart;
+import org.example.controllers.elements.controllers.SelectListProduct;
 import org.example.controllers.parent.controllers.UserGenericController;
 import org.example.model.Department;
 import org.example.model.Employee;
@@ -49,8 +50,9 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
         editDepartmentButton.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
             try {
+                SelectListDepart dialogController = new SelectListDepart();
+                fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                SelectListDepart dialogController = fxmlLoader.<SelectListDepart>getController();
                 dialogController.setEmployee(employee);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
@@ -71,7 +73,6 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
         if (employee.getDepartments() != null){
             departmentList.setItems(FXCollections.observableArrayList(employee.getDepartments()));
         }
-
     }
 
     @Override

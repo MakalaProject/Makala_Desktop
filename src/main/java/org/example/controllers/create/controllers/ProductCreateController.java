@@ -37,6 +37,7 @@ public class ProductCreateController extends ProductParentController {
                 }
             }
         });
+
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
                 Product product = (Product) actualPropertiesController.getObject();

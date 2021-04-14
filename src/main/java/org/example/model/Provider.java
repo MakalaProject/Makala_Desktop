@@ -34,7 +34,10 @@ public class Provider extends User {
         typeProvider = "Emprendedor";
         productReturn = true;
     }
-
+    @Override
+    public String getRoute(){
+        return route+"/providers";
+    }
     @Override
     public String getIdentifier(){
         return "Proovedor";
