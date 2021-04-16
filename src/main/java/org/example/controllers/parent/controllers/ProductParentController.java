@@ -1,6 +1,8 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -83,6 +86,16 @@ public abstract class ProductParentController implements Initializable, IControl
         deletePicture.setOnMouseClicked(mouseEvent -> {
             files = deletePicture();
         });
+
+        privacidadComboBox.setOnMouseClicked(mouseEvent -> {
+            if (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium")){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Producto no editable");
+                alert.setContentText("Una vez establecido este producto no podras cambiarlo después");
+                alert.showAndWait();
+            }
+        });
+
         //Verifications with regex
         maxField.focusedProperty().addListener(new FocusVerificationFields(maxField, true, 3));
         minField.focusedProperty().addListener(new FocusVerificationFields(minField, true, 3));

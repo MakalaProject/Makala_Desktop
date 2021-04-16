@@ -50,6 +50,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
             deleteAlert(actualUser.getIdentifier().toLowerCase());
         });
 
+
     }
 
     @Override

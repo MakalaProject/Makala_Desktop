@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
@@ -37,7 +38,13 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
         updateButton.setOnMouseClicked(mouseEvent -> {
             if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() || !telefonoField.getText().isEmpty() || !contraseñaField.getText().isEmpty()){
                 setInfo(employee);
-                Employee returnedEmployee = (Employee) Request.postJ(employee.getRoute(),employee);
+                Employee returnedEmployee = null;
+                try {
+                    returnedEmployee = (Employee) Request.postJ(employee.getRoute(),employee);
+                } catch (Exception e) {
+                    duplyElementAlert(employee.getIdentifier());
+                    return;
+                }
                 Node source = (Node)  mouseEvent.getSource();
                 Stage stage  = (Stage) source.getScene().getWindow();
                 stage.close();

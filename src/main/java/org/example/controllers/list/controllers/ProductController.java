@@ -28,7 +28,7 @@ public class ProductController extends ProductParentController implements IListC
 
     Product actualProduct;
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
-    protected static final ObservableList<String> publicProduct = FXCollections.observableArrayList( "Oculto", "Premium", "Public");
+    protected static final ObservableList<String> publicProduct = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
     protected static final ObservableList<ProductClassDto> classificationsPerType = FXCollections.observableArrayList();
     //Properties controller
     private int index;
@@ -267,6 +267,12 @@ public class ProductController extends ProductParentController implements IListC
             privacidadComboBox.setItems(publicProduct);
             privacidadComboBox.setValue(actualProduct.getPrivacy());
             propertiesAnchorPane.setDisable(true);
+        }else {
+            nombreField.setDisable(false);
+            clasificacionComboBox.setDisable(false);
+            privacidadComboBox.setItems(publicProduct);
+            privacidadComboBox.setValue(actualProduct.getPrivacy());
+            propertiesAnchorPane.setDisable(false);
         }
     }
 

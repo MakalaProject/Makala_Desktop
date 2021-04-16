@@ -24,11 +24,13 @@ public class ProductCreateController extends ProductParentController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
+
         clasificacionComboBox.getSelectionModel().select(0);
         tipoComboBox.getSelectionModel().select(0);
         privacidadComboBox.getSelectionModel().select(0);
         nombreField.setText("Nuevo Producto");
-        changeType(propertiesControllers[0]);
+        actualPropertiesController = propertiesControllers[0];
+        changeType(actualPropertiesController);
         clasificacionComboBox.valueProperty().addListener(new ChangeListener<ProductClassDto>() {
             @Override
             public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
@@ -38,18 +40,6 @@ public class ProductCreateController extends ProductParentController {
                         actualPropertiesController = controller;
                         changeType(controller);
                     }
-                }
-            }
-        });
-
-        privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if (privacidadComboBox.getValue().equals("Publico") || tipoComboBox.equals("Premium")){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Producto no editable");
-                    alert.setContentText("Una vez establecido este producto no podras cambiarlo después");
-                    alert.showAndWait();
                 }
             }
         });
@@ -67,17 +57,24 @@ public class ProductCreateController extends ProductParentController {
                         }
                     }
                     product.setPictures(pictures);
-                    Product newProduct = (Product) Request.postJ(product.getRoute(), product);
-                    if(newProduct != null) {
-                        product.setIdProduct(newProduct.getIdProduct());
+                    Product newProduct = null;
+                    try {
+                        newProduct = (Product) Request.postJ(product.getRoute(), product);
+                    } catch (Exception e) {
+                        duplyElementAlert(product.getIdentifier());
+                        return;
                     }
                     Node source = (Node)  mouseEvent.getSource();
                     Stage stage  = (Stage) source.getScene().getWindow();
                     files = new ArrayList<>();
                     deleteFiles = new ArrayList<>();
                     imageIndex = 0;
+                    if(newProduct != null) {
+                        product.setIdProduct(newProduct.getIdProduct());
+                        stage.setUserData(product);
+                    }
                     stage.close();
-                    stage.setUserData(product);
+
                 }
             }else{
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");

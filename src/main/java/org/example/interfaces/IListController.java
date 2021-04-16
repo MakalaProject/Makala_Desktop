@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Optional;
 
 public interface IListController<D>{
@@ -82,6 +83,8 @@ public interface IListController<D>{
             updateView();
         }
     }
+
+
 
 
     void cleanForm();

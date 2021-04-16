@@ -119,7 +119,7 @@ public class Request<D> {
 
 
 
-    public static Object postJ(String link, Object object){
+    public static Object postJ(String link, Object object) throws Exception {
         Gson gson = new Gson();
         String jsonString = gson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
@@ -130,12 +130,13 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 500) {
+                throw new Exception();
+            }
             Object ob = gson.fromJson(response.body(), object.getClass());
             System.out.println(response.body());
             return ob;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
         return null;

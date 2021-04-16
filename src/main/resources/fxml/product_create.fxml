@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -10,8 +11,8 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="824.0" prefWidth="644.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.ProductCreateController">
-    <ScrollPane fx:id="scrollPane" fitToWidth="true" layoutY="258.0" pannable="true" prefHeight="537.0" prefWidth="644.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
-        <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="376.0" prefWidth="514.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutY="258.0" pannable="true" prefHeight="537.0" prefWidth="644.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
+        <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
             <Label layoutX="49.0" layoutY="396.0" prefHeight="28.0" prefWidth="98.0" text="Tipo" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="371.0" AnchorPane.topAnchor="143.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
@@ -54,12 +55,35 @@
                 <font>
                     <Font size="15.0" />
                 </font>
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor>
             </TextField>
-            <TextField fx:id="precioField" layoutX="178.0" layoutY="434.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" promptText="\$" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="185.0" />
-            <TextField fx:id="minField" layoutX="178.0" layoutY="469.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="277.0" promptText="0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="225.0" />
-            <TextField fx:id="maxField" layoutX="178.0" layoutY="503.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" promptText="1" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="265.0" />
+            <TextField fx:id="precioField" layoutX="178.0" layoutY="434.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" promptText="\\$" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="185.0">
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor></TextField>
+            <TextField fx:id="minField" layoutX="178.0" layoutY="469.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="277.0" promptText="0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="225.0">
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor></TextField>
+            <TextField fx:id="maxField" layoutX="178.0" layoutY="503.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" promptText="1" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="265.0">
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor></TextField>
+            <Label layoutX="51.0" layoutY="302.0" prefHeight="28.0" prefWidth="123.0" text="Stock" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="303.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font></Label>
+            <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" prefHeight="31.0" prefWidth="281.0" promptText="33" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="305.0">
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor></TextField>
 
-            <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0" />
+            <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
+            <padding>
+               <Insets bottom="30.0" />
+            </padding></AnchorPane>
             <Label alignment="CENTER" layoutY="318.0" style="-fx-background-color: #A39D9B;" text="Propiedades" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
                 <font>
                     <Font name="Roboto Light" size="27.0" />
@@ -72,32 +96,39 @@
                     </DropShadow>
                 </effect>
             </Label>
-            <Label layoutX="51.0" layoutY="302.0" prefHeight="28.0" prefWidth="123.0" text="Stock" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="303.0">
-                <font>
-                    <Font name="Roboto Light" size="20.0" />
-                </font></Label>
-            <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" prefHeight="31.0" prefWidth="281.0" promptText="33" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="305.0" />
         </AnchorPane>
     </ScrollPane>
-    <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="263.0" prefWidth="645.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
-                    <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="205.0" layoutY="49.0" pickOnBounds="true" AnchorPane.leftAnchor="205.0" AnchorPane.rightAnchor="204.26881408691406" AnchorPane.topAnchor="49.0">
+                    <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="585.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="29.428571701049805" AnchorPane.topAnchor="4.285715103149414">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor></FontAwesomeIconView>
+                        </children>
+                    </AnchorPane>
+                    <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="496.0" layoutY="242.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="124.42857170104992" AnchorPane.topAnchor="214.0">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></FontAwesomeIconView>
+                    <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="488.0" layoutY="159.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="125.57143020629883" />
+                    <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="118.0" layoutY="160.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="126.57143020629883" />
+                    <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="495.0" layoutY="76.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="123.42857170104992" AnchorPane.topAnchor="50.285715103149414">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></FontAwesomeIconView>
+                    <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" focusTraversable="true" layoutX="205.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.leftAnchor="203.73118591308594" AnchorPane.rightAnchor="214.26881408691406" AnchorPane.topAnchor="49.0">
                         <effect>
                             <DropShadow />
                         </effect>
                         <image>
                             <Image url="@../Images/product.png" />
                         </image>
+            <cursor>
+               <Cursor fx:constant="OPEN_HAND" />
+            </cursor>
                     </ImageView>
-                    <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <children>
-                            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="585.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" />
-                        </children>
-                    </AnchorPane>
-                    <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="496.0" layoutY="242.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="124.42857170104992" AnchorPane.topAnchor="214.0" />
-                    <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="488.0" layoutY="159.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="125.57143020629883" />
-                    <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="118.0" layoutY="160.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="126.57143020629883" />
-                    <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="495.0" layoutY="76.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="123.42857170104992" AnchorPane.topAnchor="50.285715103149414" />
                 </children>
                 <opaqueInsets>
                     <Insets />

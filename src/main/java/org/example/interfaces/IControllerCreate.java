@@ -15,4 +15,12 @@ public interface IControllerCreate<D> {
         Optional<ButtonType> result = alert.showAndWait();
     }
      void setInfo(D object);
+
+    default void duplyElementAlert(String identifier){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(identifier +" duplicado");
+        alert.setContentText("No puedes introducir un"+identifier.toLowerCase()+"con el mismo nombre");
+        alert.showAndWait();
+
+    }
 }
