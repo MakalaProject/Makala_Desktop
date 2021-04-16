@@ -65,8 +65,9 @@ public class EmployeeController extends UserParentController<Employee> {
         editDepartmentButton.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
             try {
+                SelectListDepart dialogController = new SelectListDepart();
+                fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                SelectListDepart dialogController = fxmlLoader.<SelectListDepart>getController();
                 dialogController.setEmployee(actualUser);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();

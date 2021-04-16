@@ -16,6 +16,7 @@ import org.example.model.Employee;
 import org.example.services.Request;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,7 +35,7 @@ public class SelectListDepart implements Initializable {
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
         saveButton.setOnMouseClicked(mouseEvent -> {
-            List<Department> departmentList = checkListView.getCheckModel().getCheckedItems();
+            List<Department> departmentList = new ArrayList<>(checkListView.getCheckModel().getCheckedItems());
             new ListToChangeTools<Department,Integer>().setToDeleteItems(employee.getDepartments(), departmentList);
             employee.setDepartments(departmentList);
             Node source = (Node)  mouseEvent.getSource();
