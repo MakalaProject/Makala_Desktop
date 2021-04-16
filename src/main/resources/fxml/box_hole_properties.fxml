@@ -9,7 +9,7 @@
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="230.0" layoutY="20.0" text="Hueco" textFill="WHITE" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="20.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="185.0" layoutY="19.0" prefHeight="28.0" prefWidth="133.0" text="Hueco" textFill="WHITE" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="19.0">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>

@@ -86,7 +86,7 @@ public abstract class ProductParentController implements Initializable, IControl
             files = deletePicture();
         });
 
-        privacidadComboBox.getItems().addListener(new ListChangeListener<String>() {
+        /*privacidadComboBox.getItems().addListener(new ListChangeListener<String>() {
             @Override
             public void onChanged(Change<? extends String> change) {
                 if (privacidadComboBox.getSelectionModel().getSelectedItem().equals("Publico") || privacidadComboBox.getSelectionModel().getSelectedItem().equals("Premium")){
@@ -97,7 +97,7 @@ public abstract class ProductParentController implements Initializable, IControl
                     alert.showAndWait();
                 }
             }
-        });
+        });*/
 
 
         //Verifications with regex

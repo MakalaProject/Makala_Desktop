@@ -62,7 +62,6 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
     }
 
     public void setHole(Hole hole){
-
         this.actualHole =  new Hole(hole.getHoleNumber(), new Measure2Dimensions(hole.getHoleDimensions().getX(), hole.getHoleDimensions().getY()),false);
         anchoField.setText(hole.getHoleDimensions().getX().toString());
         altoField.setText(hole.getHoleDimensions().getX().toString());
