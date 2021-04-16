@@ -1,9 +1,12 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.controllers.products.subcontrollers.*;
@@ -61,6 +65,7 @@ public abstract class ProductParentController implements Initializable, IControl
     protected int imageIndex = 0;
     protected List<String> files = new ArrayList<>();
     protected List<String> deleteFiles = new ArrayList<>();
+    protected boolean userClicked = false;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         clasificacionComboBox.itemsProperty().setValue(classificationItems);
@@ -86,10 +91,11 @@ public abstract class ProductParentController implements Initializable, IControl
             files = deletePicture();
         });
 
-        /*privacidadComboBox.getItems().addListener(new ListChangeListener<String>() {
+        privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void onChanged(Change<? extends String> change) {
-                if (privacidadComboBox.getSelectionModel().getSelectedItem().equals("Publico") || privacidadComboBox.getSelectionModel().getSelectedItem().equals("Premium")){
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (userClicked && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
+                    userClicked = false;
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Cuidado");
                     alert.setHeaderText("Producto no editable");
@@ -97,7 +103,15 @@ public abstract class ProductParentController implements Initializable, IControl
                     alert.showAndWait();
                 }
             }
-        });*/
+        });
+
+        privacidadComboBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                userClicked = true;
+            }
+        });
+
 
 
         //Verifications with regex

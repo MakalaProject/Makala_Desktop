@@ -170,11 +170,10 @@ public class ProductController extends ProductParentController implements IListC
                         ImageService.deleteImages(deleteFiles);
                     }
                     actualProduct = (Product) Request.putJ(product.getRoute(), product);
-                    actualProduct = product;
                     comboBox.setValue(actualProduct.getProductClassDto().getProductType());
                     selectClassification();
-                    productObservableList.set(index, product);
-                    listView.getSelectionModel().select(product);
+                    productObservableList.set(index, actualProduct);
+                    listView.getSelectionModel().select(actualProduct);
                     listView.scrollTo(product);
                     updateView();
 
@@ -238,7 +237,7 @@ public class ProductController extends ProductParentController implements IListC
         minField.setText(actualProduct.getMin().toString());
         maxField.setText(actualProduct.getMax().toString());
         stockField.setText(actualProduct.getStock().toString());
-        privacidadComboBox.getSelectionModel().select(actualProduct.getPrivacy());
+        privacidadComboBox.setValue(actualProduct.getPrivacy());
         tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());
     }
@@ -290,14 +289,14 @@ public class ProductController extends ProductParentController implements IListC
         if (!actualProduct.getPrivacy().equals("Privado")){
             nombreField.setDisable(true);
             clasificacionComboBox.setDisable(true);
-            privacidadComboBox.getItems().setAll((publicProduct));
-            privacidadComboBox.getSelectionModel().select(actualProduct.getPrivacy());
+            privacidadComboBox.getItems().clear();
+            privacidadComboBox.getItems().addAll(publicProduct);
             propertiesAnchorPane.setDisable(true);
         }else {
             nombreField.setDisable(false);
             clasificacionComboBox.setDisable(false);
-            privacidadComboBox.getItems().setAll(privacyItems);
-            privacidadComboBox.getSelectionModel().select(actualProduct.getPrivacy());
+            privacidadComboBox.getItems().clear();
+            privacidadComboBox.getItems().addAll(privacyItems);
             propertiesAnchorPane.setDisable(false);
         }
     }
