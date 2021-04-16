@@ -1,8 +1,6 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,7 +51,7 @@ public abstract class ProductParentController implements Initializable, IControl
     @FXML protected FontAwesomeIconView previousPicture;
 
     protected static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Granel","Comestible", "Papeles", "Listones","Creado","Cajas");
-    protected static final ObservableList<String> privacyItems = FXCollections.observableArrayList("Publico", "Privado", "Oculto", "Premium");
+    protected static final ObservableList<String> privacyItems = FXCollections.observableArrayList( "Privado","Publico", "Premium");
     protected static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ( "classifications/products", ProductClassDto[].class, false));
     protected static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new BoxProductController(), new RibbonProductController(), new PaperProductController(), new BulkProductController()};
 

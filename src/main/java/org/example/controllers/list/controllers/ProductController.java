@@ -1,7 +1,4 @@
 package org.example.controllers.list.controllers;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import org.example.controllers.parent.controllers.ProductParentController;
 import org.example.interfaces.*;
 import org.example.model.products.Product;
@@ -31,6 +28,8 @@ public class ProductController extends ProductParentController implements IListC
 
     Product actualProduct;
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
+    protected static final ObservableList<String> publicProduct = FXCollections.observableArrayList( "Oculto", "Premium", "Public");
+    protected static final ObservableList<ProductClassDto> classificationsPerType = FXCollections.observableArrayList();
     //Properties controller
     private int index;
 
@@ -38,13 +37,6 @@ public class ProductController extends ProductParentController implements IListC
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
         comboBox.getItems().addAll(typeItems);
-
-        clasificacionComboBox.valueProperty().addListener(new ChangeListener<ProductClassDto>() {
-            @Override
-            public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
-                tipoComboBox.setValue(t1.getProductType());
-            }
-        });
 
         //Get all products
         productObservableList.addAll(Request.getJ("products/basics/list", Product[].class, false));
@@ -118,6 +110,8 @@ public class ProductController extends ProductParentController implements IListC
                 listView.setDisable(false);
                 showList(products, listView, ProductListViewCell.class);
             }
+            tipoComboBox.setValue(comboBox.getValue());
+            classificationsPerType.setAll(Request.getJ( "classifications/products/filter-list?productType="+comboBox.getValue(), ProductClassDto[].class, false));
         }
     }
 
@@ -255,6 +249,7 @@ public class ProductController extends ProductParentController implements IListC
                 changeType(controller);
                 actualPropertiesController = controller;
                 actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
+                privacyProduct();
                 putFields();
                 files = new ArrayList<>();
                 deleteFiles = new ArrayList<>();
@@ -262,6 +257,16 @@ public class ProductController extends ProductParentController implements IListC
                 checkIndex();
                 return;
             }
+        }
+    }
+
+    private void privacyProduct(){
+        if (!actualProduct.getPrivacy().equals("Privado")){
+            nombreField.setDisable(true);
+            clasificacionComboBox.setDisable(true);
+            privacidadComboBox.setItems(publicProduct);
+            privacidadComboBox.setValue(actualProduct.getPrivacy());
+            propertiesAnchorPane.setDisable(true);
         }
     }
 

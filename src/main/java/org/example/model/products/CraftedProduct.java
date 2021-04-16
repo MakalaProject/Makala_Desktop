@@ -3,16 +3,12 @@ package org.example.model.products;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
-public class CraftedProduct {
-    private int id;
-    private Product containerProduct;
-    private Product internalProduct;
-
-    public CraftedProduct (Product cProduct, Product iProduct){
-        this.containerProduct = cProduct;
-        this.internalProduct = iProduct;
-    }
+public class CraftedProduct extends StaticProduct{
+    private List<InsideProduct> internalProducts = new ArrayList<>();
 
 }

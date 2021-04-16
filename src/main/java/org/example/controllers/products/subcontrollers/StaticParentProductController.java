@@ -4,6 +4,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import org.example.interfaces.IControllerProducts;
 import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;
 import java.math.BigDecimal;
@@ -20,6 +21,9 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
         altoField.textProperty().addListener(new ChangedVerificationFields(altoField, true, 2,2));
         largoField.textProperty().addListener(new ChangedVerificationFields(largoField, true, 2,2));
         anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 2,2));
+        altoField.focusedProperty().addListener(new FocusVerificationFields(altoField, true, 2,2));
+        largoField.focusedProperty().addListener(new FocusVerificationFields(largoField, true, 2,2));
+        anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 2,2));
 
     }
 

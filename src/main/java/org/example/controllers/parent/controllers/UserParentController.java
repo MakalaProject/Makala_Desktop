@@ -12,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.customCells.UserListViewCell;
 import org.example.interfaces.IListController;
-import org.example.model.ChangedVerificationFields;
 import org.example.model.User;
 import org.example.services.Request;
 import java.net.URL;

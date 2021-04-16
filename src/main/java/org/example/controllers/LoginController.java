@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
                     Scene scene = new Scene(rootHome);
                     Stage stage = new Stage();
                     stage.setScene(scene);
-                    stage.setMinHeight(1200);
+                    stage.setMinHeight(700);
                     stage.setMinWidth(1300);
                     stage.show();
                 } catch (IOException e) {
