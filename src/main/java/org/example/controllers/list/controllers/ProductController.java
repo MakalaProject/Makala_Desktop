@@ -146,11 +146,6 @@ public class ProductController extends ProductParentController implements IListC
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null) {
                     setInfo(product);
-                    productObservableList.set(index, product);
-                    actualProduct = product;
-                    selectClassification();
-                    listView.getSelectionModel().select(product);
-                    listView.scrollTo(product);
                     List<String> urls = ImageService.uploadImages(files);
                     files = urls;
                     for (String s : urls) {
@@ -175,7 +170,14 @@ public class ProductController extends ProductParentController implements IListC
                         ImageService.deleteImages(deleteFiles);
                     }
                     actualProduct = (Product) Request.putJ(product.getRoute(), product);
+                    actualProduct = product;
+                    comboBox.setValue(actualProduct.getProductClassDto().getProductType());
+                    selectClassification();
+                    productObservableList.set(index, product);
+                    listView.getSelectionModel().select(product);
+                    listView.scrollTo(product);
                     updateView();
+
                 }
             }else {
                 showAlertEmptyFields("El mínimo no puede ser mayor al maximo");

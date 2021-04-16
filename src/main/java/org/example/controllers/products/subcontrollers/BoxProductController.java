@@ -101,6 +101,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public void setObject(BoxProduct boxProduct){
+        actualBoxProduct = boxProduct;
         verifyAvailableArea();
         clearController();
         if (boxProduct.getHolesDimensions() != null){

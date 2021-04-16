@@ -14,7 +14,6 @@ public class Employee extends User {
         setFirstName("Nuevo empleado");
         setLastName("");
         setPhone("");
-        password = "";
     }
 
     @Override

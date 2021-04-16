@@ -37,7 +37,7 @@ public class RibbonProductController implements Initializable, IControllerProduc
     public RibbonProduct getObject() {
         RibbonProduct ribbonProduct = new RibbonProduct();
         ribbonProduct.setWidthIn(new BigDecimal(anchoField.getText()));
-        ribbonProduct.setRgb(colorPicker.getValue().toString().substring(2));
+        ribbonProduct.setRgb("#" + colorPicker.getValue().toString().substring(2));
         return ribbonProduct;
     }
 
