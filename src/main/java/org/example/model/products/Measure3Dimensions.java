@@ -21,4 +21,10 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Measure3Dimensions extends Measure2Dimensions {
     private BigDecimal z;
+
+    public Measure3Dimensions(BigDecimal x, BigDecimal y, BigDecimal z){
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 }

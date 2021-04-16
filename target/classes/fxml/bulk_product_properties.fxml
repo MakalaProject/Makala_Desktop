@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="319.0" prefWidth="516.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Label layoutX="114.0" layoutY="136.0" prefHeight="47.0" prefWidth="83.0" text="Perdida" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="136.0">
+<AnchorPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="444.0" layoutY="128.0" text="\%" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="40.0" />
+    <Label layoutX="114.0" layoutY="136.0" prefHeight="33.0" prefWidth="83.0" text="Perdida" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <TextField fx:id="porcentajeField" layoutX="227.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="\%" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="143.0">
+    <TextField fx:id="porcentajeField" layoutX="227.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="\%" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0.0" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font size="15.0" />
         </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
     </TextField>
 
 </AnchorPane>

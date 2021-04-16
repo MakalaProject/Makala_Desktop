@@ -1,4 +1,9 @@
 package org.example.controllers.list.controllers;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.ProductParentController;
 import org.example.interfaces.*;
 import org.example.model.products.Product;
@@ -14,6 +19,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -110,7 +116,6 @@ public class ProductController extends ProductParentController implements IListC
                 listView.setDisable(false);
                 showList(products, listView, ProductListViewCell.class);
             }
-            tipoComboBox.setValue(comboBox.getValue());
             classificationsPerType.setAll(Request.getJ( "classifications/products/filter-list?productType="+comboBox.getValue(), ProductClassDto[].class, false));
         }
     }
@@ -183,7 +188,26 @@ public class ProductController extends ProductParentController implements IListC
     }
 
     public void add() {
-        add("/fxml/product_create.fxml",listView,productObservableList, ProductListViewCell.class);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/product_create.fxml"));
+        try {
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            Product object = (Product) stage.getUserData();
+            if(object != null){
+                productObservableList.add(object);
+                comboBox.setValue(object.getProductClassDto().getProductType());
+                selectClassification();
+                listView.getSelectionModel().select(object);
+                listView.scrollTo(object);
+                updateView();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -212,7 +236,7 @@ public class ProductController extends ProductParentController implements IListC
         minField.setText(actualProduct.getMin().toString());
         maxField.setText(actualProduct.getMax().toString());
         stockField.setText(actualProduct.getStock().toString());
-        privacidadComboBox.setValue(actualProduct.getPrivacy());
+        privacidadComboBox.getSelectionModel().select(actualProduct.getPrivacy());
         tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());
     }
@@ -264,14 +288,14 @@ public class ProductController extends ProductParentController implements IListC
         if (!actualProduct.getPrivacy().equals("Privado")){
             nombreField.setDisable(true);
             clasificacionComboBox.setDisable(true);
-            privacidadComboBox.setItems(publicProduct);
-            privacidadComboBox.setValue(actualProduct.getPrivacy());
+            privacidadComboBox.getItems().setAll((publicProduct));
+            privacidadComboBox.getSelectionModel().select(actualProduct.getPrivacy());
             propertiesAnchorPane.setDisable(true);
         }else {
             nombreField.setDisable(false);
             clasificacionComboBox.setDisable(false);
-            privacidadComboBox.setItems(publicProduct);
-            privacidadComboBox.setValue(actualProduct.getPrivacy());
+            privacidadComboBox.getItems().setAll(privacyItems);
+            privacidadComboBox.getSelectionModel().select(actualProduct.getPrivacy());
             propertiesAnchorPane.setDisable(false);
         }
     }

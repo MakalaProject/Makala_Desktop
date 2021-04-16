@@ -59,25 +59,35 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public BoxProduct getObject(){
+        BoxProduct boxProduct = getLocalObject();
+        if (boxProduct != null){
+            new ListToChangeTools<Hole,Integer>().setToDeleteItems(originalHoleList, holeList);
+            boxProduct.setHolesDimensions(holeList);
+            return boxProduct;
+        }
+        return null;
+    }
+
+    public BoxProduct getLocalObject(){
         BoxProduct boxProduct = super.getObject(BoxProduct.class);
-        new ListToChangeTools<Hole,Integer>().setToDeleteItems(originalHoleList, holeList);
         boxProduct.setHolesDimensions(holeList);
         boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
         boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
         boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
         Measure3Dimensions internalMeasure = boxProduct.getInternalMeasures();
         Measure3Dimensions externalMeasures = boxProduct.getMeasures();
-        if (internalMeasure.getZ().compareTo(externalMeasures.getZ()) > 0 || internalMeasure.getX().compareTo(externalMeasures.getX()) > 0 || internalMeasure.getY().compareTo(externalMeasures.getY()) > 0) {
-            if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) > 0) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Medidas fuera de rango");
-                alert.setContentText("Las medidas de la caja son invalidas");
-                alert.showAndWait();
-                return null;
+        if (externalMeasures.getZ().compareTo(internalMeasure.getZ()) > 0 && externalMeasures.getX().compareTo(internalMeasure.getX()) > 0 && externalMeasures.getY().compareTo(internalMeasure.getY()) > 0) {
+            if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) < 1) {
+                return boxProduct;
             }
         }
-        return boxProduct;
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Medidas fuera de rango");
+        alert.setContentText("Las medidas de la caja son invalidas");
+        alert.showAndWait();
+        return null;
     }
+
 
     public void clearController(){
         holeList.clear();
@@ -91,7 +101,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public void setObject(BoxProduct boxProduct){
-        actualBoxProduct = boxProduct;
         verifyAvailableArea();
         clearController();
         if (boxProduct.getHolesDimensions() != null){
@@ -126,10 +135,11 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         }
         @Override
         public void handle(MouseEvent mouseEvent) {
+            actualBoxProduct = getLocalObject();
             if (actualBoxProduct == null){
-                actualBoxProduct = new BoxProduct();
-
+                return;
             }
+            actualBoxProduct.setInternalMeasures( new Measure3Dimensions(new BigDecimal(anchoIntField.getText()), new BigDecimal(altoIntField.getText()), new BigDecimal(largoIntField.getText())));
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/box_hole_properties.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
@@ -146,7 +156,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                 stage.setScene(scene);
                 stage.showAndWait();
                 HoleToSend hole = (HoleToSend) stage.getUserData();
-                if (hole.getHole() != null) {
+                if (hole != null) {
                     if (isCreate){
                         if (hole.getHole().getArea().compareTo(actualBoxProduct.getAvailableArea()) > 0){
                             alertOutOfBounds();

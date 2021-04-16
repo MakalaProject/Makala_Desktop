@@ -18,6 +18,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Measure2Dimensions implements Serializable {
-    private BigDecimal x;
-    private BigDecimal y;
+    protected BigDecimal x;
+    protected BigDecimal y;
 }

@@ -5,39 +5,39 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="297.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.products.subcontrollers.HoleController">
+<AnchorPane prefHeight="297.0" prefWidth="502.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.products.subcontrollers.HoleController">
    <children>
-      <Pane prefHeight="61.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="61.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="230.0" layoutY="20.0" text="Hueco" textFill="WHITE">
+            <Label layoutX="230.0" layoutY="20.0" text="Hueco" textFill="WHITE" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>
             </Label>
-            <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="14.0" layoutY="44.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" />
-            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="460.0" layoutY="44.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" />
-         </children></Pane>
+            <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="14.0" layoutY="44.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.285715103149414" />
+            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="460.0" layoutY="44.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.428571701049805" AnchorPane.topAnchor="18.285715103149414" />
+         </children></AnchorPane>
       <Label layoutX="80.0" layoutY="173.0" prefHeight="28.0" prefWidth="76.0" text="Alto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="173.0">
          <font>
             <Font name="Roboto Light" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="altoField" layoutX="225.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="168.0">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
       <Label layoutX="80.0" layoutY="119.0" prefHeight="28.0" prefWidth="95.0" text="Ancho" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="119.0">
          <font>
             <Font name="Roboto Light" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="anchoField" layoutX="225.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="114.0">
+      <Label layoutX="379.0" layoutY="122.0" text="cm" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="122.0" />
+      <Label layoutX="379.0" layoutY="176.0" text="cm" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="176.0" />
+      <TextField fx:id="altoField" layoutX="174.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="193.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="168.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="379.0" layoutY="122.0" text="cm" />
-      <Label layoutX="379.0" layoutY="176.0" text="cm" />
+      <TextField fx:id="anchoField" layoutX="174.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="193.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="114.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

@@ -1,9 +1,8 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -87,14 +86,19 @@ public abstract class ProductParentController implements Initializable, IControl
             files = deletePicture();
         });
 
-        privacidadComboBox.setOnMouseClicked(mouseEvent -> {
-            if (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium")){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Producto no editable");
-                alert.setContentText("Una vez establecido este producto no podras cambiarlo después");
-                alert.showAndWait();
+        privacidadComboBox.getItems().addListener(new ListChangeListener<String>() {
+            @Override
+            public void onChanged(Change<? extends String> change) {
+                if (privacidadComboBox.getSelectionModel().getSelectedItem().equals("Publico") || privacidadComboBox.getSelectionModel().getSelectedItem().equals("Premium")){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Cuidado");
+                    alert.setHeaderText("Producto no editable");
+                    alert.setContentText("Una vez establecido este producto no podras cambiarlo después");
+                    alert.showAndWait();
+                }
             }
         });
+
 
         //Verifications with regex
         maxField.focusedProperty().addListener(new FocusVerificationFields(maxField, true, 3));

@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="319.0" prefWidth="516.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Label layoutX="80.0" layoutY="121.0" prefHeight="28.0" prefWidth="48.0" text="Ancho" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="341.0" AnchorPane.topAnchor="121.0">
+<AnchorPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="80.0" layoutY="121.0" prefHeight="28.0" prefWidth="98.0" text="Ancho" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="328.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="80.0" layoutY="183.0" prefHeight="28.0" prefWidth="63.0" text="Color" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="328.0" AnchorPane.topAnchor="183.0">
+    <Label layoutX="80.0" layoutY="183.0" prefHeight="28.0" prefWidth="63.0" text="Color" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="328.0" AnchorPane.topAnchor="85.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <TextField fx:id="anchoField" layoutX="215.0" layoutY="118.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="118.0">
-        <font>
-            <Font size="15.0" />
-        </font>
-    </TextField>
-   <ColorPicker fx:id="colorPicker" layoutX="216.0" layoutY="184.0" />
-    <Label layoutX="387.0" layoutY="126.0" text="&quot;">
+   <ColorPicker fx:id="colorPicker" layoutX="190.0" layoutY="184.0" prefHeight="27.0" prefWidth="191.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="85.0" />
+    <Label layoutX="417.0" layoutY="35.0" text="&quot;" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="35.0">
       <font>
          <Font size="15.0" />
       </font></Label>
+    <TextField fx:id="anchoField" layoutX="190.0" layoutY="118.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="191.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="30.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+    </TextField>
 
 </AnchorPane>

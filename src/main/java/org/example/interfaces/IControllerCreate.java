@@ -19,6 +19,7 @@ public interface IControllerCreate<D> {
     default void duplyElementAlert(String identifier){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(identifier +" duplicado");
+        alert.setHeaderText(identifier +" duplicado");
         alert.setContentText("No puedes introducir un"+identifier.toLowerCase()+"con el mismo nombre");
         alert.showAndWait();
 
