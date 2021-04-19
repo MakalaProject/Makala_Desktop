@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="182.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.products.subcontrollers.InsideProductController">
+   <AnchorPane prefHeight="50.0" prefWidth="349.0" style="-fx-background-color: #A39D9B;">
+      <children>
+          <Label fx:id="titleLabel" layoutX="134.0" layoutY="11.0" text="Producto" textFill="WHITE" AnchorPane.leftAnchor="134.0" AnchorPane.topAnchor="11.0">
+              <font>
+                  <Font name="Roboto Light" size="20.0" />
+              </font>
+          </Label>
+          <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="307.0" layoutY="36.0" selectionFill="BLACK" size="30" text="" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.428571701049805" AnchorPane.topAnchor="8.0" />
+      </children>
+   </AnchorPane>
+    <Label layoutX="37.0" layoutY="99.0" prefHeight="28.0" prefWidth="101.0" text="Cantidad:" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="99.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <TextField fx:id="cantidadField" layoutX="162.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="122.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="95.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+        <cursor>
+            <Cursor fx:constant="TEXT" />
+        </cursor>
+    </TextField>
+    <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+</AnchorPane>

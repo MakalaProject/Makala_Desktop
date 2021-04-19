@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CraftedProduct extends StaticProduct{
-    private Product containerProduct;
-    private List<InsideProduct> internalProducts = new ArrayList<>();
+    private Product productContainer;
+    private List<InsideProduct> productsInside = new ArrayList<>();
 
 }
