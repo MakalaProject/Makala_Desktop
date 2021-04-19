@@ -2,7 +2,7 @@ package org.example.model.products;
 
 import java.math.BigDecimal;
 
-public class InsideProduct {
-    BulkProduct bulkProduct;
+public class InsideProduct extends Product{
+    Product internalProduct;
     BigDecimal amount;
 }

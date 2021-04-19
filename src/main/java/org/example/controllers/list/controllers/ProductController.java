@@ -69,7 +69,9 @@ public class ProductController extends ProductParentController implements IListC
                         return true;
                     } else if (product.getProductClassDto().getProductType().toLowerCase().contains(lowerCaseText)) {
                         return true;
-                    } else {
+                    } else if(product.getProductClassDto().getClassification().toLowerCase().contains(lowerCaseText)){
+                        return true;
+                    }else{
                         return false;
                     }
                 });
@@ -270,7 +272,7 @@ public class ProductController extends ProductParentController implements IListC
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
             //Find the controller to the type product
-            if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductClassDto().getProductType())){
+            if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductClassDto().getProductType()) || Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductClassDto().getClassification())){
                 changeType(controller);
                 actualPropertiesController = controller;
                 actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());

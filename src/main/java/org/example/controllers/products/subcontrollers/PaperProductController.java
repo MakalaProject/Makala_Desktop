@@ -31,7 +31,7 @@ public class PaperProductController implements Initializable, IControllerProduct
     @Override
     public PaperProduct getObject() {
         PaperProduct paperProduct = new PaperProduct();
-        paperProduct.setRgb("#" + colorPicker.getValue().toString().substring(2));
+        paperProduct.setRgb(colorPicker.getValue().toString().substring(2));
         return paperProduct;
     }
 

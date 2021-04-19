@@ -41,7 +41,8 @@
             </DropShadow>
         </effect>
     </Label>
-    <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="487.0" layoutY="247.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="42.42857170104992" AnchorPane.topAnchor="221.2857151031494" />
+    <FontAwesomeIconView fx:id="addInternalProductButton" fill="WHITE" glyphName="PLUS" layoutX="487.0" layoutY="247.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="42.42857170104992" AnchorPane.topAnchor="221.2857151031494" />
+    <FontAwesomeIconView fx:id="addContainerButton" glyphName="EDIT" layoutX="507.0" layoutY="53.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="22.42857170104992" AnchorPane.topAnchor="27.285715103149414" />
     <ListView fx:id="internalProductsListView" layoutY="332.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="256.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
     <Label layoutX="444.0" layoutY="128.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="165.0" />
     <Label layoutX="444.0" layoutY="88.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="125.0" />
@@ -70,6 +71,10 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
-   <ComboBox layoutX="225.0" layoutY="31.0" prefHeight="27.0" prefWidth="197.0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="30.0" />
+   <Label alignment="CENTER" layoutX="225.0" layoutY="29.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Container" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="29.0">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
 
 </AnchorPane>

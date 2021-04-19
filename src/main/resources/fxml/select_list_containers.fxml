@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <ListView fx:id="ListView" layoutY="52.0" prefHeight="348.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        
+    </ListView>
+   <TitledPane animated="false" layoutY="-90.0" text="untitled" />
+   <Label fx:id="titleLabel" layoutX="28.0" layoutY="14.0" text="Contenedores" textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+
+</AnchorPane>
