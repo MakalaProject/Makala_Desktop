@@ -88,7 +88,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         return null;
     }
 
-
     public void clearController(){
         holeList.clear();
         originalHoleList.clear();

@@ -68,6 +68,9 @@ public class CraftedProductController extends StaticParentProductController<Craf
                 containerName.setText(staticProduct.getName());
             }
         });
+        internalProductsListView.setOnMouseClicked(mouseEvent -> {
+            propertiesInternalProduct(false, internalProductsListView.getSelectionModel().getSelectedItem());
+        });
     }
 
     public Product loadDialog(ObservableList<Product> productsList, ObservableList<Product> productListToDelete) {
@@ -163,11 +166,13 @@ public class CraftedProductController extends StaticParentProductController<Craf
     @Override
     public CraftedProduct getObject() {
         craftedProduct = super.getObject(CraftedProduct.class);
+        new ListToChangeTools<InsideProduct,Integer>().setToDeleteItems(originalInsideProductList, insideProductList);
+        craftedProduct.setProductsInside(insideProductList);
         return craftedProduct;
     }
 
     @Override
     public CraftedProduct findObject(Product object) {
-        return findObject(object,"products/boxes/crafted", CraftedProduct.class );
+        return findObject(object,"products/crafted", CraftedProduct.class );
     }
 }

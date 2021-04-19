@@ -8,7 +8,7 @@ public interface IControllerProducts<D> {
     String getResource();
     D getObject();
     void setObject(D object);
-    default void clearController(){}
+    default void clearController(){};
 
     /**
      * Function to get the specific information of the object with an external server

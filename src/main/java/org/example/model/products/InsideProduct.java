@@ -1,9 +1,17 @@
 package org.example.model.products;
 
-import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.interfaces.IChangeable;
 
-public class InsideProduct extends Product{
-    Product internalProduct;
+import java.math.BigDecimal;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class InsideProduct implements IChangeable<Integer> {
+    Integer idProduct;
+    String name;
     BigDecimal amount;
     boolean toDelete;
 
