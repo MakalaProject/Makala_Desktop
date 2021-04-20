@@ -29,6 +29,11 @@ public class Product implements IPaths, IChangeable<Integer> {
         pictures = new ArrayList<>();
     }
 
+    public Product(Integer idProduct, String name) {
+        this.idProduct = idProduct;
+        this.name = name;
+    }
+
     public Product(Integer idProduct){
         this.idProduct = idProduct;
     }

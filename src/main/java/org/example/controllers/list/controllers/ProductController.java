@@ -50,7 +50,7 @@ public class ProductController extends ProductParentController implements IListC
         comboBox.getSelectionModel().select(0);
         selectClassification();
         initialList(listView);
-
+        listView.getStylesheets().add(getClass().getResource("/configurations/style.css").toString());
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);
@@ -82,8 +82,10 @@ public class ProductController extends ProductParentController implements IListC
         } );
 
         //Select item list
+
+
         listView.setOnMouseClicked(mouseEvent -> {
-            if (!existChanges()) {
+            if (listView.getSelectionModel().getSelectedItem() != null && !existChanges()) {
                 imageIndex = 0;
                 updateView();
             }
@@ -118,7 +120,6 @@ public class ProductController extends ProductParentController implements IListC
                 listView.setDisable(false);
                 showList(products, listView, ProductListViewCell.class);
             }
-            classificationsPerType.setAll(Request.getJ( "classifications/products/filter-list?productType="+comboBox.getValue(), ProductClassDto[].class, false));
         }
     }
 
@@ -129,7 +130,7 @@ public class ProductController extends ProductParentController implements IListC
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( actualProduct.getIdentifier().toLowerCase(), actualProduct.getIdProduct());
+        Request.deleteJ( "products", actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
             listView.getSelectionModel().select(0);
@@ -171,10 +172,11 @@ public class ProductController extends ProductParentController implements IListC
                         product.setPictures(picturesToRemove);
                         ImageService.deleteImages(deleteFiles);
                     }
-                    actualProduct = (Product) Request.putJ(product.getRoute(), product);
+                    actualProduct = product;
+                    Request.putJ(product.getRoute(), product);
                     comboBox.setValue(actualProduct.getProductClassDto().getProductType());
-                    selectClassification();
                     productObservableList.set(index, actualProduct);
+                    selectClassification();
                     listView.getSelectionModel().select(actualProduct);
                     listView.scrollTo(product);
                     updateView();
@@ -263,11 +265,11 @@ public class ProductController extends ProductParentController implements IListC
 
     @Override
     public void updateView() {
+        actualProduct = listView.getSelectionModel().getSelectedItem();
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
-        //Update the actual product
-        actualProduct = listView.getSelectionModel().getSelectedItem();
+
         index = productObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
@@ -276,6 +278,8 @@ public class ProductController extends ProductParentController implements IListC
                 changeType(controller);
                 actualPropertiesController = controller;
                 actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
+                classificationsPerType.setAll(Request.getJ( "classifications/products/filter-list?productType="+actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
+                clasificacionComboBox.setItems(classificationsPerType);
                 privacyProduct();
                 putFields();
                 files = new ArrayList<>();

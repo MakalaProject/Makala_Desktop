@@ -21,12 +21,19 @@ public class SelectContainerProduct  implements Initializable {
     @FXML ListView<Product> productListView;
     @FXML TextField searchField;
     private ObservableList<Product> productsList = FXCollections.observableArrayList();
+
     public void setProductsList(ObservableList<Product> originalProductList, ObservableList<Product> productToRemove){
+        boolean validation = false;
         for (Product p : originalProductList) {
             for (Product p1 : productToRemove) {
-                if (p.getIdProduct().equals(p1.getIdProduct()))
+                if (p.getIdProduct().equals(p1.getIdProduct())) {
+                    validation = true;
                     break;
+                }
+            }
+            if(!validation){
                 productsList.add(p);
+                validation = false;
             }
         }
         productListView.setItems(productsList);
@@ -40,7 +47,6 @@ public class SelectContainerProduct  implements Initializable {
             stage.setUserData(productListView.getSelectionModel().getSelectedItem());
             stage.close();
         });
-
         FilteredList<Product> filteredProducts = new FilteredList<>(productsList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             filteredProducts.setPredicate(product -> {

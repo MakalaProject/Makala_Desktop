@@ -34,6 +34,10 @@ public class CraftedProductController extends StaticParentProductController<Craf
     CraftedProduct craftedProduct = new CraftedProduct();
     private final ObservableList<InsideProduct> insideProductList = FXCollections.observableArrayList();
     private final Set<InsideProduct> originalInsideProductList = new HashSet<>();
+    private Product productContainer;
+    private final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
+    private final ObservableList<Product> containerProducts = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -59,6 +63,11 @@ public class CraftedProductController extends StaticParentProductController<Craf
             ObservableList<Product> containerProducts = FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?productTypes=Contenedores", Product[].class, false));
             Product product = loadDialog(containerProducts, FXCollections.observableArrayList(craftedProduct.getProductContainer()));
             if (product != null) {
+                if (productContainer!=null){
+                    containerProducts.add(productContainer);
+                }
+                productContainer = product;
+                containerProducts.remove(product);
                 craftedProduct.setProductContainer(product);
                 StaticProduct staticProduct = (StaticProduct) Request.find("products/statics", product.getIdProduct(), StaticProduct.class);
                 craftedProduct.setMeasures(staticProduct.getMeasures());
@@ -132,6 +141,12 @@ public class CraftedProductController extends StaticParentProductController<Craf
     @Override
     public void setObject(CraftedProduct craftedProduct){
         this.craftedProduct = craftedProduct;
+        this.productContainer = craftedProduct.getProductContainer();
+        if (productContainer == null){
+            productContainer = containerProducts.get(0);
+            getContainer(productContainer);
+            containerProducts.remove(0);
+        }
         clearController();
         containerName.setText(craftedProduct.getProductContainer().getName());
         if (craftedProduct.getProductsInside() != null){
@@ -168,6 +183,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
         craftedProduct = super.getObject(CraftedProduct.class);
         new ListToChangeTools<InsideProduct,Integer>().setToDeleteItems(originalInsideProductList, insideProductList);
         craftedProduct.setProductsInside(insideProductList);
+        craftedProduct.setProductContainer(productContainer);
         return craftedProduct;
     }
 
