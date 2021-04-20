@@ -96,7 +96,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
     @Override
     public boolean existChanges() {
         if(actualUser ==null){
-            return true;
+            return false;
         }
         D user = instanceObject();
         setInfo(user);
@@ -106,9 +106,9 @@ public abstract class UserParentController <D extends User> extends UserGenericC
             }else{
                 updateView();
             }
-            return false;
-        }else {
             return true;
+        }else {
+            return false;
         }
     }
 
