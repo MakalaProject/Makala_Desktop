@@ -14,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.products.*;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -40,6 +41,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         altoIntField.textProperty().addListener(new ChangedVerificationFields(altoIntField, true, 3,2));
         largoIntField.textProperty().addListener(new ChangedVerificationFields(largoIntField, true, 3,2));
         anchoIntField.textProperty().addListener(new ChangedVerificationFields(anchoIntField, true, 3,2));
+        altoIntField.focusedProperty().addListener(new FocusVerificationFields(altoIntField, true, 3,2));
+        largoIntField.focusedProperty().addListener(new FocusVerificationFields(largoIntField, true, 3,2));
+        anchoIntField.focusedProperty().addListener(new FocusVerificationFields(anchoIntField, true, 3,2));
     }
 
     public void showList(){

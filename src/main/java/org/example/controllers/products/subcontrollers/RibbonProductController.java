@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import org.example.interfaces.IControllerProducts;
 import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.RibbonProduct;
 
@@ -19,8 +20,8 @@ public class RibbonProductController implements Initializable, IControllerProduc
     @FXML public ColorPicker colorPicker;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 1,2));
+        anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 1,2));
     }
 
     @Override
