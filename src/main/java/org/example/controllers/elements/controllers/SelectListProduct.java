@@ -50,7 +50,7 @@ public class SelectListProduct implements Initializable {
         if (provider.getProducts() != null){
             for (Product product : checkListView.getItems()) {
                 for (Product product1 : provider.getProducts()) {
-                    if (product.getIdProduct() == product1.getIdProduct())
+                    if (product.getIdProduct().equals(product1.getIdProduct()))
                         checkListView.getCheckModel().check(product);
                 }
             }

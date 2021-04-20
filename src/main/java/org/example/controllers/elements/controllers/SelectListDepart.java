@@ -33,15 +33,14 @@ public class SelectListDepart implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         titleLabel.setText("Departamentos");
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         saveButton.setOnMouseClicked(mouseEvent -> {
             List<Department> departmentList = new ArrayList<>(checkListView.getCheckModel().getCheckedItems());
             new ListToChangeTools<Department,Integer>().setToDeleteItems(employee.getDepartments(), departmentList);
             employee.setDepartments(departmentList);
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.close();
             stage.setUserData(employee);
+            stage.close();
         });
     }
 
