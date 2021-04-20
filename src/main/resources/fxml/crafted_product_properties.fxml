@@ -75,6 +75,6 @@
         </effect>
     </Label>
     <FontAwesomeIconView fx:id="addInternalProductButton" fill="WHITE" glyphName="PLUS" layoutX="506.0" layoutY="248.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="220.0" />
-    <ListView fx:id="internalProductsListView" layoutY="332.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="256.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0" />
+    <ListView fx:id="internalProductsListView" layoutY="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0" />
 
 </AnchorPane>

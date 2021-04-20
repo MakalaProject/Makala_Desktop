@@ -25,6 +25,7 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
         largoField.focusedProperty().addListener(new FocusVerificationFields(largoField, true, 2,2));
         anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 2,2));
 
+
     }
 
     @Override

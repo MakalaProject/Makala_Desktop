@@ -57,6 +57,10 @@ public class ProductController extends ProductParentController implements IListC
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
 
+        listView.getStylesheets().add(".list-cell:empty {\n" +
+                "    visibility:hidden;\n" +
+                "}");
+
         //Search filter
         FilteredList<Product> filteredProducts = new FilteredList<>(productObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
