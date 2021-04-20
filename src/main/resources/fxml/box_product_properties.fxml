@@ -52,7 +52,7 @@
         </effect>
     </Label>
     <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="471.0" layoutY="323.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="58.42857170104992" AnchorPane.topAnchor="297.2857151031494" />
-   <ListView fx:id="holesListView" layoutY="332.0" prefHeight="186.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="332.0" />
+   <ListView fx:id="holesListView" layoutY="332.0" prefHeight="186.0" prefWidth="434.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="332.0" />
     <Label layoutX="444.0" layoutY="249.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="249.0" />
     <Label layoutX="444.0" layoutY="208.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="208.0" />
     <Label layoutX="444.0" layoutY="166.0" text="cm" AnchorPane.rightAnchor="94.0" />
