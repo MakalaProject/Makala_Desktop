@@ -2,6 +2,7 @@ package org.example.controllers.list.controllers;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.ProductParentController;
@@ -102,7 +103,9 @@ public class ProductController extends ProductParentController implements IListC
         });
 
         addButton.setOnMouseClicked(mouseEvent -> {
-            add();
+            if (!existChanges()){
+                add();
+            }
         });
     }
 
@@ -133,10 +136,11 @@ public class ProductController extends ProductParentController implements IListC
         Request.deleteJ( "products", actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
-            listView.getSelectionModel().select(0);
             selectClassification();
+            listView.getSelectionModel().select(0);
             updateView();
         }else {
+            actualProduct = null;
             productObservableList.remove(index);
             selectClassification();
         }
@@ -203,13 +207,15 @@ public class ProductController extends ProductParentController implements IListC
             stage.showAndWait();
             Product object = (Product) stage.getUserData();
             if(object != null){
+                actualProduct = object;
                 productObservableList.add(object);
                 comboBox.setValue(object.getProductClassDto().getProductType());
-                selectClassification();
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
                 updateView();
+                selectClassification();
             }
+            actualPropertiesController.setObject(actualProduct);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -248,6 +254,8 @@ public class ProductController extends ProductParentController implements IListC
 
     @Override
     public void cleanForm() {
+        actualProduct = null;
+        productImage.setImage(new Image(getClass().getResource("/Images/product.png").toString()));
         nombreField.setText("");
         maxField.setText("");
         minField.setText("");
@@ -298,12 +306,14 @@ public class ProductController extends ProductParentController implements IListC
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
             propertiesAnchorPane.setDisable(true);
+            deleteButton.setVisible(false);
         }else {
             nombreField.setDisable(false);
             clasificacionComboBox.setDisable(false);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             propertiesAnchorPane.setDisable(false);
+            deleteButton.setVisible(true);
         }
     }
 

@@ -1,5 +1,4 @@
 package org.example.controllers.elements.controllers;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -9,12 +8,8 @@ import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.example.customCells.ProductListViewCell;
-import org.example.model.Department;
 import org.example.model.products.Product;
-
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class SelectContainerProduct  implements Initializable {

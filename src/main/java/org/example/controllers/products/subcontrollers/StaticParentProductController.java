@@ -29,7 +29,7 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
 
     @Override
     public String[] getIdentifier() {
-        return new String[]{"Fijo","Cajas","Recipientes", "Comestible"};
+        return new String[]{"Fijo","Recipientes", "Comestible"};
     }
 
     @Override

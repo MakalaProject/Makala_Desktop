@@ -44,9 +44,9 @@ public class CraftedProductController extends StaticParentProductController<Craf
         altoField.setDisable(true);
         anchoField.setDisable(true);
         largoField.setDisable(true);
-
+        internalProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Comestible,Granel", Product[].class, false));
+        containerProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Contenedores", Product[].class, false));
         addInternalProductButton.setOnMouseClicked(mouseEvent -> {
-            ObservableList<Product> internalProducts = FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?productTypes=Comestible,Granel", Product[].class, false));
             ArrayList<Product> products = new ArrayList<>();
             for(InsideProduct i: craftedProduct.getProductsInside()){
                 products.add(new Product(i.getIdProduct()));
@@ -60,7 +60,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
         });
 
         addContainerButton.setOnMouseClicked(mouseEvent -> {
-            ObservableList<Product> containerProducts = FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?productTypes=Contenedores", Product[].class, false));
             Product product = loadDialog(containerProducts, FXCollections.observableArrayList(craftedProduct.getProductContainer()));
             if (product != null) {
                 if (productContainer!=null){
@@ -69,12 +68,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
                 productContainer = product;
                 containerProducts.remove(product);
                 craftedProduct.setProductContainer(product);
-                StaticProduct staticProduct = (StaticProduct) Request.find("products/statics", product.getIdProduct(), StaticProduct.class);
-                craftedProduct.setMeasures(staticProduct.getMeasures());
-                anchoField.setText(String.valueOf(staticProduct.getMeasures().getX()));
-                altoField.setText(String.valueOf(staticProduct.getMeasures().getY()));
-                largoField.setText(String.valueOf(staticProduct.getMeasures().getZ()));
-                containerName.setText(staticProduct.getName());
+                getContainer(product);
             }
         });
         internalProductsListView.setOnMouseClicked(mouseEvent -> {
@@ -82,6 +76,14 @@ public class CraftedProductController extends StaticParentProductController<Craf
         });
     }
 
+    public void getContainer(Product product){
+        StaticProduct staticProduct = (StaticProduct) Request.find("products/statics", product.getIdProduct(), StaticProduct.class);
+        craftedProduct.setMeasures(staticProduct.getMeasures());
+        anchoField.setText(String.valueOf(staticProduct.getMeasures().getX()));
+        altoField.setText(String.valueOf(staticProduct.getMeasures().getY()));
+        largoField.setText(String.valueOf(staticProduct.getMeasures().getZ()));
+        containerName.setText(staticProduct.getName());
+    }
     public Product loadDialog(ObservableList<Product> productsList, ObservableList<Product> productListToDelete) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_containers.fxml"));
         try {
@@ -124,9 +126,11 @@ public class CraftedProductController extends StaticParentProductController<Craf
             if (internalProductPropertiesToSend != null) {
                 if (isCreate){
                     insideProductList.add(internalProductPropertiesToSend.getInsideProduct());
+                    internalProducts.removeIf(p -> p.getIdProduct().equals(internalProductPropertiesToSend.getInsideProduct().getId()));
                 }else {
                     if (internalProductPropertiesToSend.getAction() == Action.DELETE){
                         insideProductList.remove(internalProductPropertiesToSend.getInsideProduct());
+                        internalProducts.add(new Product(internalProductPropertiesToSend.getInsideProduct().getIdProduct(),internalProductPropertiesToSend.getInsideProduct().getName()));
                     }else {
                         insideProductList.set(insideProductList.indexOf(internalProductsListView.getSelectionModel().getSelectedItem()), internalProductPropertiesToSend.getInsideProduct());
                     }

@@ -35,7 +35,7 @@ public class ProductCreateController extends ProductParentController {
             @Override
             public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
                 for (IControllerProducts controller : propertiesControllers) {
-                    if (Arrays.asList(controller.getIdentifier()).contains(t1.getProductType())){
+                    if (Arrays.asList(controller.getIdentifier()).contains(t1.getProductType()) || Arrays.asList(controller.getIdentifier()).contains(t1.getClassification())){
                         tipoComboBox.setValue(t1.getProductType());
                         actualPropertiesController = controller;
                         changeType(controller);
