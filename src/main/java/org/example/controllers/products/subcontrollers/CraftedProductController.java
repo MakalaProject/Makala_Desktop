@@ -46,7 +46,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
         anchoField.setDisable(true);
         largoField.setDisable(true);
         internalProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Comestible,Granel", Product[].class, false));
-        containerProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Contenedores", Product[].class, false));
+        containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Contenedores", Product[].class, false));
         addInternalProductButton.setOnMouseClicked(mouseEvent -> {
             ArrayList<Product> products = new ArrayList<>();
             for(InsideProduct i: craftedProduct.getProductsInside()){
