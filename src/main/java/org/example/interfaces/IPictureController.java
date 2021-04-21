@@ -7,6 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.model.Picture;
 
 import java.io.File;
 import java.util.List;
@@ -52,6 +53,8 @@ public interface IPictureController {
         if (result.get() == ButtonType.OK){
             getDeleteFiles().add(getFiles().get(getImageIndex()));
             List<String> files = getFiles();
+            String fileToRemove = files.get(getImageIndex());
+            getPictures().removeIf(p -> fileToRemove.equals(p.getPath()));
             files.remove(getImageIndex());
             if(getImageIndex()!=0){
                 decreaseIndex();
@@ -82,6 +85,7 @@ public interface IPictureController {
             Image img = new Image(file.toURI().toString());
             List<String> files = getFiles();
             files.add(file.getPath());
+            getPictures().add(new Picture(file.getPath()));
             getImage().setImage(img);
             updateIndex();
             checkIndex();
@@ -96,6 +100,8 @@ public interface IPictureController {
     void updateIndex();
 
     List<String> getFiles();
+
+    List<Picture> getPictures();
 
     List<String> getDeleteFiles();
 

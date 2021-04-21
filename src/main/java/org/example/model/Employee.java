@@ -7,7 +7,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class Employee extends User {
-    private String password;
+    private String password = "";
     private List<Department> departments;
 
     public Employee(){

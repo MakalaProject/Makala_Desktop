@@ -105,6 +105,8 @@ public class ProviderController extends UserParentController<Provider> {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
         addButton.setOnMouseClicked(mouseEvent -> {

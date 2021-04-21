@@ -23,4 +23,9 @@ public class StaticProduct extends Product {
     public String getRoute() {
         return route + "/statics";
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

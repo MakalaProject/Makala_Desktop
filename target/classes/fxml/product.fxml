@@ -17,12 +17,17 @@
             <children>
                 <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="35.0" size="20" AnchorPane.leftAnchor="14.571428298950195" AnchorPane.topAnchor="17.85714340209961" />
                 <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
-                <ComboBox fx:id="comboBox" layoutX="112.0" layoutY="64.0" onAction="#selectClassification" prefHeight="27.0" prefWidth="211.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="64.0" />
-                <ListView fx:id="listView" disable="true" layoutX="14.0" layoutY="115.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white; -fx-selection-bar: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="115.0">
-                    <effect>
-                        <DropShadow />
-                    </effect></ListView>
-                <FontAwesomeIconView fx:id="addButton" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
+                <ComboBox fx:id="comboBox" layoutX="112.0" layoutY="64.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="64.0" />
+                <FontAwesomeIconView fx:id="addButton" focusTraversable="true" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
+            <VBox layoutY="99.0" prefHeight="877.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="99.0">
+               <children>
+                      <ListView fx:id="listView" disable="true" style="-fx-background-color: white; -fx-selection-bar: black;">
+                          <effect>
+                              <DropShadow />
+                          </effect>
+                  </ListView>
+               </children>
+            </VBox>
             </children>
         </AnchorPane>
 
@@ -77,7 +82,7 @@
                 <TextField fx:id="minField" layoutX="178.0" layoutY="469.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="225.0" />
                 <TextField fx:id="maxField" layoutX="178.0" layoutY="503.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="265.0" />
    
-               <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
+               <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" prefHeight="294.0" prefWidth="498.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
                      <padding>
                         <Insets bottom="30.0" />
                      </padding></AnchorPane>
@@ -112,16 +117,25 @@
                         </ImageView>
                         <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="122.4285717010498" AnchorPane.topAnchor="4.285715103149414" />
+                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="122.4285717010498" AnchorPane.topAnchor="4.285715103149414">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></FontAwesomeIconView>
                                 <ToggleSwitch fx:id="editSwitch" layoutX="410.0" layoutY="10.0" prefWidth="90.0" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
                                     <font>
                                         <Font name="Roboto Thin" size="13.0" />
                                     </font>
                                 </ToggleSwitch>
-                                <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+                                <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></FontAwesomeIconView>
                             </children>
                         </AnchorPane>
-                        <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="394.0" layoutY="246.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="94.42857170104992" AnchorPane.topAnchor="220.2857151031494" />
+                        <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="394.0" layoutY="246.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="94.42857170104992" AnchorPane.topAnchor="220.2857151031494">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></FontAwesomeIconView>
                         <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="397.0" layoutY="158.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42" AnchorPane.topAnchor="124.57143020629883">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -130,7 +144,10 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
-                        <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="392.0" layoutY="75.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42857170104992" AnchorPane.topAnchor="47.0" />
+                        <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="392.0" layoutY="75.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42857170104992" AnchorPane.topAnchor="47.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></FontAwesomeIconView>
                     </children>
                     <opaqueInsets>
                         <Insets />

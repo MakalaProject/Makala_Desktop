@@ -1,6 +1,7 @@
 package org.example.controllers.products.subcontrollers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -47,7 +48,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     }
 
     public void showList(){
-        holesListView.setItems(FXCollections.observableList(holeList.stream().filter(hole -> !hole.isToDelete()).collect(Collectors.toList())));
+        ObservableList<Hole> holes = FXCollections.observableList(holeList.stream().filter(hole -> !hole.isToDelete()).collect(Collectors.toList()));
+        holesListView.setItems(holes);
+        holesListView.prefHeightProperty().bind(Bindings.size(holes).multiply(102));
     }
 
     @Override

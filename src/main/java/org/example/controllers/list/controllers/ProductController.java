@@ -1,8 +1,13 @@
 package org.example.controllers.list.controllers;
+import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.ProductParentController;
@@ -56,11 +61,6 @@ public class ProductController extends ProductParentController implements IListC
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
-
-        listView.getStylesheets().add(".list-cell:empty {\n" +
-                "    visibility:hidden;\n" +
-                "}");
-
         //Search filter
         FilteredList<Product> filteredProducts = new FilteredList<>(productObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -98,17 +98,37 @@ public class ProductController extends ProductParentController implements IListC
 
         //CRUD Buttons
         updateButton.setOnMouseClicked(mouseEvent -> {
+            updateButton.requestFocus();
             if (actualProduct != null)
             update();
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
+            deleteButton.requestFocus();
             deleteAlert("producto");
         });
 
         addButton.setOnMouseClicked(mouseEvent -> {
+            addButton.requestFocus();
             if (!existChanges()){
                 add();
+            }
+        });
+
+        comboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (userClicked){
+                    selectClassification();
+                    userClicked = false;
+                }
+            }
+        });
+
+        comboBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                userClicked = true;
             }
         });
     }
@@ -116,17 +136,21 @@ public class ProductController extends ProductParentController implements IListC
     //Filter products by classifications
     public void selectClassification(){
         if (!existChanges()) {
-            ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductClassDto().getProductType().equals(comboBox.getValue()))
-                    .collect(Collectors.toCollection(FXCollections::observableArrayList));
-            //check if list is empty
-            if (products.isEmpty()) {
-                listView.setDisable(true);
-                listView.getItems().clear();
-                cleanForm();
-            } else {
-                listView.setDisable(false);
-                showList(products, listView, ProductListViewCell.class);
-            }
+            changeList();
+        }
+    }
+
+    public void changeList(){
+        ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductClassDto().getProductType().equals(comboBox.getValue()))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+        //check if list is empty
+        if (products.isEmpty()) {
+            listView.setDisable(true);
+            listView.getItems().clear();
+            cleanForm();
+        } else {
+            listView.setDisable(false);
+            showList(products, listView, ProductListViewCell.class);
         }
     }
 
@@ -157,38 +181,49 @@ public class ProductController extends ProductParentController implements IListC
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null) {
                     setInfo(product);
-                    List<String> urls = ImageService.uploadImages(files);
-                    files = urls;
-                    for (String s : urls) {
-                        product.getPictures().add(new Picture(s));
-                    }
-                    files = new ArrayList<>();
-                    if(deleteFiles.size() != 0){
-                        ArrayList<Picture> picturesToRemove = new ArrayList<>(product.getPictures());
-                        int counter = 0;
-                        for (Picture p : product.getPictures()) {
-                            files.add(p.getPath());
-                            for(String s: deleteFiles){
-                                if(s.equals(picturesToRemove.get(counter).getPath())){
-                                    picturesToRemove.remove(counter);
-                                    counter--;
-                                }
-                            }
-                            counter++;
+                    Product returnedProduct = null;
+                    try {
+                        ArrayList<Picture> picturesOriginal = new ArrayList<>(product.getPictures());
+                        product.setPictures(new ArrayList<>());
+                        Request.putJ(product.getRoute(), product);
+                        List<String> urls = ImageService.uploadImages(files);
+                        files = urls;
+                        product.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
+                        for (String s : urls) {
+                            product.getPictures().add(new Picture(s));
                         }
-                        new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualProduct.getPictures(), picturesToRemove);
-                        product.setPictures(picturesToRemove);
-                        ImageService.deleteImages(deleteFiles);
+                        files = new ArrayList<>();
+                        if(deleteFiles.size() != 0){
+                            int counter = 0;
+                            ArrayList<Picture> pictures = new ArrayList<>(picturesOriginal);
+                            for (Picture p : pictures) {
+                                files.add(p.getPath());
+                                for(String s: deleteFiles){
+                                    if(s.equals(picturesOriginal.get(counter).getPath())){
+                                        picturesOriginal.remove(counter);
+                                        counter--;
+                                    }
+                                }
+                                counter++;
+                            }
+                            new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualProduct.getPictures(), picturesOriginal);
+                            product.setPictures(picturesOriginal);
+                            ImageService.deleteImages(deleteFiles);
+                        }
+                        returnedProduct = (Product) Request.putJ(product.getRoute(), product);
+                    } catch (Exception e) {
+                        duplyElementAlert(product.getIdentifier());
+                        return;
                     }
+                    product.setPictures(returnedProduct.getPictures());
                     actualProduct = product;
-                    Request.putJ(product.getRoute(), product);
+                    pictureList = new ArrayList<>(product.getPictures());
                     comboBox.setValue(actualProduct.getProductClassDto().getProductType());
                     productObservableList.set(index, actualProduct);
                     selectClassification();
                     listView.getSelectionModel().select(actualProduct);
                     listView.scrollTo(product);
                     updateView();
-
                 }
             }else {
                 showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
@@ -213,13 +248,16 @@ public class ProductController extends ProductParentController implements IListC
             if(object != null){
                 actualProduct = object;
                 productObservableList.add(object);
+                userClicked = false;
                 comboBox.setValue(object.getProductClassDto().getProductType());
+                changeList();
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
                 updateView();
-                selectClassification();
             }
-            actualPropertiesController.setObject(actualProduct);
+            if(actualProduct != null) {
+                actualPropertiesController.setObject(actualProduct);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -272,7 +310,6 @@ public class ProductController extends ProductParentController implements IListC
         super.setInfo(product);
         product.setStock(actualProduct.getStock());
         product.setIdProduct(actualProduct.getIdProduct());
-        product.setPictures(actualProduct.getPictures());
     }
 
     @Override
@@ -296,6 +333,7 @@ public class ProductController extends ProductParentController implements IListC
                 putFields();
                 files = new ArrayList<>();
                 deleteFiles = new ArrayList<>();
+                pictureList = new ArrayList<>();
                 fillImageList();
                 checkIndex();
                 return;
@@ -305,6 +343,7 @@ public class ProductController extends ProductParentController implements IListC
 
     private void privacyProduct(){
         if (!actualProduct.getPrivacy().equals("Privado")){
+            userClicked = false;
             nombreField.setDisable(true);
             clasificacionComboBox.setDisable(true);
             privacidadComboBox.getItems().clear();
@@ -312,6 +351,7 @@ public class ProductController extends ProductParentController implements IListC
             propertiesAnchorPane.setDisable(true);
             deleteButton.setVisible(false);
         }else {
+            userClicked = false;
             nombreField.setDisable(false);
             clasificacionComboBox.setDisable(false);
             privacidadComboBox.getItems().clear();
@@ -325,6 +365,7 @@ public class ProductController extends ProductParentController implements IListC
         if(!actualProduct.getPictures().isEmpty()){
             for(Picture p : actualProduct.getPictures()){
                 files.add(p.getPath());
+                pictureList = new ArrayList<>(actualProduct.getPictures());
             }
         }
     }

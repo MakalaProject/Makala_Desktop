@@ -25,6 +25,7 @@ import org.example.interfaces.IControllerProducts;
 import org.example.interfaces.IPictureController;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
+import org.example.model.Picture;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.services.Request;
@@ -65,6 +66,7 @@ public abstract class ProductParentController implements Initializable, IControl
     protected int imageIndex = 0;
     protected List<String> files = new ArrayList<>();
     protected List<String> deleteFiles = new ArrayList<>();
+    protected ArrayList<Picture> pictureList = new ArrayList<>();
     protected boolean userClicked = false;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -73,21 +75,25 @@ public abstract class ProductParentController implements Initializable, IControl
         tipoComboBox.getItems().addAll(typeItems);
 
         imageButton.setOnMouseClicked(mouseEvent -> {
+            imageButton.requestFocus();
             Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
             files = uploadImage(s);
         });
 
         previousPicture.setOnMouseClicked(mouseEvent -> {
+            previousPicture.requestFocus();
             imageIndex--;
             checkIndex();
         });
 
         nextPicture.setOnMouseClicked(mouseEvent -> {
+            nextPicture.requestFocus();
             imageIndex++;
             checkIndex();
         });
 
         deletePicture.setOnMouseClicked(mouseEvent -> {
+            deletePicture.requestFocus();
             files = deletePicture();
         });
 
@@ -164,6 +170,11 @@ public abstract class ProductParentController implements Initializable, IControl
         imageIndex = files.size() -1;
     }
 
+    @Override
+    public List<Picture> getPictures() {
+        return pictureList;
+    }
+
     public void setInfo(Product product){
         product.setName(nombreField.getText());
         product.setStock(Integer.parseInt(stockField.getText()));
@@ -172,6 +183,7 @@ public abstract class ProductParentController implements Initializable, IControl
         product.setPrice(new BigDecimal(precioField.getText()));
         product.setProductClassDto(clasificacionComboBox.getSelectionModel().getSelectedItem());
         product.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
+        product.setPictures(new ArrayList<>(pictureList));
     }
 
     protected void changeType(IControllerProducts controller) {

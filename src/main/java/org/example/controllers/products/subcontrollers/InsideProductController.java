@@ -46,7 +46,7 @@ public class InsideProductController implements Initializable, IControllerCreate
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             if (result.get() == ButtonType.OK){
-                stage.setUserData(new InternalProductPropertiesToSend(insideProduct, Action.UPDATE));
+                stage.setUserData(new InternalProductPropertiesToSend(insideProduct, Action.DELETE));
             }
             stage.close();
         });
@@ -54,7 +54,7 @@ public class InsideProductController implements Initializable, IControllerCreate
 
 
     public void setInternalProduct(InsideProduct insideProduct){
-        this.insideProduct =  new InsideProduct(insideProduct.getIdProduct(), insideProduct.getName(), new BigDecimal(0), false);
+        this.insideProduct = insideProduct;
         titleLabel.setText(insideProduct.getName());
         cantidadField.setText(insideProduct.getAmount().toString());
     }

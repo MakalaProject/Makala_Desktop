@@ -1,6 +1,7 @@
 package org.example.controllers.products.subcontrollers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,6 +79,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     public void getContainer(Product product){
         StaticProduct staticProduct = (StaticProduct) Request.find("products/statics", product.getIdProduct(), StaticProduct.class);
+        productContainer = staticProduct;
         craftedProduct.setMeasures(staticProduct.getMeasures());
         anchoField.setText(String.valueOf(staticProduct.getMeasures().getX()));
         altoField.setText(String.valueOf(staticProduct.getMeasures().getY()));
@@ -144,6 +146,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     @Override
     public void setObject(CraftedProduct craftedProduct){
+        clearController();
         this.craftedProduct = craftedProduct;
         this.productContainer = craftedProduct.getProductContainer();
         if (productContainer == null){
@@ -151,7 +154,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
             getContainer(productContainer);
             containerProducts.remove(0);
         }
-        clearController();
         containerName.setText(craftedProduct.getProductContainer().getName());
         if (craftedProduct.getProductsInside() != null){
             for (InsideProduct insideProduct : craftedProduct.getProductsInside()) {
@@ -165,9 +167,12 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     public void showList(){
         internalProductsListView.setItems(insideProductList);
+        internalProductsListView.prefHeightProperty().bind(Bindings.size(insideProductList).multiply(5));
     }
 
     public void clearController(){
+        internalProducts.clear();
+        containerProducts.clear();
         insideProductList.clear();
         originalInsideProductList.clear();
     }
@@ -184,11 +189,11 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     @Override
     public CraftedProduct getObject() {
-        craftedProduct = super.getObject(CraftedProduct.class);
+        CraftedProduct craftedProduct1 = super.getObject(CraftedProduct.class);
         new ListToChangeTools<InsideProduct,Integer>().setToDeleteItems(originalInsideProductList, insideProductList);
-        craftedProduct.setProductsInside(insideProductList);
-        craftedProduct.setProductContainer(productContainer);
-        return craftedProduct;
+        craftedProduct1.setProductsInside(insideProductList);
+        craftedProduct1.setProductContainer(productContainer);
+        return craftedProduct1;
     }
 
     @Override

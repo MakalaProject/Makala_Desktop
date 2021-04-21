@@ -16,4 +16,9 @@ public class CraftedProduct extends StaticProduct{
     private Product productContainer;
     private List<InsideProduct> productsInside = new ArrayList<>();
 
+    @Override
+    public String getRoute() {
+        return "products/crafted";
+    }
+
 }

@@ -46,21 +46,35 @@ public class ProductCreateController extends ProductParentController {
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
+                try {
+                    actualPropertiesController = actualPropertiesController.getClass().newInstance();
+                } catch (InstantiationException e) {
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
                     setInfo(product);
-                    ArrayList<Picture> pictures = new ArrayList<>();
-                    files = ImageService.uploadImages(files);
-                    if(files != null){
-                        for(String s: files){
-                            pictures.add(new Picture(s));
-                        }
-                    }
-                    product.setPictures(pictures);
                     Product newProduct = null;
                     try {
+                        product.setPictures(new ArrayList<>());
                         newProduct = (Product) Request.postJ(product.getRoute(), product);
+                        product.setIdProduct(newProduct.getIdProduct());
+                        newProduct = product;
+                        ArrayList<Picture> pictures = new ArrayList<>();
+                        files = ImageService.uploadImages(files);
+                        if(files != null){
+                            for(String s: files){
+                                pictures.add(new Picture(s));
+                            }
+                        }
+                        newProduct.setPictures(new ArrayList<>());
+                        newProduct.setPictures(pictures);
+                        product = (Product)Request.putJ(product.getRoute(), newProduct);
+                        newProduct.setPictures(product.getPictures());
                     } catch (Exception e) {
+                        ImageService.deleteImages(files);
                         duplyElementAlert(product.getIdentifier());
                         return;
                     }
@@ -71,7 +85,7 @@ public class ProductCreateController extends ProductParentController {
                     imageIndex = 0;
                     if(newProduct != null) {
                         product.setIdProduct(newProduct.getIdProduct());
-                        stage.setUserData(product);
+                        stage.setUserData(newProduct);
                     }
                     stage.close();
 

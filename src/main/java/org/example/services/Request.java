@@ -19,7 +19,7 @@ import java.util.List;
 public class Request<D> {
     public static final String REST_URL = "http://25.4.107.19:9080/";
 
-    public static Object putJ(String link, Object ob) {
+    public static Object putJ(String link, Object ob) throws Exception {
         Gson gson = new Gson();
         String jsonString = gson.toJson(ob);
         HttpClient client = HttpClient.newBuilder().build();
@@ -30,6 +30,9 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 500 || response.statusCode() == 400) {
+                throw new Exception();
+            }
             return gson.fromJson(response.body(), ob.getClass());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
@@ -130,7 +133,7 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 500) {
+            if (response.statusCode() == 500 || response.statusCode() == 400) {
                 throw new Exception();
             }
             Object ob = gson.fromJson(response.body(), object.getClass());

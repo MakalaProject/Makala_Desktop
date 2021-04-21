@@ -83,7 +83,11 @@ public abstract class UserParentController <D extends User> extends UserGenericC
             setInfo(actualUser);
             userObservableList.set(userObservableList.indexOf(actualUser), actualUser);
             showList();
-            Request.putJ(actualUser.getRoute(), actualUser);
+            try {
+                Request.putJ(actualUser.getRoute(), actualUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             editSwitch.setSelected(false);
             editView();
         }else{

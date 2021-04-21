@@ -1,6 +1,7 @@
 package org.example.interfaces;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -68,6 +69,8 @@ public interface IListController<D>{
     void updateView();
     default void showList(ObservableList<D> List, ListView<D> listView, Class<?> controllerCell){
         listView.setItems(List);
+        listView.prefHeightProperty().bind(Bindings.size(List).multiply(102));
+        Parent stage  = listView.getParent();
         listView.setCellFactory(cellList -> {
             try {
                 return (ListCell<D>) controllerCell.newInstance();

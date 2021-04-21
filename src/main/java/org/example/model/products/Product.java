@@ -3,6 +3,7 @@ package org.example.model.products;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.example.interfaces.IChangeable;
 import org.example.interfaces.IPaths;
 import org.example.model.Picture;
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 
 @Data
+@EqualsAndHashCode
 @AllArgsConstructor
 public class Product implements IPaths, IChangeable<Integer> {
     protected Integer idProduct;
@@ -21,6 +23,7 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected Integer max;
     protected Integer min;
     protected Integer stock;
+
     protected ArrayList<Picture> pictures;
     protected String route = "products";
     private boolean toDelete;

@@ -9,6 +9,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.model.products.Product;
+import org.example.model.products.StaticProduct;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,17 +21,21 @@ public class SelectContainerProduct  implements Initializable {
 
     public void setProductsList(ObservableList<Product> originalProductList, ObservableList<Product> productToRemove){
         boolean validation = false;
-        for (Product p : originalProductList) {
-            for (Product p1 : productToRemove) {
-                if (p.getIdProduct().equals(p1.getIdProduct())) {
-                    validation = true;
-                    break;
+        if(productToRemove.get(0) != null) {
+            for (Product p : originalProductList) {
+                for (Product p1 : productToRemove) {
+                    if (p.getIdProduct().equals(p1.getIdProduct())) {
+                        validation = true;
+                        break;
+                    }
                 }
-            }
-            if(!validation){
-                productsList.add(p);
+                if (!validation) {
+                    productsList.add(p);
+                }
                 validation = false;
             }
+        }else{
+            productsList = originalProductList;
         }
         productListView.setItems(productsList);
     }
