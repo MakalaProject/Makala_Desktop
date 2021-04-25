@@ -51,20 +51,21 @@
                       </Label>
                       <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="83.0" />
                       <TextField fx:id="contraseñaField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="163.0" />
+                      <Label alignment="CENTER" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
+                          <font>
+                              <Font name="Roboto Light" size="27.0" />
+                          </font>
+                          <effect>
+                              <DropShadow blurType="TWO_PASS_BOX">
+                                  <color>
+                                      <Color red="0.5" green="0.5" blue="0.5" />
+                                  </color>
+                              </DropShadow>
+                          </effect>
+                      </Label>
+                        <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="240.0" />
                </children>
             </AnchorPane>
-                <Label alignment="CENTER" layoutY="486.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
-                    <font>
-                        <Font name="Roboto Light" size="27.0" />
-                    </font>
-                    <effect>
-                        <DropShadow blurType="TWO_PASS_BOX">
-                            <color>
-                                <Color red="0.5" green="0.5" blue="0.5" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Label>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <ImageView fx:id="userImage" fitHeight="180.0" fitWidth="231.0" layoutX="171.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="171.66586303710938" AnchorPane.topAnchor="49.0">
@@ -93,8 +94,7 @@
                     <effect>
                         <DropShadow />
                     </effect></AnchorPane>
-                  <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" layoutX="451.0" layoutY="519.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="493.2857151031494" />
-            <VBox layoutY="604.0" prefHeight="329.0" prefWidth="518.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox layoutY="604.0" prefHeight="329.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="530.0">
                <children>
                   <ListView fx:id="departmentList" prefHeight="0.0" prefWidth="517.0" />
                </children>

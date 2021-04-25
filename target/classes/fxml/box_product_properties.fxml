@@ -106,9 +106,9 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-   <VBox layoutY="332.0" prefHeight="182.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="334.0">
+   <VBox layoutY="332.0" prefHeight="182.0" prefWidth="557.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="334.0">
       <children>
-         <ListView fx:id="holesListView" />
+         <ListView fx:id="holesListView" prefHeight="0.0" prefWidth="0.0" />
       </children>
       <cursor>
          <Cursor fx:constant="HAND" />

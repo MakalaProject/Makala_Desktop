@@ -36,7 +36,7 @@ public class SelectListDepart implements Initializable {
         saveButton.setOnMouseClicked(mouseEvent -> {
             List<Department> departmentList = new ArrayList<>(checkListView.getCheckModel().getCheckedItems());
             new ListToChangeTools<Department,Integer>().setToDeleteItems(employee.getDepartments(), departmentList);
-            employee.setDepartments(departmentList);
+            employee.setDepartments(new ArrayList<>(departmentList));
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.setUserData(employee);
@@ -46,14 +46,18 @@ public class SelectListDepart implements Initializable {
 
     public void setEmployee(Employee employee){
         checkListView.setItems(FXCollections.observableArrayList(Request.getJ("departments", Department[].class, false)));
-        this.employee = employee;
+        ArrayList<Department> departments = new ArrayList<>();
+        this.employee = new Employee();
         if (employee.getDepartments() != null){
             for (Department department : checkListView.getItems()) {
                 for (Department departmentE : employee.getDepartments()) {
-                    if (department.getIdDepartment().equals(departmentE.getIdDepartment()))
+                    if (department.getIdDepartment().equals(departmentE.getIdDepartment()) && !departmentE.isToDelete()){
                         checkListView.getCheckModel().check(department);
+                        departments.add(department);
+                    }
                 }
             }
+            this.employee.setDepartments(departments);
         }
 
     }

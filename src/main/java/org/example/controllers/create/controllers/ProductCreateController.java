@@ -46,13 +46,7 @@ public class ProductCreateController extends ProductParentController {
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
-                try {
-                    actualPropertiesController = actualPropertiesController.getClass().newInstance();
-                } catch (InstantiationException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
+
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
                     setInfo(product);

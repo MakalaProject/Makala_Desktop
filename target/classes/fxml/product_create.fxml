@@ -112,8 +112,14 @@
             <cursor>
                <Cursor fx:constant="HAND" />
             </cursor></FontAwesomeIconView>
-                    <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="488.0" layoutY="159.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="125.57143020629883" />
-                    <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="118.0" layoutY="160.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="126.57143020629883" />
+                    <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="488.0" layoutY="159.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="120.42857170104992" AnchorPane.topAnchor="125.57143020629883">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></FontAwesomeIconView>
+                    <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="118.0" layoutY="160.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="126.57143020629883">
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor></FontAwesomeIconView>
                     <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="495.0" layoutY="76.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="123.42857170104992" AnchorPane.topAnchor="50.285715103149414">
             <cursor>
                <Cursor fx:constant="HAND" />

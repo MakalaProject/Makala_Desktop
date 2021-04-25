@@ -35,7 +35,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
         initialList(listView);
 
         listView.setOnMouseClicked(mouseEvent -> {
-            if (existChanges()) {
+            if (!existChanges()) {
                 updateView();
             }
         });
@@ -137,4 +137,6 @@ public abstract class UserParentController <D extends User> extends UserGenericC
         apellidosField.setText("");
         telefonoField.setText("");
     }
+
+
 }

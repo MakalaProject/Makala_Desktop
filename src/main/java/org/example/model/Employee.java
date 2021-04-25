@@ -2,13 +2,14 @@ package org.example.model;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class Employee extends User {
-    private String password = "";
-    private List<Department> departments;
+    private String password;
+    private List<Department> departments = new ArrayList<>();
 
     public Employee(){
         setFirstName("Nuevo empleado");

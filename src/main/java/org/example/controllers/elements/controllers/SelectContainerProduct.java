@@ -21,7 +21,7 @@ public class SelectContainerProduct  implements Initializable {
 
     public void setProductsList(ObservableList<Product> originalProductList, ObservableList<Product> productToRemove){
         boolean validation = false;
-        if(productToRemove.get(0) != null) {
+        if(productToRemove.size() > 0 && productToRemove.get(0) != null) {
             for (Product p : originalProductList) {
                 for (Product p1 : productToRemove) {
                     if (p.getIdProduct().equals(p1.getIdProduct())) {
