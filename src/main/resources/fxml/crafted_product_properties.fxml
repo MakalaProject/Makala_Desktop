@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="512.0" prefWidth="557.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="77.0" layoutY="14.0" prefHeight="28.0" prefWidth="143.0" text="Contenedor" AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
@@ -75,7 +75,7 @@
         </effect>
     </Label>
     <FontAwesomeIconView fx:id="addInternalProductButton" fill="WHITE" glyphName="PLUS" layoutX="506.0" layoutY="248.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="220.0" />
-   <VBox layoutY="264.0" prefHeight="254.0" prefWidth="557.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="264.0">
+   <VBox layoutY="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="253.0">
       <children>
          <ListView fx:id="internalProductsListView" prefHeight="0.0" />
       </children>

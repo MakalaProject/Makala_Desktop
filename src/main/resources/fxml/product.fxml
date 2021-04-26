@@ -81,16 +81,16 @@
                 <TextField fx:id="precioField" layoutX="178.0" layoutY="434.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="185.0" />
                 <TextField fx:id="minField" layoutX="178.0" layoutY="469.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="225.0" />
                 <TextField fx:id="maxField" layoutX="178.0" layoutY="503.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="278.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="58.0" AnchorPane.topAnchor="265.0" />
-   
-               <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" prefHeight="294.0" prefWidth="498.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
-                     <padding>
-                        <Insets bottom="30.0" />
-                     </padding></AnchorPane>
                   <Label layoutX="51.0" layoutY="302.0" prefHeight="28.0" prefWidth="123.0" text="Stock" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="303.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font></Label>
                   <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" prefHeight="31.0" prefWidth="281.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="56.0" AnchorPane.topAnchor="305.0" />
+   
+               <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
+                     <padding>
+                        <Insets bottom="30.0" />
+                     </padding></AnchorPane>
                 <Label alignment="CENTER" layoutY="318.0" style="-fx-background-color: #A39D9B;" text="Propiedades" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
                     <font>
                         <Font name="Roboto Light" size="27.0" />

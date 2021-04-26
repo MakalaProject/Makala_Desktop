@@ -12,6 +12,7 @@ import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class SelectContainerProduct  implements Initializable {
@@ -37,6 +38,7 @@ public class SelectContainerProduct  implements Initializable {
         }else{
             productsList = originalProductList;
         }
+        Collections.sort(productsList, (d1, d2) -> d1.getName().compareTo(d2.getName()));
         productListView.setItems(productsList);
     }
 
