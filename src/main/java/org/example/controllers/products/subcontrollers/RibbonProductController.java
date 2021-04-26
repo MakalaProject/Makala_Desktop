@@ -54,4 +54,9 @@ public class RibbonProductController implements Initializable, IControllerProduc
         return findObject( object,"products/ribbons", RibbonProduct.class);
     }
 
+    @Override
+    public void updateList() {
+
+    }
+
 }

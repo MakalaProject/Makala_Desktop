@@ -198,4 +198,5 @@ public class CraftedProductController extends StaticParentProductController<Craf
     public CraftedProduct findObject(Product object) {
         return findObject(object,"products/crafted", CraftedProduct.class );
     }
+
 }

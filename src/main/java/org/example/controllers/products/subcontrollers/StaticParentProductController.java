@@ -61,4 +61,9 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
         altoField.setText(String.valueOf(staticProduct.getMeasures().getY()));
         largoField.setText(String.valueOf(staticProduct.getMeasures().getZ()));
     }
+
+    @Override
+    public void updateList() {
+
+    }
 }

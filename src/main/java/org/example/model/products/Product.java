@@ -57,4 +57,8 @@ public class Product implements IPaths, IChangeable<Integer> {
     public Integer getId() {
         return idProduct;
     }
+
+    public void sortList(){
+
+    }
 }

@@ -47,4 +47,9 @@ public class BulkProductController implements Initializable, IControllerProducts
     public BulkProduct findObject(Product object) {
         return findObject( object,"products/bulks", BulkProduct.class);
     }
+
+    @Override
+    public void updateList() {
+
+    }
 }

@@ -185,6 +185,7 @@ public class ProductController extends ProductParentController implements IListC
                         ArrayList<Picture> picturesOriginal = new ArrayList<>(product.getPictures());
                         product.setPictures(new ArrayList<>());
                         Request.putJ(product.getRoute(), product);
+                        product = (Product) Request.find(product.getRoute(), product.getIdProduct(), product.getClass());
                         List<String> urls = ImageService.uploadImages(files);
                         files = urls;
                         product.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
@@ -215,6 +216,7 @@ public class ProductController extends ProductParentController implements IListC
                         return;
                     }
                     product.setPictures(returnedProduct.getPictures());
+                    actualPropertiesController.setObject(returnedProduct);
                     actualProduct = product;
                     pictureList = new ArrayList<>(product.getPictures());
                     comboBox.setValue(actualProduct.getProductClassDto().getProductType());
@@ -268,7 +270,9 @@ public class ProductController extends ProductParentController implements IListC
             return false;
         }
         Product product = (Product) actualPropertiesController.getObject();
+        product.sortList();
         setInfo(product);
+        actualProduct.sortList();
         if (!actualProduct.equals(product)){
             if(!showAlertUnsavedElement(product.getName(), product.getIdentifier())) {
                 listView.getSelectionModel().select(actualProduct);

@@ -30,4 +30,5 @@ public interface IControllerProducts<D> {
         return response;
     }
 
+    void updateList();
 }

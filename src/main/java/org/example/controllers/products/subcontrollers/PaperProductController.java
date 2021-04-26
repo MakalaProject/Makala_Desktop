@@ -45,4 +45,9 @@ public class PaperProductController implements Initializable, IControllerProduct
     public PaperProduct findObject(Product object) {
         return findObject( object,"products/papers", PaperProduct.class);
     }
+
+    @Override
+    public void updateList() {
+
+    }
 }

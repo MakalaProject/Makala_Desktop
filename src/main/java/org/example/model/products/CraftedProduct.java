@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -21,4 +23,8 @@ public class CraftedProduct extends StaticProduct{
         return "products/crafted";
     }
 
+    @Override
+    public void sortList(){
+        productsInside.sort(Comparator.comparing(InsideProduct::getIdProduct));
+    }
 }
