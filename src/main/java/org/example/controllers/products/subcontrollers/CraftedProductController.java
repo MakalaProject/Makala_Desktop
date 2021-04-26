@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class CraftedProductController extends StaticParentProductController<CraftedProduct> {
     @FXML
@@ -32,7 +31,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
     ListView<InsideProduct> internalProductsListView;
     @FXML
     Label containerName;
-    CraftedProduct craftedProduct = new CraftedProduct();
+    CraftedProduct craftedProduct;
     private final ObservableList<InsideProduct> insideProductList = FXCollections.observableArrayList();
     private final Set<InsideProduct> originalInsideProductList = new HashSet<>();
     private Product productContainer;
@@ -47,6 +46,10 @@ public class CraftedProductController extends StaticParentProductController<Craf
         largoField.setDisable(true);
         internalProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Comestible,Granel", Product[].class, false));
         containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Contenedores", Product[].class, false));
+        clearController();
+        craftedProduct = new CraftedProduct();
+        craftedProduct.setProductContainer(containerProducts.get(0));
+        getContainer(containerProducts.get(0));
         addInternalProductButton.setOnMouseClicked(mouseEvent -> {
             ArrayList<Product> products = new ArrayList<>();
             for(InsideProduct i: craftedProduct.getProductsInside()){
@@ -112,7 +115,8 @@ public class CraftedProductController extends StaticParentProductController<Craf
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/inside_product_properties.fxml"));
         try {
             Parent parent = fxmlLoader.load();
-            InsideProductController dialogController = fxmlLoader.<InsideProductController>getController();
+            InsideProductController dialogController = new InsideProductController();
+            fxmlLoader.setController(dialogController);
             dialogController.setInternalProduct(insideProduct);
             if (!isCreate){
                 dialogController.deleteButton.setVisible(true);
@@ -173,6 +177,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
     public void clearController(){
         insideProductList.clear();
         originalInsideProductList.clear();
+        internalProductsListView.getItems().clear();
     }
 
     @Override
@@ -191,6 +196,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
         new ListToChangeTools<InsideProduct,Integer>().setToDeleteItems(originalInsideProductList, insideProductList);
         craftedProduct1.setProductsInside(insideProductList);
         craftedProduct1.setProductContainer(productContainer);
+        craftedProduct = null;
         return craftedProduct1;
     }
 
