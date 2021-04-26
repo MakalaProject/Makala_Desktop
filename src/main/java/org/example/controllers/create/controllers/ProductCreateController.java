@@ -46,7 +46,6 @@ public class ProductCreateController extends ProductParentController {
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
-
                 Product product = (Product) actualPropertiesController.getObject();
                 if (product != null){
                     setInfo(product);
@@ -65,7 +64,7 @@ public class ProductCreateController extends ProductParentController {
                         }
                         newProduct.setPictures(new ArrayList<>());
                         newProduct.setPictures(pictures);
-                        product = (Product)Request.putJ(product.getRoute(), newProduct);
+                        product = (Product)Request.putJ(product.getRoute(), product);
                         newProduct.setPictures(product.getPictures());
                     } catch (Exception e) {
                         ImageService.deleteImages(files);

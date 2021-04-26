@@ -42,7 +42,7 @@ public class ProviderController extends UserParentController<Provider> {
     final ToggleGroup returnRadioGroup = new ToggleGroup();
     private static final ObservableList<ProductClassDto> productClassObservableList = FXCollections.observableArrayList(Request.getJ("classifications/products", ProductClassDto[].class, false));
     private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Emprendedor","Artesano","Comunidad","Empresa");
-    private static final ObservableList<City> citysList = FXCollections.observableArrayList(Request.getJ("classifications/products", City[].class, false));
+    private static final ObservableList<City> citysList = FXCollections.observableArrayList(Request.getJ("cities?idState=1", City[].class, false));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -52,7 +52,6 @@ public class ProviderController extends UserParentController<Provider> {
         ciudadComboBox.getItems().addAll(citysList);
         userObservableList.addAll(Request.getJ("users/providers",Provider[].class,true));
         super.initialize(url,resourceBundle);
-
         classificationComboBox.itemsProperty().setValue(productClassObservableList);
 
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -118,7 +117,6 @@ public class ProviderController extends UserParentController<Provider> {
         if (provider.getProducts() != null){
             productsListView.setItems(FXCollections.observableArrayList(provider.getProducts()));
         }
-
     }
 
     @Override
@@ -145,10 +143,21 @@ public class ProviderController extends UserParentController<Provider> {
         tipoComboBox.setValue(actualUser.getTypeProvider());
         classificationComboBox.setValue(actualUser.getProductClassDto());
         claveField.setText(actualUser.getClabe());
+        if(actualUser.isProductReturn()){
+            siRadio.setSelected(true);
+            noRadio.setSelected(false);
+        }else
+        {
+            siRadio.setSelected(false);
+            noRadio.setSelected(true);
+        }
         if (actualUser.getAddress() != null){
             codigoPostalField.setText(actualUser.getAddress().getCp().toString());
             ciudadComboBox.setValue(actualUser.getAddress().getCity());
             addressField.setText(actualUser.getAddress().getAddress());
+        }else{
+            codigoPostalField.setText("");
+            addressField.setText("");
         }
     }
 
@@ -162,7 +171,6 @@ public class ProviderController extends UserParentController<Provider> {
         claveField.setText("");
         codigoPostalField.setText("");
         addressField.setText("");
-
     }
 
     @Override
@@ -171,9 +179,15 @@ public class ProviderController extends UserParentController<Provider> {
         provider.setProductClassDto(classificationComboBox.getSelectionModel().getSelectedItem());
         provider.setCardNumber(tarjetaField.getText());
         provider.setClabe(claveField.getText());
+        provider.setMail(emailField.getText());
+        provider.setProductReturn(siRadio.isSelected());
+        provider.setShippingTime(Integer.parseInt(tiempoField.getText()));
         provider.setTypeProvider(tipoComboBox.getSelectionModel().getSelectedItem());
         provider.setProductReturn(siRadio.isSelected());
-        Address address = new Address(0, addressField.getText(),Integer.parseInt(codigoPostalField.getText()),ciudadComboBox.getValue());
-        provider.setAddress(address);
+        provider.setIdUser(actualUser.getIdUser());
+        if(!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty()) {
+            Address address = new Address(0, addressField.getText(), Integer.parseInt(codigoPostalField.getText()), ciudadComboBox.getValue());
+            provider.setAddress(address);
+        }
     }
 }

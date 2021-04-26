@@ -56,7 +56,6 @@ public class ProductController extends ProductParentController implements IListC
         comboBox.getSelectionModel().select(0);
         selectClassification();
         initialList(listView);
-        listView.getStylesheets().add(getClass().getResource("/configurations/style.css").toString());
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);

@@ -19,7 +19,7 @@ public class Provider extends User {
     private int shippingTime;
     private String typeProvider;
     private String clabe;
-    private Address address = new Address();
+    private Address address;
     private List<Product> products = new ArrayList<>();
 
     public Provider(){

@@ -69,6 +69,7 @@ public interface IListController<D>{
     void updateView();
     default void showList(ObservableList<D> List, ListView<D> listView, Class<?> controllerCell){
         listView.setItems(List);
+        listView.getStylesheets().add(getClass().getResource("/configurations/style.css").toString());
         listView.prefHeightProperty().bind(Bindings.size(List).multiply(102));
         Parent stage  = listView.getParent();
         listView.setCellFactory(cellList -> {

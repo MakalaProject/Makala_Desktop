@@ -171,8 +171,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
     }
 
     public void clearController(){
-        internalProducts.clear();
-        containerProducts.clear();
         insideProductList.clear();
         originalInsideProductList.clear();
     }
