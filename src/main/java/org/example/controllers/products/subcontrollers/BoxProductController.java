@@ -29,7 +29,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public TextField largoIntField;
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
-    private ObservableList<Hole> holeList = FXCollections.observableArrayList();
+    private ObservableList<Hole> holeList;
     private final Set<Hole> originalHoleList = new HashSet<>();
     private BoxProduct actualBoxProduct;
 
@@ -37,6 +37,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
+        holeList = FXCollections.observableArrayList();
         addHoleButton.setOnMouseClicked(new ShowDialog(true));
         holesListView.setOnMouseClicked(new ShowDialog(false));
         altoIntField.textProperty().addListener(new ChangedVerificationFields(altoIntField, true, 3,2));
@@ -152,12 +153,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         alert.setContentText("Las medidas de la caja son invalidas");
         alert.showAndWait();
         return true;
-    }
-
-    @Override
-    public void cleanList(){
-        holeList.clear();
-        originalHoleList.clear();
     }
 
     class ShowDialog implements EventHandler<MouseEvent> {

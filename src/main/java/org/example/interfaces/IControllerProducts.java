@@ -32,7 +32,7 @@ public interface IControllerProducts<D> {
 
     void updateList();
 
-    boolean indispensableChanges();
-
-    void cleanList();
+    default boolean indispensableChanges(){
+        return false;
+    };
 }

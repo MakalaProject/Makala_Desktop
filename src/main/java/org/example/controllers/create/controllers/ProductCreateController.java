@@ -39,7 +39,6 @@ public class ProductCreateController extends ProductParentController {
                         tipoComboBox.setValue(t1.getProductType());
                         actualPropertiesController = controller;
                         changeType(controller);
-                        actualPropertiesController.cleanList();
                     }
                 }
             }

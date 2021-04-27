@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class SelectContainerProduct  implements Initializable {
     @FXML ListView<Product> productListView;
     @FXML TextField searchField;
+    FilteredList<Product> filteredProducts;
     private ObservableList<Product> productsList = FXCollections.observableArrayList();
 
     public void setProductsList(ObservableList<Product> originalProductList, ObservableList<Product> productToRemove){
@@ -40,6 +41,7 @@ public class SelectContainerProduct  implements Initializable {
         }
         Collections.sort(productsList, (d1, d2) -> d1.getName().compareTo(d2.getName()));
         productListView.setItems(productsList);
+        filteredProducts = new FilteredList<>(productsList, p ->true);
     }
 
     @Override
@@ -50,7 +52,6 @@ public class SelectContainerProduct  implements Initializable {
             stage.setUserData(productListView.getSelectionModel().getSelectedItem());
             stage.close();
         });
-        FilteredList<Product> filteredProducts = new FilteredList<>(productsList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             filteredProducts.setPredicate(product -> {
                 if (newValue.isEmpty()) {

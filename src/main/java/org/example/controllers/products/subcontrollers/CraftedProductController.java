@@ -32,7 +32,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
     @FXML
     Label containerName;
     CraftedProduct craftedProduct = new CraftedProduct();
-    private final ObservableList<InsideProduct> insideProductList = FXCollections.observableArrayList();
+    private ObservableList<InsideProduct> insideProductList;
     private final Set<InsideProduct> originalInsideProductList = new HashSet<>();
     private Product productContainer;
     private final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
@@ -40,6 +40,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        insideProductList = FXCollections.observableArrayList();
         super.initialize(url, resourceBundle);
         altoField.setDisable(true);
         anchoField.setDisable(true);
@@ -202,9 +203,5 @@ public class CraftedProductController extends StaticParentProductController<Craf
     @Override
     public CraftedProduct findObject(Product object) {
         return findObject(object,"products/crafted", CraftedProduct.class );
-    }
-    @Override
-    public void cleanList(){
-        insideProductList.clear();
     }
 }
