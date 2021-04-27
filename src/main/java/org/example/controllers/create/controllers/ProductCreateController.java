@@ -39,11 +39,11 @@ public class ProductCreateController extends ProductParentController {
                         tipoComboBox.setValue(t1.getProductType());
                         actualPropertiesController = controller;
                         changeType(controller);
+                        actualPropertiesController.cleanList();
                     }
                 }
             }
         });
-
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
                 Product product = (Product) actualPropertiesController.getObject();
@@ -81,7 +81,6 @@ public class ProductCreateController extends ProductParentController {
                         stage.setUserData(newProduct);
                     }
                     stage.close();
-
                 }
             }else{
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");

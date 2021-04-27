@@ -59,4 +59,14 @@ public class RibbonProductController implements Initializable, IControllerProduc
 
     }
 
+    @Override
+    public boolean indispensableChanges() {
+        return false;
+    }
+
+    @Override
+    public void cleanList() {
+
+    }
+
 }

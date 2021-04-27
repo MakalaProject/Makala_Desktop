@@ -50,4 +50,14 @@ public class PaperProductController implements Initializable, IControllerProduct
     public void updateList() {
 
     }
+
+    @Override
+    public boolean indispensableChanges() {
+        return false;
+    }
+
+    @Override
+    public void cleanList() {
+
+    }
 }

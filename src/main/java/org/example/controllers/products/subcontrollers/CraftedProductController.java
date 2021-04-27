@@ -31,7 +31,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
     ListView<InsideProduct> internalProductsListView;
     @FXML
     Label containerName;
-    CraftedProduct craftedProduct;
+    CraftedProduct craftedProduct = new CraftedProduct();
     private final ObservableList<InsideProduct> insideProductList = FXCollections.observableArrayList();
     private final Set<InsideProduct> originalInsideProductList = new HashSet<>();
     private Product productContainer;
@@ -46,7 +46,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
         largoField.setDisable(true);
         internalProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Comestible,Granel", Product[].class, false));
         containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Contenedores", Product[].class, false));
-        clearController();
         craftedProduct = new CraftedProduct();
         craftedProduct.setProductContainer(containerProducts.get(0));
         getContainer(containerProducts.get(0));
@@ -114,9 +113,9 @@ public class CraftedProductController extends StaticParentProductController<Craf
     public void propertiesInternalProduct(boolean isCreate, InsideProduct insideProduct){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/inside_product_properties.fxml"));
         try {
-            Parent parent = fxmlLoader.load();
             InsideProductController dialogController = new InsideProductController();
             fxmlLoader.setController(dialogController);
+            Parent parent = fxmlLoader.load();
             dialogController.setInternalProduct(insideProduct);
             if (!isCreate){
                 dialogController.deleteButton.setVisible(true);
@@ -204,5 +203,8 @@ public class CraftedProductController extends StaticParentProductController<Craf
     public CraftedProduct findObject(Product object) {
         return findObject(object,"products/crafted", CraftedProduct.class );
     }
-
+    @Override
+    public void cleanList(){
+        insideProductList.clear();
+    }
 }

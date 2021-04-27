@@ -89,6 +89,10 @@ public class ProductController extends ProductParentController implements IListC
 
 
         listView.setOnMouseClicked(mouseEvent -> {
+            if(actualPropertiesController.indispensableChanges()){
+                listView.getSelectionModel().select(productObservableList.get(index));
+                return;
+            }
             if (listView.getSelectionModel().getSelectedItem() != null && !existChanges()) {
                 imageIndex = 0;
                 updateView();
@@ -270,8 +274,13 @@ public class ProductController extends ProductParentController implements IListC
             return false;
         }
         Product product = (Product) actualPropertiesController.getObject();
-        product.sortList();
+        //Box products send null if their internal measures are bigger than external, so, have to check to avoid Exception
+        if(product == null){
+            listView.getSelectionModel().select(actualProduct);
+            return false;
+        }
         setInfo(product);
+        product.sortList();
         actualProduct.sortList();
         if (!actualProduct.equals(product)){
             if(!showAlertUnsavedElement(product.getName(), product.getIdentifier())) {

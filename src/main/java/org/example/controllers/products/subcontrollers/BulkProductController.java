@@ -52,4 +52,14 @@ public class BulkProductController implements Initializable, IControllerProducts
     public void updateList() {
 
     }
+
+    @Override
+    public boolean indispensableChanges() {
+        return false;
+    }
+
+    @Override
+    public void cleanList() {
+
+    }
 }

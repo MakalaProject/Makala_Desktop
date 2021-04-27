@@ -66,4 +66,14 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
     public void updateList() {
 
     }
+
+    @Override
+    public boolean indispensableChanges() {
+        return false;
+    }
+
+    @Override
+    public void cleanList() {
+
+    }
 }

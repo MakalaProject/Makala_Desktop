@@ -29,7 +29,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public TextField largoIntField;
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
-    private final ObservableList<Hole> holeList = FXCollections.observableArrayList();
+    private ObservableList<Hole> holeList = FXCollections.observableArrayList();
     private final Set<Hole> originalHoleList = new HashSet<>();
     private BoxProduct actualBoxProduct;
 
@@ -72,7 +72,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
             boxProduct.setHolesDimensions(holeList);
             return boxProduct;
         }
-        return null;
+        return new BoxProduct();
     }
 
     public BoxProduct getLocalObject(){
@@ -133,6 +133,31 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         alert.setTitle("Medidas fuera de rango");
         alert.setContentText("El orificio que intentas crear excede el area de la caja, espacio disponible: " + actualBoxProduct.getAvailableArea() + "cm");
         alert.showAndWait();
+    }
+
+    @Override
+    public boolean indispensableChanges(){
+        BoxProduct boxProduct = super.getObject(BoxProduct.class);
+        boxProduct.setHolesDimensions(holeList);
+        boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
+        boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
+        boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
+        Measure3Dimensions internalMeasure = boxProduct.getInternalMeasures();
+        Measure3Dimensions externalMeasures = boxProduct.getMeasures();
+        if (externalMeasures.getZ().compareTo(internalMeasure.getZ()) > 0 && externalMeasures.getX().compareTo(internalMeasure.getX()) > 0 && externalMeasures.getY().compareTo(internalMeasure.getY()) > 0) {
+            return boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) >= 1;
+        }
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Medidas fuera de rango");
+        alert.setContentText("Las medidas de la caja son invalidas");
+        alert.showAndWait();
+        return true;
+    }
+
+    @Override
+    public void cleanList(){
+        holeList.clear();
+        originalHoleList.clear();
     }
 
     class ShowDialog implements EventHandler<MouseEvent> {
