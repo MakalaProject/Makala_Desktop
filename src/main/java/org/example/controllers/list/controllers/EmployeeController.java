@@ -28,7 +28,6 @@ public class EmployeeController extends UserParentController<Employee> {
     @FXML FontAwesomeIconView editDepartmentButton;
     @FXML ListView<Department> departmentList;
     @FXML TextField contraseñaField;
-
     private static final ObservableList<Department> departmentsItems = FXCollections.observableArrayList();
 
     @Override
@@ -54,11 +53,7 @@ public class EmployeeController extends UserParentController<Employee> {
                         return true;
                     } else if (employee.getPhone().toLowerCase().contains(lowerCaseText)) {
                         return true;
-                    } else if (employee.isDepartment(lowerCaseText)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    } else return employee.isDepartment(lowerCaseText);
                 });
                 if (!filteredUsers.isEmpty()) {
                     showList(filteredUsers, listView, UserListViewCell.class);
@@ -81,19 +76,10 @@ public class EmployeeController extends UserParentController<Employee> {
                 stage.setScene(scene);
                 stage.showAndWait();
                 Employee employee = (Employee) stage.getUserData();
-                if (employee!=null) {
-                    departmentsItems.clear();
-                    departmentsItems.addAll(employee.getDepartments());
+                if (employee!= null) {
+                    departmentsItems.setAll(employee.getDepartments());
                     showDepartmentsList(departmentsItems);
-                    //actualUser.setDepartments(employee.getDepartments());
-                    /*userObservableList.set(userObservableList.indexOf(actualUser), actualUser);
-                    actualUser.setDepartments(departments);
-                    listView.getSelectionModel().select(employee);
-                    listView.scrollTo(employee);
-                    updateView();*/
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -102,6 +88,7 @@ public class EmployeeController extends UserParentController<Employee> {
     @Override
     public void update(){
         super.update();
+        actualUser.setSelectedDepartments();
         actualUser.setPassword(null);
         contraseñaField.setText("");
     }
@@ -116,7 +103,7 @@ public class EmployeeController extends UserParentController<Employee> {
        super.putFields();
         departmentsItems.clear();
         contraseñaField.setText("");
-        if (actualUser.getDepartments() != null) {
+        if (actualUser.getDepartments().size() > 0 ) {
             departmentsItems.addAll(actualUser.getDepartments());
             showDepartmentsList(departmentsItems);
         }

@@ -1,6 +1,7 @@
 package org.example.controllers.list.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +12,8 @@ import org.example.controllers.parent.controllers.UserParentController;
 import org.example.customCells.UserListViewCell;
 import org.example.model.Adress.Address;
 import org.example.model.Adress.City;
+import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.model.Provider;
@@ -20,20 +23,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.services.Request;
 
-import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ProviderController extends UserParentController<Provider> {
     @FXML ListView<Product> productsListView;
     @FXML TextField tiempoField;
     @FXML TextField tarjetaField;
     @FXML TextField addressField;
-    @FXML TextField claveField;
     @FXML TextField emailField;
     @FXML ComboBox<City> ciudadComboBox;
     @FXML TextField codigoPostalField;
     @FXML ComboBox<String> tipoComboBox;
+    private static final ObservableList<Product> productsItems = FXCollections.observableArrayList();
     @FXML ComboBox<ProductClassDto> classificationComboBox;
     @FXML RadioButton siRadio;
     @FXML FontAwesomeIconView productsButton;
@@ -46,6 +50,11 @@ public class ProviderController extends UserParentController<Provider> {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        tiempoField.textProperty().addListener(new ChangedVerificationFields(tiempoField,false,2));
+        tiempoField.focusedProperty().addListener(new FocusVerificationFields(tiempoField,false,2));
+        tarjetaField.textProperty().addListener(new ChangedVerificationFields(tarjetaField,false,16));
+        tarjetaField.focusedProperty().addListener(new FocusVerificationFields(tarjetaField,false,16));
+        codigoPostalField.textProperty().addListener(new ChangedVerificationFields(codigoPostalField, false, 5));
         tipoComboBox.getItems().addAll(typeItems);
         siRadio.setToggleGroup(returnRadioGroup);
         noRadio.setToggleGroup(returnRadioGroup);
@@ -68,9 +77,9 @@ public class ProviderController extends UserParentController<Provider> {
                         return true;
                     }else if(employee.getPhone().toLowerCase().contains(lowerCaseText)){
                         return true;
-                    }else{
-                        return false;
-                    }
+                    }else if(employee.getProductClassDto().getClassification().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    }else return employee.getProductClassDto().getProductType().toLowerCase().contains(lowerCaseText);
 
                 });
                 if (!filteredUsers.isEmpty()) {
@@ -85,46 +94,56 @@ public class ProviderController extends UserParentController<Provider> {
                 SelectListProduct dialogController = new SelectListProduct();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                dialogController.setProvider(actualUser);
+                Provider sendProvider = new Provider();
+                sendProvider.setProductClassDto(actualUser.getProductClassDto());
+                sendProvider.setProducts(new ArrayList<>(productsItems));
+                dialogController.setProvider(sendProvider);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();
                 Provider provider = (Provider) stage.getUserData();
-                if (provider!=null) {
-                    actualUser.setProducts(provider.getProducts());
-                    Request.putJ(provider.getRoute(), actualUser);
-                    actualUser.setSelectedProducts();
-                    showProductsList(actualUser);
-                    userObservableList.set(userObservableList.indexOf(actualUser), provider);
-                    listView.getSelectionModel().select(provider);
-                    listView.scrollTo(provider);
-                    updateView();
+                if (provider!= null) {
+                    productsItems.setAll(provider.getProducts());
+                    showProductsList(productsItems);
+                    verifyClassification();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         addButton.setOnMouseClicked(mouseEvent -> {
-            add("/fxml/provider_create.fxml",listView,userObservableList, UserListViewCell.class);
+            if (!existChanges()) {
+                add("/fxml/provider_create.fxml", listView, userObservableList, UserListViewCell.class);
+            }
         });
 
     }
-    public void showProductsList(Provider provider){
-        if (provider.getProducts() != null){
-            productsListView.setItems(FXCollections.observableArrayList(provider.getProducts()));
+    public void showProductsList(ObservableList<Product> products){
+        productsListView.setItems(FXCollections.observableList(products.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
+        productsListView.prefHeightProperty().bind(Bindings.size(productsListView.getItems()).multiply(23.7));
+    }
+
+    public void verifyClassification(){
+        if (productsItems.size() > 0 ){
+            classificationComboBox.setDisable(true);
+        }else {
+            classificationComboBox.setDisable(false);
         }
     }
 
     @Override
     public void update() {
-        if ( !tiempoField.getText().isEmpty() ) {
-            super.update();
+        if (!tiempoField.getText().isEmpty() || !tiempoField.getText().isEmpty() || !telefonoField.getText().isEmpty()) {
+            if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+                super.update();
+                actualUser.setSelectedProducts();
+            }else {
+                showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+            }
         }else{
-            showAlertEmptyFields("No puedes dejar campos campos necesarios sin llenar'");
+            showAlertEmptyFields("No puedes dejar campos campos necesarios sin llenar");
         }
     }
 
@@ -137,12 +156,17 @@ public class ProviderController extends UserParentController<Provider> {
     @Override
     public void putFields() {
         super.putFields();
+        productsItems.clear();
         tiempoField.setText(Integer.toString(actualUser.getShippingTime()));
         emailField.setText(actualUser.getMail());
-        tarjetaField.setText(actualUser.getCardNumber());
+        tarjetaField.setText(actualUser.getCardInfo());
         tipoComboBox.setValue(actualUser.getTypeProvider());
         classificationComboBox.setValue(actualUser.getProductClassDto());
-        claveField.setText(actualUser.getClabe());
+        if(actualUser.getProducts().size() > 0){
+            productsItems.setAll(actualUser.getProducts());
+        }
+        showProductsList(productsItems);
+        verifyClassification();
         if(actualUser.isProductReturn()){
             siRadio.setSelected(true);
             noRadio.setSelected(false);
@@ -156,11 +180,11 @@ public class ProviderController extends UserParentController<Provider> {
             ciudadComboBox.setValue(actualUser.getAddress().getCity());
             addressField.setText(actualUser.getAddress().getAddress());
         }else{
+            ciudadComboBox.getSelectionModel().clearSelection();
             codigoPostalField.setText("");
             addressField.setText("");
         }
     }
-
 
     @Override
     public void cleanForm() {
@@ -168,7 +192,6 @@ public class ProviderController extends UserParentController<Provider> {
         tiempoField.setText("");
         tarjetaField.setText("");
         emailField.setText("");
-        claveField.setText("");
         codigoPostalField.setText("");
         addressField.setText("");
     }
@@ -177,13 +200,13 @@ public class ProviderController extends UserParentController<Provider> {
     public void setInfo(Provider provider) {
         super.setInfo(provider);
         provider.setProductClassDto(classificationComboBox.getSelectionModel().getSelectedItem());
-        provider.setCardNumber(tarjetaField.getText());
-        provider.setClabe(claveField.getText());
+        provider.setCardInfo(tarjetaField.getText());
         provider.setMail(emailField.getText());
         provider.setProductReturn(siRadio.isSelected());
         provider.setShippingTime(Integer.parseInt(tiempoField.getText()));
         provider.setTypeProvider(tipoComboBox.getSelectionModel().getSelectedItem());
-        provider.setProductReturn(siRadio.isSelected());
+        ArrayList<Product> products = new ArrayList<>(productsListView.getItems());
+        provider.setProducts(products);
         provider.setIdUser(actualUser.getIdUser());
         if(!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty()) {
             Address address = new Address(0, addressField.getText(), Integer.parseInt(codigoPostalField.getText()), ciudadComboBox.getValue());

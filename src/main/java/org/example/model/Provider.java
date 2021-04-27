@@ -14,25 +14,15 @@ import java.util.List;
 public class Provider extends User {
     private ProductClassDto productClassDto;
     private boolean productReturn;
-    private String cardNumber;
+    private String cardInfo;
     private String mail;
     private int shippingTime;
     private String typeProvider;
-    private String clabe;
     private Address address;
     private List<Product> products = new ArrayList<>();
 
     public Provider(){
         super();
-        firstName = "Nuevo";
-        lastName = "Proveedor";
-        mail = "@gmail.com";
-        clabe = "xxxxx";
-        phone = "33000";
-        cardNumber = "xxxxxx";
-        shippingTime = 0 ;
-        typeProvider = "Emprendedor";
-        productReturn = true;
     }
     @Override
     public String getRoute(){
@@ -40,7 +30,7 @@ public class Provider extends User {
     }
     @Override
     public String getIdentifier(){
-        return "Proovedor";
+        return "Proveedor";
     }
 
     public void setSelectedProducts() {

@@ -11,28 +11,25 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.controllers.elements.controllers.SelectListDepart;
 import org.example.controllers.elements.controllers.SelectListProduct;
 import org.example.controllers.parent.controllers.UserGenericController;
 import org.example.model.Adress.Address;
 import org.example.model.Adress.City;
-import org.example.model.Employee;
+import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.model.Provider;
-import org.example.services.ProviderService;
 import org.example.services.Request;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ProviderCreateController extends UserGenericController<Provider> {
     @FXML TextField tiempoField;
     @FXML TextField tarjetaField;
     @FXML TextField addressField;
-    @FXML TextField claveField;
     @FXML ComboBox<City> ciudadComboBox;
     @FXML ListView<Product> productsListView;
     @FXML TextField codigoPostalField;
@@ -44,25 +41,48 @@ public class ProviderCreateController extends UserGenericController<Provider> {
     @FXML FontAwesomeIconView productsButton;
 
     final ToggleGroup returnRadioGroup = new ToggleGroup();
+    Provider provider = new Provider();
+    ObservableList<Product> products = FXCollections.observableArrayList();
     private static final ObservableList<ProductClassDto> productClassObservableList = FXCollections.observableArrayList(Request.getJ("classifications/products", ProductClassDto[].class, false));
     private static final ObservableList<String> typeItems = FXCollections.observableArrayList("Emprendedor","Artesano","Comunidad","Empresa");
+    private static final ObservableList<City> citysList = FXCollections.observableArrayList(Request.getJ("cities?idState=1", City[].class, false));
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url,resourceBundle);
+        tiempoField.textProperty().addListener(new ChangedVerificationFields(tiempoField,false,2));
+        tiempoField.focusedProperty().addListener(new FocusVerificationFields(tiempoField,false,2));
+        tarjetaField.textProperty().addListener(new ChangedVerificationFields(tarjetaField,false,16));
+        tarjetaField.focusedProperty().addListener(new FocusVerificationFields(tarjetaField,false,16));
+        codigoPostalField.textProperty().addListener(new ChangedVerificationFields(codigoPostalField, false, 5));
         tipoComboBox.getItems().addAll(typeItems);
         siRadio.setToggleGroup(returnRadioGroup);
         noRadio.setToggleGroup(returnRadioGroup);
-        classificationComboBox.itemsProperty().setValue(productClassObservableList);
-
+        classificationComboBox.getItems().addAll(productClassObservableList);
+        ciudadComboBox.getItems().addAll(citysList);
+        siRadio.setSelected(true);
+        classificationComboBox.getSelectionModel().select(0);
+        tipoComboBox.getSelectionModel().select(0);
+        ciudadComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {
             if (!nombresField.getText().isEmpty() || !tiempoField.getText().isEmpty() || !telefonoField.getText().isEmpty()){
-                Provider provider = new Provider();
-                setInfo(provider);
-                Provider returnedProvider = ProviderService.InsertProvider(provider);
-                Node source = (Node)  mouseEvent.getSource();
-                Stage stage  = (Stage) source.getScene().getWindow();
-                stage.close();
-                stage.setUserData(returnedProvider);
+                if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+                    setInfo(provider);
+                    Provider returnedProvider = null;
+                    try {
+                        returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider, Provider.class);
+                    } catch (Exception e) {
+                        duplyElementAlert(provider.getIdentifier());
+                        return;
+                    }
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    stage.setUserData(returnedProvider);
+                }else {
+                    showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+                }
             }else {
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
@@ -70,8 +90,8 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         productsButton.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
             try {
-                Provider provider = new Provider();
                 provider.setProductClassDto(classificationComboBox.getSelectionModel().getSelectedItem());
+                provider.setProducts(products);
                 SelectListProduct dialogController = new SelectListProduct();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
@@ -82,9 +102,15 @@ public class ProviderCreateController extends UserGenericController<Provider> {
                 stage.setScene(scene);
                 stage.showAndWait();
                 Provider providerInstance = (Provider) stage.getUserData();
-                if (providerInstance!=null) {
-                    provider.setProducts(providerInstance.getProducts());
-                    showProductsList(provider);
+                if (providerInstance!=null ) {
+                    providerInstance.setSelectedProducts();
+                    products.setAll(providerInstance.getProducts());
+                    showProductsList();
+                    if (providerInstance.getProducts().size() > 0){
+                        classificationComboBox.setDisable(true);
+                    }else {
+                        classificationComboBox.setDisable(false);
+                    }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -92,22 +118,24 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         });
     }
 
-    public void showProductsList(Provider provider){
-        if (provider.getProducts() != null){
-            productsListView.setItems(FXCollections.observableArrayList(provider.getProducts()));
-        }
-
+    public void showProductsList(){
+        productsListView.setItems(FXCollections.observableArrayList(products));
     }
 
     @Override
     public void setInfo(Provider provider) {
         super.setInfo(provider);
+        provider.setProducts(products);
+        provider.setMail(emailField.getText());
+        provider.setShippingTime(Integer.parseInt(tiempoField.getText()));
         provider.setProductClassDto(classificationComboBox.getSelectionModel().getSelectedItem());
-        provider.setCardNumber(tarjetaField.getText());
-        provider.setClabe(claveField.getText());
+        provider.setCardInfo(tarjetaField.getText());
         provider.setTypeProvider(tipoComboBox.getSelectionModel().getSelectedItem());
         provider.setProductReturn(siRadio.isSelected());
-        Address address = new Address(0, addressField.getText(),Integer.parseInt(codigoPostalField.getText()),ciudadComboBox.getValue());
-        provider.setAddress(address);
+        if(!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty()) {
+            Address address = new Address(0, addressField.getText(), Integer.parseInt(codigoPostalField.getText()), ciudadComboBox.getValue());
+            provider.setAddress(address);
+        }
+
     }
 }

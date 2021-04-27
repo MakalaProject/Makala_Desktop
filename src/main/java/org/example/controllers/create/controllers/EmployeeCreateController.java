@@ -23,6 +23,7 @@ import org.example.services.Request;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class EmployeeCreateController extends UserGenericController<Employee> {
@@ -30,6 +31,8 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
     @FXML ListView<Department> departmentList;
     @FXML TextField contraseñaField;
     Employee employee = new Employee();
+    ObservableList<Department> departments = FXCollections.observableArrayList();
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -60,6 +63,7 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
                 SelectListDepart dialogController = new SelectListDepart();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
+                employee.setDepartments(departments);
                 dialogController.setEmployee(employee);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
@@ -68,23 +72,23 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
                 stage.showAndWait();
                 Employee employeeDepartmentsInstance = (Employee) stage.getUserData();
                 if (employeeDepartmentsInstance!=null) {
-                    employee.setDepartments(employeeDepartmentsInstance.getDepartments());
-                    showListDepartments(employee);
+                    employeeDepartmentsInstance.setSelectedDepartments();
+                    departments.setAll(employeeDepartmentsInstance.getDepartments());
+                    showListDepartments();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
-    private void showListDepartments(Employee employee){
-        if (employee.getDepartments() != null){
-            departmentList.setItems(FXCollections.observableArrayList(employee.getDepartments()));
-        }
+    private void showListDepartments(){
+        departmentList.setItems(FXCollections.observableArrayList(departments));
     }
 
     @Override
     public void setInfo(Employee employee) {
         super.setInfo(employee);
+        employee.setDepartments(new ArrayList<>(departments));
         employee.setPassword(contraseñaField.getText());
     }
 }

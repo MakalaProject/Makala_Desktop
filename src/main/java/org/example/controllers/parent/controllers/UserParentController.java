@@ -31,6 +31,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
         showList();
         initialList(listView);
 
@@ -63,6 +64,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
             updateView();
         }else {
             userObservableList.remove(actualUser);
+            cleanForm();
             showList();
         }
     }

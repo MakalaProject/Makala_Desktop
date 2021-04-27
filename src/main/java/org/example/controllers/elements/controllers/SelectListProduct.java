@@ -45,15 +45,19 @@ public class SelectListProduct implements Initializable {
     }
 
     public void setProvider(Provider provider){
-        this.provider = provider;
+        this.provider = new Provider();
         checkListView.setItems(FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?idClass="+provider.getProductClassDto().getIdClassification(), Product[].class, false)));
+        ArrayList<Product> products = new ArrayList<>();
         if (provider.getProducts() != null){
             for (Product product : checkListView.getItems()) {
                 for (Product product1 : provider.getProducts()) {
-                    if (product.getIdProduct().equals(product1.getIdProduct()))
+                    if (product.getIdProduct().equals(product1.getIdProduct())) {
                         checkListView.getCheckModel().check(product);
+                        products.add(product);
+                    }
                 }
             }
+            provider.setProducts(products);
         }
 
     }
