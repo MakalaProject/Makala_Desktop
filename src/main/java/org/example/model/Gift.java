@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 public class Gift {
-    private int idGitft;
+    private int idGift;
     private String name;
     private BigDecimal price;
     private BigDecimal labor;

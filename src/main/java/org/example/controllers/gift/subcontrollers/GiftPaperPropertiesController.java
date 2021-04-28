@@ -16,6 +16,7 @@ import org.example.model.products.InternalProductPropertiesToSend;
 import org.example.model.products.PaperProduct;
 import org.example.model.products.Product;
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 public class GiftPaperPropertiesController implements Initializable, IControllerCreate<PaperProductToSend> {
     @FXML public Label titleLabel;
     @FXML public TextField largoField;
+    @FXML public TextField anchoField;
     @FXML public TextField cantidadField;
     @FXML public FontAwesomeIconView updateButton;
     @FXML public FontAwesomeIconView deleteButton;
@@ -37,7 +39,7 @@ public class GiftPaperPropertiesController implements Initializable, IController
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.close();
             setInfo(paperProductToSend);
-            //stage.setUserData(new PaperProductToSend(product, Action.UPDATE));
+            stage.setUserData(paperProductToSend);
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -48,18 +50,23 @@ public class GiftPaperPropertiesController implements Initializable, IController
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             if (result.get() == ButtonType.OK){
-              //  stage.setUserData(new PaperProductToSend(product, Action.DELETE));
+                stage.setUserData(new PaperProductToSend(product, Action.DELETE));
             }
             stage.close();
         });
     }
 
-    public void setPaper(Product product){
-
+    public void setPaper(PaperProductToSend product){
+        paperProductToSend = product;
+        cantidadField.setText(product.getAmount().toString());
+        anchoField.setText(product.getWidth().toString());
+        largoField.setText(product.getHeight().toString());
     }
 
     //@Override
     public void setInfo(PaperProductToSend paperProductToSend) {
         paperProductToSend.setAmount(Integer.parseInt(cantidadField.getText()));
+        paperProductToSend.setWidth(new BigDecimal(anchoField.getText()));
+        paperProductToSend.setHeight(new BigDecimal(largoField.getText()));
     }
 }

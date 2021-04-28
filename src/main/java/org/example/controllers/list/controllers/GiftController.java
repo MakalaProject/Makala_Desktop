@@ -1,7 +1,9 @@
 package org.example.controllers.list.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -86,7 +88,7 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        giftObservableList.addAll((Gift) Request.getJ("/gifts/criteria",Gift[].class, true));
+        giftObservableList.addAll(Request.getJ("/gifts/criteria",Gift[].class, true));
         precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
         precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
 
@@ -116,6 +118,10 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
                 imageIndex = 0;
                 updateView();
             }
+        });
+
+        internalPapersListView.setOnMouseClicked(mouseEvent -> {
+            propertiesPapersProduct(false, internalPapersListView.getSelectionModel().getSelectedItem());
         });
 
         //------------------------------------------------PRODUCTS BUTTONS --------------------------------------------------------------------
@@ -258,7 +264,7 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( "products", actualGift.getIdGitft());
+        Request.deleteJ( "products", actualGift.getIdGift());
         if (listView.getItems().size() > 1) {
             giftObservableList.remove(index);
             listView.getSelectionModel().select(0);
@@ -282,7 +288,7 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
                 ArrayList<Picture> picturesOriginal = new ArrayList<>(gift.getPictures());
                 gift.setPictures(new ArrayList<>());
                 Request.putJ(gift.getRoute(), gift);
-                gift = (Gift) Request.find(gift.getRoute(), gift.getIdGitft(), gift.getClass());
+                gift = (Gift) Request.find(gift.getRoute(), gift.getIdGift(), gift.getClass());
                 List<String> urls = ImageService.uploadImages(files);
                 files = urls;
                 gift.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
@@ -340,12 +346,15 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
     public void putFields() {
         nombreField.setText(actualGift.getName());
         precioField.setText(actualGift.getPrice().toString());
-        laborCostField.setText(actualGift.getLabor().toString());
+        //laborCostField.setText(actualGift.getLabor().toString());
         containerName.setText(actualGift.getContainer().getName());
         papersObservableList.setAll(actualGift.getPapers());
         ribbonsProducts.setAll(actualGift.getRibbons());
         internalProducts.setAll(actualGift.getStaticProducts());
         container = actualGift.getContainer();
+        ribbonsObservableList.setAll(actualGift.getRibbons());
+        papersObservableList.setAll(actualGift.getPapers());
+        productsObservableList.setAll(actualGift.getStaticProducts());
         showProductsList();
     }
 
@@ -358,9 +367,10 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
     @Override
     public void updateView() {
         actualGift = listView.getSelectionModel().getSelectedItem();
+        actualGift = (Gift)Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
         //Disable edit option
-        editSwitch.setSelected(false);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
+        //editSwitch.setSelected(false);
+        //editView(fieldsAnchorPane, editSwitch, updateButton);
         index = giftObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         privacyProduct();
         putFields();
@@ -397,7 +407,7 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
         gift.setRibbons(ribbonsObservableList);
         gift.setStaticProducts(productsObservableList);
         gift.setContainer(container);
-        gift.setIdGitft(actualGift.getIdGitft());
+        gift.setIdGift(actualGift.getIdGift());
     }
 
 

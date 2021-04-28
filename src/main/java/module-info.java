@@ -25,6 +25,7 @@ module org.example {
     opens org.example.model.products;
     opens org.example.interfaces;
     opens org.example.model.Adress;
+    opens org.example.controllers.gift.subcontrollers;
 
     exports org.example;
     exports org.example.controllers;
@@ -39,4 +40,5 @@ module org.example {
     exports org.example.controllers.create.controllers;
     exports org.example.controllers.list.controllers;
     exports org.example.controllers.parent.controllers;
+    exports org.example.controllers.gift.subcontrollers;
 }

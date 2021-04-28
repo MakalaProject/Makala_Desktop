@@ -20,7 +20,7 @@
                 <FontAwesomeIconView fx:id="addButton" focusTraversable="true" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
             <VBox layoutY="67.0" prefHeight="762.0" prefWidth="434.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
                <children>
-                      <ListView fx:id="listView" disable="true" style="-fx-background-color: white; -fx-selection-bar: black;">
+                      <ListView fx:id="listView" prefHeight="0.0" style="-fx-background-color: white; -fx-selection-bar: black;">
                           <effect>
                               <DropShadow />
                           </effect>
@@ -33,7 +33,7 @@
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
             <children>
                 <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="257.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                    <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                 <Label layoutX="45.0" layoutY="23.0" prefHeight="28.0" prefWidth="125.0" text="Nombre" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="328.0" AnchorPane.topAnchor="23.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -153,7 +153,7 @@
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <ImageView fx:id="giftImage" fitHeight="180.0" fitWidth="231.0" layoutX="169.0" layoutY="55.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="55.0">
+                        <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="169.0" layoutY="55.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="55.0">
                             <effect>
                                 <DropShadow />
                             </effect>

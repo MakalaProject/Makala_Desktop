@@ -40,9 +40,7 @@ public class GiftListViewCell extends ListCell<Gift> {
                 }
 
             }
-
             productName.setText(String.valueOf(gift.getName()));
-
             setText(null);
             setGraphic(anchorPane);
 

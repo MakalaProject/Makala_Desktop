@@ -23,7 +23,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton empleadosButton;
     @FXML JFXButton proveedoresButton;
     @FXML JFXButton catalogosButton;
-    @FXML JFXButton almacenButton;
+    @FXML JFXButton regalosButton;
     @FXML JFXButton clientesButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
@@ -68,7 +68,7 @@ public class HomeController implements Initializable {
 
         empleadosButton.setOnMouseClicked(new HomeLoader("/fxml/employee.fxml","employee"));
 
-        almacenButton.setOnMouseClicked(new HomeLoader("/fxml/storage.fxml","storage"));
+        regalosButton.setOnMouseClicked(new HomeLoader("/fxml/gift.fxml","storage"));
 
         clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client"));
     }
