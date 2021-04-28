@@ -262,6 +262,7 @@ public class ProductController extends ProductParentController implements IListC
             }
             if(actualProduct != null) {
                 actualPropertiesController.setObject(actualProduct);
+                updateView();
             }
         } catch (IOException e) {
             e.printStackTrace();

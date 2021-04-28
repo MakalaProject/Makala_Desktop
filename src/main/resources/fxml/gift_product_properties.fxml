@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="249.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <AnchorPane prefHeight="50.0" prefWidth="349.0" style="-fx-background-color: #A39D9B;">
+      <children>
+          <Label fx:id="titleLabel" layoutX="134.0" layoutY="11.0" text="Producto" textFill="WHITE" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="11.0">
+              <font>
+                  <Font name="Roboto Light" size="20.0" />
+              </font>
+          </Label>
+          <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="307.0" layoutY="36.0" selectionFill="BLACK" size="30" text="" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.428571701049805" AnchorPane.topAnchor="8.0" />
+          <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="16.0" layoutY="35.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="9.285715103149414" />
+      </children>
+   </AnchorPane>
+    <Label layoutX="29.0" layoutY="84.0" prefHeight="28.0" prefWidth="101.0" text="Cantidad:" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="84.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <ComboBox fx:id="orificioComboBox" layoutX="155.0" layoutY="140.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="155.0" AnchorPane.rightAnchor="33.0" AnchorPane.topAnchor="140.0" />
+    <TextField fx:id="cantidadField" layoutX="159.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="153.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="80.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+        <cursor>
+            <Cursor fx:constant="TEXT" />
+        </cursor>
+    </TextField>
+   <Label layoutX="30.0" layoutY="140.0" prefHeight="28.0" prefWidth="101.0" text="Orificio:">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="29.0" layoutY="194.0" prefHeight="28.0" prefWidth="122.0" text="Tipo cambio:">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+   <ComboBox fx:id="categoriaComboBox" layoutX="155.0" layoutY="194.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" />
+   <padding>
+      <Insets bottom="30.0" />
+   </padding>
+</AnchorPane>

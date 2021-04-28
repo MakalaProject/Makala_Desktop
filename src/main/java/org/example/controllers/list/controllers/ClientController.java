@@ -17,6 +17,10 @@ public class ClientController extends UserParentController<Client> {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        updateButton.setVisible(false);
+        deleteButton.setVisible(false);
+        addButton.setVisible(false);
+        editSwitch.setVisible(false);
         userObservableList.addAll(Request.getJ("clients", Client[].class, true));
         super.initialize(url,resourceBundle);
         addButton.setOnMouseClicked(mouseEvent -> {
@@ -72,5 +76,10 @@ public class ClientController extends UserParentController<Client> {
     public void setInfo(Client client) {
         super.setInfo(client);
         client.setMail(correoField.getText());
+    }
+
+    @Override
+    public boolean existChanges(){
+        return false;
     }
 }

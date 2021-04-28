@@ -38,7 +38,15 @@ public class ProductCreateController extends ProductParentController {
                     if (Arrays.asList(controller.getIdentifier()).contains(t1.getProductType()) || Arrays.asList(controller.getIdentifier()).contains(t1.getClassification())){
                         tipoComboBox.setValue(t1.getProductType());
                         actualPropertiesController = controller;
-                        changeType(controller);
+                        Object controllersi = null;
+                        try {
+                            controllersi = controller.getClass().newInstance();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                        changeType((IControllerProducts) controllersi);
                     }
                 }
             }

@@ -66,11 +66,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
         addContainerButton.setOnMouseClicked(mouseEvent -> {
             Product product = loadDialog(containerProducts, FXCollections.observableArrayList(craftedProduct.getProductContainer()));
             if (product != null) {
-                if (productContainer!=null){
-                    containerProducts.add(productContainer);
-                }
                 productContainer = product;
-                containerProducts.remove(product);
                 craftedProduct.setProductContainer(product);
                 getContainer(product);
             }
@@ -136,7 +132,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
                 }else {
                     if (internalProductPropertiesToSend.getAction() == Action.DELETE){
                         insideProductList.remove(internalProductPropertiesToSend.getInsideProduct());
-                        internalProducts.add(new Product(internalProductPropertiesToSend.getInsideProduct().getIdProduct(),internalProductPropertiesToSend.getInsideProduct().getName()));
                     }else {
                         insideProductList.set(insideProductList.indexOf(internalProductsListView.getSelectionModel().getSelectedItem()), internalProductPropertiesToSend.getInsideProduct());
                     }

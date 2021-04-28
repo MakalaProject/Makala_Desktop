@@ -10,7 +10,6 @@ public class StaticProductController extends StaticParentProductController<Stati
         return super.getObject(StaticProduct.class);
     }
 
-
     @Override
     public StaticProduct findObject(Product object) {
         return findObject( object,"products/statics", StaticProduct.class);
