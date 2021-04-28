@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.PaperProductToSend;
 import org.example.model.products.Action;
-import org.example.model.products.InternalProductPropertiesToSend;
 import org.example.model.products.PaperProduct;
 import org.example.model.products.Product;
 

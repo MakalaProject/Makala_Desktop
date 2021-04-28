@@ -15,9 +15,9 @@ public class Gift {
     private String name;
     private BigDecimal price;
     private BigDecimal labor;
-    private List<StaticProduct> staticProducts;
-    private List<RibbonProduct> ribbons;
-    private List<PaperProduct> papers;
+    private List<GiftProductsToSend> staticProducts;
+    private List<RibbonProductToSend> ribbons;
+    private List<PaperProductToSend> papers;
     private Product container;
     private List<Picture> pictures;
     private final String route ="gifts";
@@ -25,6 +25,16 @@ public class Gift {
 
     public Gift(){
 
+    }
+
+    public void addProduct(GiftProductsToSend product){
+        staticProducts.add(product);
+    }
+    public void addPaper(PaperProductToSend product){
+        staticProducts.add(product);
+    }
+    public void addRibbon(RibbonProductToSend product){
+        staticProducts.add(product);
     }
 
 }
