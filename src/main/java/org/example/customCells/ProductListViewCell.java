@@ -42,12 +42,9 @@ public class ProductListViewCell extends ListCell<Product> implements IConstruct
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
 
             productName.setText(String.valueOf(product.getName()));
-
-
             setText(null);
             setGraphic(anchorPane);
 

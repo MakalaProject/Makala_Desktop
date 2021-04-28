@@ -15,9 +15,6 @@ public class GiftListViewCell extends ListCell<Gift> {
     Label productName;
 
     @FXML
-    ImageView productImage;
-
-    @FXML
     private AnchorPane anchorPane;
 
 
@@ -45,10 +42,6 @@ public class GiftListViewCell extends ListCell<Gift> {
             }
 
             productName.setText(String.valueOf(gift.getName()));
-            /*if(!product.getPictures().isEmpty()){
-                Image image = new Image(product.getPictures().get(0).getPath(), 100, 100, false, false);
-                productImage.setImage(image);
-            }*/
 
             setText(null);
             setGraphic(anchorPane);

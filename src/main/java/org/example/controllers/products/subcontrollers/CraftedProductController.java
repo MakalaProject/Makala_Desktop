@@ -31,9 +31,9 @@ public class CraftedProductController extends StaticParentProductController<Craf
     ListView<InsideProduct> internalProductsListView;
     @FXML
     Label containerName;
-    CraftedProduct craftedProduct = new CraftedProduct();
+    CraftedProduct craftedProduct;
     private ObservableList<InsideProduct> insideProductList;
-    private final Set<InsideProduct> originalInsideProductList = new HashSet<>();
+    private Set<InsideProduct> originalInsideProductList = new HashSet<>();
     private Product productContainer;
     private final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
     private final ObservableList<Product> containerProducts = FXCollections.observableArrayList();
@@ -41,6 +41,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         insideProductList = FXCollections.observableArrayList();
+        internalProductsListView.getItems().clear();
         super.initialize(url, resourceBundle);
         altoField.setDisable(true);
         anchoField.setDisable(true);
@@ -48,6 +49,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
         internalProducts.setAll(Request.getJ("products/basics/filter-list?productTypes=Comestible,Granel", Product[].class, false));
         containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Contenedores", Product[].class, false));
         craftedProduct = new CraftedProduct();
+        craftedProduct.setProductsInside(insideProductList);
         craftedProduct.setProductContainer(containerProducts.get(0));
         getContainer(containerProducts.get(0));
         addInternalProductButton.setOnMouseClicked(mouseEvent -> {
@@ -128,7 +130,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
             if (internalProductPropertiesToSend != null) {
                 if (isCreate){
                     insideProductList.add(internalProductPropertiesToSend.getInsideProduct());
-                    internalProducts.removeIf(p -> p.getIdProduct().equals(internalProductPropertiesToSend.getInsideProduct().getId()));
                 }else {
                     if (internalProductPropertiesToSend.getAction() == Action.DELETE){
                         insideProductList.remove(internalProductPropertiesToSend.getInsideProduct());
@@ -147,12 +148,12 @@ public class CraftedProductController extends StaticParentProductController<Craf
     public void setObject(CraftedProduct craftedProduct){
         clearController();
         this.craftedProduct = craftedProduct;
-        this.productContainer = craftedProduct.getProductContainer();
-        if (productContainer == null){
-            productContainer = containerProducts.get(0);
-            getContainer(productContainer);
-            containerProducts.remove(0);
+        if (craftedProduct.getProductContainer() == null){
+            this.craftedProduct.setProductContainer(containerProducts.get(0));
         }
+        productContainer = this.craftedProduct.getProductContainer();
+        getContainer(productContainer);
+        craftedProduct.setProductContainer(productContainer);
         containerName.setText(craftedProduct.getProductContainer().getName());
         if (craftedProduct.getProductsInside() != null){
             for (InsideProduct insideProduct : craftedProduct.getProductsInside()) {
@@ -160,9 +161,12 @@ public class CraftedProductController extends StaticParentProductController<Craf
             }
         }
         insideProductList.setAll(craftedProduct.getProductsInside());
+        craftedProduct.setProductsInside(insideProductList);
         showList();
         super.setObject(craftedProduct);
     }
+
+
 
     public void showList(){
         internalProductsListView.setItems(insideProductList);
@@ -191,7 +195,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
         new ListToChangeTools<InsideProduct,Integer>().setToDeleteItems(originalInsideProductList, insideProductList);
         craftedProduct1.setProductsInside(insideProductList);
         craftedProduct1.setProductContainer(productContainer);
-        craftedProduct = null;
         return craftedProduct1;
     }
 

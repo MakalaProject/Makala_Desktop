@@ -36,6 +36,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        actualBoxProduct = new BoxProduct();
         super.initialize(url,resourceBundle);
         holeList = FXCollections.observableArrayList();
         addHoleButton.setOnMouseClicked(new ShowDialog(true));
