@@ -12,7 +12,6 @@ public interface IControllerCreate<D> {
         alert.setTitle("Información incompleta");
         alert.setHeaderText(message);
         alert.setContentText("Por favor verifica los campos");
-        Optional<ButtonType> result = alert.showAndWait();
     }
      void setInfo(D object);
 
@@ -22,6 +21,8 @@ public interface IControllerCreate<D> {
         alert.setHeaderText(identifier +" duplicado");
         alert.setContentText("No puedes introducir un"+identifier.toLowerCase()+"con el mismo nombre");
         alert.showAndWait();
+    }
+    default void setProduct(D product, boolean isCreate){
 
     }
 }

@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
+import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.PaperProductToSend;
 import org.example.model.products.Action;
 import org.example.model.products.PaperProduct;
@@ -33,6 +35,14 @@ public class GiftPaperPropertiesController implements Initializable, IController
     private PaperProductToSend paperProductToSend = new PaperProductToSend();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        largoField.focusedProperty().addListener(new FocusVerificationFields(largoField, true, 2,2));
+        largoField.textProperty().addListener(new ChangedVerificationFields(largoField, true, 2,2));
+        anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 2,2));
+        anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 2,2));
+        cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, false, 4));
+        cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 4));
+
+
         updateButton.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
@@ -55,14 +65,21 @@ public class GiftPaperPropertiesController implements Initializable, IController
         });
     }
 
-    public void setPaper(PaperProductToSend product){
+    @Override
+    public void setProduct(PaperProductToSend product, boolean isCreate){
+        if (!isCreate){
+            deleteButton.setVisible(true);
+        }else {
+           deleteButton.setVisible(false);
+        }
         paperProductToSend = product;
+        titleLabel.setText(product.getProduct().getName());
         cantidadField.setText(product.getAmount().toString());
         anchoField.setText(product.getWidth().toString());
         largoField.setText(product.getHeight().toString());
     }
 
-    //@Override
+    @Override
     public void setInfo(PaperProductToSend paperProductToSend) {
         paperProductToSend.setAmount(Integer.parseInt(cantidadField.getText()));
         paperProductToSend.setWidth(new BigDecimal(anchoField.getText()));
