@@ -27,14 +27,4 @@ public class Gift {
 
     }
 
-    public void addProduct(GiftProductsToSend product){
-        staticProducts.add(product);
-    }
-    public void addPaper(PaperProductToSend product){
-        staticProducts.add(product);
-    }
-    public void addRibbon(RibbonProductToSend product){
-        staticProducts.add(product);
-    }
-
 }
