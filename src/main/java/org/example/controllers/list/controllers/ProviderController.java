@@ -2,6 +2,8 @@ package org.example.controllers.list.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -63,6 +65,12 @@ public class ProviderController extends UserParentController<Provider> {
         super.initialize(url,resourceBundle);
         classificationComboBox.itemsProperty().setValue(productClassObservableList);
 
+        classificationComboBox.valueProperty().addListener(new ChangeListener<ProductClassDto>() {
+            @Override
+            public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
+                actualUser.setProductClassDto(t1);
+            }
+        });
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()){
                 filteredUsers.setPredicate(employee -> {
@@ -126,7 +134,7 @@ public class ProviderController extends UserParentController<Provider> {
     }
 
     public void verifyClassification(){
-        if (productsItems.size() > 0 ){
+        if (productsListView.getItems().size() > 0 ){
             classificationComboBox.setDisable(true);
         }else {
             classificationComboBox.setDisable(false);
@@ -139,6 +147,7 @@ public class ProviderController extends UserParentController<Provider> {
             if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
                 super.update();
                 actualUser.setSelectedProducts();
+                productsItems.setAll(actualUser.getProducts());
             }else {
                 showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
             }
@@ -205,7 +214,7 @@ public class ProviderController extends UserParentController<Provider> {
         provider.setProductReturn(siRadio.isSelected());
         provider.setShippingTime(Integer.parseInt(tiempoField.getText()));
         provider.setTypeProvider(tipoComboBox.getSelectionModel().getSelectedItem());
-        ArrayList<Product> products = new ArrayList<>(productsListView.getItems());
+        ArrayList<Product> products = new ArrayList<>(productsItems);
         provider.setProducts(products);
         provider.setIdUser(actualUser.getIdUser());
         if(!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty()) {

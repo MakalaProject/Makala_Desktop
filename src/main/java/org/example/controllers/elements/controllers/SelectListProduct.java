@@ -58,6 +58,7 @@ public class SelectListProduct implements Initializable {
                 }
             }
             provider.setProducts(products);
+            this.provider.setProducts(products);
         }
 
     }

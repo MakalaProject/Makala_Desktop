@@ -1,6 +1,8 @@
 package org.example.controllers.create.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -65,6 +67,14 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         classificationComboBox.getSelectionModel().select(0);
         tipoComboBox.getSelectionModel().select(0);
         ciudadComboBox.getSelectionModel().select(0);
+
+        classificationComboBox.valueProperty().addListener(new ChangeListener<ProductClassDto>() {
+            @Override
+            public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
+                provider.setProductClassDto(t1);
+            }
+        });
+
         updateButton.setOnMouseClicked(mouseEvent -> {
             if (!nombresField.getText().isEmpty() || !tiempoField.getText().isEmpty() || !telefonoField.getText().isEmpty()){
                 if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
