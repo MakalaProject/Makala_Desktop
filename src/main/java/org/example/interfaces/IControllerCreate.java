@@ -27,4 +27,7 @@ public interface IControllerCreate<D> {
     default void setProduct(D product, boolean isCreate){
 
     }
+    default void setProduct(D product, boolean isCreate, BoxProduct container, Gift gift){
+
+    }
 }

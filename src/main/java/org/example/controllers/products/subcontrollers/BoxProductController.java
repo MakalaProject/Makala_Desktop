@@ -29,6 +29,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public TextField largoIntField;
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
+    @FXML public CheckBox isClosed;
     private ObservableList<Hole> holeList;
     private final Set<Hole> originalHoleList = new HashSet<>();
     private BoxProduct actualBoxProduct;
@@ -80,6 +81,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     public BoxProduct getLocalObject(){
         BoxProduct boxProduct = super.getObject(BoxProduct.class);
         boxProduct.setHolesDimensions(holeList);
+        boxProduct.setClosed(isClosed.isSelected());
         boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
         boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
         boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
@@ -119,6 +121,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         }
         holeList.setAll(boxProduct.getHolesDimensions());
         showList();
+        isClosed.setSelected(actualBoxProduct.isClosed());
         anchoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getX()));
         altoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getY()));
         largoIntField.setText(String.valueOf(boxProduct.getInternalMeasures().getZ()));

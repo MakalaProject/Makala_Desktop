@@ -16,7 +16,6 @@ import org.example.model.products.ProductClassDto;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ProductCreateController extends ProductParentController {
@@ -24,7 +23,6 @@ public class ProductCreateController extends ProductParentController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
-
         clasificacionComboBox.getSelectionModel().select(0);
         tipoComboBox.getSelectionModel().select(0);
         privacidadComboBox.getSelectionModel().select(0);

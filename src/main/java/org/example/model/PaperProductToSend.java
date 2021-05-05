@@ -13,15 +13,13 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaperProductToSend extends GiftProductsToSend{
-    BigDecimal width = new BigDecimal(0);
-    BigDecimal height = new BigDecimal(0);
+public class PaperProductToSend extends GiftProductsParent{
+    BigDecimal widthCm = new BigDecimal(0);
+    BigDecimal heightCm = new BigDecimal(0);
+    private Product product;
 
-    public PaperProductToSend(Product product, Action action){
-        super(product, action);
-    }
     public PaperProductToSend(Product product){
-        super(product);
+        this.product = product;
     }
     @Override
     public String toString(){

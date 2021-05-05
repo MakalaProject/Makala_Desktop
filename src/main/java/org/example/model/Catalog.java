@@ -1,46 +1,15 @@
 package org.example.model;
 
+import lombok.Data;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Catalog {
     private int idCatalog;
     private String name;
+    private String path;
     private CatalogClassification catalogClassification;
-    private List<Gift> gifts;
-
-    public Catalog(){
-
-    }
-
-    public int getIdCatalog() {
-        return idCatalog;
-    }
-
-    public void setIdCatalog(int idCatalog) {
-        this.idCatalog = idCatalog;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public CatalogClassification getCatalogClassification() {
-        return catalogClassification;
-    }
-
-    public void setCatalogClassification(CatalogClassification catalogClassification) {
-        this.catalogClassification = catalogClassification;
-    }
-
-    public List<Gift> getGifts() {
-        return gifts;
-    }
-
-    public void setGifts(List<Gift> gifts) {
-        this.gifts = gifts;
-    }
+    private List<Gift> gifts = new ArrayList<>();
 }

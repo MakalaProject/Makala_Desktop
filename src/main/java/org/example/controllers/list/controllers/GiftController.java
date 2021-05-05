@@ -14,9 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +23,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
+import org.example.controllers.parent.controllers.GiftParentController;
 import org.example.customCells.GiftListViewCell;
 import org.example.interfaces.*;
 import org.example.model.*;
@@ -38,34 +37,15 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 
-public class GiftController implements IListController<Gift>, Initializable, IPictureController, IControllerCreate<Gift> {
+public class GiftController extends GiftParentController implements IListController<Gift> {
 
-    @FXML
-    protected TextField nombreField;
-    @FXML protected FontAwesomeIconView updateButton;
-    @FXML protected FontAwesomeIconView imageButton;
     @FXML protected FontAwesomeIconView deleteButton;
     @FXML protected FontAwesomeIconView addButton;
-    @FXML protected TextField precioField;
-    @FXML protected TextField laborCostField;
-    @FXML protected ImageView productImage;
-    @FXML protected AnchorPane fieldsAnchorPane;
-    @FXML protected FontAwesomeIconView deletePicture;
-    @FXML protected FontAwesomeIconView nextPicture;
-    @FXML protected FontAwesomeIconView productsButton;
-    @FXML protected FontAwesomeIconView containerButton;
-    @FXML protected FontAwesomeIconView papersButton;
-    @FXML protected FontAwesomeIconView ribbonsButton;
-    @FXML protected FontAwesomeIconView previousPicture;
-    @FXML protected Label containerName;
-    @FXML Product container;
     @FXML TextField searchField;
     @FXML ListView<Gift> listView;
-    @FXML ListView<GiftProductsToSend> internalProductsListView;
-    @FXML ListView<PaperProductToSend> internalPapersListView;
-    @FXML ListView<RibbonProductToSend> internalRibbonsListView;
     @FXML ToggleSwitch editSwitch;
     private final ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
@@ -91,6 +71,13 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
                 }
             }
         } );
+        if (listView.getItems().size() > 0 ){
+            listView.getSelectionModel().select(0);
+            actualGift = listView.getItems().get(0);
+            updateView();
+        }else {
+            actualGift = null;
+        }
 
         listView.setOnMouseClicked(mouseEvent -> {
             if (listView.getSelectionModel().getSelectedItem() != null && !existChanges()) {
@@ -99,8 +86,8 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
             }
         });
 
-        internalPapersListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), new ArrayList<>(actualGift.getPapers()), internalPapersListView);
+        editSwitch.setOnMouseClicked(mouseEvent -> {
+            editView(fieldsAnchorPane, editSwitch, updateButton);
         });
 
 
@@ -123,31 +110,6 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
         deleteButton.setOnMouseClicked(mouseEvent -> {
             deleteButton.requestFocus();
             deleteAlert("regalo");
-        });
-
-        //------------------------------------------------IMAGE BUTTONS--------------------------------------------------------------------
-
-        imageButton.setOnMouseClicked(mouseEvent -> {
-            imageButton.requestFocus();
-            Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
-            files = uploadImage(s);
-        });
-
-        previousPicture.setOnMouseClicked(mouseEvent -> {
-            previousPicture.requestFocus();
-            imageIndex--;
-            checkIndex();
-        });
-
-        nextPicture.setOnMouseClicked(mouseEvent -> {
-            nextPicture.requestFocus();
-            imageIndex++;
-            checkIndex();
-        });
-
-        deletePicture.setOnMouseClicked(mouseEvent -> {
-            deletePicture.requestFocus();
-            files = deletePicture();
         });
     }
 
@@ -173,28 +135,6 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
         return false;
     }
 
-    public Product loadDialog(ObservableList<Product> productsList, ObservableList<Product> productListToDelete) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_containers.fxml"));
-        try {
-            SelectContainerProduct dialogController = new SelectContainerProduct();
-            fxmlLoader.setController(dialogController);
-            Parent parent = fxmlLoader.load();
-            dialogController.setProductsList(productsList, productListToDelete);
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.showAndWait();
-            Product product = (Product) stage.getUserData();
-            if (product != null) {
-                return product;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public void delete() {
         deleteFiles = new ArrayList<>();
@@ -218,7 +158,8 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
 
     @Override
     public void update() {
-        if(!nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
+        if(!nombreField.getText().isEmpty()){
+            actualGift.setPrice(new BigDecimal(1));
             Gift gift = new Gift();
             setInfo(gift);
             Gift returnedGift = null;
@@ -262,7 +203,8 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
             giftObservableList.set(index, actualGift);
             listView.getSelectionModel().select(actualGift);
             listView.scrollTo(gift);
-            updateView();
+            actualGift.setSelectedProducts();
+            showProductsList();
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
@@ -271,13 +213,28 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
     }
 
     public void add(){
-
-    }
-
-
-    @Override
-    public boolean existChanges() {
-        return false;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_create.fxml"));
+        try {
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            Gift object = (Gift) stage.getUserData();
+            if(object != null){
+                actualGift = object;
+                giftObservableList.add(object);
+                userClicked = false;
+                //comboBox.setValue(object.getProductClassDto().getProductType());
+                showList(giftObservableList,listView,GiftListViewCell.class);
+                listView.getSelectionModel().select(object);
+                listView.scrollTo(object);
+                updateView();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -288,30 +245,31 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
         containerName.setText(actualGift.getContainer().getName());
         papersObservableList.setAll(actualGift.getPapers());
         container = actualGift.getContainer();
+        containerExtended = (BoxProduct)Request.find("products/boxes",container.getIdProduct(),BoxProduct.class);
         ribbonsObservableList.setAll(actualGift.getRibbons());
         papersObservableList.setAll(actualGift.getPapers());
+        privacidadComboBox.setValue(actualGift.getPrivacy());
         productsObservableList.setAll(actualGift.getStaticProducts());
         giftRating.setRating(actualGift.getRating());
         giftRating.setOpacity(1);
         showProductsList();
     }
 
-    private void showProductsList() {
-        internalPapersListView.getItems().setAll(actualGift.getPapers());
-        internalPapersListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualGift.getPapers()) ).multiply(23.7));
-        internalRibbonsListView.getItems().setAll(actualGift.getRibbons());
-        internalProductsListView.getItems().setAll(actualGift.getStaticProducts());
-        internalProductsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualGift.getStaticProducts())).multiply(23.7));
-    }
-
     @Override
     public void updateView() {
         actualGift = listView.getSelectionModel().getSelectedItem();
-        actualGift = (Gift)Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
-        //Disable edit option
-        //editSwitch.setSelected(false);
-        //editView(fieldsAnchorPane, editSwitch, updateButton);
         index = giftObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+        if(actualGift.getContainer() == null) {
+            actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
+            if (actualGift.getStaticProducts() != null) {
+                ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getId()).collect(Collectors.toList()));
+                actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
+            }
+            containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
+        }
+        giftObservableList.set(index, actualGift);
+        editSwitch.setSelected(false);
+        editView(fieldsAnchorPane, editSwitch, updateButton);
         privacyProduct();
         putFields();
         files = new ArrayList<>();
@@ -322,8 +280,21 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
     }
 
     private void privacyProduct() {
-
-
+        if (!actualGift.getPrivacy().equals("Privado")){
+            userClicked = false;
+            nombreField.setDisable(true);
+            privacidadComboBox.getItems().clear();
+            privacidadComboBox.getItems().addAll(publicGift);
+            containerButton.setDisable(true);
+            productsAnchorPane.setDisable(true);
+        }else {
+            userClicked = false;
+            nombreField.setDisable(false);
+            privacidadComboBox.getItems().clear();
+            privacidadComboBox.getItems().addAll(privacyItems);
+            containerButton.setDisable(false);
+            productsAnchorPane.setDisable(false);
+        }
     }
 
     @Override
@@ -338,64 +309,6 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
 
     }
 
-    @Override
-    public void setInfo(Gift gift) {
-        gift.setName(nombreField.getText());
-        gift.setPrice(new BigDecimal(precioField.getText()));
-        gift.setPapers(papersObservableList);
-        gift.setPictures(pictureList);
-        gift.setRibbons(ribbonsObservableList);
-        gift.setStaticProducts(productsObservableList);
-        gift.setContainer(container);
-        gift.setIdGift(actualGift.getIdGift());
-    }
-
-
-
-    //--------------------------------------------------------------------------- IMAGE METHODS--------------------------------------------------------------
-    @Override
-    public void decreaseIndex() {
-        imageIndex--;
-    }
-
-    @Override
-    public List<String> getFiles() {
-        return files;
-    }
-
-    @Override
-    public FontAwesomeIconView getNextPicture() {
-        return nextPicture;
-    }
-    @Override
-    public FontAwesomeIconView getPreviousPicture() {
-        return previousPicture;
-    }
-
-    @Override
-    public List<String> getDeleteFiles() {
-        return deleteFiles;
-    }
-
-    @Override
-    public ImageView getImage() {
-        return productImage;
-    }
-
-    @Override
-    public int getImageIndex() {
-        return imageIndex;
-    }
-
-    @Override
-    public void updateIndex() {
-        imageIndex = files.size() -1;
-    }
-
-    @Override
-    public List<Picture> getPictures() {
-        return pictureList;
-    }
 
 
     private void fillImageList(){

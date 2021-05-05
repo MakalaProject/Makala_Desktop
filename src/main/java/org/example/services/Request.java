@@ -40,7 +40,7 @@ public class Request<D> {
         return null;
     }
 
-    public static void deleteJ(String s, int id) {
+    public static  void deleteJ(String s, int id){
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + s + "?id=" + id))
@@ -48,7 +48,10 @@ public class Request<D> {
                 .DELETE()
                 .build();
         try {
-            client.send(request, HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            /*if (response.statusCode() == 423 ){
+                throw new Exception(response.body());
+            }*/
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -93,6 +96,34 @@ public class Request<D> {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public static Object getJ(String link, Class<?> classType){
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .header("accept", "application/json")
+                .uri(URI.create(REST_URL + link))
+                .build();
+        try {
+            HttpResponse<String> response = HttpClient.newBuilder()
+                    .authenticator(new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(
+                                    "user",
+                                    "123".toCharArray()
+                            );
+                        }
+                    }).build().send(request, HttpResponse.BodyHandlers.ofString());
+
+            JsonParser jsonParser = new JsonParser();
+            Gson gson = new Gson();
+            return gson.fromJson(response.body(), classType);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static Object find(String link, int id, Class<?> dClass){

@@ -64,13 +64,9 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
 
     @Override
     public void setProduct(RibbonProductToSend ribbonProduct, boolean isCreate){
-        if (!isCreate){
-            deleteButton.setVisible(true);
-        }else {
-            deleteButton.setVisible(false);
-        }
-        product = ribbonProduct.getProduct();
-        titleLabel.setText(product.getName());
+        deleteButton.setVisible(!isCreate);
+        ribbonProductToSend = ribbonProduct;
+        titleLabel.setText(ribbonProduct.getProduct().getName());
         cantidadField.setText(ribbonProduct.getAmount().toString());
         largoField.setText(ribbonProduct.getLengthCm().toString());
     }

@@ -27,9 +27,6 @@ public class GiftPaperPropertiesController implements Initializable, IController
     @FXML public TextField cantidadField;
     @FXML public FontAwesomeIconView updateButton;
     @FXML public FontAwesomeIconView deleteButton;
-
-
-    private Product product = new PaperProduct();
     private PaperProductToSend paperProductToSend = new PaperProductToSend();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,15 +34,15 @@ public class GiftPaperPropertiesController implements Initializable, IController
         largoField.textProperty().addListener(new ChangedVerificationFields(largoField, true, 2,2));
         anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 2,2));
         anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 2,2));
-        cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, false, 4));
-        cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 4));
-
+        cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, false, 2));
+        cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.close();
             setInfo(paperProductToSend);
+            paperProductToSend.setAction(Action.UPDATE);
             stage.setUserData(paperProductToSend);
         });
 
@@ -57,7 +54,8 @@ public class GiftPaperPropertiesController implements Initializable, IController
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             if (result.get() == ButtonType.OK){
-                stage.setUserData(new PaperProductToSend(product, Action.DELETE));
+                paperProductToSend.setAction(Action.DELETE);
+                stage.setUserData(paperProductToSend);
             }
             stage.close();
         });
@@ -65,11 +63,7 @@ public class GiftPaperPropertiesController implements Initializable, IController
 
     @Override
     public void setProduct(PaperProductToSend product, boolean isCreate){
-        if (!isCreate){
-            deleteButton.setVisible(true);
-        }else {
-           deleteButton.setVisible(false);
-        }
+        deleteButton.setVisible(!isCreate);
         paperProductToSend = product;
         titleLabel.setText(product.getProduct().getName());
         cantidadField.setText(product.getAmount().toString());
