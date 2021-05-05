@@ -39,7 +39,7 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="labelDivisions" alignment="CENTER" layoutY="293.0" style="-fx-background-color: #A39D9B;" text="Divisiones" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="294.0">
+    <Label fx:id="labelDivisions" alignment="CENTER" layoutY="341.0" style="-fx-background-color: #A39D9B;" text="Divisiones" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="341.0">
         <font>
             <Font name="Roboto Light" size="27.0" />
         </font>
@@ -51,7 +51,7 @@
             </DropShadow>
         </effect>
     </Label>
-    <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="471.0" layoutY="323.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="58.42857170104992" AnchorPane.topAnchor="297.2857151031494" />
+    <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="509.0" layoutY="371.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="20.42857170104992" AnchorPane.topAnchor="345.2857151031494" />
     <Label layoutX="444.0" layoutY="249.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="249.0" />
     <Label layoutX="444.0" layoutY="208.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="208.0" />
     <Label layoutX="444.0" layoutY="166.0" text="cm" AnchorPane.rightAnchor="94.0" />
@@ -106,7 +106,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-   <VBox layoutY="332.0" prefHeight="182.0" prefWidth="557.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="334.0">
+   <VBox layoutY="380.0" prefHeight="166.0" prefWidth="557.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="380.0">
       <children>
          <ListView fx:id="holesListView" prefHeight="0.0" prefWidth="0.0" />
       </children>
@@ -114,5 +114,10 @@
          <Cursor fx:constant="HAND" />
       </cursor>
    </VBox>
+   <CheckBox fx:id="isClosed" layoutX="222.0" layoutY="298.0" mnemonicParsing="false" text="Caja Cerrada">
+      <font>
+         <Font name="Roboto Light" size="17.0" />
+      </font>
+   </CheckBox>
 
 </AnchorPane>

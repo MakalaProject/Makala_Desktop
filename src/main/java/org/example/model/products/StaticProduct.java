@@ -19,6 +19,14 @@ public class StaticProduct extends Product {
         measures = new Measure3Dimensions();
     }
 
+    public StaticProduct(Integer idProduct) {
+        this.idProduct = idProduct;
+    }
+    public StaticProduct(Integer idProduct, String name) {
+        this.idProduct = idProduct;
+        this.name = name;
+    }
+
     @Override
     public String getRoute() {
         return route + "/statics";
@@ -27,5 +35,9 @@ public class StaticProduct extends Product {
     @Override
     public String toString(){
         return name;
+    }
+
+    public BigDecimal getVolume(){
+        return measures.getX().multiply(measures.getZ().multiply(measures.getY()));
     }
 }

@@ -13,14 +13,12 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RibbonProductToSend extends GiftProductsToSend{
-    BigDecimal length;
+public class RibbonProductToSend extends GiftProductsParent{
+    BigDecimal lengthCm = new BigDecimal(0);
+    private Product product;
 
-    public RibbonProductToSend(Product product, Action action){
-        super(product, action);
-    }
     public RibbonProductToSend(Product product){
-        super(product);
+        this.product = product;
     }
 
     @Override

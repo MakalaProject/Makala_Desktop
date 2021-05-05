@@ -145,7 +145,7 @@ public class Request<D> {
         return null;
     }
 
-    public static Object postJ(String link, Object object, Class<?> dClass){
+    public static <D> D post(String link, Object object, Class<D> dclass){
         Gson gson = new Gson();
         String jsonString = gson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
@@ -156,10 +156,37 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            Object ob = gson.fromJson(response.body(), dClass);
+            D ob = (D)gson.fromJson(response.body(), dclass);
             System.out.println(response.body());
             if (response.statusCode() != 404){
                 return ob;
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static <D> List<D> postArray(String link, Object object, Class<D[]> classType){
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(object);
+        HttpClient client = HttpClient.newBuilder().build();
+        List<D> list = null;
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(REST_URL + link))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            D[] arrays = new Gson().fromJson(response.body(), classType);
+            list = new ArrayList<D>(Arrays.asList(arrays));
+            System.out.println(response.body());
+            if (response.statusCode() != 404){
+                return list;
             }
 
         } catch (IOException e) {

@@ -328,6 +328,9 @@ public class ProductController extends ProductParentController implements IListC
     @Override
     public void updateView() {
         actualProduct = listView.getSelectionModel().getSelectedItem();
+        if(actualProduct == null){
+            return;
+        }
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);

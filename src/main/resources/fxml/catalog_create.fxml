@@ -58,4 +58,5 @@
                 <effect>
                     <DropShadow />
                 </effect></AnchorPane>
+   <FontAwesomeIconView fx:id="giftButton" fill="WHITE" glyphName="PLUS" layoutX="553.0" layoutY="417.0" size="30" wrappingWidth="27.57142829895008" />
 </AnchorPane>

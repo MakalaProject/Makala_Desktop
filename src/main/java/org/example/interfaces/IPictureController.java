@@ -31,7 +31,7 @@ public interface IPictureController {
             getNextPicture().setVisible(true);
         }
         if(getFiles().size() == 0){
-            Image image = new Image(getClass().getResource("/Images/product.png").toString());
+            Image image = new Image(getDefaultPicture());
             getImage().setImage(image);
             return;
         }
@@ -64,6 +64,10 @@ public interface IPictureController {
         }else{
             return getFiles();
         }
+    }
+
+    default String getDefaultPicture(){
+        return getClass().getResource("/Images/product.png").toString();
     }
 
     default List<String> uploadImage(Stage s){

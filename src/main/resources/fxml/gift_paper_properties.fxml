@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="259.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.gift.subcontrollers.GiftPaperPropertiesController">
    <AnchorPane prefHeight="50.0" prefWidth="349.0" style="-fx-background-color: #A39D9B;">
       <children>
-          <Label fx:id="titleLabel" layoutX="134.0" layoutY="11.0" text="Producto" textFill="WHITE" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="11.0">
+          <Label fx:id="titleLabel" layoutX="82.0" layoutY="11.0" prefHeight="28.0" prefWidth="193.0" text="Producto" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="11.0">
               <font>
                   <Font name="Roboto Light" size="20.0" />
               </font>

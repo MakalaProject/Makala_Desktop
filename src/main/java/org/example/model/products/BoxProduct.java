@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.example.interfaces.IPaths;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

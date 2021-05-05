@@ -2,9 +2,12 @@ package org.example.controllers.list.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,9 +18,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.controlsfx.control.Rating;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
 import org.example.customCells.GiftListViewCell;
@@ -62,37 +67,14 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
     @FXML ListView<PaperProductToSend> internalPapersListView;
     @FXML ListView<RibbonProductToSend> internalRibbonsListView;
     @FXML ToggleSwitch editSwitch;
-    Gift actualGift;
     private final ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
-    private final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
-    private final ObservableList<RibbonProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
-    private final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
-    private final String resourcePapers = "/fxml/gift_paper_properties.fxml";
-    private final String resourceRibbons = "/fxml/gift_ribbon_properties.fxml";
-
-    protected int imageIndex = 0;
-    protected List<String> files = new ArrayList<>();
-    protected List<String> deleteFiles = new ArrayList<>();
-    protected ArrayList<Picture> pictureList = new ArrayList<>();
-    private final ObservableList<Product> papersProducts = FXCollections.observableArrayList();
-    private final ObservableList<Product> containerProducts = FXCollections.observableArrayList();
-    private final ObservableList<Product> ribbonsProducts = FXCollections.observableArrayList();
-    private final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
-
-
+    protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
     private int index;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         giftObservableList.addAll(Request.getJ("/gifts/criteria",Gift[].class, true));
-        precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
-        precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
-        actualGift = new Gift();
-        papersProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Papeles", Product[].class, false));
-        containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&idClass=25", Product[].class, false));
-        ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
-        internalProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Fijo", Product[].class, false));
-        actualGift.setContainer(containerProducts.get(0));
+        super.initialize(url, resourceBundle);
         showList(FXCollections.observableList(giftObservableList), listView, GiftListViewCell.class);
         FilteredList<Gift> filteredGifts = new FilteredList<>(giftObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -121,50 +103,6 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), new ArrayList<>(actualGift.getPapers()), internalPapersListView);
         });
 
-        //------------------------------------------------PRODUCTS BUTTONS --------------------------------------------------------------------
-
-        containerButton.setOnMouseClicked(mouseEvent -> {
-            Product product = loadDialog(containerProducts, FXCollections.observableArrayList(actualGift.getContainer()));
-            if (product != null) {
-                actualGift.setContainer(product);
-                container = product;
-                containerName.setText(product.getName());
-            }
-        });
-
-        papersButton.setOnMouseClicked(mouseEvent -> {
-            ArrayList<Product> papers = new ArrayList<>();
-            if (actualGift.getPapers() != null) {
-                for (PaperProductToSend paper : actualGift.getPapers()) {
-                    papers.add(new Product(paper.getProduct().getIdProduct()));
-                }
-            }else {
-                actualGift.setPapers(new ArrayList<>());
-            }
-            Product product = loadDialog(papersProducts, FXCollections.observableArrayList(papers));
-            if (product != null) {
-                propertiesGiftProducts(resourcePapers,true, new PaperProductToSend(product), new ArrayList<>(actualGift.getPapers()),internalPapersListView);
-            }
-        });
-
-        ribbonsButton.setOnMouseClicked(mouseEvent -> {
-            ArrayList<Product> ribbons = new ArrayList<>();
-            if (actualGift.getRibbons() != null) {
-                for (RibbonProductToSend ribbon : actualGift.getRibbons()) {
-                    ribbons.add(new Product(ribbon.getProduct().getIdProduct()));
-                }
-            }else {
-                actualGift.setRibbons(new ArrayList<>());
-            }
-            Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList(ribbons));
-            if (product != null) {
-                propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), new ArrayList<>(actualGift.getRibbons()), internalRibbonsListView);
-            }
-        });
-
-        productsButton.setOnMouseClicked(mouseEvent -> {
-
-        });
 
         //------------------------------------------------CRUD BUTTONS--------------------------------------------------------------------
 
@@ -213,33 +151,26 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
         });
     }
 
-    public void propertiesGiftProducts(String resource, boolean isCreate, GiftProductsToSend insideProduct, ArrayList<GiftProductsToSend> giftProducts, ListView<? extends GiftProductsToSend> listViewProducts){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resource));
-        try {
-            IControllerCreate<GiftProductsToSend> dialogController = fxmlLoader.getController();
-            Parent parent = fxmlLoader.load();
-            dialogController.setProduct(insideProduct, isCreate);
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.showAndWait();
-            GiftProductsToSend giftProductsToSend = (GiftProductsToSend) stage.getUserData();
-            if (giftProductsToSend != null) {
-                if (isCreate){
-                    giftProducts.add(giftProductsToSend);
-                }else {
-                    if (giftProductsToSend.getAction() == Action.DELETE){
-                        giftProducts.remove(listViewProducts.getSelectionModel().getSelectedItem());
-                    }else {
-                        giftProducts.set(giftProducts.indexOf(listViewProducts.getSelectionModel().getSelectedItem()), giftProductsToSend);
-                    }
-                }
-                showProductsList();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+
+
+    @Override
+    public boolean existChanges(){
+        /*if(actualGift == null){
+            return false;
         }
+        Gift gift = new Gift();
+        setInfo(gift);
+        if (!actualGift.equals(gift)){
+            if(!showAlertUnsavedElement(gift.getName(), gift.getIdentifier())) {
+                listView.getSelectionModel().select(gift);
+            }else{
+                updateView();
+            }
+            return true;
+        }else {
+            return false;
+        }*/
+        return false;
     }
 
     public Product loadDialog(ObservableList<Product> productsList, ObservableList<Product> productListToDelete) {
@@ -353,13 +284,15 @@ public class GiftController implements IListController<Gift>, Initializable, IPi
     public void putFields() {
         nombreField.setText(actualGift.getName());
         precioField.setText(actualGift.getPrice().toString());
-        laborCostField.setText(actualGift.getLabor().toString());
+        laborCostField.setText(actualGift.getLaborPrice().toString());
         containerName.setText(actualGift.getContainer().getName());
         papersObservableList.setAll(actualGift.getPapers());
         container = actualGift.getContainer();
         ribbonsObservableList.setAll(actualGift.getRibbons());
         papersObservableList.setAll(actualGift.getPapers());
         productsObservableList.setAll(actualGift.getStaticProducts());
+        giftRating.setRating(actualGift.getRating());
+        giftRating.setOpacity(1);
         showProductsList();
     }
 

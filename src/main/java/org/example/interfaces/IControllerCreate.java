@@ -2,6 +2,8 @@ package org.example.interfaces;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import org.example.model.Gift;
+import org.example.model.products.BoxProduct;
 import org.example.model.products.Product;
 
 import java.util.Optional;

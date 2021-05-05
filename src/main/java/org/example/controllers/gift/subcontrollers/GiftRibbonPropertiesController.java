@@ -12,12 +12,8 @@ import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
-import org.example.model.PaperProductToSend;
 import org.example.model.RibbonProductToSend;
 import org.example.model.products.Action;
-import org.example.model.products.PaperProduct;
-import org.example.model.products.Product;
-import org.example.model.products.RibbonProduct;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -27,27 +23,27 @@ import java.util.ResourceBundle;
 public class GiftRibbonPropertiesController implements Initializable, IControllerCreate<RibbonProductToSend> {
     @FXML
     public Label titleLabel;
-    @FXML public TextField anchoField;
+    @FXML public TextField largoField;
     @FXML public TextField cantidadField;
     @FXML public FontAwesomeIconView updateButton;
     @FXML public FontAwesomeIconView deleteButton;
 
 
-    private Product product = new PaperProduct();
     private RibbonProductToSend ribbonProductToSend = new RibbonProductToSend();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 2,2));
-        anchoField.textProperty().addListener(new ChangedVerificationFields(anchoField, true, 2,2));
-        cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, false, 4));
-        cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 4));
+        largoField.focusedProperty().addListener(new FocusVerificationFields(largoField, true, 2,2));
+        largoField.textProperty().addListener(new ChangedVerificationFields(largoField, true, 2,2));
+        cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, false, 2));
+        cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.close();
             setInfo(ribbonProductToSend);
+            ribbonProductToSend.setAction(Action.UPDATE);
             stage.setUserData(ribbonProductToSend);
         });
 
@@ -59,7 +55,8 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             if (result.get() == ButtonType.OK){
-                stage.setUserData(new RibbonProductToSend(product, Action.DELETE));
+                ribbonProductToSend.setAction(Action.DELETE);
+                stage.setUserData(ribbonProductToSend);
             }
             stage.close();
         });
@@ -75,12 +72,12 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
         product = ribbonProduct.getProduct();
         titleLabel.setText(product.getName());
         cantidadField.setText(ribbonProduct.getAmount().toString());
-        anchoField.setText(ribbonProduct.getLength().toString());
+        largoField.setText(ribbonProduct.getLengthCm().toString());
     }
 
     @Override
     public void setInfo(RibbonProductToSend ribbonProductToSend) {
-        ribbonProductToSend.setLength(new BigDecimal(anchoField.getText()));
+        ribbonProductToSend.setLengthCm(new BigDecimal(largoField.getText()));
         ribbonProductToSend.setAmount(Integer.parseInt(cantidadField.getText()));
     }
 }

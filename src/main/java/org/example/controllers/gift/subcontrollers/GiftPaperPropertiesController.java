@@ -14,8 +14,6 @@ import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
 import org.example.model.PaperProductToSend;
 import org.example.model.products.Action;
-import org.example.model.products.PaperProduct;
-import org.example.model.products.Product;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -75,14 +73,14 @@ public class GiftPaperPropertiesController implements Initializable, IController
         paperProductToSend = product;
         titleLabel.setText(product.getProduct().getName());
         cantidadField.setText(product.getAmount().toString());
-        anchoField.setText(product.getWidth().toString());
-        largoField.setText(product.getHeight().toString());
+        anchoField.setText(product.getWidthCm().toString());
+        largoField.setText(product.getHeightCm().toString());
     }
 
     @Override
     public void setInfo(PaperProductToSend paperProductToSend) {
         paperProductToSend.setAmount(Integer.parseInt(cantidadField.getText()));
-        paperProductToSend.setWidth(new BigDecimal(anchoField.getText()));
-        paperProductToSend.setHeight(new BigDecimal(largoField.getText()));
+        paperProductToSend.setWidthCm(new BigDecimal(anchoField.getText()));
+        paperProductToSend.setHeightCm(new BigDecimal(largoField.getText()));
     }
 }

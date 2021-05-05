@@ -40,7 +40,7 @@ public class LoginController implements Initializable {
             alertLabel.setText("Llena todos los campos!!");
         }else{
             UserLogin user = new UserLogin(userField.getText(), passwordField.getText());
-            Employee employee = (Employee) Request.postJ(user.getRoute(), user, Employee.class);
+            Employee employee = Request.post(user.getRoute(), user, Employee.class);
             boolean access = false;
             if (employee != null){
                 for (Department department:employee.getDepartments()) {

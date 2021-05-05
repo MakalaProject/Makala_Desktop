@@ -18,10 +18,7 @@ public class Hole implements IChangeable<Integer> {
     public Hole(){
         holeDimensions = new Measure2Dimensions();
     }
-    @Override
-    public String toString(){
-        return "Orificio " + holeNumber;
-    }
+
 
     @Override
     public Integer getId() {
@@ -31,4 +28,10 @@ public class Hole implements IChangeable<Integer> {
     public BigDecimal getArea(){
         return holeDimensions.getX().multiply(holeDimensions.getY());
     }
+
+    @Override
+    public String toString(){
+        return "Separacion: " + holeNumber.toString() + " x: " + holeDimensions.getX().toString() + " y: " +  holeDimensions.getY().toString();
+    }
 }
+

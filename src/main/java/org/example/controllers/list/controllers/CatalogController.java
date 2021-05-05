@@ -69,7 +69,6 @@ public class CatalogController implements Initializable, IListController<Catalog
             });
             SortedList<Catalog> sortedCatalogs = new SortedList<>(filteredCatalog);
             catalogObservableList = FXCollections.observableList(sortedCatalogs);
-            showListCatalogs(catalogObservableList);
         } );
 
         listView.setOnMouseClicked(mouseEvent -> {

@@ -81,7 +81,7 @@ public class ProviderCreateController extends UserGenericController<Provider> {
                     setInfo(provider);
                     Provider returnedProvider = null;
                     try {
-                        returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider, Provider.class);
+                        returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider);
                     } catch (Exception e) {
                         duplyElementAlert(provider.getIdentifier());
                         return;

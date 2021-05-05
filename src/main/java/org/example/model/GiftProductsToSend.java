@@ -1,29 +1,21 @@
 package org.example.model;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.model.products.Action;
 import org.example.model.products.Product;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class GiftProductsToSend {
-    Integer id;
-    String category;
-    Integer amount = 0;
-    Product product;
-    Action action;
-    Integer holeNumber = 1;
+public class GiftProductsToSend extends GiftProductsParent{
+    private StaticProduct product;
 
-    public GiftProductsToSend(Product product, Action action){
-        this.product = product;
-        this.action = action;
-    }
 
-    public GiftProductsToSend(Product product){
-        this.product = product;
+    public GiftProductsToSend(StaticProduct product){
+        GiftProductsToSend.this.product = product;
     }
 
     @Override
