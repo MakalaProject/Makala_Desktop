@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <CheckListView fx:id="giftListView" layoutY="52.0" prefHeight="313.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        
+    </CheckListView>
+    <FontAwesomeIconView fx:id="saveButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+   <Label fx:id="titleLabel" layoutX="264.0" layoutY="14.0" text="Regalos" textFill="WHITE" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="14.0">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+    <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="68.0" size="20" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="50.85714340209961" />
+    <TextField fx:id="searchField" layoutX="50.0" layoutY="45.0" prefHeight="29.0" prefWidth="257.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="45.0" />
+
+</AnchorPane>

@@ -23,8 +23,8 @@ import org.example.services.Request;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
+import java.util.HashSet;
 import java.util.ResourceBundle;
 
 public class SelectListGifts implements Initializable {
@@ -34,23 +34,13 @@ public class SelectListGifts implements Initializable {
     TextField searchField;
     @FXML
     FontAwesomeIconView saveButton;
-    private Catalog catalog;
+    private Catalog catalog = new Catalog();
     FilteredList<Gift> filteredGifts;
-    private ArrayList<Gift> checkedGifts = new ArrayList<>();
+    private HashSet<Gift> checkedGifts = new HashSet<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        giftListView.getCheckModel().getCheckedItems().addListener(new ListChangeListener<Gift>() {
-            @Override
-            public void onChanged(Change<? extends Gift> change) {
-                change.next();
-                if (change.wasAdded()){
-                    checkedGifts.add(change.getAddedSubList().get(0));
-                }else {
-                    checkedGifts.remove(change.getRemoved().get(0));
-                }
-            }
-        });
+
         saveButton.setOnMouseClicked(mouseEvent -> {
             new ListToChangeTools<Gift,Integer>().setToDeleteItems(catalog.getGifts(), checkedGifts);
             catalog.setGifts(new ArrayList<>(checkedGifts));
@@ -61,32 +51,48 @@ public class SelectListGifts implements Initializable {
 
         });
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
-            filteredGifts.setPredicate(product -> {
+            updateItems();
+            filteredGifts.setPredicate(gift -> {
                 if (newValue.isEmpty()) {
                     return true;
                 }
                 String lowerCaseText = newValue.toLowerCase();
-                return product.getName().toLowerCase().contains(lowerCaseText);
+                return gift.getName().toLowerCase().contains(lowerCaseText);
             });
             if (!filteredGifts.isEmpty()) {
                 giftListView.setItems(filteredGifts);
+                checkItems(checkedGifts);
             }
         } );
     }
 
     public void setGiftsList(Catalog catalog){
-        ArrayList<Gift> giftsList = new ArrayList<>();
-        giftListView.setItems(FXCollections.observableArrayList(Request.getJ("gifts", Gift[].class, false)));
+        giftListView.setItems(FXCollections.observableArrayList(Request.getJ("gifts/criteria-basic", Gift[].class, true)));
         if(catalog.getGifts().size() > 0 && catalog.getGifts().get(0) != null) {
-            for (Gift g : giftListView.getItems()) {
-                for (Gift g1 : catalog.getGifts()) {
-                    if (g.getId().equals(g1.getId())) {
-                        giftListView.getCheckModel().check(g1);
-                        giftsList.add(g1);
-                    }
+            checkItems(new HashSet<>(catalog.getGifts()));
+        }
+        this.catalog.setGifts(new ArrayList<>(catalog.getGifts()));
+        filteredGifts = new FilteredList<>(giftListView.getItems(), p ->true);
+    }
+
+    private void checkItems(HashSet<Gift> gifts){
+        for (Gift g : giftListView.getItems()) {
+            for (Gift g1 : gifts) {
+                if (g.getId().equals(g1.getId())) {
+                    giftListView.getCheckModel().check(g1);
                 }
             }
         }
-        this.catalog.setGifts(giftsList);
+    }
+    private void updateItems(){
+        for (Gift g : giftListView.getItems()) {
+            if (checkedGifts.contains(g)){
+                if (!giftListView.getCheckModel().isChecked(g)){
+                    checkedGifts.remove(g);
+                }
+            }else if (giftListView.getCheckModel().isChecked(g)){
+                    checkedGifts.add(g);
+            }
+        }
     }
 }
