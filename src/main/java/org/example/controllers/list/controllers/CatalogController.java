@@ -94,7 +94,7 @@ public class CatalogController implements Initializable, IListController<Catalog
         });
 
         giftButton.setOnMouseClicked(mouseEvent -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_checklist_generic.fxml"));
             try {
                 SelectListGifts dialogController = new SelectListGifts();
                 fxmlLoader.setController(dialogController);
@@ -215,12 +215,10 @@ public class CatalogController implements Initializable, IListController<Catalog
     @Override
     public void putFields() {
         nombreField.setText(actualCatalog.getName());
-        catalogImage.setImage(new Image(actualCatalog.getPath()));
+        //catalogImage.setImage(new Image(actualCatalog.getPath()));
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
-        if (actualCatalog.getGifts().size()>0) {
-            giftObservableList.addAll(actualCatalog.getGifts());
-            giftListView.getItems().setAll(giftObservableList);
-        }
+        giftObservableList.setAll(actualCatalog.getGifts());
+        giftListView.getItems().setAll(giftObservableList);
     }
 
     @Override
@@ -242,7 +240,8 @@ public class CatalogController implements Initializable, IListController<Catalog
         catalog.setName(nombreField.getText());
         catalog.setCatalogClassification(clasificacionComboBox.getValue());
         catalog.setGifts(giftObservableList);
-        catalog.setPath(catalogImage.getImage().toString());
+        catalog.setPath(actualCatalog.getPath());
+        catalog.setIdCatalog(actualCatalog.getIdCatalog());
     }
 
     private void uploadImage(Stage s){

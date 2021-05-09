@@ -371,7 +371,6 @@ public class ProductController extends ProductParentController implements IListC
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
             propertiesAnchorPane.setDisable(true);
-            deleteButton.setVisible(false);
         }else {
             userClicked = false;
             nombreField.setDisable(false);
@@ -379,7 +378,6 @@ public class ProductController extends ProductParentController implements IListC
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             propertiesAnchorPane.setDisable(false);
-            deleteButton.setVisible(true);
         }
     }
 
