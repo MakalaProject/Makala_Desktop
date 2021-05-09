@@ -40,7 +40,7 @@ public class Request<D> {
         return null;
     }
 
-    public static  void deleteJ(String s, int id){
+    public static  void deleteJ(String s, int id) throws Exception {
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + s + "?id=" + id))
@@ -49,9 +49,9 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            /*if (response.statusCode() == 423 ){
+            if (response.statusCode() == 423 ){
                 throw new Exception(response.body());
-            }*/
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -66,7 +66,6 @@ public class Request<D> {
                 .uri(URI.create(REST_URL + link))
                 .build();
         List<D> list = null;
-        Product product = new Product();
         try {
             HttpResponse<String> response = HttpClient.newBuilder()
                     .authenticator(new Authenticator() {

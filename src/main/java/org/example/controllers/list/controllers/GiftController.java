@@ -137,12 +137,18 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public void delete() {
+       try {
+            Request.deleteJ( "products", actualGift.getIdGift());
+        } catch (Exception e) {
+            errorAlert(e.getMessage());
+            return;
+        }
         deleteFiles = new ArrayList<>();
         for(Picture p: actualGift.getPictures()){
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( "products", actualGift.getIdGift());
+
         if (listView.getItems().size() > 1) {
             giftObservableList.remove(index);
             listView.getSelectionModel().select(0);

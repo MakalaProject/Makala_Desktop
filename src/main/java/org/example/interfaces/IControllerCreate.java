@@ -24,6 +24,13 @@ public interface IControllerCreate<D> {
         alert.setContentText("No puedes introducir un"+identifier.toLowerCase()+"con el mismo nombre");
         alert.showAndWait();
     }
+    default void errorAlert(String errorMessage){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText("Error");
+        alert.setContentText(errorMessage);
+        alert.showAndWait();
+    }
+
     default void setProduct(D product, boolean isCreate){
 
     }

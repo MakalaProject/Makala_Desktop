@@ -1,17 +1,22 @@
 package org.example.controllers.list.controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
+import org.example.controllers.elements.controllers.SelectListDepart;
+import org.example.controllers.elements.controllers.SelectListGifts;
 import org.example.customCells.CatalogListViewCell;
-import org.example.customCells.GiftListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
 import org.example.interfaces.ListToChangeTools;
-import org.example.model.Catalog;
-import org.example.model.CatalogClassification;
-import org.example.model.Gift;
-import org.example.model.GiftProductsToSend;
-import org.example.services.CatalogService;
+import org.example.model.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,9 +27,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import org.example.services.ImageService;
 import org.example.services.Request;
 
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class CatalogController implements Initializable, IListController<Catalog>, IControllerCreate<Catalog> {
@@ -36,6 +45,7 @@ public class CatalogController implements Initializable, IListController<Catalog
     @FXML ListView<Gift> giftListView;
     @FXML TextField searchField;
     @FXML TextField nombreField;
+    @FXML ImageView catalogImage;
     @FXML ComboBox<CatalogClassification> clasificacionComboBox;
     @FXML ToggleSwitch editSwitch;
     @FXML protected AnchorPane fieldsAnchorPane;
@@ -44,7 +54,6 @@ public class CatalogController implements Initializable, IListController<Catalog
     private ObservableList<CatalogClassification> catalogClassifications = FXCollections.observableArrayList(Request.getJ("classifications/catalogs", CatalogClassification[].class,false));
     private ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
     private int index;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -85,7 +94,27 @@ public class CatalogController implements Initializable, IListController<Catalog
         });
 
         giftButton.setOnMouseClicked(mouseEvent -> {
-
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
+            try {
+                SelectListGifts dialogController = new SelectListGifts();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                Catalog sendCatalog = new Catalog();
+                sendCatalog.setGifts(new ArrayList<>(giftObservableList));
+                dialogController.setGiftsList(sendCatalog);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                Catalog catalog = (Catalog) stage.getUserData();
+                if (catalog!= null) {
+                    giftObservableList.setAll(catalog.getGifts());
+                    giftListView.getItems().setAll(giftObservableList);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         //------------------------------------------------CRUD BUTTONS--------------------------------------------------------------------
@@ -116,7 +145,12 @@ public class CatalogController implements Initializable, IListController<Catalog
 
     @Override
     public void delete() {
-        Request.deleteJ( "catalogs", actualCatalog.getIdCatalog());
+        try {
+            Request.deleteJ( "catalogs", actualCatalog.getIdCatalog());
+        } catch (Exception e) {
+            errorAlert(e.getMessage());
+            return;
+        }
         if (listView.getItems().size() > 1) {
             catalogObservableList.remove(index);
             listView.getSelectionModel().select(0);
@@ -132,20 +166,61 @@ public class CatalogController implements Initializable, IListController<Catalog
 
     @Override
     public void update() {
-
+        if(!nombreField.getText().isEmpty()){
+            Catalog catalog = new Catalog();
+            setInfo(catalog);
+            try {
+                Gift returnedCatalog = (Gift) Request.putJ(catalog.getRoute(), catalog);
+                ArrayList<String> pictures = new ArrayList<>();
+                pictures.add(catalog.getPath());
+                List<String> images = ImageService.uploadImages(pictures);
+                catalog.setPath(images.get(0));
+                returnedCatalog = (Gift) Request.putJ(catalog.getRoute(), catalog);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            actualCatalog = catalog;
+            catalogObservableList.set(index, actualCatalog);
+            listView.getSelectionModel().select(actualCatalog);
+            listView.scrollTo(catalog);
+            actualCatalog.setSelectedGifts();
+            giftListView.getItems().setAll(actualCatalog.getGifts());
+        }else {
+            showAlertEmptyFields("Tienes un campo indispensable vacio");
+        }
+        editSwitch.setSelected(false);
+        editView(fieldsAnchorPane, editSwitch, updateButton);
     }
 
 
     @Override
     public boolean existChanges() {
-        return false;
+        if(actualCatalog == null){
+            return false;
+        }
+        Catalog catalog = new Catalog();
+        setInfo(catalog);
+        if (!actualCatalog.equals(catalog)){
+            if(!showAlertUnsavedElement(catalog.getName(), catalog.getIdentifier())) {
+                listView.getSelectionModel().select(catalog);
+            }else{
+                updateView();
+            }
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
     public void putFields() {
         nombreField.setText(actualCatalog.getName());
+        catalogImage.setImage(new Image(actualCatalog.getPath()));
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
-        giftListView.getItems().setAll(actualCatalog.getGifts());
+        if (actualCatalog.getGifts().size()>0) {
+            giftObservableList.addAll(actualCatalog.getGifts());
+            giftListView.getItems().setAll(giftObservableList);
+        }
     }
 
     @Override
@@ -166,6 +241,28 @@ public class CatalogController implements Initializable, IListController<Catalog
     public void setInfo(Catalog catalog) {
         catalog.setName(nombreField.getText());
         catalog.setCatalogClassification(clasificacionComboBox.getValue());
-        new ListToChangeTools<Gift,Integer>().setToDeleteItems(giftObservableList, actualCatalog.getGifts());
+        catalog.setGifts(giftObservableList);
+        catalog.setPath(catalogImage.getImage().toString());
+    }
+
+    private void uploadImage(Stage s){
+        FileChooser fileChooser = new FileChooser();
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg
+                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG
+                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng
+                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(s);
+        if (file != null){
+            Image img = new Image(file.toURI().toString());
+            catalogImage.setImage(img);
+        }
     }
 }

@@ -56,7 +56,12 @@ public abstract class UserParentController <D extends User> extends UserGenericC
 
     @Override
     public void delete() {
-        Request.deleteJ( actualUser.getRoute(), actualUser.getIdUser());
+        try {
+            Request.deleteJ( actualUser.getRoute(), actualUser.getIdUser());
+        } catch (Exception e) {
+            errorAlert(e.getMessage());
+            return;
+        }
         if (listView.getItems().size() > 1) {
             userObservableList.remove(actualUser);
             listView.getSelectionModel().select(0);

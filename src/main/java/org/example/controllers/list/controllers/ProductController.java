@@ -159,12 +159,18 @@ public class ProductController extends ProductParentController implements IListC
 
     @Override
     public void delete() {
+
+        try {
+            Request.deleteJ( "products", actualProduct.getIdProduct());
+        } catch (Exception e) {
+            errorAlert(e.getMessage());
+            return;
+        }
         deleteFiles = new ArrayList<>();
         for(Picture p: actualProduct.getPictures()){
             deleteFiles.add(p.getPath());
         }
         ImageService.deleteImages(deleteFiles);
-        Request.deleteJ( "products", actualProduct.getIdProduct());
         if (listView.getItems().size() > 1) {
             productObservableList.remove(index);
             selectClassification();
