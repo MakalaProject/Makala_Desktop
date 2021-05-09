@@ -3,6 +3,8 @@ package org.example.services;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.example.exceptions.ProductDeleteException;
+import org.example.exceptions.ProductErrorRequest;
 import org.example.model.products.Product;
 
 import java.io.IOException;
@@ -19,7 +21,7 @@ import java.util.List;
 public class Request<D> {
     public static final String REST_URL = "http://25.4.107.19:9080/";
 
-    public static Object putJ(String link, Object ob) throws Exception {
+    public static Object putJ(String link, Object ob) throws ProductDeleteException {
         Gson gson = new Gson();
         String jsonString = gson.toJson(ob);
         HttpClient client = HttpClient.newBuilder().build();
@@ -30,8 +32,10 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 500 || response.statusCode() == 400) {
-                throw new Exception();
+            if (response.statusCode() == 500 || response.statusCode() == 400 || response.statusCode() == 423 ) {
+                ProductErrorRequest exception = gson.fromJson(response.body(), ProductErrorRequest.class);
+                exception.setStatus(response.statusCode());
+                throw new ProductDeleteException(exception.getMessage(), exception.getStatus());
             }
             return gson.fromJson(response.body(), ob.getClass());
         } catch (IOException | InterruptedException e) {
@@ -50,7 +54,10 @@ public class Request<D> {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 423 ){
-                throw new Exception(response.body());
+                Gson gson = new Gson();
+                ProductErrorRequest exception = gson.fromJson(response.body(), ProductErrorRequest.class);
+                exception.setStatus(response.statusCode());
+                throw new ProductDeleteException(exception.getMessage(), exception.getStatus());
             }
         } catch (IOException e) {
             e.printStackTrace();

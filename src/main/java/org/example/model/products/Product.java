@@ -22,7 +22,7 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected BigDecimal price;
     protected Integer max;
     protected Integer min;
-    protected Integer stock;
+    protected BigDecimal stock;
 
     protected ArrayList<Picture> pictures;
     protected String route = "products";

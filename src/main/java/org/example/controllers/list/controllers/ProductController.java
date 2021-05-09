@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.ProductParentController;
+import org.example.exceptions.ProductDeleteException;
 import org.example.interfaces.*;
 import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
@@ -26,6 +27,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -195,12 +197,12 @@ public class ProductController extends ProductParentController implements IListC
                         ArrayList<Picture> picturesOriginal = new ArrayList<>(product.getPictures());
                         product.setPictures(new ArrayList<>());
                         Request.putJ(product.getRoute(), product);
-                        product = (Product) Request.find(product.getRoute(), product.getIdProduct(), product.getClass());
+                        returnedProduct = (Product) Request.find(product.getRoute(), product.getIdProduct(), product.getClass());
                         List<String> urls = ImageService.uploadImages(files);
                         files = urls;
-                        product.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
+                        returnedProduct.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
                         for (String s : urls) {
-                            product.getPictures().add(new Picture(s));
+                            returnedProduct.getPictures().add(new Picture(s));
                         }
                         files = new ArrayList<>();
                         if(deleteFiles.size() != 0){
@@ -217,11 +219,16 @@ public class ProductController extends ProductParentController implements IListC
                                 counter++;
                             }
                             new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualProduct.getPictures(), picturesOriginal);
-                            product.setPictures(picturesOriginal);
+                            returnedProduct.setPictures(picturesOriginal);
                             ImageService.deleteImages(deleteFiles);
                         }
-                        returnedProduct = (Product) Request.putJ(product.getRoute(), product);
-                    } catch (Exception e) {
+                        returnedProduct = (Product) Request.putJ(product.getRoute(), returnedProduct);
+                    } catch (ProductDeleteException e) {
+                        if(e.getStatus() == 423){
+                            errorAlert(e.getMessage());
+                            updateView();
+                            return;
+                        }
                         duplyElementAlert(product.getIdentifier());
                         return;
                     }
@@ -307,7 +314,7 @@ public class ProductController extends ProductParentController implements IListC
         precioField.setText(actualProduct.getPrice().toString());
         minField.setText(actualProduct.getMin().toString());
         maxField.setText(actualProduct.getMax().toString());
-        stockField.setText(actualProduct.getStock().toString());
+        stockField.setText(actualProduct.getStock().divide(new BigDecimal(100)).toString());
         privacidadComboBox.setValue(actualProduct.getPrivacy());
         tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());
@@ -327,7 +334,6 @@ public class ProductController extends ProductParentController implements IListC
     @Override
     public void setInfo(Product product){
         super.setInfo(product);
-        product.setStock(actualProduct.getStock());
         product.setIdProduct(actualProduct.getIdProduct());
     }
 
@@ -371,7 +377,6 @@ public class ProductController extends ProductParentController implements IListC
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
             propertiesAnchorPane.setDisable(true);
-            deleteButton.setVisible(false);
         }else {
             userClicked = false;
             nombreField.setDisable(false);
@@ -379,7 +384,6 @@ public class ProductController extends ProductParentController implements IListC
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             propertiesAnchorPane.setDisable(false);
-            deleteButton.setVisible(true);
         }
     }
 

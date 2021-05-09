@@ -53,7 +53,7 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        giftObservableList.addAll(Request.getJ("/gifts/criteria",Gift[].class, true));
+        giftObservableList.addAll(Request.getJ("/gifts/criteria-basic",Gift[].class, true));
         super.initialize(url, resourceBundle);
         showList(FXCollections.observableList(giftObservableList), listView, GiftListViewCell.class);
         FilteredList<Gift> filteredGifts = new FilteredList<>(giftObservableList, p ->true);

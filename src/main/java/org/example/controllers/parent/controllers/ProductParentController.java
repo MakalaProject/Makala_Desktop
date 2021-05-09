@@ -118,14 +118,11 @@ public abstract class ProductParentController implements Initializable, IControl
                 userClicked = true;
             }
         });
-
-
-
         //Verifications with regex
         maxField.focusedProperty().addListener(new FocusVerificationFields(maxField, true, 3));
         minField.focusedProperty().addListener(new FocusVerificationFields(minField, true, 3));
-        stockField.focusedProperty().addListener(new FocusVerificationFields(stockField, false, 3));
-        stockField.textProperty().addListener(new ChangedVerificationFields(stockField, false, 3));
+        stockField.focusedProperty().addListener(new FocusVerificationFields(stockField, true, 3, 2));
+        stockField.textProperty().addListener(new ChangedVerificationFields(stockField, true, 3, 2));
         precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
         maxField.textProperty().addListener(new ChangedVerificationFields(maxField, true, 3));
         minField.textProperty().addListener(new ChangedVerificationFields(minField, true, 3));
@@ -178,7 +175,7 @@ public abstract class ProductParentController implements Initializable, IControl
 
     public void setInfo(Product product){
         product.setName(nombreField.getText());
-        product.setStock(Integer.parseInt(stockField.getText()));
+        product.setStock(new BigDecimal(stockField.getText()).multiply(new BigDecimal(100)));
         product.setMax(Integer.parseInt(maxField.getText()));
         product.setMin(Integer.parseInt(minField.getText()));
         product.setPrice(new BigDecimal(precioField.getText()));
