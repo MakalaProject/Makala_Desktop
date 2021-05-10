@@ -25,4 +25,5 @@ public class RibbonProductToSend extends GiftProductsParent{
     public String toString(){
         return this.product.getName();
     }
+
 }

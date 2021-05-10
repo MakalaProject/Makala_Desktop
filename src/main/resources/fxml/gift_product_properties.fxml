@@ -24,7 +24,7 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <ComboBox fx:id="orificioComboBox" layoutX="156.0" layoutY="122.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="156.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="122.0" />
+    <ComboBox fx:id="orificioComboBox" layoutX="157.0" layoutY="169.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="169.0" />
     <TextField fx:id="cantidadField" layoutX="159.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="153.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="67.0">
         <font>
             <Font size="15.0" />
@@ -48,7 +48,7 @@
          <Font name="Roboto Light" size="20.0" />
       </font>
    </Label>
-   <ComboBox fx:id="categoriaComboBox" layoutX="156.0" layoutY="168.0" prefHeight="29.0" prefWidth="197.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" />
+   <ComboBox fx:id="categoriaComboBox" layoutX="157.0" layoutY="122.0" prefHeight="29.0" prefWidth="197.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" />
     <TextField fx:id="altoIntField" disable="true" layoutX="157.0" layoutY="246.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="185.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="157.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="246.0">
         <font>
             <Font size="15.0" />

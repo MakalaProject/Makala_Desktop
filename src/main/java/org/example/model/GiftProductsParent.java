@@ -19,4 +19,6 @@ public class GiftProductsParent  implements IChangeable<Integer> {
     protected Action action;
     protected Integer holeNumber = 1;
     protected boolean toDelete;
+
+
 }
