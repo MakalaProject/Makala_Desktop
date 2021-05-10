@@ -14,6 +14,7 @@ public interface IControllerCreate<D> {
         alert.setTitle("Información incompleta");
         alert.setHeaderText(message);
         alert.setContentText("Por favor verifica los campos");
+        alert.showAndWait();
     }
      void setInfo(D object);
 

@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.GiftParentController;
 import org.example.model.*;
 import org.example.model.products.BoxProduct;
+import org.example.model.products.StaticProduct;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
@@ -23,6 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class GiftCreateController extends GiftParentController {
 
@@ -36,6 +38,8 @@ public class GiftCreateController extends GiftParentController {
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
                 Gift gift = new Gift();
+                    ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
+                    actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
                     setInfo(gift);
                     Gift newGift = null;
                     try {

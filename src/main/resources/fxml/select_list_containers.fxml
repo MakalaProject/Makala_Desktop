@@ -9,7 +9,7 @@
     <ListView fx:id="productListView" layoutY="52.0" prefHeight="352.0" prefWidth="362.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         
     </ListView>
-   <Label fx:id="titleLabel" layoutX="103.0" layoutY="4.0" text="Contenedores" textFill="WHITE" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="4.0">
+   <Label fx:id="titleLabel" layoutX="120.0" text="Productos" textFill="WHITE" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="0.0">
       <font>
          <Font name="Roboto Light" size="20.0" />
       </font>

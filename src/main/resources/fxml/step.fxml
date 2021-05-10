@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="561.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.gift.subcontrollers.GiftProductPropertiesController">
+    <AnchorPane prefHeight="50.0" prefWidth="385.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Label fx:id="titleLabel" layoutX="75.0" layoutY="11.0" prefHeight="28.0" prefWidth="206.0" text="Paso" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="11.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="307.0" layoutY="36.0" selectionFill="BLACK" size="30" text="" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.428571701049805" AnchorPane.topAnchor="8.0" />
+            <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="16.0" layoutY="35.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="9.285715103149414" />
+        </children>
+    </AnchorPane>
+    <ImageView fx:id="catalogImage" fitHeight="189.0" fitWidth="266.0" layoutX="142.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="69.0">
+        <effect>
+            <DropShadow />
+        </effect>
+        <image>
+            <Image url="@../Images/catalog.png" />
+        </image>
+    </ImageView>
+    <Label layoutX="183.0" layoutY="281.0" prefHeight="28.0" prefWidth="124.0" text="Instrucciones" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="183.0" AnchorPane.topAnchor="281.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+   <TextArea layoutX="14.0" layoutY="329.0" prefHeight="220.0" prefWidth="375.0">
+      <padding>
+         <Insets right="5.0" top="3.0" />
+      </padding></TextArea>
+</AnchorPane>

@@ -203,13 +203,16 @@ public class GiftController extends GiftParentController implements IListControl
                 return;
             }
             gift.setPictures(returnedGift.getPictures());
-            actualGift = gift;
+            actualGift.setPictures(gift.getPictures());
+            actualGift.setPrice(gift.getPrice());
             pictureList = new ArrayList<>(gift.getPictures());
             giftObservableList.set(index, actualGift);
             listView.getSelectionModel().select(actualGift);
             listView.scrollTo(gift);
             actualGift.setSelectedProducts();
             showProductsList();
+            precioField.setText(actualGift.getPrice().toString());
+            privacyProduct();
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
@@ -231,7 +234,6 @@ public class GiftController extends GiftParentController implements IListControl
                 actualGift = object;
                 giftObservableList.add(object);
                 userClicked = false;
-                //comboBox.setValue(object.getProductClassDto().getProductType());
                 showList(giftObservableList,listView,GiftListViewCell.class);
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
@@ -244,6 +246,7 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public void putFields() {
+        actualGift.sortList();
         nombreField.setText(actualGift.getName());
         precioField.setText(actualGift.getPrice().toString());
         laborCostField.setText(actualGift.getLaborPrice().toString());
@@ -267,7 +270,7 @@ public class GiftController extends GiftParentController implements IListControl
         if(actualGift.getContainer() == null) {
             actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
             if (actualGift.getStaticProducts() != null) {
-                ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getId()).collect(Collectors.toList()));
+                ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
                 actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
             }
             containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
@@ -287,21 +290,22 @@ public class GiftController extends GiftParentController implements IListControl
     }
 
     private void privacyProduct() {
+        userClicked = false;
         if (!actualGift.getPrivacy().equals("Privado")){
-            userClicked = false;
             nombreField.setDisable(true);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicGift);
             containerButton.setDisable(true);
             productsAnchorPane.setDisable(true);
         }else {
-            userClicked = false;
             nombreField.setDisable(false);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             containerButton.setDisable(false);
             productsAnchorPane.setDisable(false);
         }
+
+        privacidadComboBox.getSelectionModel().select(actualGift.getPrivacy());
     }
 
     @Override

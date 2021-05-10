@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
-<?import org.controlsfx.control.*?>
 
 <SplitPane fx:id="principalSplitPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="943.0" prefWidth="535.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.GiftCreateController">
     <items>
@@ -158,7 +157,7 @@
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="laborCostField" disable="true" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="241.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                  <TextField fx:id="laborCostField" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="241.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -181,15 +180,10 @@
                         </ImageView>
                         <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="122.4285717010498" AnchorPane.topAnchor="4.285715103149414">
+                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="483.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="20.428571701049805" AnchorPane.topAnchor="4.285715103149414">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></FontAwesomeIconView>
-                                <ToggleSwitch fx:id="editSwitch" layoutX="410.0" layoutY="10.0" prefWidth="90.0" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
-                                    <font>
-                                        <Font name="Roboto Thin" size="13.0" />
-                                    </font>
-                                </ToggleSwitch>
                             </children>
                         </AnchorPane>
                         <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="394.0" layoutY="246.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="94.42857170104992" AnchorPane.topAnchor="220.2857151031494">

@@ -174,7 +174,7 @@
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="laborCostField" disable="true" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                  <TextField fx:id="laborCostField" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
                      <font>
                         <Font size="15.0" />
                      </font>
