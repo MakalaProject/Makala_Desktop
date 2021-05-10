@@ -25,10 +25,7 @@ import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IPictureController;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.*;
-import org.example.model.products.Action;
-import org.example.model.products.BoxProduct;
-import org.example.model.products.Product;
-import org.example.model.products.StaticProduct;
+import org.example.model.products.*;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -38,6 +35,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class GiftParentController implements Initializable, IPictureController, IControllerCreate<Gift> {
 
@@ -103,7 +101,8 @@ public class GiftParentController implements Initializable, IPictureController, 
             propertiesGiftProducts(resourceRibbons,false, internalRibbonsListView.getSelectionModel().getSelectedItem(), actualGift.getRibbons(), internalRibbonsListView);
         });
         internalProductsListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualGift.getRibbons(), internalRibbonsListView);
+            propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualGift.getStaticProducts(), internalRibbonsListView);
+            checkInternalProducts();
         });
 
 
@@ -120,31 +119,16 @@ public class GiftParentController implements Initializable, IPictureController, 
         });
 
         productsButton.setOnMouseClicked(mouseEvent -> {
-            ArrayList<Product> products = new ArrayList<>();
-            if (actualGift.getStaticProducts() != null) {
-                for (GiftProductsToSend product : actualGift.getStaticProducts()) {
-                    products.add(new Product(product.getProduct().getIdProduct()));
-                }
-            }else {
-                actualGift.setStaticProducts(new ArrayList<>());
-            }
-            Product product = loadDialog(internalProducts, FXCollections.observableArrayList(products));
+            Product product = loadDialog(internalProducts, FXCollections.observableArrayList());
             if (product != null) {
                 StaticProduct staticProduct = new StaticProduct(product.getIdProduct(), product.getName());
                 propertiesGiftProducts(resourceProducts,true, new GiftProductsToSend(staticProduct), actualGift.getStaticProducts(),internalProductsListView);
             }
+            checkInternalProducts();
         });
 
         papersButton.setOnMouseClicked(mouseEvent -> {
-            ArrayList<Product> papers = new ArrayList<>();
-            if (actualGift.getPapers() != null) {
-                for (PaperProductToSend paper : actualGift.getPapers()) {
-                    papers.add(new Product(paper.getProduct().getIdProduct()));
-                }
-            }else {
-                actualGift.setPapers(new ArrayList<>());
-            }
-            Product product = loadDialog(papersProducts, FXCollections.observableArrayList(papers));
+            Product product = loadDialog(papersProducts, FXCollections.observableArrayList());
             if (product != null) {
                 propertiesGiftProducts(resourcePapers,true, new PaperProductToSend(product), actualGift.getPapers(),internalPapersListView);
             }
@@ -172,15 +156,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         });
 
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
-            ArrayList<Product> ribbons = new ArrayList<>();
-            if (actualGift.getRibbons() != null) {
-                for (RibbonProductToSend ribbon : actualGift.getRibbons()) {
-                    ribbons.add(new Product(ribbon.getProduct().getIdProduct()));
-                }
-            }else {
-                actualGift.setRibbons(new ArrayList<>());
-            }
-            Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList(ribbons));
+            Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
             if (product != null) {
                 propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualGift.getRibbons(), internalRibbonsListView);
             }
@@ -275,6 +251,22 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalRibbonsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualGift.getRibbons()) ).multiply(23.7));
         internalProductsListView.getItems().setAll(actualGift.getStaticProducts());
         internalProductsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualGift.getStaticProducts())).multiply(23.7));
+    }
+    protected void checkInternalProducts(){
+        if (actualGift.getStaticProducts().size() > 0 ){
+            productsButton.setDisable(false);
+        }else {
+            productsButton.setDisable(true);
+        }
+    }
+
+    protected void setExtendedInternalProducts(Gift gift){
+        ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
+        ArrayList<Integer> idRibbons = new ArrayList<>(actualGift.getRibbons().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
+        ArrayList<Integer> idPapers = new ArrayList<>(actualGift.getPapers().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
+        actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
+        actualGift.setInternalRibbons(Request.postArray("products/basics/find-list",idRibbons, RibbonProduct[].class));
+        actualGift.setInternalPapers(Request.postArray("products/basics/find-list",idPapers, PaperProduct[].class));
     }
 
     @Override

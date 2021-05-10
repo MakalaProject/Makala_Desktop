@@ -38,9 +38,8 @@ public class GiftCreateController extends GiftParentController {
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
                 Gift gift = new Gift();
-                    ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
-                    actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
-                    setInfo(gift);
+                setExtendedInternalProducts(gift);
+                setInfo(gift);
                     Gift newGift = null;
                     try {
                         gift.setPictures(new ArrayList<>());

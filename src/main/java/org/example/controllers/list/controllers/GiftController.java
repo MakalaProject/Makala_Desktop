@@ -206,10 +206,10 @@ public class GiftController extends GiftParentController implements IListControl
             actualGift.setPictures(gift.getPictures());
             actualGift.setPrice(gift.getPrice());
             pictureList = new ArrayList<>(gift.getPictures());
+            actualGift.setSelectedProducts();
             giftObservableList.set(index, actualGift);
             listView.getSelectionModel().select(actualGift);
             listView.scrollTo(gift);
-            actualGift.setSelectedProducts();
             showProductsList();
             precioField.setText(actualGift.getPrice().toString());
             privacyProduct();
@@ -261,6 +261,7 @@ public class GiftController extends GiftParentController implements IListControl
         giftRating.setRating(actualGift.getRating());
         giftRating.setOpacity(1);
         showProductsList();
+        checkInternalProducts();
     }
 
     @Override
@@ -269,12 +270,8 @@ public class GiftController extends GiftParentController implements IListControl
         index = giftObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         if(actualGift.getContainer() == null) {
             actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
-            if (actualGift.getStaticProducts() != null) {
-                ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
-                actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
-            }
+            setExtendedInternalProducts(actualGift);
             containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
-
         }
         giftObservableList.set(index, actualGift);
         editSwitch.setSelected(false);
@@ -288,6 +285,8 @@ public class GiftController extends GiftParentController implements IListControl
         fillImageList();
         checkIndex();
     }
+
+
 
     private void privacyProduct() {
         userClicked = false;

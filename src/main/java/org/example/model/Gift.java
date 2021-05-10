@@ -2,9 +2,7 @@ package org.example.model;
 
 import lombok.Data;
 import org.example.interfaces.IChangeable;
-import org.example.model.products.InsideProduct;
-import org.example.model.products.Product;
-import org.example.model.products.StaticProduct;
+import org.example.model.products.*;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -65,10 +63,10 @@ public class Gift implements IChangeable<Integer> {
             totalPrice = totalPrice.add(giftProductsToSend.getProduct().getPrice().multiply(new BigDecimal(giftProductsToSend.amount)));
         }
         for (RibbonProductToSend ribbonProductToSend : ribbons){
-            totalPrice = totalPrice.add(ribbonProductToSend.getLengthCm().divide(new BigDecimal(10)).multiply(new BigDecimal(ribbonProductToSend.amount)));
+            totalPrice = totalPrice.add(ribbonProductToSend.getLengthCm().divide(new BigDecimal(100)).multiply(ribbonProductToSend.getProduct().getPrice()).multiply(new BigDecimal(ribbonProductToSend.amount)));
         }
         for (PaperProductToSend paperProductToSend : papers){
-            totalPrice = totalPrice.add(paperProductToSend.getHeightCm().multiply(paperProductToSend.getWidthCm()).divide(new BigDecimal(10000)).multiply(new BigDecimal(paperProductToSend.amount)));
+            totalPrice = totalPrice.add(paperProductToSend.getHeightCm().multiply(paperProductToSend.getWidthCm()).divide(new BigDecimal(10000)).multiply(paperProductToSend.getProduct().getPrice()).multiply(new BigDecimal(paperProductToSend.amount)));
         }
         return totalPrice;
     }
@@ -82,5 +80,24 @@ public class Gift implements IChangeable<Integer> {
     @Override
     public Integer getId() {
         return idGift;
+    }
+
+    public void setInternalRibbons(List<RibbonProduct> ribbons) {
+        for(RibbonProduct p: ribbons){
+            for(RibbonProductToSend p2: this.ribbons){
+                if (p.getId().equals(p2.getProduct().getIdProduct())){
+                    p2.setProduct(p);
+                }
+            }
+        }
+    }
+    public void setInternalPapers(List<PaperProduct> papers) {
+        for(PaperProduct p: papers){
+            for(PaperProductToSend p2: this.papers){
+                if (p.getId().equals(p2.getProduct().getIdProduct())){
+                    p2.setProduct(p);
+                }
+            }
+        }
     }
 }
