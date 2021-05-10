@@ -122,7 +122,6 @@ public class Request<D> {
                         }
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
 
-            JsonParser jsonParser = new JsonParser();
             Gson gson = new Gson();
             return gson.fromJson(response.body(), classType);
 

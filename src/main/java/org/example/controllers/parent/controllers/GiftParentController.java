@@ -33,6 +33,7 @@ import org.example.services.Request;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -279,7 +280,6 @@ public class GiftParentController implements Initializable, IPictureController, 
     @Override
     public void setInfo(Gift gift) {
         gift.setName(nombreField.getText());
-        gift.setPrice(new BigDecimal(precioField.getText()));
         new ListToChangeTools<GiftProductsToSend,Integer>().setToDeleteItems(productsObservableList, actualGift.getStaticProducts());
         new ListToChangeTools<PaperProductToSend,Integer>().setToDeleteItems(papersObservableList, actualGift.getPapers());
         new ListToChangeTools<RibbonProductToSend,Integer>().setToDeleteItems(ribbonsObservableList, actualGift.getRibbons());
@@ -289,16 +289,19 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setPictures(pictureList);
         gift.setContainer(containerExtended);
         gift.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
+        actualGift.setLaborPrice(new BigDecimal(laborCostField.getText()));
         gift.setLaborPrice(new BigDecimal(laborCostField.getText()));
         gift.setIdGift(actualGift.getIdGift());
-        gift.setPrice(actualGift.getPrice());
+        gift.setPrice(obtainPrice(actualGift));
+        gift.setRating(actualGift.getRating());
+        gift.sortList();
     }
     protected BigDecimal obtainPrice(Gift gift){
         BigDecimal price = gift.getProductsTotalPrice().add(actualGift.getLaborPrice());
-        Gain gain = (Gain)Request.getJ("gain-factors/find-one?price="+price, Gain.class);
-        price.divide(gain.getFactor());
-        price.multiply(new BigDecimal(1.16));
-        return price;
+        Gain gain = (Gain)Request.getJ("gain-factors/find-one?price="+price.intValue(), Gain.class);
+        price = price.divide(gain.getFactor(), 2, RoundingMode.HALF_UP);
+        price = price.multiply(new BigDecimal(1.16));
+        return price.setScale(2, RoundingMode.CEILING);
     }
     //--------------------------------------------------------------------------- IMAGE METHODS--------------------------------------------------------------
     @Override

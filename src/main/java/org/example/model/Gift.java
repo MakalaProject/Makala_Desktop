@@ -2,11 +2,13 @@ package org.example.model;
 
 import lombok.Data;
 import org.example.interfaces.IChangeable;
+import org.example.model.products.InsideProduct;
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Data
@@ -41,7 +43,7 @@ public class Gift implements IChangeable<Integer> {
     public void setInternalProducts(List<StaticProduct> staticProducts){
         for(StaticProduct p: staticProducts){
             for(GiftProductsToSend p2: this.staticProducts){
-                if (p.getId().equals(p2.getId())){
+                if (p.getId().equals(p2.getProduct().getIdProduct())){
                     p2.setProduct(p);
                 }
             }
@@ -58,17 +60,23 @@ public class Gift implements IChangeable<Integer> {
     
     public BigDecimal getProductsTotalPrice(){
         BigDecimal totalPrice = new BigDecimal(0);
-        //totalPrice.add(container.getPrice());
+        totalPrice = totalPrice.add(container.getPrice());
         for (GiftProductsToSend giftProductsToSend : staticProducts){
-            totalPrice.add(giftProductsToSend.getProduct().getPrice().multiply(new BigDecimal(giftProductsToSend.amount)));
+            totalPrice = totalPrice.add(giftProductsToSend.getProduct().getPrice().multiply(new BigDecimal(giftProductsToSend.amount)));
         }
         for (RibbonProductToSend ribbonProductToSend : ribbons){
-            totalPrice.add(ribbonProductToSend.getLengthCm().divide(new BigDecimal(10)).multiply(new BigDecimal(ribbonProductToSend.amount)));
+            totalPrice = totalPrice.add(ribbonProductToSend.getLengthCm().divide(new BigDecimal(10)).multiply(new BigDecimal(ribbonProductToSend.amount)));
         }
         for (PaperProductToSend paperProductToSend : papers){
-            totalPrice.add(paperProductToSend.getHeightCm().multiply(paperProductToSend.getWidthCm()).divide(new BigDecimal(10000)).multiply(new BigDecimal(paperProductToSend.amount)));
+            totalPrice = totalPrice.add(paperProductToSend.getHeightCm().multiply(paperProductToSend.getWidthCm()).divide(new BigDecimal(10000)).multiply(new BigDecimal(paperProductToSend.amount)));
         }
         return totalPrice;
+    }
+
+    public void sortList(){
+        ribbons.sort(Comparator.comparing(RibbonProductToSend::getId));
+        papers.sort(Comparator.comparing(PaperProductToSend::getId));
+        staticProducts.sort(Comparator.comparing(GiftProductsToSend::getId));
     }
 
     @Override
