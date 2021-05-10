@@ -320,8 +320,6 @@ public class GiftController extends GiftParentController implements IListControl
 
     }
 
-
-
     private void fillImageList(){
         if(!actualGift.getPictures().isEmpty()){
             for(Picture p : actualGift.getPictures()){

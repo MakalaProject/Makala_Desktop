@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class CatalogListViewCell extends ListCell<Catalog> {
     @FXML
-    Label productName;
+    Label catalogName;
 
     @FXML
     ImageView productImage;
@@ -34,7 +34,7 @@ public class CatalogListViewCell extends ListCell<Catalog> {
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/product_list_view.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/catalog_list_view.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();
@@ -44,7 +44,7 @@ public class CatalogListViewCell extends ListCell<Catalog> {
 
             }
 
-            productName.setText(String.valueOf(catalog.getName()));
+            catalogName.setText(String.valueOf(catalog.getName()));
             /*if(!product.getPictures().isEmpty()){
                 Image image = new Image(product.getPictures().get(0).getPath(), 100, 100, false, false);
                 productImage.setImage(image);

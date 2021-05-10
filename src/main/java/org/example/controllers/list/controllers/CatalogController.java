@@ -1,5 +1,6 @@
 package org.example.controllers.list.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,7 +13,9 @@ import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.controllers.elements.controllers.SelectListDepart;
 import org.example.controllers.elements.controllers.SelectListGifts;
+import org.example.controllers.parent.controllers.CatalogParentController;
 import org.example.customCells.CatalogListViewCell;
+import org.example.customCells.GiftListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
 import org.example.interfaces.ListToChangeTools;
@@ -27,39 +30,37 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import org.example.model.products.Product;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
-public class CatalogController implements Initializable, IListController<Catalog>, IControllerCreate<Catalog> {
-    @FXML FontAwesomeIconView updateButton;
+public class CatalogController extends CatalogParentController implements Initializable, IListController<Catalog>, IControllerCreate<Catalog> {
+
     @FXML FontAwesomeIconView deleteButton;
     @FXML FontAwesomeIconView addButton;
-    @FXML FontAwesomeIconView giftButton;
     @FXML ListView<Catalog> listView;
-    @FXML ListView<Gift> giftListView;
     @FXML TextField searchField;
-    @FXML TextField nombreField;
-    @FXML ImageView catalogImage;
-    @FXML ComboBox<CatalogClassification> clasificacionComboBox;
     @FXML ToggleSwitch editSwitch;
     @FXML protected AnchorPane fieldsAnchorPane;
     Catalog actualCatalog = new Catalog();
     private ObservableList<Catalog> catalogObservableList = FXCollections.observableArrayList();
-    private ObservableList<CatalogClassification> catalogClassifications = FXCollections.observableArrayList(Request.getJ("classifications/catalogs", CatalogClassification[].class,false));
-    private ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
+
+
+
     private int index;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        super.initialize(url, resourceBundle);
         catalogObservableList.setAll(Request.getJ("catalogs",Catalog[].class, false));
-        clasificacionComboBox.getItems().setAll(catalogClassifications);
-        clasificacionComboBox.getSelectionModel().select(0);
         showList(catalogObservableList, listView,CatalogListViewCell.class);
         FilteredList<Catalog> filteredCatalog = new FilteredList<>(FXCollections.observableArrayList(catalogObservableList), p ->true);
         //Check if the list is empty to update the view and show its values at the beggining
@@ -93,29 +94,6 @@ public class CatalogController implements Initializable, IListController<Catalog
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
 
-        giftButton.setOnMouseClicked(mouseEvent -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_checklist_generic.fxml"));
-            try {
-                SelectListGifts dialogController = new SelectListGifts();
-                fxmlLoader.setController(dialogController);
-                Parent parent = fxmlLoader.load();
-                Catalog sendCatalog = new Catalog();
-                sendCatalog.setGifts(new ArrayList<>(giftObservableList));
-                dialogController.setGiftsList(sendCatalog);
-                Scene scene = new Scene(parent);
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
-                stage.showAndWait();
-                Catalog catalog = (Catalog) stage.getUserData();
-                if (catalog!= null) {
-                    giftObservableList.setAll(catalog.getGifts());
-                    giftListView.getItems().setAll(giftObservableList);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
 
         //------------------------------------------------CRUD BUTTONS--------------------------------------------------------------------
 
@@ -140,13 +118,36 @@ public class CatalogController implements Initializable, IListController<Catalog
 
     }
     public void add() {
-
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/catalog_create.fxml"));
+        try {
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+            Catalog object = (Catalog) stage.getUserData();
+            if(object != null){
+                actualCatalog = object;
+                catalogObservableList.add(object);
+                showList(catalogObservableList, listView, CatalogListViewCell.class);
+                listView.getSelectionModel().select(object);
+                listView.scrollTo(object);
+                updateView();
+            }
+            if(actualCatalog != null) {
+                updateView();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete() {
         try {
             Request.deleteJ( "catalogs", actualCatalog.getIdCatalog());
+
         } catch (Exception e) {
             errorAlert(e.getMessage());
             return;
@@ -170,20 +171,22 @@ public class CatalogController implements Initializable, IListController<Catalog
             Catalog catalog = new Catalog();
             setInfo(catalog);
             try {
-                Gift returnedCatalog = (Gift) Request.putJ(catalog.getRoute(), catalog);
-                ArrayList<String> pictures = new ArrayList<>();
-                pictures.add(catalog.getPath());
-                List<String> images = ImageService.uploadImages(pictures);
-                catalog.setPath(images.get(0));
-                returnedCatalog = (Gift) Request.putJ(catalog.getRoute(), catalog);
+                Catalog returnedCatalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
+                if(imageFile == null) {
+                    ArrayList<String> pictures = new ArrayList<>();
+                    pictures.add(catalog.getPath());
+                    List<String> images = ImageService.uploadImages(pictures);
+                    catalog.setPath(images.get(0));
+                    returnedCatalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
             actualCatalog = catalog;
+            actualCatalog.setSelectedGifts();
             catalogObservableList.set(index, actualCatalog);
             listView.getSelectionModel().select(actualCatalog);
             listView.scrollTo(catalog);
-            actualCatalog.setSelectedGifts();
             giftListView.getItems().setAll(actualCatalog.getGifts());
         }else {
             showAlertEmptyFields("Tienes un campo indispensable vacio");
@@ -200,6 +203,9 @@ public class CatalogController implements Initializable, IListController<Catalog
         }
         Catalog catalog = new Catalog();
         setInfo(catalog);
+        catalog.setSelectedGifts();
+        catalog.sortList();
+        actualCatalog.sortList();
         if (!actualCatalog.equals(catalog)){
             if(!showAlertUnsavedElement(catalog.getName(), catalog.getIdentifier())) {
                 listView.getSelectionModel().select(catalog);
@@ -215,7 +221,8 @@ public class CatalogController implements Initializable, IListController<Catalog
     @Override
     public void putFields() {
         nombreField.setText(actualCatalog.getName());
-        //catalogImage.setImage(new Image(actualCatalog.getPath()));
+        imageFile = actualCatalog.getPath();
+        catalogImage.setImage(new Image(actualCatalog.getPath()));
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
         giftObservableList.setAll(actualCatalog.getGifts());
         giftListView.getItems().setAll(giftObservableList);
@@ -239,29 +246,9 @@ public class CatalogController implements Initializable, IListController<Catalog
     public void setInfo(Catalog catalog) {
         catalog.setName(nombreField.getText());
         catalog.setCatalogClassification(clasificacionComboBox.getValue());
-        catalog.setGifts(giftObservableList);
-        catalog.setPath(actualCatalog.getPath());
+        catalog.setGifts(new ArrayList<>(giftObservableList));
+        catalog.setPath(imageFile);
         catalog.setIdCatalog(actualCatalog.getIdCatalog());
     }
 
-    private void uploadImage(Stage s){
-        FileChooser fileChooser = new FileChooser();
-        //Set extension filter
-        FileChooser.ExtensionFilter extFilterJPG
-                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
-        FileChooser.ExtensionFilter extFilterjpg
-                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
-        FileChooser.ExtensionFilter extFilterPNG
-                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
-        FileChooser.ExtensionFilter extFilterpng
-                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
-        fileChooser.getExtensionFilters()
-                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
-        //Show open file dialog
-        File file = fileChooser.showOpenDialog(s);
-        if (file != null){
-            Image img = new Image(file.toURI().toString());
-            catalogImage.setImage(img);
-        }
-    }
 }
