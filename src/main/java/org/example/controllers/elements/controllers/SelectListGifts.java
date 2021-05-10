@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
@@ -36,11 +37,15 @@ public class SelectListGifts implements Initializable {
     FontAwesomeIconView saveButton;
     private Catalog catalog = new Catalog();
     FilteredList<Gift> filteredGifts;
-    private HashSet<Gift> checkedGifts = new HashSet<>();
+    private ArrayList<Gift> checkedGifts = new ArrayList<>();
+
+    private final ObservableList<Gift> gifts = FXCollections.observableList(Request.getJ("gifts/criteria-basic", Gift[].class, true));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        giftListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        giftListView.setItems(gifts);
+        filteredGifts = new FilteredList<>(gifts, p ->true);
         saveButton.setOnMouseClicked(mouseEvent -> {
             new ListToChangeTools<Gift,Integer>().setToDeleteItems(catalog.getGifts(), checkedGifts);
             catalog.setGifts(new ArrayList<>(checkedGifts));
@@ -48,10 +53,9 @@ public class SelectListGifts implements Initializable {
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.setUserData(catalog);
             stage.close();
-
         });
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
-            updateItems();
+            //updateItems();
             filteredGifts.setPredicate(gift -> {
                 if (newValue.isEmpty()) {
                     return true;
@@ -61,21 +65,19 @@ public class SelectListGifts implements Initializable {
             });
             if (!filteredGifts.isEmpty()) {
                 giftListView.setItems(filteredGifts);
-                checkItems(checkedGifts);
+                //checkItems(checkedGifts);
             }
         } );
     }
 
     public void setGiftsList(Catalog catalog){
-        giftListView.setItems(FXCollections.observableArrayList(Request.getJ("gifts/criteria-basic", Gift[].class, true)));
         if(catalog.getGifts().size() > 0 && catalog.getGifts().get(0) != null) {
-            checkItems(new HashSet<>(catalog.getGifts()));
+            checkItems(new ArrayList<>(catalog.getGifts()));
         }
         this.catalog.setGifts(new ArrayList<>(catalog.getGifts()));
-        filteredGifts = new FilteredList<>(giftListView.getItems(), p ->true);
     }
 
-    private void checkItems(HashSet<Gift> gifts){
+    private void checkItems(ArrayList<Gift> gifts){
         for (Gift g : giftListView.getItems()) {
             for (Gift g1 : gifts) {
                 if (g.getId().equals(g1.getId())) {

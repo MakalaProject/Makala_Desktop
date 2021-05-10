@@ -117,7 +117,7 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public boolean existChanges(){
-        /*if(actualGift == null){
+        if(actualGift == null){
             return false;
         }
         Gift gift = new Gift();
@@ -131,8 +131,7 @@ public class GiftController extends GiftParentController implements IListControl
             return true;
         }else {
             return false;
-        }*/
-        return false;
+        }
     }
 
     @Override
@@ -272,12 +271,14 @@ public class GiftController extends GiftParentController implements IListControl
                 actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
             }
             containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
+
         }
         giftObservableList.set(index, actualGift);
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
         privacyProduct();
         putFields();
+        actualGift.setContainer(containerExtended);
         files = new ArrayList<>();
         deleteFiles = new ArrayList<>();
         pictureList = new ArrayList<>();

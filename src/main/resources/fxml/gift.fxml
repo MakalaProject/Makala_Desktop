@@ -38,7 +38,7 @@
                      <children>
                          <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                              <AnchorPane>
-                                 <children>
+                                  <children>
                                      <Label alignment="CENTER" layoutY="2.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                          <font>
                                              <Font name="Roboto Light" size="27.0" />
