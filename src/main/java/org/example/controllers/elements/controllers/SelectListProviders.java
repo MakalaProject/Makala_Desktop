@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class SelectListProviders implements Initializable {
     @FXML
-    ListView<Provider> providerListView;
+    ListView<Provider> productListView;
     @FXML TextField searchField;
     @FXML
     Label titleLabel;
@@ -29,17 +29,17 @@ public class SelectListProviders implements Initializable {
     public void setProvider(Provider provider){
         ObservableList<Provider> providers = FXCollections.observableArrayList(Request.getJ("users/providers",Provider[].class,true));
         providers.removeIf(p -> p.getIdUser().equals(provider.getIdUser()));
-        providerListView.setItems(providers);
+        productListView.setItems(providers);
         providerFilteredList = new FilteredList<>(providers, p ->true);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         titleLabel.setText("Proveedores");
-        providerListView.setOnMouseClicked(mouseEvent -> {
+        productListView.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.setUserData(providerListView.getSelectionModel().getSelectedItem());
+            stage.setUserData(productListView.getSelectionModel().getSelectedItem());
             stage.close();
         });
 
@@ -56,7 +56,7 @@ public class SelectListProviders implements Initializable {
                 } else return provider.getProductClassDto().getProductType().toLowerCase().contains(lowerCaseText);
             });
             if (!providerFilteredList.isEmpty()) {
-                providerListView.setItems(providerFilteredList);
+                productListView.setItems(providerFilteredList);
             }
         } );
     }

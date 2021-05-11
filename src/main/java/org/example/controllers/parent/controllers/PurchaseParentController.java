@@ -1,6 +1,7 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -94,6 +95,10 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         actualPurchase.setIdProvider(provider.getIdUser());
         providerName.setText(provider.getFirstName());
     }
+    public void setProductsList(){
+        productListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualPurchase.getProducts()) ).multiply(23.7));
+        productListView.getItems().setAll(actualPurchase.getProducts());
+    }
 
     public void verifyProducts(){
         providerButton.setDisable(actualPurchase.getProducts().size() > 0);
@@ -107,12 +112,18 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         purchase.setOrderDate(orderDatePicker.getValue());
         new ListToChangeTools<PurchaseProduct,Integer>().setToDeleteItems(purchaseProducts, actualPurchase.getProducts());
         purchase.setProducts(actualPurchase.getProducts());
+        purchase.setPrice(new BigDecimal(priceField.getText()));
+        purchase.setPayMethod(payMethodComboBox.getSelectionModel().getSelectedItem());
         purchase.setIdProvider(provider.getIdUser());
-        purchase.setComment(actualPurchase.getComment());
-        purchase.getComment().setComment(commentTextArea.getText());
+        if (actualPurchase.getComment()!=null) {
+            purchase.setComment(actualPurchase.getComment());
+            purchase.getComment().setComment(commentTextArea.getText());
+        }else if(!commentTextArea.getText().isEmpty()){
+            purchase.setComment(new Comment(commentTextArea.getText()));
+        }
     }
         protected void propertiesGiftProducts( boolean isCreate, PurchaseProduct product){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("purchase_product.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/purchase_product.fxml"));
         try {
             Parent parent = fxmlLoader.load();
             PurchaseProductController dialogController = fxmlLoader.getController();
@@ -133,7 +144,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
                         actualPurchase.getProducts().set(actualPurchase.getProducts().indexOf(productListView.getSelectionModel().getSelectedItem()), purchaseProduct);
                     }
                 }
-                productListView.getItems().setAll(actualPurchase.getProducts());
+                setProductsList();
             }
         } catch (IOException e) {
             e.printStackTrace();

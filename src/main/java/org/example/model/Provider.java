@@ -36,4 +36,9 @@ public class Provider extends User {
     public void setSelectedProducts() {
         products.removeIf(Product::isToDelete);
     }
+    @Override
+    public String toString(){
+        return firstName;
+    }
+
 }

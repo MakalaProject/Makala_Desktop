@@ -30,7 +30,7 @@
                                             </DropShadow>
                                         </effect>
                                     </Label>
-                                    <FontAwesomeIconView fx:id="productsButton" fill="#fffdfd" glyphName="PLUS" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
+                                    <FontAwesomeIconView fx:id="productosButton" fill="#fffdfd" glyphName="PLUS" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
                                         <cursor>
                                             <Cursor fx:constant="HAND" />
                                         </cursor>
@@ -39,7 +39,7 @@
                             </AnchorPane>
                             <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                 <children>
-                                    <ListView fx:id="internalProductsListView" prefHeight="0.0" />
+                                    <ListView fx:id="ProductListView" prefHeight="0.0" />
                                 </children>
                                 <VBox.margin>
                                     <Insets bottom="10.0" />
@@ -63,7 +63,7 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <FontAwesomeIconView fx:id="containerButton" glyphName="EDIT" layoutX="427.0" layoutY="153.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="47.42857170104992" AnchorPane.topAnchor="127.28571510314941" />
+                <FontAwesomeIconView fx:id="providerButton" glyphName="EDIT" layoutX="427.0" layoutY="153.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="47.42857170104992" AnchorPane.topAnchor="127.28571510314941" />
                 <Label layoutX="43.0" layoutY="81.0" prefHeight="28.0" prefWidth="111.0" text="Pago" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="81.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -95,9 +95,9 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <DatePicker layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="264.0" />
-                <DatePicker layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="270.0" />
-                <DatePicker layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="268.0" />
+                <DatePicker id="orderDatePicker" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="264.0" />
+                <DatePicker id="receivedDatePicker" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="270.0" />
+                <DatePicker id="payDatePicker" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="268.0" />
                 <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="271.0" />
                 <Label layoutX="40.0" layoutY="315.0" prefHeight="28.0" prefWidth="137.0" text="Comentario">
                     <font>

@@ -26,6 +26,7 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PurchaseController extends PurchaseParentController implements IListController<Purchase> {
@@ -39,7 +40,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
-        purchaseObservableList.addAll(Request.getJ("/purchases", Purchase[].class, true));
+        purchaseObservableList.setAll(Request.getJ("/purchases", Purchase[].class, true));
         showList(purchaseObservableList, listView, PurchaseListViewCell.class);
         FilteredList<Purchase> filteredPurchases = new FilteredList<>(purchaseObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -201,37 +202,48 @@ public class PurchaseController extends PurchaseParentController implements ILis
                 new DateCell() {
                     @Override public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        setDisable(item.isBefore(actualPurchase.getPayDate()));
+                        setDisable(item.isBefore(actualPurchase.getOrderDate()));
+                    }});
+        payDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isBefore(actualPurchase.getOrderDate()));
+                    }});
+        receivedDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isBefore(actualPurchase.getOrderDate()));
                     }});
         if (actualPurchase.getPayDate() != null){
             payDatePicker.setValue(actualPurchase.getPayDate());
-            payDatePicker.setDayCellFactory(d ->
-                    new DateCell() {
-                        @Override public void updateItem(LocalDate item, boolean empty) {
-                            super.updateItem(item, empty);
-                            setDisable(item.isBefore(actualPurchase.getPayDate()));
-                        }});
         }
         if (actualPurchase.getReceivedDate() != null){
             receivedDatePicker.setValue(actualPurchase.getReceivedDate());
         }
         setProviderData();
+        setProductsList();
+        verifyProducts();
         priceField.setText(actualPurchase.getPrice().toString());
         payMethodComboBox.getSelectionModel().select(actualPurchase.getPayMethod());
-        commentTextArea.setText(actualPurchase.getComment().getComment());
+        if (actualPurchase.getComment() != null){
+            commentTextArea.setText(actualPurchase.getComment().getComment());
+        }
     }
 
     @Override
     public void updateView() {
         actualPurchase = listView.getSelectionModel().getSelectedItem();
         index = purchaseObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+        editSwitch.setSelected(false);
         if (actualPurchase.getReceivedDate() != null){
-            editSwitch.setSelected(false);
             editSwitch.setVisible(false);
             updateButton.setVisible(false);
         }
+        purchaseProducts = new ArrayList<>(actualPurchase.getProducts());
         editView(fieldsAnchorPane, editSwitch, updateButton);
-        provider = (Provider) Request.find("users/providers/find", provider.getIdUser(), Provider.class);
+        provider = (Provider) Request.find("users/providers", actualPurchase.getIdProvider(), Provider.class);
         putFields();
     }
 

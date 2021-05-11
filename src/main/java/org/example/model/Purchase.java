@@ -17,7 +17,7 @@ public class Purchase {
     String payMethod;
     BigDecimal price;
     List<PurchaseProduct> products;
-    Comment comment = new Comment();
+    Comment comment;
     String route = "purchases";
     String identifier = "Compra";
 

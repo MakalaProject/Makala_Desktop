@@ -45,7 +45,7 @@
                                 <FontAwesomeIconView fill="WHITE" glyphName="GIFT" size="20" />
                             </graphic>
                         </JFXButton>
-                        <JFXButton fx:id="catalogosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Catálogo" textFill="WHITE">
+                        <JFXButton fx:id="catalogosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Catálogos" textFill="WHITE">
                             <font>
                                 <Font size="20.0" />
                             </font>
@@ -58,9 +58,25 @@
                                 <Font size="20.0" />
                             </font>
                             <graphic>
-                                <FontAwesomeIconView fill="WHITE" glyphName="USER_FRIENDS" size="20" />
+                                <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
                             </graphic>
                         </JFXButton>
+                  <JFXButton fx:id="comprasButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="205.0" prefHeight="27.0" prefWidth="200.0" text="Compras" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BASKET" size="20" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="caducidadButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="244.0" prefHeight="27.0" prefWidth="200.0" text="Caducidades" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="APPLE" size="20" />
+                     </graphic>
+                  </JFXButton>
                     </children></VBox>
                 <FontAwesomeIconView glyphName="USER" layoutX="82.0" layoutY="68.0" size="50" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="82.28571319580078" AnchorPane.topAnchor="10.0" />
                 <Label layoutX="83.0" layoutY="69.0" text="USER" />

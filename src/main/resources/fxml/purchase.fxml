@@ -50,7 +50,7 @@
                                                     </DropShadow>
                                                 </effect>
                                             </Label>
-                                            <FontAwesomeIconView fx:id="productsButton" fill="#fffdfd" glyphName="PLUS" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
+                                            <FontAwesomeIconView fx:id="productosButton" fill="#fffdfd" glyphName="PLUS" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
                                                 <cursor>
                                                     <Cursor fx:constant="HAND" />
                                                 </cursor>
@@ -59,7 +59,7 @@
                                     </AnchorPane>
                                     <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                         <children>
-                                            <ListView fx:id="internalProductsListView" prefHeight="0.0" />
+                                            <ListView fx:id="productListView" prefHeight="0.0" />
                                         </children>
                                         <VBox.margin>
                                             <Insets bottom="10.0" />
@@ -83,7 +83,7 @@
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                        <FontAwesomeIconView fx:id="containerButton" glyphName="EDIT" layoutX="405.0" layoutY="154.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="65.42857170104992" AnchorPane.topAnchor="128.2857151031494" />
+                        <FontAwesomeIconView fx:id="providerButton" glyphName="EDIT" layoutX="405.0" layoutY="154.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="65.42857170104992" AnchorPane.topAnchor="128.2857151031494" />
                         <Label layoutX="43.0" layoutY="81.0" prefHeight="28.0" prefWidth="111.0" text="Pago" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="81.0">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
@@ -115,8 +115,8 @@
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                  <DatePicker fx:id="dayOrderPicker" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="224.0" />
-                  <DatePicker fx:id="recievedDatePicker" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="230.0" />
+                  <DatePicker fx:id="orderDatePicker" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="224.0" />
+                  <DatePicker fx:id="receivedDatePicker" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="230.0" />
                   <DatePicker fx:id="payDatePicker" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="230.0" />
                   <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="226.0" />
                   <Label layoutX="40.0" layoutY="315.0" prefHeight="28.0" prefWidth="137.0" text="Comentario">
@@ -128,7 +128,7 @@
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="254.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <FontAwesomeIconView fx:id="" glyphName="SHOPPING_BASKET" layoutX="172.0" layoutY="179.57142639160156" nodeOrientation="INHERIT" pickOnBounds="true" size="150" wrappingWidth="187.28571319580078" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="50.0">
+                        <FontAwesomeIconView fx:id="" glyphName="SHOPPING_BASKET" layoutX="173.0" layoutY="180.57142639160156" nodeOrientation="INHERIT" pickOnBounds="true" size="150" wrappingWidth="173.28571319580078" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="172.0" AnchorPane.topAnchor="51.0">
                         </FontAwesomeIconView>
                         <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>

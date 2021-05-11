@@ -25,6 +25,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton catalogosButton;
     @FXML JFXButton regalosButton;
     @FXML JFXButton clientesButton;
+    @FXML JFXButton comprasButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
     @FXML BorderPane principalPane;
@@ -71,6 +72,8 @@ public class HomeController implements Initializable {
         regalosButton.setOnMouseClicked(new HomeLoader("/fxml/gift.fxml","storage"));
 
         clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client"));
+
+        comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase"));
     }
 
     private void loadView(String xmlResource){

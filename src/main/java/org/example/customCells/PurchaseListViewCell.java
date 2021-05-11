@@ -31,7 +31,7 @@ public class PurchaseListViewCell extends ListCell<Purchase> implements IConstru
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/product_list_view.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/purchase_list_view.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();
