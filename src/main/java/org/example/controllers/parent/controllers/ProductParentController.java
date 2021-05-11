@@ -32,6 +32,7 @@ import org.example.services.Request;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -175,7 +176,7 @@ public abstract class ProductParentController implements Initializable, IControl
 
     public void setInfo(Product product){
         product.setName(nombreField.getText());
-        product.setStock(new BigDecimal(stockField.getText()).multiply(new BigDecimal(100)));
+        product.setStock(new BigDecimal(stockField.getText()).multiply(new BigDecimal(100)).setScale(0));
         product.setMax(Integer.parseInt(maxField.getText()));
         product.setMin(Integer.parseInt(minField.getText()));
         product.setPrice(new BigDecimal(precioField.getText()));
