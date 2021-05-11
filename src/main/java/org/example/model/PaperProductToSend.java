@@ -25,4 +25,8 @@ public class PaperProductToSend extends GiftProductsParent{
     public String toString(){
         return this.product.getName();
     }
+
+    public Integer getIdProduct(){
+        return this.product.getIdProduct();
+    }
 }

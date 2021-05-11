@@ -25,5 +25,9 @@ public class GiftProductsToSend extends GiftProductsParent{
         return this.product.getName();
     }
 
+    public Integer getIdProduct(){
+        return this.product.getIdProduct();
+    }
+
 
 }
