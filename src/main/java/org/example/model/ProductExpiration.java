@@ -10,6 +10,6 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class ProductExpiration {
-    LocalDate expityDate;
+    LocalDate expiryDate;
     BigDecimal amount;
 }

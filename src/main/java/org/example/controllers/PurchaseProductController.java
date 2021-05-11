@@ -10,7 +10,6 @@ import org.example.interfaces.IControllerCreate;
 import org.example.model.ProductExpiration;
 import org.example.model.PurchaseProduct;
 import org.example.model.products.Action;
-import org.example.model.products.Product;
 
 import java.math.BigDecimal;
 import java.net.URL;
@@ -34,7 +33,7 @@ public class PurchaseProductController implements Initializable, IControllerCrea
             expiryDateLabel.setVisible(false);
         }else {
             if (product.getPackageP()!= null){
-                expiryDatePicker.setValue(product.getPackageP().getExpityDate());
+                expiryDatePicker.setValue(product.getPackageP().getExpiryDate());
             }
         }
         cantidadField.setText(product.getAmount().toString());
