@@ -27,6 +27,7 @@ module org.example {
     opens org.example.model.Adress;
     opens org.example.controllers.gift.subcontrollers;
     opens org.example.exceptions;
+    opens org.example.controllers.client.subcontrollers;
 
 
     exports org.example;
@@ -44,4 +45,5 @@ module org.example {
     exports org.example.controllers.parent.controllers;
     exports org.example.controllers.gift.subcontrollers;
     exports org.example.exceptions;
+    exports org.example.controllers.client.subcontrollers;
 }

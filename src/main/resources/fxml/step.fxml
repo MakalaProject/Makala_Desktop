@@ -33,7 +33,7 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-   <TextArea layoutX="14.0" layoutY="329.0" prefHeight="220.0" prefWidth="375.0">
+   <TextArea layoutX="14.0" layoutY="329.0" prefHeight="220.0" prefWidth="467.0">
       <padding>
          <Insets right="5.0" top="3.0" />
       </padding></TextArea>
