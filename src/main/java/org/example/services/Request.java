@@ -1,28 +1,39 @@
 package org.example.services;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.example.exceptions.ProductDeleteException;
 import org.example.exceptions.ProductErrorRequest;
 import org.example.model.products.Product;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class Request<D> {
     public static final String REST_URL = "http://25.4.107.19:9080/";
 
     public static Object putJ(String link, Object ob) throws ProductDeleteException {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+                    public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                            throws JsonParseException {
+                        return LocalDate.parse(json.getAsString(),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
+                    }
+                })
+                .create();
         String jsonString = gson.toJson(ob);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
@@ -67,6 +78,22 @@ public class Request<D> {
     }
 
     public static <D> List<D> getJ(String link, Class<D[]> classType, boolean isPage){
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+                    public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                            throws JsonParseException {
+                        return LocalDateTime.parse(json.getAsString(),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").withLocale(Locale.ENGLISH));
+                    }
+                })
+                .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+                    public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                            throws JsonParseException {
+                        return LocalDate.parse(json.getAsString(),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
+                    }
+                })
+                .create();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
@@ -88,13 +115,13 @@ public class Request<D> {
             JsonParser jsonParser = new JsonParser();
             if (isPage){
                 JsonObject body = (JsonObject) jsonParser.parse(response.body());
-                D[] arrays = new Gson().fromJson(body.getAsJsonArray("content"), classType);
+                D[] arrays = gson.fromJson(body.getAsJsonArray("content"), classType);
                 list = new ArrayList<D>(Arrays.asList(arrays));
-                Page<D> userResponseEntity = new Gson().fromJson(response.body(), Page.class);
+                Page<D> userResponseEntity = gson.fromJson(response.body(), Page.class);
                 list = new ArrayList<D>(Arrays.asList(arrays));
                 userResponseEntity.setContent(list);
             }else {
-                D[] arrays = new Gson().fromJson(response.body(), classType);
+                D[] arrays = gson.fromJson(response.body(), classType);
                 list = new ArrayList<D>(Arrays.asList(arrays));
             }
 
@@ -131,7 +158,24 @@ public class Request<D> {
         return null;
     }
 
+
     public static Object find(String link, int id, Class<?> dClass){
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+                    public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                            throws JsonParseException {
+                        return LocalDateTime.parse(json.getAsString(),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").withLocale(Locale.ENGLISH));
+                    }
+                })
+                .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+                    public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                            throws JsonParseException {
+                        return LocalDate.parse(json.getAsString(),
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
+                    }
+                })
+                .create();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
@@ -148,7 +192,6 @@ public class Request<D> {
                             );
                         }
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
-            Gson gson = new Gson();
             return gson.fromJson(response.body(), dClass);
         } catch (Exception e) {
             e.printStackTrace();

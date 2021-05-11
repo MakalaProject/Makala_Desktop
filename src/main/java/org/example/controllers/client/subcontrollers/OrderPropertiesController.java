@@ -42,7 +42,7 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
     }
 
     public void setOrder(Order order){
-        this.order =(Order)Request.find("orders", order.getIdOrder(), Order.class);
+        this.order = (Order)Request.find("orders", order.getIdOrder(), Order.class);
         putFields();
     }
 
