@@ -11,13 +11,14 @@ import org.example.model.Catalog;
 import org.example.model.Comment;
 import org.example.model.GiftEditable;
 import org.example.model.Order;
+import org.example.services.Request;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class OrderPropertiesController implements Initializable, IControllerCreate<Catalog> {
     @FXML TextField statusField;
-    @FXML TextField precioField;
+    @FXML TextField envioPrecioField;
     @FXML TextField totalField;
     @FXML TextField fechaEstimadaField;
     @FXML TextField fechaAvanceField;
@@ -41,7 +42,8 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
     }
 
     public void setOrder(Order order){
-        this.order =order;
+        this.order =(Order)Request.find("orders", order.getIdOrder(), Order.class);
+        putFields();
     }
 
     @Override
@@ -50,6 +52,20 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
     }
 
     public void putFields(){
-
+        giftsEditableObservableList.setAll(order.getGifts());
+        commentsEditableObservableList.setAll(order.getComments());
+        statusField.setText(order.getOrderStatus().getStatus());
+        envioPrecioField.setText(order.getShippingPrice().toString());
+        totalField.setText(order.getTotalPrice().toString());
+        fechaEstimadaField.setText(order.getEstimatedShippingDate().toString());
+        fechaAvanceField.setText(order.getAdvanceDate().toString());
+        fechaEnvioField.setText(order.getShippingDate().toString());
+        fechaPagoField.setText(order.getTotalPaymentDate().toString());
+        fechaCompraField.setText(order.getDate().toString());
+        estadoField.setText(order.getAddress().getCity().getState().getName());
+        ciudadField.setText(order.getAddress().getCity().getName());
+        direccionField.setText(order.getAddress().getAddress());
+        giftListView.setItems(giftsEditableObservableList);
+        commentsListView.setItems(commentsEditableObservableList);
     }
 }
