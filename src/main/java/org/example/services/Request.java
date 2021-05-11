@@ -165,7 +165,7 @@ public class Request<D> {
                     public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
                             throws JsonParseException {
                         return LocalDateTime.parse(json.getAsString(),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").withLocale(Locale.ENGLISH));
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").withLocale(Locale.ENGLISH));
                     }
                 })
                 .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
