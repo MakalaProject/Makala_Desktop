@@ -47,6 +47,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected TextField laborCostField;
     @FXML protected ImageView giftImage;
     @FXML protected AnchorPane fieldsAnchorPane;
+    @FXML protected AnchorPane productsAnchorPane;
     @FXML protected FontAwesomeIconView deletePicture;
     @FXML protected FontAwesomeIconView nextPicture;
     @FXML protected FontAwesomeIconView productsButton;
