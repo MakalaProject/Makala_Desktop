@@ -1,5 +1,7 @@
 package org.example.controllers.list.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,6 +26,8 @@ public class ClientController extends UserParentController<Client> {
     @FXML ListView<Order> historyList;
     @FXML TextField correoField;
 
+
+    ObservableList<Order> ordersObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         updateButton.setVisible(false);
@@ -92,7 +96,9 @@ public class ClientController extends UserParentController<Client> {
     @Override
     public void putFields() {
         super.putFields();
+        ordersObservableList.addAll(Request.getJ("orders/basics", Order[].class, false));
         correoField.setText(actualUser.getMail());
+        historyList.setItems(ordersObservableList);
         //history
     }
 
