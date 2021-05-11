@@ -26,4 +26,9 @@ public class Order {
     protected Address address;
     protected ArrayList<Comment> comments;
     protected ArrayList<GiftEditable> gifts;
+
+    @Override
+    public String toString(){
+        return "Compra: " + this.getIdOrder().toString();
+    }
 }

@@ -1,5 +1,6 @@
 package org.example.controllers.client.subcontrollers;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -58,14 +59,25 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
         envioPrecioField.setText(order.getShippingPrice().toString());
         totalField.setText(order.getTotalPrice().toString());
         fechaEstimadaField.setText(order.getEstimatedShippingDate().toString());
+
+        if(order.getAdvanceDate() != null)
         fechaAvanceField.setText(order.getAdvanceDate().toString());
+
         fechaEnvioField.setText(order.getShippingDate().toString());
+        if(order.getTotalPaymentDate() != null)
+
         fechaPagoField.setText(order.getTotalPaymentDate().toString());
         fechaCompraField.setText(order.getDate().toString());
         estadoField.setText(order.getAddress().getCity().getState().getName());
         ciudadField.setText(order.getAddress().getCity().getName());
         direccionField.setText(order.getAddress().getAddress());
-        giftListView.setItems(giftsEditableObservableList);
-        commentsListView.setItems(commentsEditableObservableList);
+        showOrderLists();
+    }
+
+    protected void showOrderLists() {
+        giftListView.getItems().setAll(giftsEditableObservableList);
+        giftListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(order.getGifts())).multiply(23.7));
+        commentsListView.getItems().setAll(commentsEditableObservableList);
+        commentsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(order.getComments())).multiply(23.7));
     }
 }
