@@ -60,21 +60,27 @@ public class Gift implements IChangeable<Integer> {
         BigDecimal totalPrice = new BigDecimal(0);
         totalPrice = totalPrice.add(container.getPrice());
         for (GiftProductsToSend giftProductsToSend : staticProducts){
-            totalPrice = totalPrice.add(giftProductsToSend.getProduct().getPrice().multiply(new BigDecimal(giftProductsToSend.amount)));
+            if (!giftProductsToSend.toDelete) {
+                totalPrice = totalPrice.add(giftProductsToSend.getProduct().getPrice().multiply(new BigDecimal(giftProductsToSend.amount)));
+            }
         }
         for (RibbonProductToSend ribbonProductToSend : ribbons){
-            totalPrice = totalPrice.add(ribbonProductToSend.getLengthCm().divide(new BigDecimal(100)).multiply(ribbonProductToSend.getProduct().getPrice()).multiply(new BigDecimal(ribbonProductToSend.amount)));
+            if (!ribbonProductToSend.toDelete) {
+                totalPrice = totalPrice.add(ribbonProductToSend.getLengthCm().divide(new BigDecimal(100)).multiply(ribbonProductToSend.getProduct().getPrice()).multiply(new BigDecimal(ribbonProductToSend.amount)));
+            }
         }
         for (PaperProductToSend paperProductToSend : papers){
-            totalPrice = totalPrice.add(paperProductToSend.getHeightCm().multiply(paperProductToSend.getWidthCm()).divide(new BigDecimal(10000)).multiply(paperProductToSend.getProduct().getPrice()).multiply(new BigDecimal(paperProductToSend.amount)));
+            if (!paperProductToSend.toDelete) {
+                totalPrice = totalPrice.add(paperProductToSend.getHeightCm().multiply(paperProductToSend.getWidthCm()).divide(new BigDecimal(10000)).multiply(paperProductToSend.getProduct().getPrice()).multiply(new BigDecimal(paperProductToSend.amount)));
+            }
         }
         return totalPrice;
     }
 
     public void sortList(){
-        ribbons.sort(Comparator.comparing(RibbonProductToSend::getId));
-        papers.sort(Comparator.comparing(PaperProductToSend::getId));
-        staticProducts.sort(Comparator.comparing(GiftProductsToSend::getId));
+        ribbons.sort(Comparator.comparing(RibbonProductToSend::getIdProduct));
+        papers.sort(Comparator.comparing(PaperProductToSend::getIdProduct));
+        staticProducts.sort(Comparator.comparing(GiftProductsToSend::getIdProduct));
     }
 
     @Override

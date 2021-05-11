@@ -47,7 +47,6 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected TextField laborCostField;
     @FXML protected ImageView giftImage;
     @FXML protected AnchorPane fieldsAnchorPane;
-    @FXML protected AnchorPane productsAnchorPane;
     @FXML protected FontAwesomeIconView deletePicture;
     @FXML protected FontAwesomeIconView nextPicture;
     @FXML protected FontAwesomeIconView productsButton;
@@ -209,7 +208,7 @@ public class GiftParentController implements Initializable, IPictureController, 
                     giftProducts.add((T)giftProductsToSend);
                 }else {
                     if (giftProductsToSend.getAction() == Action.DELETE){
-                        giftProducts.remove(listViewProducts.getSelectionModel().getSelectedItem());
+                        giftProducts.removeIf(g -> g.getId().equals(giftProductsToSend.getId()));
                     }else {
                         giftProducts.set(giftProducts.indexOf(listViewProducts.getSelectionModel().getSelectedItem()), (T)giftProductsToSend);
                     }
@@ -254,9 +253,9 @@ public class GiftParentController implements Initializable, IPictureController, 
     }
     protected void checkInternalProducts(){
         if (actualGift.getStaticProducts().size() > 0 ){
-            productsButton.setDisable(false);
+            containerButton.setDisable(true);
         }else {
-            productsButton.setDisable(true);
+            containerButton.setDisable(false);
         }
     }
 
@@ -267,6 +266,8 @@ public class GiftParentController implements Initializable, IPictureController, 
         actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
         actualGift.setInternalRibbons(Request.postArray("products/basics/find-list",idRibbons, RibbonProduct[].class));
         actualGift.setInternalPapers(Request.postArray("products/basics/find-list",idPapers, PaperProduct[].class));
+        containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
+        gift.setContainer(containerExtended);
     }
 
     @Override

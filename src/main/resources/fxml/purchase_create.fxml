@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="869.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.PurchaseCreateController">
+    <children>
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" prefWidth="476.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
+            <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefWidth="499.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                <AnchorPane fx:id="productsAnchorPane" layoutY="367.0" prefHeight="220.0" prefWidth="499.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="367.0">
+                    <children>
+                        <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                            <AnchorPane>
+                                <children>
+                                    <Label alignment="CENTER" layoutY="2.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <font>
+                                            <Font name="Roboto Light" size="27.0" />
+                                        </font>
+                                        <effect>
+                                            <DropShadow blurType="TWO_PASS_BOX">
+                                                <color>
+                                                    <Color red="0.5" green="0.5" blue="0.5" />
+                                                </color>
+                                            </DropShadow>
+                                        </effect>
+                                    </Label>
+                                    <FontAwesomeIconView fx:id="productsButton" fill="#fffdfd" glyphName="PLUS" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </FontAwesomeIconView>
+                                </children>
+                            </AnchorPane>
+                            <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <children>
+                                    <ListView fx:id="internalProductsListView" prefHeight="0.0" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                            </VBox>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <Label layoutX="45.0" layoutY="23.0" prefHeight="28.0" prefWidth="113.0" text="Día de orden" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="341.0" AnchorPane.topAnchor="23.0">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="42.0" layoutY="129.0" prefHeight="28.0" prefWidth="123.0" text="Proveedor" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="129.0">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="providerName" alignment="CENTER" layoutX="174.0" layoutY="129.0" prefHeight="30.0" prefWidth="242.0" style="-fx-border-color: #A39D9B;" text="Provider" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="129.0">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <FontAwesomeIconView fx:id="containerButton" glyphName="EDIT" layoutX="427.0" layoutY="153.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="47.42857170104992" AnchorPane.topAnchor="127.28571510314941" />
+                <Label layoutX="43.0" layoutY="81.0" prefHeight="28.0" prefWidth="111.0" text="Pago" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="344.0" AnchorPane.topAnchor="81.0">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <ComboBox fx:id="payMethodComboBox" layoutX="177.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="277.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="81.0" />
+                <Label layoutX="45.0" layoutY="173.0" prefHeight="28.0" prefWidth="90.0" text="Precio">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="priceField" layoutX="181.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="249.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                    <cursor>
+                        <Cursor fx:constant="TEXT" />
+                    </cursor>
+                </TextField>
+                <Label layoutX="440.0" layoutY="187.0" text="\$" />
+                <Label layoutX="44.0" layoutY="217.0" prefHeight="28.0" prefWidth="128.0" text="Día de pago">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+
+                <Label layoutX="40.0" layoutY="267.0" prefHeight="28.0" prefWidth="137.0" text="Día de entrega">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <DatePicker layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="264.0" />
+                <DatePicker layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="270.0" />
+                <DatePicker layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="268.0" />
+                <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="271.0" />
+                <Label layoutX="40.0" layoutY="315.0" prefHeight="28.0" prefWidth="137.0" text="Comentario">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+            </AnchorPane>
+        </ScrollPane>
+        <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="254.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <FontAwesomeIconView fx:id="" glyphName="SHOPPING_BASKET" layoutX="172.0" layoutY="179.57142639160156" nodeOrientation="INHERIT" pickOnBounds="true" size="150" wrappingWidth="187.28571319580078" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="159.0" AnchorPane.topAnchor="50.0">
+                </FontAwesomeIconView>
+                <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="475.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.714284896850586" AnchorPane.topAnchor="4.285715103149414">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor></FontAwesomeIconView>
+                        
+                    </children>
+                </AnchorPane>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="0.01315789483487606" green="0.013036062009632587" blue="0.013036062009632587" />
+                    </color></DropShadow>
+            </effect></AnchorPane>
+    </children>
+
+</AnchorPane>

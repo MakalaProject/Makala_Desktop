@@ -164,7 +164,6 @@ public class GiftController extends GiftParentController implements IListControl
     @Override
     public void update() {
         if(!nombreField.getText().isEmpty()){
-            actualGift.setPrice(new BigDecimal(1));
             Gift gift = new Gift();
             setInfo(gift);
             Gift returnedGift = null;
@@ -203,14 +202,13 @@ public class GiftController extends GiftParentController implements IListControl
                 return;
             }
             gift.setPictures(returnedGift.getPictures());
-            actualGift.setPictures(gift.getPictures());
-            actualGift.setPrice(gift.getPrice());
+            actualGift = gift;
+            setExtendedInternalProducts(actualGift);
             pictureList = new ArrayList<>(gift.getPictures());
-            actualGift.setSelectedProducts();
             giftObservableList.set(index, actualGift);
             listView.getSelectionModel().select(actualGift);
             listView.scrollTo(gift);
-            showProductsList();
+            putFields();
             precioField.setText(actualGift.getPrice().toString());
             privacyProduct();
         }else{
@@ -254,12 +252,12 @@ public class GiftController extends GiftParentController implements IListControl
         papersObservableList.setAll(actualGift.getPapers());
         container = actualGift.getContainer();
         containerExtended = (BoxProduct)Request.find("products/boxes",container.getIdProduct(),BoxProduct.class);
-        ribbonsObservableList.setAll(actualGift.getRibbons());
-        papersObservableList.setAll(actualGift.getPapers());
         privacidadComboBox.setValue(actualGift.getPrivacy());
-        productsObservableList.setAll(actualGift.getStaticProducts());
         giftRating.setRating(actualGift.getRating());
         giftRating.setOpacity(1);
+        ribbonsObservableList.setAll(actualGift.getRibbons());
+        papersObservableList.setAll(actualGift.getPapers());
+        productsObservableList.setAll(actualGift.getStaticProducts());
         showProductsList();
         checkInternalProducts();
     }
@@ -271,13 +269,13 @@ public class GiftController extends GiftParentController implements IListControl
         if(actualGift.getContainer() == null) {
             actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
             setExtendedInternalProducts(actualGift);
-            containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
         }
         giftObservableList.set(index, actualGift);
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
         privacyProduct();
         putFields();
+        checkInternalProducts();
         actualGift.setContainer(containerExtended);
         files = new ArrayList<>();
         deleteFiles = new ArrayList<>();
