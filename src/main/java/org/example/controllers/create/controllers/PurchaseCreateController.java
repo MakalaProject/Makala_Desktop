@@ -17,6 +17,7 @@ public class PurchaseCreateController extends PurchaseParentController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
+
         provider = providers.get(0);
         setProviderData();
         orderDatePicker.setValue(LocalDate.now());
