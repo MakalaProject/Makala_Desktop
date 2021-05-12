@@ -12,5 +12,5 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ProductRebate extends Rebate{
     private Product product;
-    private String route = "product-rebate";
+    private transient String route = "product-rebates";
 }

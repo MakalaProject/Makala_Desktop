@@ -44,7 +44,7 @@ public class RebateParentController implements Initializable, IControllerCreate<
     protected Gift gift = new Gift();
     protected Product product = new Product();
     protected String identifier;
-    ObservableList<IChangeable> products = FXCollections.observableArrayList(Request.getJ("products/basic/list",Product[].class,true));
+    ObservableList<IChangeable> products = FXCollections.observableArrayList(Request.getJ("products/basics/list",Product[].class,false));
     ObservableList<IChangeable> gifts = FXCollections.observableArrayList(Request.getJ("gifts/criteria-basic",Gift[].class,true));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

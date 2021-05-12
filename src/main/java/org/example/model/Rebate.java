@@ -11,6 +11,6 @@ public class Rebate {
     protected Integer percent;
     protected LocalDate startDate;
     protected LocalDate endDate;
-    private String route;
+    private transient String route;
     protected String identifier = "Rebaja";
 }
