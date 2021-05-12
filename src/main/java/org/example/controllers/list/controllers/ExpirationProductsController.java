@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.controllers.ExpirationProductInfoController;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
 import org.example.model.Purchase;
 import org.example.model.PurchaseProduct;
