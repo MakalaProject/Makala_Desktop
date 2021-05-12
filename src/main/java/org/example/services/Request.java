@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class Request<D> {
-    public static final String REST_URL = "http://localhost:9080/";
+    public static final String REST_URL = "http://25.4.107.19:9080/";
 
 
     private static final Gson deserializerGson = new GsonBuilder()

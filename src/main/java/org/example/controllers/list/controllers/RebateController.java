@@ -29,6 +29,7 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -171,15 +172,16 @@ public class RebateController extends RebateParentController implements IListCon
 
     }
 
+
     @Override
     public boolean existChanges() {
         if(actualRebate == null){
             return false;
         }
-        Rebate rebate = new Rebate();
+        Rebate rebate = getInstance();
         setInfo(rebate);
         if (!actualRebate.equals(rebate)){
-            if(!showAlertUnsavedElement(rebate.getId().toString(), rebate.getIdentifier())) {
+            if(!showAlertUnsavedElement(rebate.getIdentifier().toString(), rebate.getIdentifier())) {
                 listView.getSelectionModel().select(rebate);
             }else{
                 updateView();
@@ -192,8 +194,8 @@ public class RebateController extends RebateParentController implements IListCon
 
     @Override
     public void putFields() {
-        startDatePicker.setValue(actualRebate.getStartDate());
-        endDatePicker.setValue(actualRebate.getEndDate());
+        startDatePicker.setValue(actualRebate.getStartDate().toLocalDate());
+        endDatePicker.setValue(actualRebate.getEndDate().toLocalDate());
         if (actualRebate.getClass() == ProductRebate.class){
             objectLabel.setText("Producto");
             objectName.setText(((ProductRebate)actualRebate).getProduct().getName());
@@ -208,7 +210,7 @@ public class RebateController extends RebateParentController implements IListCon
         actualRebate = listView.getSelectionModel().getSelectedItem();
         index = rebatesObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
-        if (actualRebate.getEndDate().compareTo(LocalDate.now()) > -1){
+        if (actualRebate.getEndDate().compareTo(LocalDate.now().atTime(LocalTime.now())) > -1){
             editSwitch.setVisible(false);
             updateButton.setVisible(false);
         }

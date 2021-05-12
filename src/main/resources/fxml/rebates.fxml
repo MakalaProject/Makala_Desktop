@@ -33,30 +33,30 @@
             <children>
                 <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
                     <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefWidth="499.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
-                        <Label fx:id="objectLabel" layoutX="42.0" layoutY="129.0" prefHeight="28.0" prefWidth="123.0" text="Proveedor" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="129.0">
+                        <Label fx:id="objectLabel" layoutX="36.0" layoutY="33.0" prefHeight="28.0" prefWidth="123.0" text="Proveedor" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="33.0">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                        <Label fx:id="objectName" alignment="CENTER" layoutX="174.0" layoutY="129.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Provider" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="129.0">
+                        <Label fx:id="objectName" alignment="CENTER" layoutX="172.0" layoutY="33.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Provider" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="33.0">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                        <FontAwesomeIconView fx:id="objectButton" glyphName="EDIT" layoutX="405.0" layoutY="154.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="65.42857170104992" AnchorPane.topAnchor="128.2857151031494" />
-                        <Label layoutX="44.0" layoutY="217.0" prefHeight="28.0" prefWidth="128.0" text="Dia inicio">
+                        <FontAwesomeIconView fx:id="objectButton" glyphName="EDIT" layoutX="404.0" layoutY="58.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="66.42857170104992" AnchorPane.topAnchor="32.285715103149414" />
+                        <Label layoutX="36.0" layoutY="87.0" prefHeight="28.0" prefWidth="128.0" text="Dia inicio">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
 
-                        <Label layoutX="40.0" layoutY="267.0" prefHeight="28.0" prefWidth="137.0" text="Dia final">
+                        <Label layoutX="32.0" layoutY="127.0" prefHeight="28.0" prefWidth="137.0" text="Dia final">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                        <DatePicker fx:id="endDatePicker" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="230.0" />
-                        <DatePicker fx:id="startDatePicker" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="230.0" />
+                        <DatePicker fx:id="endDatePicker" layoutX="188.0" layoutY="127.0" prefHeight="27.0" prefWidth="230.0" />
+                        <DatePicker fx:id="startDatePicker" layoutX="188.0" layoutY="87.0" prefHeight="27.0" prefWidth="230.0" />
                     </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="254.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

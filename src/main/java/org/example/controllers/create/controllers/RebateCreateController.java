@@ -29,7 +29,7 @@ public class RebateCreateController extends RebateParentController {
         startDatePicker.setValue(LocalDate.now());
         endDatePicker.setValue(LocalDate.now());
         updateButton.setOnMouseClicked(mouseEvent -> {
-            Rebate rebate = new Rebate();
+            Rebate rebate = getInstance();
             verifyClassType(rebate);
             setInfo(rebate);
             Rebate returnedRebate = null;

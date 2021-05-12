@@ -26,6 +26,8 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,7 +45,7 @@ public class RebateParentController implements Initializable, IControllerCreate<
     protected Rebate actualRebate;
     protected Gift gift = new Gift();
     protected Product product = new Product();
-    protected String identifier;
+    protected String identifier = "Producto";
     ObservableList<IChangeable> products = FXCollections.observableArrayList(Request.getJ("products/basics/list",Product[].class,false));
     ObservableList<IChangeable> gifts = FXCollections.observableArrayList(Request.getJ("gifts/criteria-basic",Gift[].class,true));
     @Override
@@ -84,8 +86,8 @@ public class RebateParentController implements Initializable, IControllerCreate<
 
     @Override
     public void setInfo(Rebate rebate) {
-        rebate.setStartDate(startDatePicker.getValue());
-        rebate.setEndDate(endDatePicker.getValue());
+        rebate.setStartDate(startDatePicker.getValue().atTime(LocalTime.now()));
+        rebate.setEndDate(endDatePicker.getValue().atTime(LocalTime.now()));
         if (identifier.equals("Producto")){
             ((ProductRebate)rebate).setProduct(product);
         }else {
@@ -113,6 +115,13 @@ public class RebateParentController implements Initializable, IControllerCreate<
         return null;
     }
 
+    public Rebate getInstance(){
+        if (identifier.equals("Producto")){
+            return new ProductRebate();
+        }else {
+            return new GiftRebate();
+        }
+    }
     public void verifyClassType(Rebate rebate){
         if (rebate.getClass() == ProductRebate.class){
             identifier = "Producto";
