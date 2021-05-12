@@ -43,7 +43,7 @@ public class PurchaseCreateController extends PurchaseParentController {
             if (actualPurchase.getProducts().size() > 0){
                 Purchase purchase = new Purchase();
                 setInfo(purchase);
-                if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null))
+                if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) ||(purchase.getPayDate() != null && purchase.getReceivedDate() == null))
                 {
                     Purchase returnedPurchase = null;
                     try {

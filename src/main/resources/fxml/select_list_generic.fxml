@@ -9,7 +9,8 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <CheckListView fx:id="checkListView" layoutY="52.0" prefHeight="348.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
     </CheckListView>
-     <Label fx:id="titleLabel" layoutX="28.0" layoutY="14.0" text="Departamentos " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
+    <FontAwesomeIconView fx:id="saveButton" fill="WHITE" glyphName="SAVE" layoutX="562.0" layoutY="38.0" size="30" wrappingWidth="23.14285659790039" AnchorPane.leftAnchor="562.0" AnchorPane.topAnchor="12.285715103149414" />
+    <Label fx:id="titleLabel" layoutX="28.0" layoutY="14.0" text="Departamentos " textFill="WHITE" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="14.0">
       <font>
          <Font name="Roboto Light" size="20.0" />
       </font>

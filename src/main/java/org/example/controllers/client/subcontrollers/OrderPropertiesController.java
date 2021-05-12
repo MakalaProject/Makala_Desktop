@@ -53,7 +53,7 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
     }
 
     public void putFields(){
-        giftsEditableObservableList.setAll(order.getGifts());
+        /*giftsEditableObservableList.setAll(order.getGifts());
         commentsEditableObservableList.setAll(order.getComments());
         statusField.setText(order.getOrderStatus().getStatus());
         envioPrecioField.setText(order.getShippingPrice().toString());
@@ -72,6 +72,7 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
         ciudadField.setText(order.getAddress().getCity().getName());
         direccionField.setText(order.getAddress().getAddress());
         showOrderLists();
+        */
     }
 
     protected void showOrderLists() {

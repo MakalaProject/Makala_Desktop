@@ -26,6 +26,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton regalosButton;
     @FXML JFXButton clientesButton;
     @FXML JFXButton comprasButton;
+    @FXML JFXButton caducidadButton;
     @FXML JFXButton rebajasButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
@@ -75,6 +76,8 @@ public class HomeController implements Initializable {
         clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client"));
 
         comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase"));
+
+        caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package"));
 
         rebajasButton.setOnMouseClicked(new HomeLoader("/fxml/rebates.fxml","rebates"));
     }

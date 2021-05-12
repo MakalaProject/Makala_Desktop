@@ -1,6 +1,8 @@
 package org.example.services;
 
 import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import org.example.exceptions.ProductDeleteException;
 import org.example.exceptions.ProductErrorRequest;
 import org.example.model.products.Product;
@@ -22,19 +24,44 @@ import java.util.List;
 import java.util.Locale;
 
 public class Request<D> {
-    public static final String REST_URL = "http://25.4.107.19:9080/";
+    public static final String REST_URL = "http://localhost:9080/";
+
+
+    private static final Gson deserializerGson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+                public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                        throws JsonParseException {
+                    return LocalDateTime.parse(json.getAsString(),
+                            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").withLocale(Locale.ENGLISH));
+                }
+            })
+            .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
+                public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+                        throws JsonParseException {
+                    return LocalDate.parse(json.getAsString(),
+                            DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
+                }
+            })
+            .create();
+    private static final Gson serializergson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .create();
+
+    static class LocalDateAdapter implements JsonSerializer<LocalDate> {
+        public JsonElement serialize(LocalDate date, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(date.format(DateTimeFormatter.ISO_LOCAL_DATE)); // "yyyy-mm-dd"
+        }
+    }
+
+    static class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime> {
+        public JsonElement serialize(LocalDateTime date, Type typeOfSrc, JsonSerializationContext context) {
+            return new JsonPrimitive(date.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME)); // "yyyy-mm-dd'T'hh-mm-ss"
+        }
+    }
 
     public static Object putJ(String link, Object ob) throws ProductDeleteException {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
-                    public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-                            throws JsonParseException {
-                        return LocalDate.parse(json.getAsString(),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
-                    }
-                })
-                .create();
-        String jsonString = gson.toJson(ob);
+        String jsonString = serializergson.toJson(ob);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
@@ -44,11 +71,11 @@ public class Request<D> {
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 500 || response.statusCode() == 400 || response.statusCode() == 423 ) {
-                ProductErrorRequest exception = gson.fromJson(response.body(), ProductErrorRequest.class);
+                ProductErrorRequest exception = deserializerGson.fromJson(response.body(), ProductErrorRequest.class);
                 exception.setStatus(response.statusCode());
                 throw new ProductDeleteException(exception.getMessage(), exception.getStatus());
             }
-            return gson.fromJson(response.body(), ob.getClass());
+            return deserializerGson.fromJson(response.body(), ob.getClass());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -78,22 +105,6 @@ public class Request<D> {
     }
 
     public static <D> List<D> getJ(String link, Class<D[]> classType, boolean isPage){
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-                    public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-                            throws JsonParseException {
-                        return LocalDateTime.parse(json.getAsString(),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").withLocale(Locale.ENGLISH));
-                    }
-                })
-                .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
-                    public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-                            throws JsonParseException {
-                        return LocalDate.parse(json.getAsString(),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
-                    }
-                })
-                .create();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
@@ -115,13 +126,13 @@ public class Request<D> {
             JsonParser jsonParser = new JsonParser();
             if (isPage){
                 JsonObject body = (JsonObject) jsonParser.parse(response.body());
-                D[] arrays = gson.fromJson(body.getAsJsonArray("content"), classType);
+                D[] arrays = deserializerGson.fromJson(body.getAsJsonArray("content"), classType);
                 list = new ArrayList<D>(Arrays.asList(arrays));
-                Page<D> userResponseEntity = gson.fromJson(response.body(), Page.class);
+                Page<D> userResponseEntity = deserializerGson.fromJson(response.body(), Page.class);
                 list = new ArrayList<D>(Arrays.asList(arrays));
                 userResponseEntity.setContent(list);
             }else {
-                D[] arrays = gson.fromJson(response.body(), classType);
+                D[] arrays = deserializerGson.fromJson(response.body(), classType);
                 list = new ArrayList<D>(Arrays.asList(arrays));
             }
 
@@ -160,22 +171,6 @@ public class Request<D> {
 
 
     public static Object find(String link, int id, Class<?> dClass){
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
-                    public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-                            throws JsonParseException {
-                        return LocalDateTime.parse(json.getAsString(),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").withLocale(Locale.ENGLISH));
-                    }
-                })
-                .registerTypeAdapter(LocalDate.class, new JsonDeserializer<LocalDate>() {
-                    public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
-                            throws JsonParseException {
-                        return LocalDate.parse(json.getAsString(),
-                                DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH));
-                    }
-                })
-                .create();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
@@ -192,7 +187,7 @@ public class Request<D> {
                             );
                         }
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
-            return gson.fromJson(response.body(), dClass);
+            return deserializerGson.fromJson(response.body(), dClass);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -202,8 +197,7 @@ public class Request<D> {
 
 
     public static Object postJ(String link, Object object) throws Exception {
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(object);
+        String jsonString = serializergson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
@@ -215,7 +209,7 @@ public class Request<D> {
             if (response.statusCode() == 500 || response.statusCode() == 400) {
                 throw new Exception();
             }
-            Object ob = gson.fromJson(response.body(), object.getClass());
+            Object ob = deserializerGson.fromJson(response.body(), object.getClass());
             System.out.println(response.body());
             return ob;
         } catch (IOException | InterruptedException e) {
@@ -225,7 +219,9 @@ public class Request<D> {
     }
 
     public static <D> D post(String link, Object object, Class<D> dclass){
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
         String jsonString = gson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
