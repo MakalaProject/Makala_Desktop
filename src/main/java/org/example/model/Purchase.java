@@ -5,6 +5,7 @@ import org.example.model.products.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,7 +17,7 @@ public class Purchase {
     LocalDate receivedDate;
     String payMethod;
     BigDecimal price;
-    List<PurchaseProduct> products;
+    List<PurchaseProduct> products = new ArrayList<>();
     Comment comment;
     String route = "purchases";
     String identifier = "Compra";

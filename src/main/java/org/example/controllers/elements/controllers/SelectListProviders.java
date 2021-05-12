@@ -26,8 +26,7 @@ public class SelectListProviders implements Initializable {
     Label titleLabel;
     FilteredList<Provider> providerFilteredList;
 
-    public void setProvider(Provider provider){
-        ObservableList<Provider> providers = FXCollections.observableArrayList(Request.getJ("users/providers",Provider[].class,true));
+    public void setProvider(Provider provider, ObservableList<Provider> providers){
         providers.removeIf(p -> p.getIdUser().equals(provider.getIdUser()));
         productListView.setItems(providers);
         providerFilteredList = new FilteredList<>(providers, p ->true);

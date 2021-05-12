@@ -47,6 +47,8 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     protected Purchase actualPurchase;
     protected Provider provider;
     protected ArrayList<PurchaseProduct> purchaseProducts = new ArrayList<>();
+    protected ObservableList<Provider> providers = FXCollections.observableArrayList(Request.getJ("users/providers",Provider[].class,true));
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,7 +57,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         payMethodComboBox.getSelectionModel().select(0);
         orderDatePicker.setValue(LocalDate.now());
         productListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(false, productListView.getSelectionModel().getSelectedItem());
+            propertiesPurchasesProducts(false, productListView.getSelectionModel().getSelectedItem());
         });
         productosButton.setOnMouseClicked(mouseEvent -> {
             ArrayList<Product> purchaseProducts = new ArrayList<>();
@@ -64,9 +66,8 @@ public class PurchaseParentController implements Initializable, IControllerCreat
             }
             Product product = loadDialog(FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?productTypes="+provider.getProductClassDto().getProductType(), Product[].class, false)), FXCollections.observableArrayList(purchaseProducts));
             if (product != null) {
-                propertiesGiftProducts(true, new PurchaseProduct(product, new BigDecimal(0)));
+                propertiesPurchasesProducts(true, new PurchaseProduct(product, new BigDecimal(0)));
             }
-            verifyProducts();
         });
         providerButton.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_containers.fxml"));
@@ -74,7 +75,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
                 SelectListProviders dialogController = new SelectListProviders();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                dialogController.setProvider(provider);
+                dialogController.setProvider(provider, providers);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
@@ -82,6 +83,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
                 stage.showAndWait();
                 Provider provider = (Provider) stage.getUserData();
                 if (provider != null) {
+                    providers.add(this.provider);
                     this.provider = provider;
                     setProviderData();
                 }
@@ -122,12 +124,12 @@ public class PurchaseParentController implements Initializable, IControllerCreat
             purchase.setComment(new Comment(commentTextArea.getText()));
         }
     }
-        protected void propertiesGiftProducts( boolean isCreate, PurchaseProduct product){
+        protected void propertiesPurchasesProducts(boolean isCreate, PurchaseProduct product){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/purchase_product.fxml"));
         try {
             Parent parent = fxmlLoader.load();
             PurchaseProductController dialogController = fxmlLoader.getController();
-            dialogController.setProduct(product);
+            dialogController.setProduct(product, isCreate);
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -145,6 +147,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
                     }
                 }
                 setProductsList();
+                verifyProducts();
             }
         } catch (IOException e) {
             e.printStackTrace();
