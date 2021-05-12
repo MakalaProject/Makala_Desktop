@@ -27,6 +27,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -64,7 +66,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
             for(PurchaseProduct p : actualPurchase.getProducts()){
                 purchaseProducts.add(new Product(p.getProduct().getIdProduct()));
             }
-            Product product = loadDialog(FXCollections.observableArrayList(Request.getJ("products/basics/filter-list?productTypes="+provider.getProductClassDto().getProductType(), Product[].class, false)), FXCollections.observableArrayList(purchaseProducts));
+            Product product = loadDialog(FXCollections.observableArrayList(provider.getProducts()), FXCollections.observableArrayList(purchaseProducts));
             if (product != null) {
                 propertiesPurchasesProducts(true, new PurchaseProduct(product, new BigDecimal(0)));
             }
@@ -120,8 +122,13 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         if (actualPurchase.getComment()!=null) {
             purchase.setComment(actualPurchase.getComment());
             purchase.getComment().setComment(commentTextArea.getText());
+            if(!purchase.getComment().getComment().equals(actualPurchase.getComment().getComment())){
+                purchase.getComment().setDate(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            }
         }else if(!commentTextArea.getText().isEmpty()){
             purchase.setComment(new Comment(commentTextArea.getText()));
+            String string = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            purchase.getComment().setDate(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         }
     }
         protected void propertiesPurchasesProducts(boolean isCreate, PurchaseProduct product){

@@ -152,7 +152,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
         if (actualPurchase.getProducts().size() > 0){
             Purchase purchase = new Purchase();
             setInfo(purchase);
-            if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null))
+            if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null))
             {
                 try {
                     Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
@@ -218,9 +218,13 @@ public class PurchaseController extends PurchaseParentController implements ILis
                     }});
         if (actualPurchase.getPayDate() != null){
             payDatePicker.setValue(actualPurchase.getPayDate());
+        }else{
+            payDatePicker.setValue(null);
         }
         if (actualPurchase.getReceivedDate() != null){
             receivedDatePicker.setValue(actualPurchase.getReceivedDate());
+        }else{
+            receivedDatePicker.setValue(null);
         }
         setProviderData();
         setProductsList();
@@ -240,6 +244,9 @@ public class PurchaseController extends PurchaseParentController implements ILis
         if (actualPurchase.getReceivedDate() != null){
             editSwitch.setVisible(false);
             updateButton.setVisible(false);
+        }else{
+            editSwitch.setVisible(true);
+            updateButton.setVisible(true);
         }
         purchaseProducts = new ArrayList<>(actualPurchase.getProducts());
         editView(fieldsAnchorPane, editSwitch, updateButton);

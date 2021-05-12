@@ -26,6 +26,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton regalosButton;
     @FXML JFXButton clientesButton;
     @FXML JFXButton comprasButton;
+    @FXML JFXButton caducidadButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
     @FXML BorderPane principalPane;
@@ -35,6 +36,7 @@ public class HomeController implements Initializable {
     Parent root;
     FXMLLoader loader;
     String rootResourceName = "";
+
     boolean menuIsOpen = false;
 
     @Override
@@ -74,6 +76,8 @@ public class HomeController implements Initializable {
         clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client"));
 
         comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase"));
+
+        caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package"));
     }
 
     private void loadView(String xmlResource){
@@ -84,7 +88,7 @@ public class HomeController implements Initializable {
             AnchorPane.setBottomAnchor(root, 0D);
             AnchorPane.setRightAnchor(root, 0D);
             AnchorPane.setLeftAnchor(root, 0D);
-            universalPane.getChildren().add(root);
+            universalPane.getChildren().setAll(root);
         } catch (IOException e) {
             e.printStackTrace();
         }

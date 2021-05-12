@@ -115,9 +115,9 @@
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                  <DatePicker fx:id="orderDatePicker" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="224.0" />
-                  <DatePicker fx:id="receivedDatePicker" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="230.0" />
-                  <DatePicker fx:id="payDatePicker" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="230.0" />
+                  <DatePicker fx:id="orderDatePicker" editable="false" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="224.0" />
+                  <DatePicker fx:id="receivedDatePicker" editable="false" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="230.0" />
+                  <DatePicker fx:id="payDatePicker" editable="false" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="230.0" />
                   <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="226.0" />
                   <Label layoutX="40.0" layoutY="315.0" prefHeight="28.0" prefWidth="137.0" text="Comentario">
                      <font>

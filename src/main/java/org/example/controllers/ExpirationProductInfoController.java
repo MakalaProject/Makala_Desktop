@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.model.PurchaseProduct;
+import org.example.model.products.PackageProduct;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,11 +24,11 @@ public class ExpirationProductInfoController implements Initializable {
 
     }
 
-    public void setProduct(PurchaseProduct product){
+    public void setProduct(PackageProduct product){
         productName.setText(product.getProduct().getName());
         if (product.getProduct().getPictures().size() != 0){
             productImage.setImage(new Image(product.getProduct().getPictures().get(0).getPath()));
         }
-        expirationDate.setValue(product.getPackageP().getExpiryDate());
+        expirationDate.setValue(product.getExpiryDate());
     }
 }

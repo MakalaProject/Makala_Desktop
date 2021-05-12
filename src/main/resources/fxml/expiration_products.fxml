@@ -7,74 +7,78 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ExpirationProductsController">
-    <Label alignment="CENTER" layoutY="2.0" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Perdidos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <font>
-            <Font name="Roboto Light" size="27.0" />
-        </font>
-        <effect>
-            <DropShadow blurType="TWO_PASS_BOX">
-                <color>
-                    <Color red="0.5" green="0.5" blue="0.5" />
-                </color>
-            </DropShadow>
-        </effect>
-      <VBox.margin>
-         <Insets />
-      </VBox.margin>
-    </Label>
-   <ListView fx:id="expiredListView" prefHeight="0.0" prefWidth="600.0">
-      <VBox.margin>
-         <Insets bottom="10.0" />
-      </VBox.margin></ListView>
-    <Label alignment="CENTER" layoutY="2.0" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Urgente" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <font>
-            <Font name="Roboto Light" size="27.0" />
-        </font>
-        <effect>
-            <DropShadow blurType="TWO_PASS_BOX">
-                <color>
-                    <Color red="0.5" green="0.5" blue="0.5" />
-                </color>
-            </DropShadow>
-        </effect>
-    </Label>
-   <ListView fx:id="urgentListView" prefHeight="0.0" prefWidth="600.0">
-      <VBox.margin>
-         <Insets bottom="10.0" />
-      </VBox.margin>
-   </ListView>
-    <Label alignment="CENTER" layoutY="2.0" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Advertencia" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <font>
-            <Font name="Roboto Light" size="27.0" />
-        </font>
-        <effect>
-            <DropShadow blurType="TWO_PASS_BOX">
-                <color>
-                    <Color red="0.5" green="0.5" blue="0.5" />
-                </color>
-            </DropShadow>
-        </effect>
-    </Label>
-   <ListView fx:id="warningListView" prefHeight="0.0" prefWidth="600.0">
-      <VBox.margin>
-         <Insets bottom="10.0" />
-      </VBox.margin></ListView>
-    <Label alignment="CENTER" layoutY="2.0" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Estable" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <font>
-            <Font name="Roboto Light" size="27.0" />
-        </font>
-        <effect>
-            <DropShadow blurType="TWO_PASS_BOX">
-                <color>
-                    <Color red="0.5" green="0.5" blue="0.5" />
-                </color>
-            </DropShadow>
-        </effect>
-    </Label>
-   <ListView prefHeight="0.0" fx:id="stableListView" prefWidth="600.0">
-      <VBox.margin>
-         <Insets bottom="10.0" />
-      </VBox.margin></ListView>
+<AnchorPane maxWidth="1.7976931348623157E308" prefHeight="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ExpirationProductsController">
+   <children>
+       <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
-</VBox>
+           <Label alignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Perdidos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                   <Font name="Roboto Light" size="27.0" />
+               </font>
+               <effect>
+                   <DropShadow blurType="TWO_PASS_BOX">
+                       <color>
+                           <Color red="0.5" green="0.5" blue="0.5" />
+                       </color>
+                   </DropShadow>
+               </effect>
+               <VBox.margin>
+                   <Insets />
+               </VBox.margin>
+           </Label>
+           <ListView fx:id="expiredListView" prefHeight="0.0" prefWidth="600.0">
+               <VBox.margin>
+                   <Insets bottom="10.0" />
+               </VBox.margin></ListView>
+           <Label alignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Urgente" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                   <Font name="Roboto Light" size="27.0" />
+               </font>
+               <effect>
+                   <DropShadow blurType="TWO_PASS_BOX">
+                       <color>
+                           <Color red="0.5" green="0.5" blue="0.5" />
+                       </color>
+                   </DropShadow>
+               </effect>
+           </Label>
+           <ListView fx:id="urgentListView" prefHeight="0.0" prefWidth="600.0">
+               <VBox.margin>
+                   <Insets bottom="10.0" />
+               </VBox.margin>
+           </ListView>
+           <Label alignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Advertencia" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                   <Font name="Roboto Light" size="27.0" />
+               </font>
+               <effect>
+                   <DropShadow blurType="TWO_PASS_BOX">
+                       <color>
+                           <Color red="0.5" green="0.5" blue="0.5" />
+                       </color>
+                   </DropShadow>
+               </effect>
+           </Label>
+           <ListView fx:id="warningListView" prefHeight="0.0" prefWidth="600.0">
+               <VBox.margin>
+                   <Insets bottom="10.0" />
+               </VBox.margin></ListView>
+           <Label alignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Estable" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                   <Font name="Roboto Light" size="27.0" />
+               </font>
+               <effect>
+                   <DropShadow blurType="TWO_PASS_BOX">
+                       <color>
+                           <Color red="0.5" green="0.5" blue="0.5" />
+                       </color>
+                   </DropShadow>
+               </effect>
+           </Label>
+           <ListView fx:id="stableListView" prefHeight="0.0" prefWidth="600.0">
+               <VBox.margin>
+                   <Insets bottom="10.0" />
+               </VBox.margin></ListView>
+       </VBox>
+   </children>
+</AnchorPane>

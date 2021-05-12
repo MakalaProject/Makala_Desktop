@@ -17,6 +17,6 @@
             <Font name="Roboto Light" size="20.0" />
          </font>
       </Label>
-      <DatePicker fx:id="expirationDate" layoutX="42.0" layoutY="266.0" prefHeight="27.0" prefWidth="213.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="266.0" />
+      <DatePicker fx:id="expirationDate" editable="false" focusTraversable="false" layoutX="42.0" layoutY="266.0" prefHeight="27.0" prefWidth="213.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="41.0" AnchorPane.topAnchor="266.0" />
    </children>
 </AnchorPane>

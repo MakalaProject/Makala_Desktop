@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.example.model.products.Product;
 import org.example.model.products.StaticProduct;
+import org.example.services.Request;
 
 import java.net.URL;
 import java.util.Collections;
@@ -49,7 +50,7 @@ public class SelectContainerProduct  implements Initializable {
         productListView.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.setUserData(productListView.getSelectionModel().getSelectedItem());
+            stage.setUserData(Request.find("products", productListView.getSelectionModel().getSelectedItem().getIdProduct(), Product.class));
             stage.close();
         });
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
