@@ -26,7 +26,8 @@ public class PurchaseProductController implements Initializable, IControllerCrea
     @FXML public FontAwesomeIconView deleteButton;
     PurchaseProduct purchaseProduct = new PurchaseProduct();
 
-    public void setProduct(PurchaseProduct product) {
+    public void setProduct(PurchaseProduct product, boolean isCreate) {
+        deleteButton.setVisible(!isCreate);
         purchaseProduct = product;
         if (!product.getProduct().getProductClassDto().getProductType().equals("Comestible") && !product.getProduct().getProductClassDto().getProductType().equals("Granel")){
             expiryDatePicker.setVisible(false);

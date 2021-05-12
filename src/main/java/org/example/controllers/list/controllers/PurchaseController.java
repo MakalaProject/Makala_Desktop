@@ -243,7 +243,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
         }
         purchaseProducts = new ArrayList<>(actualPurchase.getProducts());
         editView(fieldsAnchorPane, editSwitch, updateButton);
-        provider = (Provider) Request.find("users/providers", actualPurchase.getIdProvider(), Provider.class);
+        provider = providers.stream().filter(p -> p.getIdUser().equals(actualPurchase.getIdProvider())).findAny().orElse(null);
         putFields();
     }
 
