@@ -172,11 +172,12 @@ public class CatalogController extends CatalogParentController implements Initia
             setInfo(catalog);
             try {
                 Catalog returnedCatalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
-                if(imageFile == null) {
+                if(imageFile != null && !imageFile.contains("http://res.cloudinary.com")) {
                     ArrayList<String> pictures = new ArrayList<>();
                     pictures.add(catalog.getPath());
                     List<String> images = ImageService.uploadImages(pictures);
                     catalog.setPath(images.get(0));
+                    imageFile = catalog.getPath();
                     returnedCatalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
                 }
             } catch (Exception e) {
@@ -222,7 +223,11 @@ public class CatalogController extends CatalogParentController implements Initia
     public void putFields() {
         nombreField.setText(actualCatalog.getName());
         imageFile = actualCatalog.getPath();
-        catalogImage.setImage(new Image(actualCatalog.getPath()));
+        if(actualCatalog.getPath() != null && !actualCatalog.getPath().equals("")){
+            catalogImage.setImage(new Image(actualCatalog.getPath()));
+        }else{
+            catalogImage.setImage(new Image(getClass().getResource("/images/catalog.png").toString()));
+        }
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
         giftObservableList.setAll(actualCatalog.getGifts());
         giftListView.getItems().setAll(giftObservableList);
