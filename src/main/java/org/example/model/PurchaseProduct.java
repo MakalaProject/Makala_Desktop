@@ -14,7 +14,7 @@ public class PurchaseProduct implements IChangeable<Integer> {
     BigDecimal amount;
     Product product;
     ProductExpiration packageP;
-    Boolean toDelete;
+    Boolean toDelete = false;
     Action action;
 
     public PurchaseProduct(Product product, BigDecimal amount){

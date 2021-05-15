@@ -156,13 +156,13 @@ public class PurchaseController extends PurchaseParentController implements ILis
             {
                 try {
                     Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
-                    purchaseObservableList.set(index, purchaseR);
-                    actualPurchase = purchaseR;
+                    purchaseObservableList.set(index, purchase);
+                    actualPurchase = purchase;
                     actualPurchase.setSelectedProducts();
-                    listView.getItems().setAll(purchaseObservableList);
+                    listView.setItems(purchaseObservableList);
                     listView.getSelectionModel().select(actualPurchase);
                     listView.scrollTo(actualPurchase);
-
+                    updateView();
                 } catch (ProductDeleteException e) {
                     e.printStackTrace();
                 }
@@ -233,6 +233,8 @@ public class PurchaseController extends PurchaseParentController implements ILis
         payMethodComboBox.getSelectionModel().select(actualPurchase.getPayMethod());
         if (actualPurchase.getComment() != null){
             commentTextArea.setText(actualPurchase.getComment().getComment());
+        }else{
+            commentTextArea.setText("");
         }
     }
 
