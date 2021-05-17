@@ -99,7 +99,6 @@ public class ClientController extends UserParentController<Client> {
         ordersObservableList.addAll(Request.getJ("orders/basics", Order[].class, false));
         correoField.setText(actualUser.getMail());
         historyList.setItems(ordersObservableList);
-        //history
     }
 
     @Override

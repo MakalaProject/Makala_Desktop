@@ -172,7 +172,7 @@ public class CatalogController extends CatalogParentController implements Initia
             setInfo(catalog);
             try {
                 Catalog returnedCatalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
-                if(imageFile != null && !imageFile.contains("http://res.cloudinary.com")) {
+                if(imageFile != null && !imageFile.equals("") &&!imageFile.contains("http://res.cloudinary.com")) {
                     ArrayList<String> pictures = new ArrayList<>();
                     pictures.add(catalog.getPath());
                     List<String> images = ImageService.uploadImages(pictures);
