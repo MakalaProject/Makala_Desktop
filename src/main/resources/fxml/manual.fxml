@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="562.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <items>
+        <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="860.0" prefWidth="836.0" style="-fx-background-color: #E3DAD8;">
+            <children>
+                <AnchorPane fx:id="fieldsAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <AnchorPane fx:id="productsAnchorPane" layoutY="317.0" prefHeight="0.0" AnchorPane.bottomAnchor="-9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="317.0">
+                            <children>
+                                <VBox prefHeight="9.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <AnchorPane>
+                                        <children>
+                                            <Label alignment="CENTER" layoutY="2.0" style="-fx-background-color: #A39D9B;" text="Pasos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <font>
+                                                    <Font name="Roboto Light" size="27.0" />
+                                                </font>
+                                                <effect>
+                                                    <DropShadow blurType="TWO_PASS_BOX">
+                                                        <color>
+                                                            <Color red="0.5" green="0.5" blue="0.5" />
+                                                        </color>
+                                                    </DropShadow>
+                                                </effect>
+                                            </Label>
+                                            <FontAwesomeIconView fx:id="stepButton" fill="#fffdfd" glyphName="PLUS" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
+                                                <cursor>
+                                                    <Cursor fx:constant="HAND" />
+                                                </cursor>
+                                            </FontAwesomeIconView>
+                                        </children>
+                                    </AnchorPane>
+                                    <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                        <children>
+                                            <ListView fx:id="stepListView" prefHeight="0.0" />
+                                        </children>
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" />
+                                        </VBox.margin>
+                                    </VBox>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="315.0" prefWidth="560.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <ImageView fx:id="catalogImage" fitHeight="180.0" fitWidth="231.0" layoutX="191.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="189.0" AnchorPane.topAnchor="52.0">
+                            <effect>
+                                <DropShadow />
+                            </effect>
+                            <image>
+                                <Image url="@../Images/catalog.png" />
+                            </image>
+                        </ImageView>
+                        <Label fx:id="giftName" alignment="CENTER" layoutX="179.0" layoutY="264.0" prefHeight="30.0" prefWidth="222.0" style="-fx-border-color: #A39D9B;" text="Manual">
+                            <font>
+                                <Font name="Roboto Light" size="20.0" />
+                            </font>
+                        </Label>
+                        <AnchorPane layoutX="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+
+                            <children>
+
+                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="123.4285717010498" AnchorPane.topAnchor="4.285715103149414" />
+                                <ToggleSwitch fx:id="editSwitch" layoutX="410.0" layoutY="10.0" prefWidth="90.0" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+                                    <font>
+                                        <Font name="Roboto Thin" size="13.0" />
+                                    </font>
+                                </ToggleSwitch>
+                            </children>
+                        </AnchorPane>
+                         </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <effect>
+                        <DropShadow />
+                    </effect></AnchorPane>
+            </children></AnchorPane>
+    </items>
+</SplitPane>

@@ -59,6 +59,7 @@
 
             <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
+                   <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="361.0" layoutY="239.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="128.42857170104992" AnchorPane.topAnchor="213.2857151031494" />
                    <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="368.0" layoutY="75.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="122.42857170104992" AnchorPane.topAnchor="49.285715103149414" />
                       <ImageView fx:id="catalogImage" fitHeight="180.0" fitWidth="231.0" layoutX="143.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="143.0" AnchorPane.topAnchor="48.0">
                      <effect>
@@ -80,7 +81,6 @@
                             <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
                      </children>
                   </AnchorPane>
-                      <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="361.0" layoutY="239.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="128.42857170104992" AnchorPane.topAnchor="213.2857151031494" />
                </children>
                <opaqueInsets>
                   <Insets />

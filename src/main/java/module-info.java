@@ -11,6 +11,7 @@ module org.example {
     requires cloudinary.http44;
     requires cloudinary.core;
     requires lombok;
+    requires org.apache.commons.text;
 
     opens org.example;
     opens org.example.controllers;

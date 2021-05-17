@@ -54,7 +54,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected FontAwesomeIconView containerButton;
     @FXML protected FontAwesomeIconView papersButton;
     @FXML protected FontAwesomeIconView ribbonsButton;
-    @FXML protected ComboBox<String> privacidadComboBox;
+
     @FXML protected FontAwesomeIconView previousPicture;
     @FXML protected Label containerName;
     @FXML protected Rating giftRating;
@@ -92,8 +92,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&idClass=21", Product[].class, false));
         ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
         internalProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Fijo,Creados,Comestible", Product[].class, false));
-        privacidadComboBox.getItems().addAll(privacyItems);
-        privacidadComboBox.getSelectionModel().select(0);
+
         internalPapersListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualGift.getPapers(), internalPapersListView);
         });
@@ -134,34 +133,12 @@ public class GiftParentController implements Initializable, IPictureController, 
             }
         });
 
-        privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if (userClicked && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
-                    userClicked = false;
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Cuidado");
-                    alert.setHeaderText("Producto no editable");
-                    alert.setContentText("Una vez establecido este producto no podras cambiarlo después");
-                    alert.showAndWait();
-                }
-            }
-        });
-
-        privacidadComboBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                userClicked = true;
-            }
-        });
-
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
             Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
             if (product != null) {
-                propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualGift.getRibbons(), internalRibbonsListView);
+                propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualGift.getRibbons(),internalRibbonsListView);
             }
         });
-
 
         //------------------------------------------------IMAGE BUTTONS--------------------------------------------------------------------
 
@@ -282,7 +259,6 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setRibbons(actualGift.getRibbons());
         gift.setPictures(pictureList);
         gift.setContainer(containerExtended);
-        gift.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
         actualGift.setLaborPrice(new BigDecimal(laborCostField.getText()));
         gift.setLaborPrice(new BigDecimal(laborCostField.getText()));
         gift.setIdGift(actualGift.getIdGift());

@@ -25,6 +25,8 @@ public class Gift implements IChangeable<Integer> {
     private final String identifier = "regalo";
     private int rating;
     private boolean toDelete;
+    private int totalTime = 0;
+    private ArrayList<Step> steps = new ArrayList<>();
 
     public Gift(){
     }

@@ -1,16 +1,17 @@
 package org.example.controllers.create.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.GiftParentController;
 import org.example.model.*;
@@ -27,7 +28,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class GiftCreateController extends GiftParentController {
-
+    @FXML protected ComboBox<String> privacidadComboBox;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
@@ -35,6 +36,8 @@ public class GiftCreateController extends GiftParentController {
         container = actualGift.getContainer();
         containerName.setText(container.getName());
         containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
+        privacidadComboBox.getItems().addAll(privacyItems);
+        privacidadComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
                 Gift gift = new Gift();
@@ -76,5 +79,34 @@ public class GiftCreateController extends GiftParentController {
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
         });
+
+
+        privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if (userClicked && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
+                    userClicked = false;
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Cuidado");
+                    alert.setHeaderText("Regalo no editable");
+                    alert.setContentText("Una vez establecido este regalo no podras cambiarlo después");
+                    alert.showAndWait();
+                }
+            }
+        });
+
+        privacidadComboBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                userClicked = true;
+            }
+        });
+
+    }
+
+    @Override
+    public void setInfo(Gift gift){
+        super.setInfo(gift);
+        gift.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
     }
 }

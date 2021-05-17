@@ -44,17 +44,24 @@ public class GiftController extends GiftParentController implements IListControl
 
     @FXML protected FontAwesomeIconView deleteButton;
     @FXML protected FontAwesomeIconView addButton;
+    @FXML protected ComboBox<String> privacidadComboBox;
     @FXML TextField searchField;
     @FXML ListView<Gift> listView;
     @FXML ToggleSwitch editSwitch;
+    @FXML protected FontAwesomeIconView manualButton;
     private final ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
     private int index;
+    private ArrayList<Step> stepList = new ArrayList<>();
+    ManualController dialogController;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         giftObservableList.addAll(Request.getJ("/gifts/criteria-basic",Gift[].class, true));
         super.initialize(url, resourceBundle);
+
+        privacidadComboBox.getItems().addAll(privacyItems);
+        privacidadComboBox.getSelectionModel().select(0);
         showList(FXCollections.observableList(giftObservableList), listView, GiftListViewCell.class);
         FilteredList<Gift> filteredGifts = new FilteredList<>(giftObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -111,6 +118,57 @@ public class GiftController extends GiftParentController implements IListControl
             deleteButton.requestFocus();
             deleteAlert("regalo");
         });
+
+        manualButton.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/manual.fxml"));
+            try {
+                dialogController = new ManualController();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                dialogController.setObject(actualGift);
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                ArrayList<Step> object = (ArrayList<Step>) stage.getUserData();
+                if(object != null){
+                    stepList = object;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                if(userClicked && stepList.isEmpty() && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
+                    userClicked = false;
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Regalo no publicable");
+                    alert.setContentText("No puedes publicar un regalo sin un manual creado con anterioridad");
+                    alert.showAndWait();
+                    privacidadComboBox.setValue(s);
+                }
+                if (userClicked && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
+                    userClicked = false;
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Cuidado");
+                    alert.setHeaderText("Regalo no editable");
+                    alert.setContentText("Una vez establecido este regalo no podras cambiarlo después");
+                    alert.showAndWait();
+                }
+            }
+        });
+
+        privacidadComboBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                userClicked = true;
+            }
+        });
     }
 
 
@@ -137,7 +195,7 @@ public class GiftController extends GiftParentController implements IListControl
     @Override
     public void delete() {
        try {
-            Request.deleteJ( "products", actualGift.getIdGift());
+            Request.deleteJ( "gifts", actualGift.getIdGift());
         } catch (Exception e) {
             errorAlert(e.getMessage());
             return;
@@ -202,7 +260,7 @@ public class GiftController extends GiftParentController implements IListControl
                 return;
             }
             gift.setPictures(returnedGift.getPictures());
-            actualGift = gift;
+            actualGift = returnedGift;
             setExtendedInternalProducts(actualGift);
             pictureList = new ArrayList<>(gift.getPictures());
             giftObservableList.set(index, actualGift);
@@ -253,6 +311,7 @@ public class GiftController extends GiftParentController implements IListControl
         container = actualGift.getContainer();
         containerExtended = (BoxProduct)Request.find("products/boxes",container.getIdProduct(),BoxProduct.class);
         privacidadComboBox.setValue(actualGift.getPrivacy());
+        stepList = new ArrayList<>(actualGift.getSteps());
         giftRating.setRating(actualGift.getRating());
         giftRating.setOpacity(1);
         ribbonsObservableList.setAll(actualGift.getRibbons());
@@ -324,6 +383,13 @@ public class GiftController extends GiftParentController implements IListControl
                 pictureList = new ArrayList<>(actualGift.getPictures());
             }
         }
+    }
+
+    @Override
+    public void setInfo(Gift gift) {
+        super.setInfo(gift);
+        gift.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());
+        gift.setSteps(stepList);
     }
 
 }

@@ -75,4 +75,9 @@ public class BoxProduct extends StaticProduct {
         BigDecimal returned = getArea().subtract(getTotalHolesArea());
         return returned;
     }
+
+    @Override
+    public String toString(){
+        return name;
+    }
 }

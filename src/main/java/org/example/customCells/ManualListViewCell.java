@@ -4,11 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.example.interfaces.IConstructor;
 import org.example.model.Manual;
-import org.example.model.products.Product;
 
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ public class ManualListViewCell extends ListCell<Manual> implements IConstructor
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/manual_list_view.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/manual_step.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();
