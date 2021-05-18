@@ -10,6 +10,11 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class GiftRebate extends Rebate{
+    @EqualsAndHashCode.Exclude
     private Gift gift;
-    private transient String route = "gift-rebates";
+
+    @Override
+    public String getRoute() {
+        return "gift-rebates";
+    }
 }

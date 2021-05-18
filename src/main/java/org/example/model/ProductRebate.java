@@ -11,6 +11,11 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class ProductRebate extends Rebate{
+    @EqualsAndHashCode.Exclude
     private Product product;
-    private transient String route = "product-rebates";
+
+    @Override
+    public String getRoute() {
+        return "product-rebates";
+    }
 }

@@ -25,6 +25,7 @@ public class RebateCreateController extends RebateParentController {
         productTypeComboBox.getSelectionModel().select(0);
         productTypeComboBox.setOnAction(actionEvent -> {
             objectLabel.setText(productTypeComboBox.getValue());
+            identifier = productTypeComboBox.getValue();
         });
         startDatePicker.setValue(LocalDate.now());
         endDatePicker.setValue(LocalDate.now());
@@ -35,6 +36,7 @@ public class RebateCreateController extends RebateParentController {
             Rebate returnedRebate = null;
             try {
                 returnedRebate = (Rebate) Request.postJ(rebate.getRoute(),rebate);
+                System.out.println(returnedRebate);
             } catch (Exception e) {
                 return;
             }

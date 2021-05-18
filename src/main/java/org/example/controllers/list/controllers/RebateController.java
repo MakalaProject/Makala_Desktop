@@ -8,29 +8,24 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DateCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.controllers.parent.controllers.RebateParentController;
-import org.example.customCells.PurchaseListViewCell;
 import org.example.customCells.RebateListViewCell;
 import org.example.exceptions.ProductDeleteException;
 import org.example.interfaces.IListController;
 import org.example.model.GiftRebate;
 import org.example.model.ProductRebate;
-import org.example.model.Purchase;
 import org.example.model.Rebate;
-import org.example.model.products.Product;
 import org.example.services.Request;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class RebateController extends RebateParentController implements IListController<Rebate> {
@@ -107,7 +102,7 @@ public class RebateController extends RebateParentController implements IListCon
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
             deleteButton.requestFocus();
-            deleteAlert("rebaja");
+            deleteAlert(" rebaja ");
         });
     }
     public void add() {
@@ -163,9 +158,12 @@ public class RebateController extends RebateParentController implements IListCon
                 Rebate rebateR = (Rebate) Request.putJ(actualRebate.getRoute(), rebate);
                 rebatesObservableList.set(index, rebateR);
                 actualRebate = rebateR;
-                listView.getItems().setAll(rebatesObservableList);
+                listView.setItems(rebatesObservableList);
+                showList(rebatesObservableList,listView, RebateListViewCell.class);
                 listView.getSelectionModel().select(actualRebate);
                 listView.scrollTo(actualRebate);
+                editSwitch.setSelected(false);
+                editView(fieldsAnchorPane, editSwitch, updateButton);
             } catch (ProductDeleteException e) {
                 e.printStackTrace();
             }
@@ -178,6 +176,7 @@ public class RebateController extends RebateParentController implements IListCon
         if(actualRebate == null){
             return false;
         }
+        verifyClassType(actualRebate);
         Rebate rebate = getInstance();
         setInfo(rebate);
         if (!actualRebate.equals(rebate)){
@@ -196,11 +195,15 @@ public class RebateController extends RebateParentController implements IListCon
     public void putFields() {
         startDatePicker.setValue(actualRebate.getStartDate().toLocalDate());
         endDatePicker.setValue(actualRebate.getEndDate().toLocalDate());
+        porcentajeField.setText(actualRebate.getPercent().toString());
         if (actualRebate.getClass() == ProductRebate.class){
             objectLabel.setText("Producto");
+            tipoComboBox.setVisible(true);
+            tipoComboBox.setValue(actualRebate.getType());
             objectName.setText(((ProductRebate)actualRebate).getProduct().getName());
         }else {
             objectLabel.setText("Regalo");
+            tipoComboBox.setVisible(false);
             objectName.setText(((GiftRebate)actualRebate).getGift().getName());
         }
     }

@@ -8,9 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -28,6 +26,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -39,18 +38,23 @@ public class RebateParentController implements Initializable, IControllerCreate<
     protected DatePicker startDatePicker;
     protected @FXML DatePicker endDatePicker;
     protected @FXML AnchorPane fieldsAnchorPane;
+    protected @FXML ComboBox<String> tipoComboBox;
+    protected @FXML Label rebajaLabel;
+    protected @FXML TextField porcentajeField;
     @FXML
     protected FontAwesomeIconView updateButton;
-    @FXML FontAwesomeIconView objectButton;
+    protected @FXML FontAwesomeIconView objectButton;
     protected Rebate actualRebate;
     protected Gift gift = new Gift();
     protected Product product = new Product();
     protected String identifier = "Producto";
     ObservableList<IChangeable> products = FXCollections.observableArrayList(Request.getJ("products/basics/list",Product[].class,false));
     ObservableList<IChangeable> gifts = FXCollections.observableArrayList(Request.getJ("gifts/criteria-basic",Gift[].class,true));
+    ObservableList<String> types = FXCollections.observableArrayList("Existencia", "Temporada");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        tipoComboBox.setItems(types);
+        tipoComboBox.setValue("Existencia");
         startDatePicker.setOnAction(actionEvent -> {
             endDatePicker.setDayCellFactory(d ->
                     new DateCell() {
@@ -69,6 +73,7 @@ public class RebateParentController implements Initializable, IControllerCreate<
                 Product productR = (Product) loadDialog(products);
                 if (productR != null){
                     products.add(product);
+                    objectName.setText(productR.getName());
                     products.remove(productR);
                     product = productR;
                 }
@@ -76,6 +81,7 @@ public class RebateParentController implements Initializable, IControllerCreate<
                 gifts.remove(gift);
                 Gift giftR = (Gift) loadDialog(gifts);
                 if (giftR != null){
+                    objectName.setText(giftR.getName());
                     gifts.add(gift);
                     gifts.remove(giftR);
                     gift = giftR;
@@ -86,17 +92,22 @@ public class RebateParentController implements Initializable, IControllerCreate<
 
     @Override
     public void setInfo(Rebate rebate) {
-        rebate.setStartDate(startDatePicker.getValue().atTime(LocalTime.now()));
-        rebate.setEndDate(endDatePicker.getValue().atTime(LocalTime.now()));
+        rebate.setStartDate(LocalDateTime.parse(startDatePicker.getValue().atTime(LocalTime.now()).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        rebate.setEndDate(LocalDateTime.parse(endDatePicker.getValue().atTime(LocalTime.now()).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        rebate.setPercent(Integer.parseInt(porcentajeField.getText()));
+        rebate.setType(tipoComboBox.getValue());
         if (identifier.equals("Producto")){
-            ((ProductRebate)rebate).setProduct(product);
+            tipoComboBox.setVisible(true);
+            rebajaLabel.setVisible(false);
         }else {
             ((GiftRebate) rebate).setGift(gift);
+            tipoComboBox.setVisible(false);
+            rebajaLabel.setVisible(true);
         }
     }
 
     public IChangeable loadDialog( ObservableList<IChangeable> items){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_container.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_containers.fxml"));
         try {
             SelectListObject dialogController = new SelectListObject();
             fxmlLoader.setController(dialogController);
@@ -117,9 +128,13 @@ public class RebateParentController implements Initializable, IControllerCreate<
 
     public Rebate getInstance(){
         if (identifier.equals("Producto")){
-            return new ProductRebate();
+            ProductRebate productRebate = new ProductRebate();
+            productRebate.setProduct(product);
+            return productRebate;
         }else {
-            return new GiftRebate();
+            GiftRebate productRebate = new GiftRebate();
+            productRebate.setGift(gift);
+            return productRebate;
         }
     }
     public void verifyClassType(Rebate rebate){
