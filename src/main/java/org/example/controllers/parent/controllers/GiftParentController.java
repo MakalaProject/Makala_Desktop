@@ -259,10 +259,9 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setRibbons(actualGift.getRibbons());
         gift.setPictures(pictureList);
         gift.setContainer(containerExtended);
-        actualGift.setLaborPrice(new BigDecimal(laborCostField.getText()));
         gift.setLaborPrice(new BigDecimal(laborCostField.getText()));
         gift.setIdGift(actualGift.getIdGift());
-        gift.setPrice(obtainPrice(actualGift));
+        gift.setPrice(actualGift.getPrice());
         gift.setRating(actualGift.getRating());
         gift.sortList();
     }

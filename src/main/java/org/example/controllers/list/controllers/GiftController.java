@@ -33,6 +33,7 @@ import org.example.services.Request;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -267,7 +268,6 @@ public class GiftController extends GiftParentController implements IListControl
             listView.getSelectionModel().select(actualGift);
             listView.scrollTo(gift);
             putFields();
-            precioField.setText(actualGift.getPrice().toString());
             privacyProduct();
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
@@ -304,7 +304,7 @@ public class GiftController extends GiftParentController implements IListControl
     public void putFields() {
         actualGift.sortList();
         nombreField.setText(actualGift.getName());
-        precioField.setText(actualGift.getPrice().toString());
+        precioField.setText(actualGift.getPrice().setScale(2, RoundingMode.HALF_EVEN).toString());
         laborCostField.setText(actualGift.getLaborPrice().toString());
         containerName.setText(actualGift.getContainer().getName());
         papersObservableList.setAll(actualGift.getPapers());

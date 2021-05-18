@@ -1,6 +1,7 @@
 package org.example.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.example.interfaces.IChangeable;
 import org.example.model.products.*;
 
