@@ -28,6 +28,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton comprasButton;
     @FXML JFXButton caducidadButton;
     @FXML JFXButton rebajasButton;
+    @FXML JFXButton ventasButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
     @FXML BorderPane principalPane;
@@ -80,6 +81,8 @@ public class HomeController implements Initializable {
         caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package"));
 
         rebajasButton.setOnMouseClicked(new HomeLoader("/fxml/rebates.fxml","rebates"));
+
+        ventasButton.setOnMouseClicked(new HomeLoader("/fxml/order_list.fxml", "orders"));
     }
 
     private void loadView(String xmlResource){

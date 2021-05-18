@@ -11,12 +11,13 @@ import java.util.Set;
 public class GiftEditable {
     protected Integer idOrderGift;
     protected Integer idGift;
+    protected Gift gift;
     protected Integer amountGifts;
     protected ArrayList<ProductEdition> productsEdition;
     protected boolean toDelete = false;
 
     @Override
     public String toString() {
-        return "regalo" + idGift;
+        return gift.getName();
     }
 }

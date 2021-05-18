@@ -13,4 +13,9 @@ public class ProductEdition {
     protected Integer newAmount;
     protected Integer lessAmountOldProduct;
     protected boolean toDelete = false;
+
+    @Override
+    public String toString() {
+        return newProduct.getName();
+    }
 }

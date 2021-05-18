@@ -18,7 +18,7 @@ public class Order {
     protected LocalDateTime date;
     protected LocalDateTime totalPaymentDate;
     protected Integer idClient;
-    protected OrderStatus orderStatus;
+    protected String status;
     protected BigDecimal shippingPrice;
     protected LocalDateTime shippingDate;
     protected LocalDate estimatedShippingDate;
@@ -26,9 +26,10 @@ public class Order {
     protected Address address;
     protected ArrayList<Comment> comments;
     protected ArrayList<GiftEditable> gifts;
+    private String route = "orders";
 
     @Override
     public String toString(){
-        return "Compra: " + this.getIdOrder().toString();
+        return "Venta: " + this.getIdOrder().toString();
     }
 }

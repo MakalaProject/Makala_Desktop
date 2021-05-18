@@ -29,7 +29,7 @@
                      </effect>
                   </Label>
                   <ListView fx:id="containerListView" layoutX="1.0" layoutY="523.0" prefHeight="23.7" prefWidth="562.0" />
-                  <TextArea fx:id="instructionsTextArea" layoutX="8.0" layoutY="278.0" prefHeight="193.0" prefWidth="545.0" promptText="Coloque sus instrucciones">
+                  <TextArea fx:id="instructionsTextArea" layoutX="8.0" layoutY="278.0" prefHeight="193.0" prefWidth="545.0" promptText="Coloque sus instrucciones" wrapText="true">
                      <font>
                         <Font name="Calisto MT" size="20.0" />
                      </font></TextArea>
