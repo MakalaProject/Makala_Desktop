@@ -127,7 +127,7 @@ public class GiftController extends GiftParentController implements IListControl
                 Parent parent = fxmlLoader.load();
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
-                dialogController.setObject(actualGift);
+                dialogController.setObject(actualGift, stepList);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();

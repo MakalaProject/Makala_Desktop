@@ -148,7 +148,6 @@ public class ManualController implements Initializable, IListController<ArrayLis
     @Override
     public void putFields() {
         giftName.setText(actualGift.getName());
-        stepObservableList.setAll(actualGift.getSteps());
         showList();
     }
     private void showList(){
@@ -166,7 +165,8 @@ public class ManualController implements Initializable, IListController<ArrayLis
 
     }
 
-    public void setObject(Gift gift){
+    public void setObject(Gift gift, ArrayList<Step> steps) {
+        stepObservableList.setAll(steps);
         actualGift = gift;
         putFields();
     }
