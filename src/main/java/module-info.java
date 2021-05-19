@@ -12,6 +12,7 @@ module org.example {
     requires cloudinary.core;
     requires lombok;
     requires org.apache.commons.text;
+    requires com.calendarfx.view;
 
     opens org.example;
     opens org.example.controllers;

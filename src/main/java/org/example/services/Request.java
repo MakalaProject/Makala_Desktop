@@ -194,6 +194,30 @@ public class Request<D> {
         return null;
     }
 
+    public static Object find(String link, int id, int id2, Class<?> dClass){
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .header("accept", "application/json")
+                .uri(URI.create(REST_URL +link+"/find?id=" + id + "&idEmployee=" + id2))
+                .build();
+        try {
+            HttpResponse<String> response = HttpClient.newBuilder()
+                    .authenticator(new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(
+                                    "user",
+                                    "123".toCharArray()
+                            );
+                        }
+                    }).build().send(request, HttpResponse.BodyHandlers.ofString());
+            return deserializerGson.fromJson(response.body(), dClass);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
     public static Object postJ(String link, Object object) throws Exception {

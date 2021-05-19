@@ -118,7 +118,6 @@ public class GiftProductPropertiesController implements Initializable, IControll
         giftProduct.setCategory(categoriaComboBox.getSelectionModel().getSelectedItem());
         giftProduct.setAmount(Integer.parseInt(cantidadField.getText()));
         giftProduct.setProduct(this.giftProductToSend.getProduct());
-        giftProduct.setId(this.giftProductToSend.getProduct().getIdProduct());
         if(boxProduct.getHolesDimensions().size() == 0){
             giftProduct.setHoleNumber(1);
         }else{

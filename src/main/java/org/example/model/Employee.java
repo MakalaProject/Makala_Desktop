@@ -40,4 +40,8 @@ public class Employee extends User {
         return route + "/employees";
     }
 
+    @Override
+    public String toString() {
+        return firstName +" "+  lastName;
+    }
 }

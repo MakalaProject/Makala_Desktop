@@ -56,7 +56,11 @@
             <artifactId>fastjson</artifactId>
             <version>1.1-unwrap</version>
         </dependency>
-        
+        <dependency>
+            <groupId>com.calendarfx</groupId>
+            <artifactId>view</artifactId>
+            <version>11.10.1</version>
+        </dependency>
         <dependency>
             <groupId>de.jensd</groupId>
             <artifactId>fontawesomefx-fontawesome</artifactId>
