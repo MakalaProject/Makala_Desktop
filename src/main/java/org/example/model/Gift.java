@@ -16,6 +16,7 @@ public class Gift implements IChangeable<Integer> {
     private String name;
     private BigDecimal price;
     private String privacy;
+    @EqualsAndHashCode.Exclude
     private BigDecimal laborPrice;
     private List<GiftProductsToSend> staticProducts = new ArrayList<>();
     private List<RibbonProductToSend> ribbons = new ArrayList<>();

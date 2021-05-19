@@ -156,7 +156,7 @@ public class RebateController extends RebateParentController implements IListCon
         setInfo(rebate);
             try {
                 Rebate rebateR = (Rebate) Request.putJ(actualRebate.getRoute(), rebate);
-                rebatesObservableList.set(index, rebateR);
+                rebatesObservableList.set(index, rebate);
                 actualRebate = rebateR;
                 listView.setItems(rebatesObservableList);
                 showList(rebatesObservableList,listView, RebateListViewCell.class);
@@ -164,6 +164,7 @@ public class RebateController extends RebateParentController implements IListCon
                 listView.scrollTo(actualRebate);
                 editSwitch.setSelected(false);
                 editView(fieldsAnchorPane, editSwitch, updateButton);
+                updateView();
             } catch (ProductDeleteException e) {
                 e.printStackTrace();
             }
@@ -199,11 +200,13 @@ public class RebateController extends RebateParentController implements IListCon
         if (actualRebate.getClass() == ProductRebate.class){
             objectLabel.setText("Producto");
             tipoComboBox.setVisible(true);
+            rebajaLabel.setVisible(true);
             tipoComboBox.setValue(actualRebate.getType());
             objectName.setText(((ProductRebate)actualRebate).getProduct().getName());
         }else {
             objectLabel.setText("Regalo");
             tipoComboBox.setVisible(false);
+            rebajaLabel.setVisible(false);
             objectName.setText(((GiftRebate)actualRebate).getGift().getName());
         }
     }
@@ -213,8 +216,8 @@ public class RebateController extends RebateParentController implements IListCon
         actualRebate = listView.getSelectionModel().getSelectedItem();
         index = rebatesObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
+        updateButton.setVisible(true);
         if (actualRebate.getEndDate().compareTo(LocalDate.now().atTime(LocalTime.now())) > -1){
-            editSwitch.setVisible(false);
             updateButton.setVisible(false);
         }
         editView(fieldsAnchorPane, editSwitch, updateButton);

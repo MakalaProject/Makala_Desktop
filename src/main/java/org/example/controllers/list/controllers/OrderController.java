@@ -72,6 +72,11 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
 
+        updateButton.setOnMouseClicked(mouseEvent -> {
+            updateButton.requestFocus();
+            update();
+        });
+
         giftListView.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_edition.fxml"));
             try {
@@ -119,7 +124,7 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
         if (envioDatePicker.getValue() != null){
             Order order = new Order();
             setInfo(order);
-            if (order.getShippingDate().compareTo(order.getTotalPaymentDate()) < 0)
+            if (order.getShippingDate().compareTo(order.getTotalPaymentDate()) > -1)
             {
                 try {
                     Order orderR = (Order) Request.putJ(actualOrder.getRoute(), order);
@@ -157,12 +162,7 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
             fechaAvanceField.setText(actualOrder.getAdvanceDate().toString());
         else
             fechaAvanceField.setText("");
-        envioDatePicker.setDayCellFactory(d ->
-                new DateCell() {
-                    @Override public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setDisable(item.isBefore(actualOrder.getShippingDate().toLocalDate()));
-                    }});
+
         if(actualOrder.getTotalPaymentDate() != null)
             fechaPagoField.setText(actualOrder.getTotalPaymentDate().toString());
         else
@@ -172,7 +172,6 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
         ciudadField.setText(actualOrder.getAddress().getCity().getName());
         direccionField.setText(actualOrder.getAddress().getAddress());
         envioDatePicker.setDisable(actualOrder.getTotalPaymentDate() == null);
-
         if (actualOrder.getShippingDate() != null){
             envioDatePicker.setValue(actualOrder.getShippingDate().toLocalDate());
             updateButton.setVisible(false);
@@ -180,6 +179,12 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
             envioDatePicker.setValue(null);
             updateButton.setVisible(true);
         }
+        envioDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        //setDisable(item.isBefore(actualOrder.getShippingDate().toLocalDate()));
+                    }});
         showOrderLists();
     }
 

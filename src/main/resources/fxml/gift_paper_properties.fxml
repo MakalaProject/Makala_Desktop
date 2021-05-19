@@ -58,6 +58,16 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
    </TextField>
+   <Label layoutX="297.0" layoutY="146.0" prefHeight="28.0" prefWidth="38.0" text="Cm">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+   <Label layoutX="297.0" layoutY="207.0" prefHeight="28.0" prefWidth="38.0" text="Cm">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
    <padding>
       <Insets bottom="30.0" />
    </padding>

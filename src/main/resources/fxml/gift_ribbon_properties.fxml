@@ -45,6 +45,11 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
    </TextField>
+   <Label layoutX="295.0" layoutY="148.0" prefHeight="28.0" prefWidth="40.0" text="Cm">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
    <padding>
       <Insets bottom="30.0" />
    </padding>

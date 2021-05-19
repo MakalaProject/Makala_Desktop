@@ -72,6 +72,7 @@ public class GiftCreateController extends GiftParentController {
                     imageIndex = 0;
                     if(newGift != null) {
                         gift.setIdGift(newGift.getIdGift());
+                        newGift.setPrice(gift.getPrice());
                         stage.setUserData(newGift);
                     }
                     stage.close();

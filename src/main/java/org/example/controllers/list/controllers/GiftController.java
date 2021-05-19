@@ -229,6 +229,11 @@ public class GiftController extends GiftParentController implements IListControl
             try {
                 ArrayList<Picture> picturesOriginal = new ArrayList<>(gift.getPictures());
                 gift.setPictures(new ArrayList<>());
+                if(!gift.getPrivacy().equals("Privado")){
+                    gift.setStaticProducts(null);
+                    gift.setRibbons(null);
+                    gift.setPapers(null);
+                }
                 Request.putJ(gift.getRoute(), gift);
                 gift = (Gift) Request.find(gift.getRoute(), gift.getIdGift(), gift.getClass());
                 List<String> urls = ImageService.uploadImages(files);
@@ -254,6 +259,11 @@ public class GiftController extends GiftParentController implements IListControl
                     new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualGift.getPictures(), picturesOriginal);
                     gift.setPictures(picturesOriginal);
                     ImageService.deleteImages(deleteFiles);
+                }
+                if(!gift.getPrivacy().equals("Privado")){
+                    gift.setStaticProducts(null);
+                    gift.setRibbons(null);
+                    gift.setPapers(null);
                 }
                 returnedGift = (Gift) Request.putJ(gift.getRoute(), gift);
             } catch (Exception e) {

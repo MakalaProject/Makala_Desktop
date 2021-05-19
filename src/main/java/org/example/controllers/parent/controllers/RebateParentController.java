@@ -97,12 +97,9 @@ public class RebateParentController implements Initializable, IControllerCreate<
         rebate.setPercent(Integer.parseInt(porcentajeField.getText()));
         rebate.setType(tipoComboBox.getValue());
         if (identifier.equals("Producto")){
-            tipoComboBox.setVisible(true);
-            rebajaLabel.setVisible(false);
+
         }else {
             ((GiftRebate) rebate).setGift(gift);
-            tipoComboBox.setVisible(false);
-            rebajaLabel.setVisible(true);
         }
     }
 
