@@ -9,6 +9,7 @@ import org.example.model.Picture;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,8 +31,11 @@ public class ImageService {
         try {
             for(String i: currentImages){
                 File image = new File(i);
-                Map uploadResult = cloudinary.uploader().upload(image, ObjectUtils.asMap(
-                        "folder", "Makala"));
+                Map uploadResult = cloudinary.uploader().upload(image,
+                        ObjectUtils.asMap(
+                        "folder", "Makala",
+                                "transformation",
+                                new Transformation().width(400).height(400).crop("limit")));
                 urls.add((String)uploadResult.get("url"));
             }
             return urls;

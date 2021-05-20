@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.image.Image;
 import org.example.model.*;
 import org.example.services.Request;
 import javafx.event.ActionEvent;
@@ -59,6 +60,7 @@ public class LoginController implements Initializable {
                     Parent rootHome =  FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
                     Scene scene = new Scene(rootHome);
                     Stage stage = new Stage();
+                    stage.getIcons().add(new Image(getClass().getResource("/Images/logo.png").toString()));
                     stage.setScene(scene);
                     stage.setMinHeight(700);
                     stage.setMinWidth(1300);

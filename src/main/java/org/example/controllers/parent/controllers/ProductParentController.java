@@ -174,6 +174,11 @@ public abstract class ProductParentController implements Initializable, IControl
         return pictureList;
     }
 
+    @Override
+    public FontAwesomeIconView getDeletButton() {
+        return deletePicture;
+    }
+
     public void setInfo(Product product){
         product.setName(nombreField.getText());
         product.setStock(new BigDecimal(stockField.getText()).multiply(new BigDecimal(100)).setScale(0));

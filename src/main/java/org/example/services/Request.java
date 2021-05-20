@@ -3,6 +3,7 @@ package org.example.services;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import javafx.scene.control.Alert;
 import org.example.exceptions.ProductDeleteException;
 import org.example.exceptions.ProductErrorRequest;
 import org.example.model.products.Product;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class Request<D> {
-    public static final String REST_URL = "http://localhost:9080/";
+    public static final String REST_URL = "http://localhost:8040/";
 
 
     private static final Gson deserializerGson = new GsonBuilder()
@@ -98,7 +99,10 @@ public class Request<D> {
                 throw new ProductDeleteException(exception.getMessage(), exception.getStatus());
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -122,7 +126,6 @@ public class Request<D> {
                             );
                         }
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
-
             JsonParser jsonParser = new JsonParser();
             if (isPage){
                 JsonObject body = (JsonObject) jsonParser.parse(response.body());
@@ -137,7 +140,10 @@ public class Request<D> {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         }
         return list;
     }
@@ -164,7 +170,10 @@ public class Request<D> {
             return gson.fromJson(response.body(), classType);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         }
         return null;
     }
@@ -189,7 +198,10 @@ public class Request<D> {
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
             return deserializerGson.fromJson(response.body(), dClass);
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         }
         return null;
     }
@@ -213,7 +225,10 @@ public class Request<D> {
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
             return deserializerGson.fromJson(response.body(), dClass);
         } catch (Exception e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         }
         return null;
     }
@@ -237,7 +252,10 @@ public class Request<D> {
             System.out.println(response.body());
             return ob;
         } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         }
         return null;
     }
@@ -262,7 +280,10 @@ public class Request<D> {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -289,7 +310,10 @@ public class Request<D> {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

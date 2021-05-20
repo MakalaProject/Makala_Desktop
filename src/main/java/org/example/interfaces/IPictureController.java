@@ -15,6 +15,7 @@ import java.util.Optional;
 
 public interface IPictureController {
     default void checkIndex(){
+        getDeletButton().setVisible(getFiles().size() != 0 || getImageIndex() != 0);
         if(getFiles().size()<=1 && getImageIndex()==0){
             getNextPicture().setVisible(false);
             getPreviousPicture().setVisible(false);
@@ -36,11 +37,11 @@ public interface IPictureController {
             return;
         }
         if(getFiles().get(getImageIndex()).contains("http://res.cloudinary.com")){
-            Image image = new Image(getFiles().get(getImageIndex()));
+            Image image = new Image(getFiles().get(getImageIndex()), 300, 300, false, false);
             getImage().setImage(image);
         }else{
             File file = new File(getFiles().get(getImageIndex()));
-            Image  image = new Image(file.toURI().toString());
+            Image  image = new Image(file.toURI().toString(),300, 300, false, false);
             getImage().setImage(image);
         }
     }
@@ -86,7 +87,7 @@ public interface IPictureController {
         //Show open file dialog
         File file = fileChooser.showOpenDialog(s);
         if (file != null){
-            Image img = new Image(file.toURI().toString());
+            Image img = new Image(file.toURI().toString(), 300, 300, false, false);
             List<String> files = getFiles();
             files.add(file.getPath());
             getPictures().add(new Picture(file.getPath()));
@@ -112,6 +113,8 @@ public interface IPictureController {
     FontAwesomeIconView getNextPicture();
 
     FontAwesomeIconView getPreviousPicture();
+
+    FontAwesomeIconView getDeletButton();
 
     ImageView getImage();
 

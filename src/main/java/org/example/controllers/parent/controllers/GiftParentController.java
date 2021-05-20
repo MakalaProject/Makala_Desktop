@@ -321,4 +321,9 @@ public class GiftParentController implements Initializable, IPictureController, 
     public String getDefaultPicture(){
         return getClass().getResource("/Images/gift.png").toString();
     }
+
+    @Override
+    public FontAwesomeIconView getDeletButton() {
+        return deletePicture;
+    }
 }
