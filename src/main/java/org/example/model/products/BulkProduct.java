@@ -1,5 +1,6 @@
 package org.example.model.products;
 
+import javafx.scene.control.Label;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,6 +18,17 @@ public class BulkProduct extends Product {
     @Override
     public String getRoute(){
         return route + "/bulks";
+    }
+
+    @Override
+    public BigDecimal formatStock(Label label) {
+        label.setText("Grs");
+        return this.stock;
+    }
+
+    @Override
+    public void getRealStock(BigDecimal stock) {
+        this.stock = stock;
     }
 
 }

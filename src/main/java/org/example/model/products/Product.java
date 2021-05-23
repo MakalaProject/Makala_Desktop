@@ -3,6 +3,7 @@ package org.example.model.products;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +25,7 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected BigDecimal price;
     protected Integer max;
     protected Integer min;
+    @EqualsAndHashCode.Exclude
     protected BigDecimal stock;
     @EqualsAndHashCode.Exclude
     protected ObservableList<ProductClassDto> classificationsPerType = FXCollections.observableArrayList();
@@ -65,4 +67,13 @@ public class Product implements IPaths, IChangeable<Integer> {
     public void sortList(){
 
     }
+
+    public BigDecimal formatStock(Label stockLabel) {
+        stockLabel.setText("Pzas");
+        return null;
+    };
+
+    public void getRealStock(BigDecimal stock){
+
+    };
 }

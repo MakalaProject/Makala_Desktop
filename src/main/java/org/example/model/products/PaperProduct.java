@@ -1,9 +1,12 @@
 package org.example.model.products;
 
+import javafx.scene.control.Label;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -17,4 +20,16 @@ public class PaperProduct extends Product {
     public String getRoute(){
         return route + "/papers";
     }
+
+    @Override
+    public BigDecimal formatStock(Label label) {
+        label.setText("M2");
+        return stock.divide(new BigDecimal(100));
+    }
+
+    @Override
+    public void getRealStock(BigDecimal stock) {
+        this.stock = stock.multiply(new BigDecimal(100));
+    }
+
 }

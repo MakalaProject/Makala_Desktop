@@ -314,7 +314,7 @@ public class ProductController extends ProductParentController implements IListC
         precioField.setText(actualProduct.getPrice().toString());
         minField.setText(actualProduct.getMin().toString());
         maxField.setText(actualProduct.getMax().toString());
-        stockField.setText(actualProduct.getStock().divide(new BigDecimal(100)).toString());
+        stockField.setText(actualProduct.formatStock(stockLabel).toString());
         privacidadComboBox.setValue(actualProduct.getPrivacy());
         tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());

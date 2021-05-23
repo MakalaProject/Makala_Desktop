@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -57,6 +58,7 @@ public abstract class ProductParentController implements Initializable, IControl
     @FXML protected FontAwesomeIconView deletePicture;
     @FXML protected FontAwesomeIconView nextPicture;
     @FXML protected FontAwesomeIconView previousPicture;
+    @FXML protected Label stockLabel;
 
 
     protected static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Contenedores","Granel","Comestible", "Papeles", "Listones","Creados");
@@ -181,7 +183,7 @@ public abstract class ProductParentController implements Initializable, IControl
 
     public void setInfo(Product product){
         product.setName(nombreField.getText());
-        product.setStock(new BigDecimal(stockField.getText()).multiply(new BigDecimal(100)).setScale(0));
+        product.getRealStock(new BigDecimal(stockField.getText()));
         product.setMax(Integer.parseInt(maxField.getText()));
         product.setMin(Integer.parseInt(minField.getText()));
         product.setPrice(new BigDecimal(precioField.getText()));

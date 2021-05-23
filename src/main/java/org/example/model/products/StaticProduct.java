@@ -1,5 +1,6 @@
 package org.example.model.products;
 
+import javafx.scene.control.Label;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -35,6 +36,17 @@ public class StaticProduct extends Product {
     @Override
     public String toString(){
         return name;
+    }
+
+    @Override
+    public BigDecimal formatStock(Label label) {
+        label.setText("Pzas");
+        return this.stock;
+    }
+
+    @Override
+    public void getRealStock(BigDecimal stock) {
+        this.stock = stock;
     }
 
     public BigDecimal getVolume(){
