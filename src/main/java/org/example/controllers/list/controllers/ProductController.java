@@ -43,7 +43,6 @@ public class ProductController extends ProductParentController implements IListC
     Product actualProduct;
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicProduct = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
-    protected static final ObservableList<ProductClassDto> classificationsPerType = FXCollections.observableArrayList();
     //Properties controller
     private int index;
 
@@ -56,12 +55,12 @@ public class ProductController extends ProductParentController implements IListC
         productObservableList.addAll(Request.getJ("products/basics/list", Product[].class, false));
         //Select default classification and show list
         comboBox.getSelectionModel().select(0);
-        selectClassification();
-        initialList(listView);
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
+        selectClassification();
+
         //Search filter
         FilteredList<Product> filteredProducts = new FilteredList<>(productObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -86,10 +85,11 @@ public class ProductController extends ProductParentController implements IListC
                 }
             }
         } );
-
+        if(!listView.getItems().isEmpty()){
+            listView.getSelectionModel().select(0);
+            updateView();
+        }
         //Select item list
-
-
         listView.setOnMouseClicked(mouseEvent -> {
             if(actualPropertiesController.indispensableChanges()){
                 listView.getSelectionModel().select(productObservableList.get(index));
@@ -346,7 +346,6 @@ public class ProductController extends ProductParentController implements IListC
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
-
         index = productObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
@@ -354,9 +353,15 @@ public class ProductController extends ProductParentController implements IListC
             if (Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductClassDto().getProductType()) || Arrays.asList(controller.getIdentifier()).contains(actualProduct.getProductClassDto().getClassification())){
                 changeType(controller);
                 actualPropertiesController = controller;
-                actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
-                classificationsPerType.setAll(Request.getJ( "classifications/products/filter-list?productType="+actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
-                clasificacionComboBox.setItems(classificationsPerType);
+                if(actualProduct.getPrivacy() == null) {
+                    actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
+                    actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
+                    productObservableList.set(index, actualProduct);
+                    listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualProduct);
+                }else{
+                    actualPropertiesController.setObject(actualProduct);
+                }
+                clasificacionComboBox.setItems(actualProduct.getClassificationsPerType());
                 privacyProduct();
                 putFields();
                 files = new ArrayList<>();

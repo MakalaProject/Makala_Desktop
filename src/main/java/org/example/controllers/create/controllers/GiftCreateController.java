@@ -48,7 +48,7 @@ public class GiftCreateController extends GiftParentController {
                         gift.setPictures(new ArrayList<>());
                         newGift = (Gift) Request.postJ(gift.getRoute(), gift);
                         gift.setIdGift(newGift.getIdGift());
-                        newGift = gift;
+                        gift = newGift;
                         ArrayList<Picture> pictures = new ArrayList<>();
                         files = ImageService.uploadImages(files);
                         if(files != null){

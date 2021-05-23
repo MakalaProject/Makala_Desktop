@@ -1,6 +1,8 @@
 package org.example.model.products;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,6 +25,8 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected Integer max;
     protected Integer min;
     protected BigDecimal stock;
+    @EqualsAndHashCode.Exclude
+    protected ObservableList<ProductClassDto> classificationsPerType = FXCollections.observableArrayList();
 
     protected ArrayList<Picture> pictures;
     protected String route = "products";

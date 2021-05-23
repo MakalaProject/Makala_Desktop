@@ -319,7 +319,6 @@ public class GiftController extends GiftParentController implements IListControl
         containerName.setText(actualGift.getContainer().getName());
         papersObservableList.setAll(actualGift.getPapers());
         container = actualGift.getContainer();
-        containerExtended = (BoxProduct)Request.find("products/boxes",container.getIdProduct(),BoxProduct.class);
         privacidadComboBox.setValue(actualGift.getPrivacy());
         stepList = new ArrayList<>(actualGift.getSteps());
         giftRating.setRating(actualGift.getRating());
