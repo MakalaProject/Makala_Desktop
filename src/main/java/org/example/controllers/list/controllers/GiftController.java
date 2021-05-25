@@ -58,7 +58,7 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        giftObservableList.addAll(Request.getJ("/gifts/criteria-basic",Gift[].class, true));
+        giftObservableList.addAll(Request.getJ("/gifts/criteria-basic?size=10000",Gift[].class, true));
         super.initialize(url, resourceBundle);
 
         privacidadComboBox.getItems().addAll(privacyItems);
