@@ -52,10 +52,18 @@ public class Gift implements IChangeable<Integer> {
         }
     }
 
-    public BigDecimal getProductsVolume(){
+    public BigDecimal getProductsVolume(int holeNumber, BoxProduct container){
         BigDecimal totalVolume= new BigDecimal(0);
-        for(GiftProductsToSend g:  staticProducts){
-            totalVolume = totalVolume.add(g.getProduct().getVolume().multiply(new BigDecimal(g.amount)));
+        if (container.getHolesDimensions().size() != 0){
+            for(GiftProductsToSend g:  staticProducts){
+                if (g.holeNumber == holeNumber) {
+                    totalVolume = totalVolume.add(g.getProduct().getVolume().multiply(new BigDecimal(g.amount)));
+                }
+            }
+        }else {
+            for (GiftProductsToSend g : staticProducts) {
+                totalVolume = totalVolume.add(g.getProduct().getVolume().multiply(new BigDecimal(g.amount)));
+            }
         }
         return totalVolume;
     }

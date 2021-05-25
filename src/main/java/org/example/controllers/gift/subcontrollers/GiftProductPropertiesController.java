@@ -75,7 +75,7 @@ public class GiftProductPropertiesController implements Initializable, IControll
     public void alertOutOfBounds(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Medidas fuera de rango");
-        alert.setContentText("El producto que intentas agregar excede el volumen de la division, espacio disponible: " + boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume()) + "cm3");
+        alert.setContentText("El producto que intentas agregar excede el volumen de la division, espacio disponible: " + boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)) + "cm3");
         alert.showAndWait();
     }
 
@@ -103,12 +103,12 @@ public class GiftProductPropertiesController implements Initializable, IControll
     }
 
     private boolean volumeValidation(){
-         staticProduct = (StaticProduct) Request.find("products/statics", giftProductToSend.getProduct().getIdProduct(), StaticProduct.class);
+        staticProduct = (StaticProduct) Request.find("products/statics", giftProductToSend.getProduct().getIdProduct(), StaticProduct.class);
         if(boxProduct.verifyProductBounds(giftProductToSend.getHoleNumber(), staticProduct)){
             if (!create){
-                return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume()).subtract(staticProduct.getVolume().multiply(new BigDecimal(originalAmount))).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
+                return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)).add(staticProduct.getVolume().multiply(new BigDecimal(originalAmount))).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
             }
-            return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume()).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
+            return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
         }
         return false;
     }
