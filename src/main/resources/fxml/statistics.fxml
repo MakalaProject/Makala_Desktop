@@ -10,10 +10,10 @@
        <ComboBox fx:id="estadisticaComboBox" layoutX="216.0" layoutY="57.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="294.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="57.0" />
        <BarChart fx:id="graph" layoutX="111.0" layoutY="207.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="y" side="LEFT" />
         </yAxis>
       </BarChart>
        <Label layoutX="79.0" layoutY="143.0" prefHeight="28.0" prefWidth="154.0" text="Fecha de calculo" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="467.0" AnchorPane.topAnchor="143.0">
@@ -21,7 +21,7 @@
                <Font name="Roboto Light" size="20.0" />
            </font>
        </Label>
-       <DatePicker fx:id="startDatePicker" editable="false" layoutX="44.0" layoutY="183.0" prefHeight="27.0" prefWidth="224.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="183.0" />
+       <DatePicker fx:id="datePicker" editable="false" layoutX="44.0" layoutY="183.0" prefHeight="27.0" prefWidth="224.0" AnchorPane.leftAnchor="44.0" AnchorPane.topAnchor="183.0" />
       <ComboBox fx:id="timeFilterCB" layoutX="402.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="250.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="182.0" />
       <Label layoutX="450.0" layoutY="143.0" prefHeight="28.0" prefWidth="154.0" text="Tipo de intervalo">
          <font>

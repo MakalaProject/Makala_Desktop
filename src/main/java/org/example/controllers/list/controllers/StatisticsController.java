@@ -39,15 +39,15 @@ public class StatisticsController implements Initializable {
         estadisticaComboBox.getSelectionModel().select(0);
         timeFilterCB.getSelectionModel().select(0);
 
-        statisticsRoutes[0] = "/data-analysis/catalogs";
-        statisticsRoutes[1] = "/data-analysis/gifts";
-        statisticsRoutes[3] = "/data-analysis/products";
+        statisticsRoutes[0] = "data-analysis/catalogs";
+        statisticsRoutes[1] = "data-analysis/gifts";
+        statisticsRoutes[2] = "data-analysis/products";
         timeFilterWords[0] = "MONTH";
         timeFilterWords[1] = "YEAR";
         datePicker.setValue(LocalDate.now());
         startButton.setOnMouseClicked(mouseEvent -> {
             DataAnalysis sendData = new DataAnalysis(datePicker.getValue(), timeFilterWords[timeFilterCB.getSelectionModel().getSelectedIndex()]);
-            List<DataProduct> products = (List<DataProduct>) Request.getJ(statisticsRoutes[estadisticaComboBox.getSelectionModel().getSelectedIndex()], DataProduct[].class);
+            List<DataProduct> products = (List<DataProduct>) Request.getJ(statisticsRoutes[estadisticaComboBox.getSelectionModel().getSelectedIndex()]+"?timeFilter=MONTH", DataProduct[].class, false);
             paintChart(products);
         });
     }
