@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.StatisticsController">
+   <children>
+       <ComboBox fx:id="estadisticaComboBox" layoutX="216.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="294.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="216.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="26.0" />
+       <BarChart fx:id="graph" layoutX="111.0" layoutY="207.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+       <Label layoutX="79.0" layoutY="61.0" prefHeight="28.0" prefWidth="137.0" text="Fecha de Inicio" AnchorPane.leftAnchor="79.0" AnchorPane.rightAnchor="484.0" AnchorPane.topAnchor="61.0">
+           <font>
+               <Font name="Roboto Light" size="20.0" />
+           </font>
+       </Label>
+       <DatePicker fx:id="startDatePicker" editable="false" layoutX="36.0" layoutY="89.0" prefHeight="27.0" prefWidth="224.0" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="89.0" />
+      <Label layoutX="442.0" layoutY="61.0" prefHeight="28.0" prefWidth="137.0" text="Fecha final">
+         <font>
+            <Font name="Roboto Light" size="20.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="endDatePicker" editable="false" layoutX="398.0" layoutY="89.0" prefHeight="27.0" prefWidth="224.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="89.0" />
+   </children>
+</AnchorPane>

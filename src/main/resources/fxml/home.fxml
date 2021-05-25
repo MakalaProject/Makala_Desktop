@@ -101,6 +101,22 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="20" />
                      </graphic>
                   </JFXButton>
+                  <JFXButton fx:id="analisisButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="450.0" prefHeight="27.0" prefWidth="200.0" text="Estadisticas" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="SIGNAL" size="20" />
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton fx:id="contabilidadButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="494.0" prefHeight="27.0" prefWidth="200.0" text="Contabilidad" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="20" />
+                     </graphic>
+                  </JFXButton>
                     </children></VBox>
                 <FontAwesomeIconView glyphName="USER" layoutX="82.0" layoutY="68.0" size="50" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="82.28571319580078" AnchorPane.topAnchor="10.0" />
                 <Label layoutX="83.0" layoutY="69.0" text="USER" />

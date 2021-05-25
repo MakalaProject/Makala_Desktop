@@ -30,6 +30,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton rebajasButton;
     @FXML JFXButton ventasButton;
     @FXML JFXButton calendarioButton;
+    @FXML JFXButton contabilidadButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
     @FXML BorderPane principalPane;
@@ -86,6 +87,8 @@ public class HomeController implements Initializable {
         ventasButton.setOnMouseClicked(new HomeLoader("/fxml/order_list.fxml", "orders"));
 
         calendarioButton.setOnMouseClicked(new HomeLoader("/fxml/calendar.fxml", "calendar"));
+
+        contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics"));
     }
 
     private void loadView(String xmlResource){
