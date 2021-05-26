@@ -76,6 +76,10 @@ public interface IPictureController {
         //Set extension filter
         FileChooser.ExtensionFilter extFilterJPG
                 = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterJPEG
+                = new FileChooser.ExtensionFilter("JPEG files (*.JPEG)", "*.JPEG");
+        FileChooser.ExtensionFilter extFilterjpeg
+                = new FileChooser.ExtensionFilter("jpeg files (*.jpeg)", "*.jpeg");
         FileChooser.ExtensionFilter extFilterjpg
                 = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
         FileChooser.ExtensionFilter extFilterPNG
@@ -83,7 +87,7 @@ public interface IPictureController {
         FileChooser.ExtensionFilter extFilterpng
                 = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
         fileChooser.getExtensionFilters()
-                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+                .addAll();
         //Show open file dialog
         File file = fileChooser.showOpenDialog(s);
         if (file != null){

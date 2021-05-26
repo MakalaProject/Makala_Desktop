@@ -16,6 +16,21 @@
                     <Font name="Roboto Light" size="20.0" />
                 </font>
             </Label>
+            <Label fx:id="unidadField3" layoutX="398.0" layoutY="187.0" prefHeight="28.0" prefWidth="51.0" text="pzas" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="187.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <Label fx:id="unidadField2" layoutX="397.0" layoutY="143.0" prefHeight="28.0" prefWidth="49.0" text="pzas" AnchorPane.leftAnchor="397.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="143.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <Label fx:id="unidadField1" layoutX="395.0" layoutY="104.0" prefHeight="28.0" prefWidth="48.0" text="pzas" AnchorPane.leftAnchor="395.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="104.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
             <Label layoutX="26.0" layoutY="64.0" prefHeight="28.0" prefWidth="119.0" text="Clasificación" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="64.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
@@ -48,16 +63,16 @@
                 <cursor>
                     <Cursor fx:constant="TEXT" />
                 </cursor></TextField>
-            <TextField fx:id="stockField" editable="false" layoutX="125.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="321.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="103.0">
+            <TextField fx:id="stockField" editable="false" layoutX="125.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="255.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="103.0">
                 <cursor>
                     <Cursor fx:constant="TEXT" />
                 </cursor></TextField>
-         <TextField fx:id="minField" editable="false" layoutX="125.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="321.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+         <TextField fx:id="minField" editable="false" layoutX="125.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="258.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
             <cursor>
                <Cursor fx:constant="TEXT" />
             </cursor>
          </TextField>
-         <TextField fx:id="maxField" editable="false" layoutX="125.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="321.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+         <TextField fx:id="maxField" editable="false" layoutX="125.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="259.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
             <cursor>
                <Cursor fx:constant="TEXT" />
             </cursor>

@@ -2,9 +2,12 @@ package org.example.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import org.example.exceptions.ProductDeleteException;
 import org.example.model.*;
 import org.example.services.Request;
 import javafx.event.ActionEvent;
@@ -14,10 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -56,6 +55,24 @@ public class LoginController implements Initializable {
                 alertLabel.setVisible(true);
                 alertLabel.setText("ID o contraseña incorrectas");
             }else{
+                if (employee.isFirstLogin()){
+                    Optional<String> result = null;
+                    while (result.isEmpty()){
+                        TextInputDialog dialog = new TextInputDialog("walter");
+                        dialog.setTitle("Cambio de contraseña");
+                        dialog.setHeaderText("Primer inicio de sesión");
+                        dialog.setContentText("Contraseña:");
+                        result = dialog.showAndWait();
+                        if (result.isPresent()){
+                            employee.setPassword(result.get());
+                            try {
+                                Request.putJ(employee.getRoute(), employee);
+                            } catch (ProductDeleteException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
                 try {
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));

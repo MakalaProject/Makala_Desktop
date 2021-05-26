@@ -37,7 +37,7 @@
             <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
                     <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="368.0" layoutY="75.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="122.42857170104992" AnchorPane.topAnchor="49.285715103149414" />
-                    <ImageView fx:id="catalogImage" fitHeight="180.0" fitWidth="231.0" layoutX="210.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="210.0" AnchorPane.rightAnchor="210.0" AnchorPane.topAnchor="49.0">
+                    <ImageView fx:id="catalogImage" fitHeight="180.0" fitWidth="231.0" layoutX="211.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="50.0">
                         <effect>
                             <DropShadow />
                         </effect>
