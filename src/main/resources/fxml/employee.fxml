@@ -25,7 +25,7 @@
         </AnchorPane>
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="652.0" style="-fx-background-color: #E3DAD8;">
             <children>
-            <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="256.0" prefHeight="230.0" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
+            <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="256.0" prefHeight="293.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
                <children>
                       <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="123.0" />
                       <Label text="Telefono" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="125.0">
@@ -51,7 +51,7 @@
                       </Label>
                       <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="83.0" />
                       <TextField fx:id="contraseñaField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="163.0" />
-                      <Label alignment="CENTER" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
+                      <Label alignment="CENTER" layoutY="303.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="303.0">
                           <font>
                               <Font name="Roboto Light" size="27.0" />
                           </font>
@@ -63,7 +63,19 @@
                               </DropShadow>
                           </effect>
                       </Label>
-                        <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="240.0" />
+                        <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" layoutX="476.0" layoutY="336.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="14.428571701049918" AnchorPane.topAnchor="310.2857151031494" />
+                  <DatePicker fx:id="startDatePicker" layoutX="226.0" layoutY="209.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="118.0" AnchorPane.topAnchor="209.0" />
+                  <Label layoutX="41.0" layoutY="207.0" prefHeight="28.0" prefWidth="127.0" text="Fecha Inicio" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="207.0">
+                     <font>
+                        <Font name="Roboto Light" size="20.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="endDatePicker" layoutX="226.0" layoutY="250.0" />
+                  <Label layoutX="41.0" layoutY="248.0" prefHeight="28.0" prefWidth="127.0" text="Fecha Final" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="350.0" AnchorPane.topAnchor="248.0">
+                     <font>
+                        <Font name="Roboto Light" size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -93,12 +105,18 @@
                     </opaqueInsets>
                     <effect>
                         <DropShadow />
-                    </effect></AnchorPane>
-            <VBox layoutY="604.0" prefHeight="329.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="530.0">
-               <children>
-                  <ListView fx:id="departmentList" prefHeight="0.0" prefWidth="517.0" />
-               </children>
-            </VBox>
+                    </effect>
+                </AnchorPane>
+                <AnchorPane>
+                    <children>
+                        <VBox layoutY="602.0" prefHeight="257.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="602.0">
+                            <children>
+                                <ListView fx:id="departmentList" prefHeight="0.0" prefWidth="518.0" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+
             </children></AnchorPane>
     </items>
 </SplitPane>

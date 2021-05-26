@@ -28,6 +28,9 @@ public class EmployeeController extends UserParentController<Employee> {
     @FXML FontAwesomeIconView editDepartmentButton;
     @FXML ListView<Department> departmentList;
     @FXML TextField contraseñaField;
+    @FXML DatePicker startDatePicker;
+    @FXML DatePicker endDatePicker;
+
     private static final ObservableList<Department> departmentsItems = FXCollections.observableArrayList();
 
     @Override
@@ -85,8 +88,17 @@ public class EmployeeController extends UserParentController<Employee> {
             }
         });
     }
+
     @Override
     public void update(){
+        if(startDatePicker.getValue().compareTo(endDatePicker.getValue()) < 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Información invalida");
+            alert.setHeaderText("Fechas incorrectas");
+            alert.setContentText("Las fechas no són validas");
+            alert.showAndWait();
+            return;
+        }
         super.update();
         actualUser.setSelectedDepartments();
         actualUser.setPassword(null);
