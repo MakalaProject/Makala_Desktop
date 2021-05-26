@@ -39,7 +39,7 @@ public class ProductController extends ProductParentController implements IListC
     @FXML ListView<Product> listView;
     @FXML AnchorPane propertiesAnchorPane;
     @FXML ToggleSwitch editSwitch;
-
+    FilteredList<Product> filteredProducts;
     Product actualProduct;
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicProduct = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
@@ -62,7 +62,7 @@ public class ProductController extends ProductParentController implements IListC
         selectClassification();
 
         //Search filter
-        FilteredList<Product> filteredProducts = new FilteredList<>(productObservableList, p ->true);
+        filteredProducts = new FilteredList<>(listView.getItems(), p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
                 filteredProducts.setPredicate(product -> {
@@ -81,7 +81,9 @@ public class ProductController extends ProductParentController implements IListC
                     }
                 });
                 if (!filteredProducts.isEmpty()) {
-                    showList(FXCollections.observableList(filteredProducts), listView, ProductListViewCell.class);
+                    ObservableList<Product> sended = FXCollections.observableArrayList();
+                    sended.addAll(filteredProducts);
+                    showList(sended, listView, ProductListViewCell.class);
                 }
             }
         } );
@@ -273,10 +275,10 @@ public class ProductController extends ProductParentController implements IListC
                 listView.scrollTo(object);
                 updateView();
             }
-            if(actualProduct != null) {
+            /*if(actualProduct != null) {
                 actualPropertiesController.setObject(actualProduct);
                 updateView();
-            }
+            }*/
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -357,7 +359,9 @@ public class ProductController extends ProductParentController implements IListC
                     actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
                     actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
                     productObservableList.set(index, actualProduct);
-                    listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualProduct);
+                    int listIndex = listView.getSelectionModel().getSelectedIndex();
+                    listView.getItems().set(listIndex, actualProduct);
+                    System.out.println("oboso");
                 }else{
                     actualPropertiesController.setObject(actualProduct);
                 }
