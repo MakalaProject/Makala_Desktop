@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="193.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="36.0" layoutY="57.0" prefHeight="28.0" prefWidth="137.0" text="Fecha de inicio">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <DatePicker fx:id="startDatePicker" layoutX="205.0" layoutY="58.0" prefHeight="27.0" prefWidth="224.0" />
+   <Label layoutX="36.0" layoutY="124.0" prefHeight="28.0" prefWidth="159.0" text="Fecha de termino">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+   <DatePicker fx:id="endDatePicker" layoutX="205.0" layoutY="125.0" prefHeight="27.0" prefWidth="224.0" />
+
+    <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="542.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="28.428571701049805" AnchorPane.topAnchor="4.285715103149414">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor></FontAwesomeIconView>
+               <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="14.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195">
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </FontAwesomeIconView>
+                </children>
+            </AnchorPane>
+        </children>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <effect>
+            <DropShadow>
+                <color>
+                    <Color red="0.01315789483487606" green="0.013036062009632587" blue="0.013036062009632587" />
+                </color></DropShadow>
+        </effect>
+    </AnchorPane>
+</AnchorPane>

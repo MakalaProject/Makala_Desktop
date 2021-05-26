@@ -2,6 +2,7 @@
 
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
@@ -25,7 +26,7 @@
         </AnchorPane>
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="652.0" style="-fx-background-color: #E3DAD8;">
             <children>
-            <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="256.0" prefHeight="230.0" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
+            <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="256.0" prefHeight="207.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
                <children>
                       <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="123.0" />
                       <Label text="Telefono" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="125.0">
@@ -51,19 +52,6 @@
                       </Label>
                       <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="83.0" />
                       <TextField fx:id="contraseñaField" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="163.0" />
-                      <Label alignment="CENTER" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="230.0">
-                          <font>
-                              <Font name="Roboto Light" size="27.0" />
-                          </font>
-                          <effect>
-                              <DropShadow blurType="TWO_PASS_BOX">
-                                  <color>
-                                      <Color red="0.5" green="0.5" blue="0.5" />
-                                  </color>
-                              </DropShadow>
-                          </effect>
-                      </Label>
-                        <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="240.0" />
                </children>
             </AnchorPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -93,12 +81,72 @@
                     </opaqueInsets>
                     <effect>
                         <DropShadow />
-                    </effect></AnchorPane>
-            <VBox layoutY="604.0" prefHeight="329.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="530.0">
-               <children>
-                  <ListView fx:id="departmentList" prefHeight="0.0" prefWidth="517.0" />
-               </children>
-            </VBox>
+                    </effect>
+                </AnchorPane>
+                <AnchorPane fx:id="productsAnchorPane" layoutY="639.0" prefHeight="220.0" prefWidth="518.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="490.0">
+                    <children>
+                        <VBox layoutY="315.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <AnchorPane>
+                                <children>
+                                    <Label alignment="CENTER" layoutY="2.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <font>
+                                            <Font name="Roboto Light" size="27.0" />
+                                        </font>
+                                        <effect>
+                                            <DropShadow blurType="TWO_PASS_BOX">
+                                                <color>
+                                                    <Color red="0.5" green="0.5" blue="0.5" />
+                                                </color>
+                                            </DropShadow>
+                                        </effect>
+                                    </Label>
+                                    <FontAwesomeIconView fx:id="editDepartmentButton" fill="#fffdfd" glyphName="EDIT" layoutX="465.0" layoutY="32.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="6.285715103149414">
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </FontAwesomeIconView>
+                                </children>
+                            </AnchorPane>
+                            <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <children>
+                                    <ListView fx:id="departmentList" prefHeight="0.0" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                            </VBox>
+                            <AnchorPane>
+                                <children>
+                                    <Label alignment="CENTER" layoutX="2.0" layoutY="-4.0" style="-fx-background-color: #A39D9B;" text="Dias de trabajo" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <font>
+                                            <Font name="Roboto Light" size="27.0" />
+                                        </font>
+                                        <effect>
+                                            <DropShadow blurType="TWO_PASS_BOX">
+                                                <color>
+                                                    <Color red="0.5" green="0.5" blue="0.5" />
+                                                </color>
+                                            </DropShadow>
+                                        </effect>
+                                    </Label>
+                                    <FontAwesomeIconView fx:id="addWorkDays" fill="#fffdfd" glyphName="PLUS" layoutX="467.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="6.428571701049918" AnchorPane.topAnchor="4.285715103149414">
+                                        <cursor>
+                                            <Cursor fx:constant="HAND" />
+                                        </cursor>
+                                    </FontAwesomeIconView>
+                                </children>
+                            </AnchorPane>
+                            <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                <children>
+                                    <ListView fx:id="workDayList" prefHeight="0.0" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                </VBox.margin>
+                            </VBox>
+                        </VBox>
+                    </children>
+                </AnchorPane>
             </children></AnchorPane>
     </items>
 </SplitPane>

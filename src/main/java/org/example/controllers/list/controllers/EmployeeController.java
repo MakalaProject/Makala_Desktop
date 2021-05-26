@@ -1,6 +1,7 @@
 package org.example.controllers.list.controllers;
 
 import javafx.beans.binding.Bindings;
+import org.example.controllers.elements.controllers.WorkDayController;
 import org.example.controllers.parent.controllers.UserParentController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +17,8 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.example.model.WorkDays;
+import org.example.model.products.Action;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -25,14 +28,18 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class EmployeeController extends UserParentController<Employee> {
-    @FXML FontAwesomeIconView editDepartmentButton;
-    @FXML ListView<Department> departmentList;
-    @FXML TextField contraseñaField;
-    @FXML DatePicker startDatePicker;
-    @FXML DatePicker endDatePicker;
+    @FXML
+    FontAwesomeIconView editDepartmentButton;
+    @FXML
+    ListView<Department> departmentList;
+    @FXML
+    TextField contraseñaField;
+    @FXML ListView<WorkDays> workDayList;
 
+    @FXML FontAwesomeIconView addWorkDays;
+    int index = 0;
     private static final ObservableList<Department> departmentsItems = FXCollections.observableArrayList();
-
+    private ObservableList<WorkDays> workDayItems;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userObservableList.addAll(Request.getJ("users/employees", Employee[].class, true));
@@ -61,8 +68,39 @@ public class EmployeeController extends UserParentController<Employee> {
                 if (!filteredUsers.isEmpty()) {
                     showList(filteredUsers, listView, UserListViewCell.class);
                 }
+            }{
             }
         } );
+
+        workDayList.setOnMouseClicked(mouseEvent -> {
+            index = workDayList.getSelectionModel().getSelectedIndex();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/workday.fxml"));
+            try {
+                WorkDayController dialogController = new WorkDayController();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                dialogController.setworkDay(workDayList.getSelectionModel().getSelectedItem());
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                WorkDays employee = (WorkDays) stage.getUserData();
+                if(employee != null){
+                    if(employee.getAction() == Action.DELETE){
+                        workDayItems.remove(employee);
+                        showWorkDayList();
+                        index--;
+                        if(index < 0){
+                            index = 0;
+                        }
+                    }
+                    workDayItems.set(index, employee);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         editDepartmentButton.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
@@ -87,18 +125,43 @@ public class EmployeeController extends UserParentController<Employee> {
                 e.printStackTrace();
             }
         });
+
+        addWorkDays.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/workday.fxml"));
+            try {
+                WorkDayController dialogController = new WorkDayController();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                WorkDays workDays = new WorkDays();
+                workDays.setAction(Action.SAVE);
+                workDays.setEmployee(actualUser);
+                dialogController.setworkDay(workDays);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                WorkDays employee = (WorkDays) stage.getUserData();
+                if (employee!= null) {
+                    workDayItems.add(employee);
+                    showWorkDayList();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
     public void update(){
-        if(startDatePicker.getValue().compareTo(endDatePicker.getValue()) < 0){
+        /*if(startDatePicker.getValue().compareTo(endDatePicker.getValue()) < 0){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Información invalida");
             alert.setHeaderText("Fechas incorrectas");
             alert.setContentText("Las fechas no són validas");
             alert.showAndWait();
             return;
-        }
+        }*/
         super.update();
         actualUser.setSelectedDepartments();
         actualUser.setPassword(null);
@@ -113,6 +176,8 @@ public class EmployeeController extends UserParentController<Employee> {
     @Override
     public void putFields() {
        super.putFields();
+        workDayItems = FXCollections.observableArrayList(Request.getJ("employee-work-days/list-criteria?idEmployee="+actualUser.getIdUser(), WorkDays[].class, false));
+        showWorkDayList();
         departmentsItems.clear();
         contraseñaField.setText("");
         if (actualUser.getDepartments().size() > 0 ) {
@@ -124,6 +189,11 @@ public class EmployeeController extends UserParentController<Employee> {
     private void showDepartmentsList(ObservableList<Department> list){
         departmentList.setItems(FXCollections.observableList(list.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
         departmentList.prefHeightProperty().bind(Bindings.size(departmentList.getItems()).multiply(23.7));
+    }
+
+    private void showWorkDayList(){
+        workDayList.setItems(workDayItems);
+        workDayList.prefHeightProperty().bind(Bindings.size(workDayItems).multiply(23.7));
     }
 
     @Override

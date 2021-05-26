@@ -316,6 +316,39 @@ public class Request<D> {
         return null;
     }
 
+    public static <D> D postk(String link, Object object, Class<D> dclass) throws Exception {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+                .create();
+        String jsonString = gson.toJson(object);
+        HttpClient client = HttpClient.newBuilder().build();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(REST_URL + link))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(jsonString))
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            D ob = (D)gson.fromJson(response.body(), dclass);
+            System.out.println(response.body());
+            if(response.statusCode() == 400){
+                throw new Exception();
+            }
+            if (response.statusCode() != 404){
+                return ob;
+            }
+
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public static <D> List<D> postArray(String link, Object object, Class<D[]> classType){
         Gson gson = new Gson();
         String jsonString = gson.toJson(object);
