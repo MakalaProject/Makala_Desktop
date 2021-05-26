@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="291.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ContabilityController">
+    <children>
+        <Label layoutX="80.0" layoutY="22.0" prefHeight="28.0" prefWidth="154.0" text="Fecha de calculo" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="466.0" AnchorPane.topAnchor="22.0">
+            <font>
+                <Font name="Roboto Light" size="20.0" />
+            </font>
+        </Label>
+        <DatePicker fx:id="datePicker" editable="false" layoutX="51.0" layoutY="64.0" prefHeight="27.0" prefWidth="224.0" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="64.0" />
+        <ComboBox fx:id="timeFilterCB" layoutX="414.0" layoutY="63.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="250.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="63.0" />
+        <Label layoutX="462.0" layoutY="22.0" prefHeight="28.0" prefWidth="154.0" text="Tipo de intervalo">
+            <font>
+                <Font name="Roboto Light" size="20.0" />
+            </font>
+        </Label>
+      <VBox layoutX="275.0" layoutY="155.0" prefHeight="136.0" prefWidth="712.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="155.0">
+         <children>
+            <ListView fx:id="contabilityListView" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+      <Button fx:id="calcularButton" layoutX="322.0" layoutY="105.0" mnemonicParsing="false" text="Calcular" />
+    </children>
+</AnchorPane>

@@ -59,13 +59,11 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
         envioPrecioField.setText(order.getShippingPrice().toString());
         totalField.setText(order.getTotalPrice().toString());
         fechaEstimadaField.setText(order.getEstimatedShippingDate().toString());
-
         if(order.getAdvanceDate() != null)
         fechaAvanceField.setText(order.getAdvanceDate().toString());
-
+        if(order.getShippingDate() != null)
         fechaEnvioField.setText(order.getShippingDate().toString());
         if(order.getTotalPaymentDate() != null)
-
         fechaPagoField.setText(order.getTotalPaymentDate().toString());
         fechaCompraField.setText(order.getDate().toString());
         estadoField.setText(order.getAddress().getCity().getState().getName());

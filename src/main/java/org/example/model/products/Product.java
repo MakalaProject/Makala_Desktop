@@ -76,4 +76,20 @@ public class Product implements IPaths, IChangeable<Integer> {
     public void getRealStock(BigDecimal stock){
 
     };
+
+    public Integer formatMax(){
+      return max;
+    };
+
+    public Integer formatMin(){
+        return min;
+    };
+
+    public void getMax(Integer minMax){
+        this.max = minMax;
+    }
+
+    public void getMin(Integer minMax){
+        this.min = minMax;
+    }
 }

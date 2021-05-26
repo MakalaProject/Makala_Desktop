@@ -117,7 +117,7 @@ public class HomeController implements Initializable {
 
         calendarioButton.setOnMouseClicked(new HomeLoader("/fxml/calendar.fxml", "calendar"));
 
-        //contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics"));
+        contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/contability.fxml", "accounting"));
 
         analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics"));
 

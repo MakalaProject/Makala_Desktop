@@ -27,6 +27,7 @@ public class ClientController extends UserParentController<Client> {
     @FXML TextField correoField;
 
 
+
     ObservableList<Order> ordersObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,6 +68,7 @@ public class ClientController extends UserParentController<Client> {
         historyList.setOnMouseClicked(mouseEvent -> {
             propertiesOrders(historyList.getSelectionModel().getSelectedItem());
         });
+
     }
 
     private void propertiesOrders(Order order) {
@@ -96,7 +98,8 @@ public class ClientController extends UserParentController<Client> {
     @Override
     public void putFields() {
         super.putFields();
-        ordersObservableList.addAll(Request.getJ("orders/basics", Order[].class, false));
+        ordersObservableList.clear();
+        ordersObservableList.addAll(Request.getJ("orders/basic-page-filter?idClient="+ actualUser.getIdUser(), Order[].class, true));
         correoField.setText(actualUser.getMail());
         historyList.setItems(ordersObservableList);
     }

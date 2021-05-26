@@ -50,8 +50,6 @@ public abstract class UserParentController <D extends User> extends UserGenericC
         deleteButton.setOnMouseClicked(mouseEvent -> {
             deleteAlert(actualUser.getIdentifier().toLowerCase());
         });
-
-
     }
 
     @Override

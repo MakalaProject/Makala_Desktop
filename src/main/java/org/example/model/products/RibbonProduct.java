@@ -31,5 +31,23 @@ public class RibbonProduct extends Product {
         this.stock = stock.multiply(new BigDecimal(10));
     }
 
+    @Override
+    public Integer formatMax() {
+        return max/10;
+    }
 
+    @Override
+    public Integer formatMin() {
+        return max/10;
+    }
+
+    @Override
+    public void getMax(Integer minMax) {
+        this.max = minMax*10;
+    }
+
+    @Override
+    public void getMin(Integer minMax) {
+        this.min = minMax*10;
+    }
 }

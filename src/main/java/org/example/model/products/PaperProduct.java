@@ -32,4 +32,23 @@ public class PaperProduct extends Product {
         this.stock = stock.multiply(new BigDecimal(100));
     }
 
+    @Override
+    public Integer formatMax() {
+        return max/100;
+    }
+
+    @Override
+    public Integer formatMin() {
+        return min/100;
+    }
+
+    @Override
+    public void getMax(Integer minMax) {
+        this.max = minMax*100;
+    }
+
+    @Override
+    public void getMin(Integer minMax) {
+        this.min = minMax*100;
+    }
 }
