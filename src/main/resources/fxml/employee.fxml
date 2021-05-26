@@ -107,9 +107,9 @@
                         <DropShadow />
                     </effect>
                 </AnchorPane>
-                <AnchorPane>
+                <AnchorPane layoutY="623.0" prefHeight="567.0" prefWidth="518.0">
                     <children>
-                        <VBox layoutY="602.0" prefHeight="257.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="602.0">
+                        <VBox layoutY="43.0" prefHeight="257.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="43.0">
                             <children>
                                 <ListView fx:id="departmentList" prefHeight="0.0" prefWidth="518.0" />
                             </children>
