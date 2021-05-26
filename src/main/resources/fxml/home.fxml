@@ -117,11 +117,21 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="20" />
                      </graphic>
                   </JFXButton>
+                  <JFXButton fx:id="produccionButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="478.0" prefHeight="27.0" prefWidth="200.0" text="Produccion" textFill="WHITE">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="COG" size="20" />
+                     </graphic>
+                  </JFXButton>
                     </children></VBox>
                 <FontAwesomeIconView glyphName="USER" layoutX="82.0" layoutY="68.0" size="50" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="82.28571319580078" AnchorPane.topAnchor="10.0" />
-                <Label layoutX="83.0" layoutY="69.0" text="USER" />
-                <FontAwesomeIconView glyphName="COG" layoutX="62.0" layoutY="114.0" size="20" />
-                <FontAwesomeIconView glyphName="CLOSE" layoutX="110.0" layoutY="113.0" size="20" />
+                <Label fx:id="userName" alignment="CENTER" layoutX="32.0" layoutY="69.0" prefHeight="28.0" prefWidth="136.0" text="USER" textAlignment="CENTER">
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font></Label>
+                <FontAwesomeIconView fx:id="settings" glyphName="COG" layoutX="82.0" layoutY="123.0" size="30" />
             </children>
         </AnchorPane>
     </left>
