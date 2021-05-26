@@ -49,6 +49,7 @@ public class StaticProduct extends Product {
         this.stock = stock;
     }
 
+
     public BigDecimal getVolume(){
         return measures.getX().multiply(measures.getZ().multiply(measures.getY()));
     }
