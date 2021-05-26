@@ -25,7 +25,7 @@
         </AnchorPane>
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="652.0" style="-fx-background-color: #E3DAD8;">
             <children>
-            <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="256.0" prefHeight="293.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
+            <AnchorPane fx:id="fieldsAnchorPane" layoutY="256.0" prefHeight="293.0" prefWidth="518.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
                <children>
                       <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="123.0" />
                       <Label text="Telefono" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="125.0">
