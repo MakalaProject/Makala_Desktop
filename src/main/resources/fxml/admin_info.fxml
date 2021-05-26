@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="519.0" prefWidth="595.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AdminInfo">
+    <Label layoutX="41.0" layoutY="302.0" text="Nombres" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="302.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <Label layoutX="42.0" layoutY="341.0" text="Apellidos" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="341.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <TextField fx:id="nombresField" layoutX="175.0" layoutY="303.0" prefHeight="27.0" prefWidth="248.0" promptText="Juan" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="303.0" />
+    <Label layoutX="41.0" layoutY="380.0" text="Telefono" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="380.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <Label layoutX="41.0" layoutY="417.0" text="Contraseña" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="417.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <TextField fx:id="apellidosField" layoutX="175.0" layoutY="342.0" prefHeight="27.0" prefWidth="248.0" promptText="Lopez" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="342.0" />
+    <TextField fx:id="telefonoField" layoutX="175.0" layoutY="381.0" prefHeight="31.0" prefWidth="405.0" promptText="33542..." style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="381.0" />
+    <TextField fx:id="contraseñaField" layoutX="175.0" layoutY="418.0" prefHeight="27.0" prefWidth="248.0" promptText="*****" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="418.0" />
+
+    <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <ImageView fx:id="userImage" fitHeight="180.0" fitWidth="231.0" layoutX="209.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="209.66586303710938" AnchorPane.topAnchor="49.0">
+                <effect>
+                    <DropShadow />
+                </effect>
+                <image>
+                    <Image url="@../Images/user.png" />
+                </image>
+            </ImageView>
+            <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+                </children>
+            </AnchorPane>
+
+        </children>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <effect>
+            <DropShadow />
+        </effect></AnchorPane>
+
+</AnchorPane>

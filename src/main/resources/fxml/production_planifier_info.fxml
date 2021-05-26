@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="504.0" prefWidth="462.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.ProductionPlanifierInfo">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutY="258.0" pannable="true" prefHeight="164.0" prefWidth="460.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
+        <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="201.0" prefWidth="460.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+            <Label layoutX="26.0" layoutY="23.0" prefHeight="26.0" prefWidth="84.0" text="Nombre" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="23.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="64.0" prefHeight="28.0" prefWidth="119.0" text="Clasificación" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="64.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <Label layoutX="26.0" layoutY="104.0" prefHeight="28.0" prefWidth="87.0" text="Stock" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="104.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="186.0" prefHeight="28.0" prefWidth="87.0" text="Max" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="186.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="143.0" prefHeight="28.0" prefWidth="87.0" text="Min" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="143.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <TextField fx:id="nombreField" editable="false" layoutX="112.0" layoutY="275.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="333.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="20.0">
+                <font>
+                    <Font size="15.0" />
+                </font>
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor>
+            </TextField>
+            <TextField fx:id="clasificacionField" editable="false" layoutX="163.0" layoutY="62.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="280.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="163.0" AnchorPane.topAnchor="62.0">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor></TextField>
+            <TextField fx:id="stockField" editable="false" layoutX="125.0" layoutY="103.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="321.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="103.0">
+                <cursor>
+                    <Cursor fx:constant="TEXT" />
+                </cursor></TextField>
+         <TextField fx:id="minField" editable="false" layoutX="125.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="321.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor>
+         </TextField>
+         <TextField fx:id="maxField" editable="false" layoutX="125.0" layoutY="185.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="321.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+            <cursor>
+               <Cursor fx:constant="TEXT" />
+            </cursor>
+         </TextField>
+
+
+        </AnchorPane>
+    </ScrollPane>
+    <AnchorPane prefHeight="263.0" prefWidth="425.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <AnchorPane layoutX="3.0" layoutY="3.0" prefHeight="39.0" prefWidth="289.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            </AnchorPane>
+            <ImageView fx:id="imagen" fitHeight="180.0" fitWidth="231.0" focusTraversable="true" layoutX="119.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="50.0">
+                <effect>
+                    <DropShadow />
+                </effect>
+                <image>
+                    <Image url="@../Images/product.png" />
+                </image>
+                <cursor>
+                    <Cursor fx:constant="OPEN_HAND" />
+                </cursor>
+            </ImageView>
+        </children>
+        <opaqueInsets>
+            <Insets />
+        </opaqueInsets>
+        <effect>
+            <DropShadow />
+        </effect></AnchorPane>
+
+</AnchorPane>

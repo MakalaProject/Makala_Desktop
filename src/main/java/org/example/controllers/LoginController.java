@@ -33,6 +33,7 @@ public class LoginController implements Initializable {
     private Button loginButton;
     @FXML
     private Label alertLabel;
+    private Employee employee;
 
     @FXML
     public void login(ActionEvent event){
@@ -41,7 +42,7 @@ public class LoginController implements Initializable {
             alertLabel.setText("Llena todos los campos!!");
         }else{
             UserLogin user = new UserLogin(userField.getText(), passwordField.getText());
-            Employee employee = Request.post(user.getRoute(), user, Employee.class);
+            employee = Request.post(user.getRoute(), user, Employee.class);
             boolean access = false;
             if (employee != null){
                 for (Department department:employee.getDepartments()) {
@@ -57,7 +58,10 @@ public class LoginController implements Initializable {
             }else{
                 try {
                     ((Node)(event.getSource())).getScene().getWindow().hide();
-                    Parent rootHome =  FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+                    Parent rootHome =  fxmlLoader.load();
+                    HomeController homeController = fxmlLoader.getController();
+                    homeController.setAdministrator(employee);
                     Scene scene = new Scene(rootHome);
                     Stage stage = new Stage();
                     stage.getIcons().add(new Image(getClass().getResource("/Images/logo.png").toString()));

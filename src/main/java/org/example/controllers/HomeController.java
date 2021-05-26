@@ -13,10 +13,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.example.controllers.elements.controllers.StatisticsProductInfo;
 import org.example.interfaces.IListController;
+import org.example.model.Employee;
 
 public class HomeController implements Initializable {
     @FXML JFXButton productosButton;
@@ -32,8 +38,11 @@ public class HomeController implements Initializable {
     @FXML JFXButton calendarioButton;
     @FXML JFXButton contabilidadButton;
     @FXML JFXButton analisisButton;
+    @FXML JFXButton produccionButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
+    @FXML FontAwesomeIconView settings;
+    @FXML Label userName;
     @FXML BorderPane principalPane;
     @FXML AnchorPane menuPane;
     @FXML AnchorPane topPane;
@@ -42,9 +51,28 @@ public class HomeController implements Initializable {
     FXMLLoader loader;
     String rootResourceName = "";
     boolean menuIsOpen = false;
+    private Employee administrator;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        settings.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/admin_info.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                AdminInfo dialogController = fxmlLoader.getController();
+                dialogController.setEmployee(administrator);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                administrator = (Employee) stage.getUserData();
+                userName.setText(administrator.getFirstName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+        });
 
         menuPane.setTranslateX(-200);
         menuButton.setOnMouseClicked(mouseEvent -> {
@@ -92,6 +120,9 @@ public class HomeController implements Initializable {
         contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/contability.fxml", "accounting"));
 
         analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics"));
+
+        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production"));
+
     }
 
     private void loadView(String xmlResource){
@@ -107,6 +138,10 @@ public class HomeController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+    public void setAdministrator(Employee employee){
+        administrator = employee;
+        userName.setText(administrator.getFirstName());
     }
 
     private boolean saveCanges(){
