@@ -96,7 +96,7 @@ public class ClientController extends UserParentController<Client> {
     @Override
     public void putFields() {
         super.putFields();
-        ordersObservableList.addAll(Request.getJ("orders/basics", Order[].class, false));
+        ordersObservableList.addAll(Request.getJ("orders/basic-page-filter?idClient="+ actualUser.getIdUser(), Order[].class, false));
         correoField.setText(actualUser.getMail());
         historyList.setItems(ordersObservableList);
     }
