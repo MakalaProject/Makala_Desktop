@@ -10,6 +10,7 @@ import java.util.List;
 public class Employee extends User {
     private String password;
     private List<Department> departments = new ArrayList<>();
+    private boolean firstLogin;
 
     public Employee(){
         setFirstName("Nuevo empleado");

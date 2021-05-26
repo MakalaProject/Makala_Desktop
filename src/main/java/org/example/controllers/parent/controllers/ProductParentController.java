@@ -184,8 +184,8 @@ public abstract class ProductParentController implements Initializable, IControl
     public void setInfo(Product product){
         product.setName(nombreField.getText());
         product.getRealStock(new BigDecimal(stockField.getText()));
-        product.setMax(Integer.parseInt(maxField.getText()));
-        product.setMin(Integer.parseInt(minField.getText()));
+        product.setMax(new BigDecimal(maxField.getText()));
+        product.setMin(new BigDecimal(minField.getText()));
         product.setPrice(new BigDecimal(precioField.getText()));
         product.setProductClassDto(clasificacionComboBox.getSelectionModel().getSelectedItem());
         product.setPrivacy(privacidadComboBox.getSelectionModel().getSelectedItem());

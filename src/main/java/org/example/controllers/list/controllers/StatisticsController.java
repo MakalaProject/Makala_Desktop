@@ -42,11 +42,11 @@ public class StatisticsController implements Initializable, IListController<Data
 
     private String actualGraph = "";
 
-    private final String[] statisticsRoutes = new String[4];
+    private final String[] statisticsRoutes = new String[3];
     private final String[] timeFilterWords = new String[2];
-    private final Class[] dataTypes = new Class[4];
+    private final Class[] dataTypes = new Class[3];
 
-    private ObservableList<String> statisticsItems = FXCollections.observableArrayList("Catálogos", "Regalos", "Productos", "Clientes");
+    private ObservableList<String> statisticsItems = FXCollections.observableArrayList("Catálogos", "Regalos", "Productos");
     private ObservableList<String> timeFilterItems = FXCollections.observableArrayList("Mes", "Año");
 
     @Override
@@ -60,7 +60,6 @@ public class StatisticsController implements Initializable, IListController<Data
         statisticsRoutes[0] = "data-analysis/catalogs";
         statisticsRoutes[1] = "data-analysis/gifts";
         statisticsRoutes[2] = "data-analysis/products";
-        statisticsRoutes[3] = "data-analysis/clients";
         timeFilterWords[0] = "MONTH";
         timeFilterWords[1] = "YEAR";
         dataTypes[0] = DataCatalog[].class;

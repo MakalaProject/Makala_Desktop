@@ -18,6 +18,7 @@ import org.example.model.products.Product;
 import org.example.services.Request;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -26,9 +27,22 @@ public class ProductionPlanifierController implements Initializable, IListContro
     private ObservableList<Product> productObservableList = FXCollections.observableArrayList(Request.getJ("products?showMin=true&size=1000",Product[].class,true));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        for (Product product: productObservableList
+             ) {
+            if(product.getProductClassDto().getProductType().equals("Listones")){
+                product.setStock(product.getStock().divide(new BigDecimal(10)));
+                product.setMin(product.getMin()/10);
+                product.setMax(product.getMax()/10);
+            }
+            if(product.getProductClassDto().getProductType().equals("Papeles")){
+                product.setStock(product.getStock().divide(new BigDecimal(100)));
+                product.setMin(product.getMin()/100);
+                product.setMax(product.getMax()/100);
+            }
+        }
         showList(productObservableList,listView, ProductListViewCell.class);
         listView.setOnMouseClicked(mouseEvent -> {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/product_planifier_info.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/production_planifier_info.fxml"));
             try {
                 Parent parent = fxmlLoader.load();
                 ProductionPlanifierInfo dialogController = fxmlLoader.getController();

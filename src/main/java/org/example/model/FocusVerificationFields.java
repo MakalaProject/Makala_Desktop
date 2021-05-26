@@ -26,7 +26,7 @@ public class FocusVerificationFields extends RegexVerificationParent implements 
             }
         }else {
             if (textField.getText().isEmpty()){
-                textField.setText("0");
+                textField.setText("1");
             }
         }
     }
