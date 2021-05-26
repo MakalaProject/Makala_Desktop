@@ -233,6 +233,32 @@ public class Request<D> {
         return null;
     }
 
+    public static Object find(String link, Class<?> dClass){
+        HttpRequest request = HttpRequest.newBuilder()
+                .GET()
+                .header("accept", "application/json")
+                .uri(URI.create(REST_URL +link))
+                .build();
+        try {
+            HttpResponse<String> response = HttpClient.newBuilder()
+                    .authenticator(new Authenticator() {
+                        @Override
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(
+                                    "user",
+                                    "123".toCharArray()
+                            );
+                        }
+                    }).build().send(request, HttpResponse.BodyHandlers.ofString());
+            return deserializerGson.fromJson(response.body(), dClass);
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Error");
+            alert.setContentText("Error de conexión con el servidor");
+            alert.showAndWait();
+        }
+        return null;
+    }
 
 
     public static Object postJ(String link, Object object) throws Exception {

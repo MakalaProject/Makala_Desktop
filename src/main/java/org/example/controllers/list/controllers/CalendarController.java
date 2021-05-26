@@ -114,7 +114,6 @@ public class CalendarController implements Initializable, IListController<Calend
             LocalDate date = mesPage.getDate();
             diaDayView.setDate(date);
         });
-
         calendarSource.getCalendars().addAll(calendars);
         diaDayView.getCalendarSources().setAll(calendarSource);
         diaDayView.setEntryDetailsCallback(new Callback<DateControl.EntryDetailsParameter, Boolean>() {
@@ -135,6 +134,7 @@ public class CalendarController implements Initializable, IListController<Calend
                     if (object != null) {
                         changeCalendar(object);
                         sortEntries();
+                        filterEntries();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -189,6 +189,22 @@ public class CalendarController implements Initializable, IListController<Calend
             }
         }
 
+    }
+
+    private void filterEntries(){
+        for(Calendar c : calendars){
+            String value = map.get(c);
+            if(value != null){
+                List<Entry<CalendarDetailedActivity>> toSort = new ArrayList<>();
+                toSort = allActivities.stream().filter(p -> p.getUserObject().getIdEmployee().equals(Integer.parseInt(value))).collect(Collectors.toList());
+                toSort.sort(Comparator.comparing(Entry<CalendarDetailedActivity>::getStartDate));
+                for(int counter = 0; counter < toSort.size(); counter++){
+                    if(counter ==0){
+                        continue;
+                    }
+                }
+            }
+        }
     }
 
     @Override
