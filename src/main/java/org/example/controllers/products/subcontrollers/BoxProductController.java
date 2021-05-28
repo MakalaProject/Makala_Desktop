@@ -53,7 +53,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     public void showList(){
         ObservableList<Hole> holes = FXCollections.observableList(holeList.stream().filter(hole -> !hole.isToDelete()).collect(Collectors.toList()));
         holesListView.setItems(holes);
-        holesListView.prefHeightProperty().bind(Bindings.size(holes).multiply(23.7));
+        holesListView.prefHeightProperty().bind(Bindings.size(holes).multiply(25));
     }
 
     @Override

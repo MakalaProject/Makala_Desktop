@@ -22,7 +22,7 @@ public class RibbonProduct extends Product {
 
     @Override
     public BigDecimal formatStock(Label label) {
-        label.setText("M");
+        label.setText("m");
         return stock.divide(new BigDecimal(10));
     }
 

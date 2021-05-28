@@ -23,7 +23,7 @@ public class PaperProduct extends Product {
 
     @Override
     public BigDecimal formatStock(Label label) {
-        label.setText("M2");
+        label.setText("m2");
         return stock.divide(new BigDecimal(100));
     }
 

@@ -22,7 +22,7 @@ public class BulkProduct extends Product {
 
     @Override
     public BigDecimal formatStock(Label label) {
-        label.setText("Grs");
+        label.setText("gr");
         return this.stock;
     }
 

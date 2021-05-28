@@ -11,15 +11,13 @@ import org.example.controllers.client.subcontrollers.OrderPropertiesController;
 import org.example.controllers.parent.controllers.UserParentController;
 import org.example.customCells.UserListViewCell;
 import javafx.scene.control.*;
-import org.example.model.Client;
-import org.example.model.Department;
+import org.example.model.*;
 import javafx.fxml.FXML;
-import org.example.model.GiftProductsParent;
-import org.example.model.Order;
 import org.example.services.Request;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class ClientController extends UserParentController<Client> {
@@ -36,6 +34,7 @@ public class ClientController extends UserParentController<Client> {
         addButton.setVisible(false);
         editSwitch.setVisible(false);
         userObservableList.addAll(Request.getJ("clients", Client[].class, true));
+        userObservableList.sort(Comparator.comparing(Client::getFirstName));
         super.initialize(url,resourceBundle);
         addButton.setOnMouseClicked(mouseEvent -> {
             add("/fxml/client_create.fxml", listView, userObservableList, UserListViewCell.class);

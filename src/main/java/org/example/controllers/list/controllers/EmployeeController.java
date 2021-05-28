@@ -1,6 +1,7 @@
 package org.example.controllers.list.controllers;
 
 import javafx.beans.binding.Bindings;
+import javafx.scene.layout.AnchorPane;
 import org.example.controllers.elements.controllers.WorkDayController;
 import org.example.controllers.parent.controllers.UserParentController;
 import javafx.fxml.FXMLLoader;
@@ -17,13 +18,16 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import org.example.model.Provider;
 import org.example.model.WorkDays;
 import org.example.model.products.Action;
 import org.example.services.Request;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -35,7 +39,10 @@ public class EmployeeController extends UserParentController<Employee> {
     @FXML
     TextField contraseñaField;
     @FXML ListView<WorkDays> workDayList;
-
+    @FXML
+    TextField idField;
+    @FXML
+    AnchorPane propertiesAnchorPane;
     @FXML FontAwesomeIconView addWorkDays;
     int index = 0;
     private static final ObservableList<Department> departmentsItems = FXCollections.observableArrayList();
@@ -43,6 +50,7 @@ public class EmployeeController extends UserParentController<Employee> {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userObservableList.addAll(Request.getJ("users/employees", Employee[].class, true));
+        userObservableList.sort(Comparator.comparing(Employee::getFirstName));
         super.initialize(url,resourceBundle);
         //Check if the list is empty to update the view and show its values at the beggining
         addButton.setOnMouseClicked(mouseEvent -> {
@@ -176,6 +184,7 @@ public class EmployeeController extends UserParentController<Employee> {
     @Override
     public void putFields() {
        super.putFields();
+       idField.setText(actualUser.getIdUser().toString());
         workDayItems = FXCollections.observableArrayList(Request.getJ("employee-work-days/list-criteria?idEmployee="+actualUser.getIdUser(), WorkDays[].class, false));
         showWorkDayList();
         departmentsItems.clear();

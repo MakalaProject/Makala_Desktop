@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="297.0" prefWidth="502.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.products.subcontrollers.HoleController">
+<AnchorPane prefHeight="229.0" prefWidth="440.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.products.subcontrollers.HoleController">
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="600.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="185.0" layoutY="19.0" prefHeight="28.0" prefWidth="133.0" text="Hueco" textFill="WHITE" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="19.0">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="185.0" layoutY="19.0" prefHeight="28.0" prefWidth="133.0" text="División" textFill="WHITE" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="184.0" AnchorPane.topAnchor="19.0">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>
@@ -17,12 +17,12 @@
             <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="14.0" layoutY="44.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="18.285715103149414" />
             <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="460.0" layoutY="44.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.428571701049805" AnchorPane.topAnchor="18.285715103149414" />
          </children></AnchorPane>
-      <Label layoutX="80.0" layoutY="173.0" prefHeight="28.0" prefWidth="76.0" text="Alto" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="173.0">
+      <Label layoutX="69.0" layoutY="171.0" prefHeight="28.0" prefWidth="71.0" text="Alto" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="171.0">
          <font>
             <Font name="Roboto Light" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="80.0" layoutY="119.0" prefHeight="28.0" prefWidth="95.0" text="Ancho" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="327.0" AnchorPane.topAnchor="119.0">
+      <Label layoutX="69.0" layoutY="117.0" prefHeight="28.0" prefWidth="89.0" text="Ancho" AnchorPane.leftAnchor="69.0" AnchorPane.rightAnchor="282.0" AnchorPane.topAnchor="117.0">
          <font>
             <Font name="Roboto Light" size="20.0" />
          </font>

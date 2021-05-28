@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane prefHeight="50.0" prefWidth="349.0" style="-fx-background-color: #A39D9B;">
       <children>
-          <Label fx:id="titleLabel" layoutX="134.0" layoutY="11.0" text="Producto" textFill="WHITE" AnchorPane.leftAnchor="134.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="11.0">
+          <Label fx:id="titleLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="61.0" layoutY="11.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="28.0" prefWidth="213.0" text="Producto" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="11.0">
               <font>
                   <Font name="Roboto Light" size="20.0" />
               </font>
@@ -19,12 +19,12 @@
           <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="16.0" layoutY="35.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="9.285715103149414" />
       </children>
    </AnchorPane>
-    <Label layoutX="37.0" layoutY="99.0" prefHeight="28.0" prefWidth="101.0" text="Cantidad:" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="99.0">
+    <Label layoutX="37.0" layoutY="99.0" prefHeight="28.0" prefWidth="91.0" text="Cantidad:" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="99.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <TextField fx:id="cantidadField" layoutX="162.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="122.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="95.0">
+    <TextField fx:id="cantidadField" layoutX="138.0" layoutY="96.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="152.0" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="138.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="96.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -32,6 +32,11 @@
             <Cursor fx:constant="TEXT" />
         </cursor>
     </TextField>
+   <Label layoutX="300.0" layoutY="99.0" prefHeight="28.0" prefWidth="28.0" text="gr">
+      <font>
+         <Font name="Roboto Light" size="15.0" />
+      </font>
+   </Label>
    <padding>
       <Insets bottom="30.0" />
    </padding>

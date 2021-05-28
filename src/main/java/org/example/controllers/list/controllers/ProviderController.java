@@ -27,6 +27,7 @@ import org.example.services.Request;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -62,6 +63,7 @@ public class ProviderController extends UserParentController<Provider> {
         noRadio.setToggleGroup(returnRadioGroup);
         ciudadComboBox.getItems().addAll(citysList);
         userObservableList.addAll(Request.getJ("users/providers",Provider[].class,true));
+        userObservableList.sort(Comparator.comparing(Provider::getFirstName));
         super.initialize(url,resourceBundle);
         classificationComboBox.itemsProperty().setValue(productClassObservableList);
 
