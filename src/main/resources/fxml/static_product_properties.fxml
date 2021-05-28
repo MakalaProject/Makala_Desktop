@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane focusTraversable="true" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="113.0" layoutY="93.0" prefHeight="28.0" prefWidth="48.0" text="Alto" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font name="Roboto Light" size="20.0" />

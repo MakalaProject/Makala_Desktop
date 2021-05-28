@@ -87,7 +87,7 @@
                      </font></Label>
                   <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" prefHeight="31.0" prefWidth="212.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="113.0" AnchorPane.topAnchor="305.0" />
    
-               <AnchorPane fx:id="propertiesAnchorPane" layoutY="388.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
+               <AnchorPane fx:id="propertiesAnchorPane" layoutY="389.0" prefHeight="0.0" prefWidth="502.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="389.0">
                      <padding>
                         <Insets bottom="30.0" />
                      </padding></AnchorPane>
