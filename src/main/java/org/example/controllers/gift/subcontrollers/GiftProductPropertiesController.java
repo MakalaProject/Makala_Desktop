@@ -93,6 +93,9 @@ public class GiftProductPropertiesController implements Initializable, IControll
         altoIntField.setText(boxProduct.getInternalMeasures().getY().toString());
         anchoIntField.setText(boxProduct.getInternalMeasures().getX().toString());
         largoIntField.setText(boxProduct.getInternalMeasures().getZ().toString());
+        if(!isCreate){
+            orificioComboBox.setDisable(true);
+        }
         if(boxProduct.getHolesDimensions().size() == 0){
             orificioComboBox.getItems().clear();
             orificioComboBox.setDisable(true);

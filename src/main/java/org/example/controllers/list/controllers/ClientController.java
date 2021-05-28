@@ -1,5 +1,6 @@
 package org.example.controllers.list.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -101,6 +102,8 @@ public class ClientController extends UserParentController<Client> {
         ordersObservableList.addAll(Request.getJ("orders/basic-page-filter?idClient="+ actualUser.getIdUser(), Order[].class, true));
         correoField.setText(actualUser.getMail());
         historyList.setItems(ordersObservableList);
+        historyList.getStylesheets().add(getClass().getResource("/configurations/style.css").toString());
+        historyList.prefHeightProperty().bind(Bindings.size(ordersObservableList).multiply(24));
     }
 
     @Override

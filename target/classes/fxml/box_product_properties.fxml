@@ -106,15 +106,15 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-   <VBox layoutY="380.0" prefHeight="166.0" prefWidth="557.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="380.0">
+   <VBox layoutY="380.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="378.0">
       <children>
-         <ListView fx:id="holesListView" prefHeight="0.0" prefWidth="0.0" />
+         <ListView fx:id="holesListView" prefHeight="0.0" />
       </children>
       <cursor>
          <Cursor fx:constant="HAND" />
       </cursor>
    </VBox>
-   <CheckBox fx:id="isClosed" layoutX="222.0" layoutY="298.0" mnemonicParsing="false" text="Caja Cerrada">
+   <CheckBox fx:id="isClosed" layoutX="222.0" layoutY="298.0" mnemonicParsing="false" prefWidth="174.0" text="Caja cerrada">
       <font>
          <Font name="Roboto Light" size="17.0" />
       </font>
