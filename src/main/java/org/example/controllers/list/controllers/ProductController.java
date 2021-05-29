@@ -318,6 +318,8 @@ public class ProductController extends ProductParentController implements IListC
         minField.setText(actualProduct.formatMin().toString());
         maxField.setText(actualProduct.formatMax().toString());
         stockField.setText(actualProduct.formatStock(stockLabel).toString());
+        actualProduct.formatStock(minLabel);
+        actualProduct.formatStock(maxLabel);
         privacidadComboBox.setValue(actualProduct.getPrivacy());
         tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());
@@ -362,7 +364,6 @@ public class ProductController extends ProductParentController implements IListC
                     productObservableList.set(index, actualProduct);
                     int listIndex = listView.getSelectionModel().getSelectedIndex();
                     listView.getItems().set(listIndex, actualProduct);
-                    System.out.println("oboso");
                 }else{
                     actualPropertiesController.setObject(actualProduct);
                 }

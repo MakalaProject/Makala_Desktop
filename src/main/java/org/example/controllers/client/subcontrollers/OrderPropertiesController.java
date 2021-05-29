@@ -1,12 +1,19 @@
 package org.example.controllers.client.subcontrollers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.controlsfx.control.ToggleSwitch;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.Catalog;
 import org.example.model.Comment;
@@ -14,6 +21,7 @@ import org.example.model.GiftEditable;
 import org.example.model.Order;
 import org.example.services.Request;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -31,6 +39,8 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
     @FXML TextField direccionField;
     @FXML ListView<GiftEditable> giftListView;
     @FXML ListView<Comment> commentsListView;
+    @FXML
+    ToggleSwitch editSwitch;
 
     Order order;
 
@@ -39,7 +49,23 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        editSwitch.setVisible(false);
+        commentsListView.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order_comment.fxml"));
+            try {
+                ComentPropertiesController dialogController = new ComentPropertiesController();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                dialogController.setObject(commentsListView.getSelectionModel().getSelectedItem());
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void setOrder(Order order){

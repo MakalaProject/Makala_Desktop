@@ -36,6 +36,7 @@ public class Product implements IPaths, IChangeable<Integer> {
 
     public Product (){
         pictures = new ArrayList<>();
+        stock = new BigDecimal("0");
     }
 
     public Product(Integer idProduct, String name) {
@@ -69,7 +70,7 @@ public class Product implements IPaths, IChangeable<Integer> {
     }
 
     public BigDecimal formatStock(Label stockLabel) {
-        stockLabel.setText("Pzas");
+        stockLabel.setText("pzas");
         return null;
     };
 

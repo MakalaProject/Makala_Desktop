@@ -59,6 +59,9 @@ public abstract class ProductParentController implements Initializable, IControl
     @FXML protected FontAwesomeIconView nextPicture;
     @FXML protected FontAwesomeIconView previousPicture;
     @FXML protected Label stockLabel;
+    @FXML protected Label minLabel;
+    @FXML protected Label maxLabel;
+    protected Product product;
 
 
     protected static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Contenedores","Granel","Comestible", "Papeles", "Listones","Creados");
@@ -104,7 +107,14 @@ public abstract class ProductParentController implements Initializable, IControl
         privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if (userClicked && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
+                String privacy = "Privado";
+                if(actualPropertiesController != null) {
+                    product = (Product) actualPropertiesController.getObject();
+                    if (product != null) {
+                        privacy = product.getPrivacy() == null ? "Privado" : product.getPrivacy();
+                    }
+                }
+                if (userClicked && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium")) && privacy.equals("Privado")){
                     userClicked = false;
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Cuidado");

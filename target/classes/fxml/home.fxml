@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="principalPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.HomeController">
+<BorderPane fx:id="principalPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1067.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.HomeController">
     <left>
-        <AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="200.0" BorderPane.alignment="TOP_LEFT">
+        <AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
             <children>
                 <VBox layoutX="7.0" layoutY="130.0" prefHeight="568.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                     <children>
                         <JFXButton fx:id="productosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Productos" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" />
@@ -23,7 +23,7 @@
                         </JFXButton>
                         <JFXButton fx:id="empleadosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Empleados" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
@@ -31,7 +31,7 @@
                         </JFXButton>
                         <JFXButton fx:id="proveedoresButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Proveedores" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
@@ -39,7 +39,7 @@
                         </JFXButton>
                         <JFXButton fx:id="regalosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Regalos" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="GIFT" size="20" />
@@ -47,7 +47,7 @@
                         </JFXButton>
                         <JFXButton fx:id="catalogosButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Catálogos" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="20" />
@@ -55,7 +55,7 @@
                         </JFXButton>
                         <JFXButton fx:id="clientesButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Clientes" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="USERS" size="20" />
@@ -63,7 +63,7 @@
                         </JFXButton>
                         <JFXButton fx:id="ventasButton" alignment="BASELINE_LEFT" prefHeight="27.0" prefWidth="200.0" text="Ventas" textFill="WHITE">
                             <font>
-                                <Font size="20.0" />
+                                <Font size="17.0" />
                             </font>
                             <graphic>
                                 <FontAwesomeIconView fill="WHITE" glyphName="BOOKMARK" size="20" />
@@ -71,7 +71,7 @@
                         </JFXButton>
                   <JFXButton fx:id="comprasButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="205.0" prefHeight="27.0" prefWidth="200.0" text="Compras" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="SHOPPING_BASKET" size="20" />
@@ -79,7 +79,7 @@
                   </JFXButton>
                   <JFXButton fx:id="caducidadButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="244.0" prefHeight="27.0" prefWidth="200.0" text="Caducidades" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="APPLE" size="20" />
@@ -87,7 +87,7 @@
                   </JFXButton>
                   <JFXButton fx:id="rebajasButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="283.0" prefHeight="27.0" prefWidth="200.0" text="Rebajas" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="20" />
@@ -95,7 +95,7 @@
                   </JFXButton>
                   <JFXButton fx:id="calendarioButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="406.0" prefHeight="27.0" prefWidth="200.0" text="Calendario" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR" size="20" />
@@ -103,7 +103,7 @@
                   </JFXButton>
                   <JFXButton fx:id="analisisButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="450.0" prefHeight="27.0" prefWidth="200.0" text="Estadisticas" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="SIGNAL" size="20" />
@@ -111,7 +111,7 @@
                   </JFXButton>
                   <JFXButton fx:id="contabilidadButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="494.0" prefHeight="27.0" prefWidth="200.0" text="Contabilidad" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="20" />
@@ -119,7 +119,7 @@
                   </JFXButton>
                   <JFXButton fx:id="produccionButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="478.0" prefHeight="27.0" prefWidth="200.0" text="Produccion" textFill="WHITE">
                      <font>
-                        <Font size="20.0" />
+                        <Font size="17.0" />
                      </font>
                      <graphic>
                         <FontAwesomeIconView fill="WHITE" glyphName="COG" size="20" />
@@ -150,7 +150,7 @@
             </padding></AnchorPane>
     </top>
    <center>
-       <AnchorPane fx:id="universalPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="867.0" BorderPane.alignment="CENTER">
+       <AnchorPane fx:id="universalPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="867.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
 
        </AnchorPane>
    </center>

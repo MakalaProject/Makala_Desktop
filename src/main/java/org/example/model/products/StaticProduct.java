@@ -40,7 +40,7 @@ public class StaticProduct extends Product {
 
     @Override
     public BigDecimal formatStock(Label label) {
-        label.setText("Pzas");
+        label.setText("pzas");
         return this.stock;
     }
 
