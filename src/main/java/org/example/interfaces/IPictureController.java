@@ -37,11 +37,11 @@ public interface IPictureController {
             return;
         }
         if(getFiles().get(getImageIndex()).contains("http://res.cloudinary.com")){
-            Image image = new Image(getFiles().get(getImageIndex()), 300, 300, false, false);
+            Image image = new Image(getFiles().get(getImageIndex()), 500, 500, false, false);
             getImage().setImage(image);
         }else{
             File file = new File(getFiles().get(getImageIndex()));
-            Image  image = new Image(file.toURI().toString(),300, 300, false, false);
+            Image  image = new Image(file.toURI().toString(),500, 500, false, false);
             getImage().setImage(image);
         }
     }

@@ -122,7 +122,7 @@
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="276.0" prefWidth="516.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="243.0" layoutX="146.0" layoutY="48.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="145.26881408691406" AnchorPane.topAnchor="48.0">
+                        <ImageView fx:id="productImage" fitHeight="230.0" fitWidth="500.0" layoutX="114.0" layoutY="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="114.0" AnchorPane.rightAnchor="113.84347534179688" AnchorPane.topAnchor="40.0">
                             <effect>
                                 <DropShadow />
                             </effect>
@@ -147,11 +147,11 @@
                            </cursor></FontAwesomeIconView>
                             </children>
                         </AnchorPane>
-                        <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="394.0" layoutY="234.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="94.42857170104992" AnchorPane.topAnchor="208.2857151031494">
+                        <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS_CIRCLE" layoutX="404.0" layoutY="235.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="84.42857170104992" AnchorPane.topAnchor="209.2857151031494">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
-                        <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="397.0" layoutY="158.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42" AnchorPane.topAnchor="124.57143020629883">
+                        <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="408.0" layoutY="160.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="80.42857170104992" AnchorPane.topAnchor="126.57143020629883">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
@@ -159,7 +159,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
-                        <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="392.0" layoutY="75.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42857170104992" AnchorPane.topAnchor="47.0">
+                        <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="406.0" layoutY="73.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="82.42857170104992" AnchorPane.topAnchor="47.285715103149414">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>

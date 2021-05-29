@@ -42,6 +42,7 @@ public class ProductController extends ProductParentController implements IListC
     FilteredList<Product> filteredProducts;
     Product actualProduct;
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Product> actualList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicProduct = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
     //Properties controller
     private int index;
@@ -60,7 +61,7 @@ public class ProductController extends ProductParentController implements IListC
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
         selectClassification();
-        filteredProducts = new FilteredList<>(listView.getItems(), p ->true);
+        filteredProducts = new FilteredList<>(actualList, p ->true);
         //Search filter
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
@@ -80,11 +81,8 @@ public class ProductController extends ProductParentController implements IListC
                     }
                 });
                 if (!filteredProducts.isEmpty()) {
-                    ObservableList<Product> sended = FXCollections.observableArrayList();
-                    sended.addAll(filteredProducts);
-                    showList(sended, listView, ProductListViewCell.class);
+                    showList(filteredProducts, listView, ProductListViewCell.class);
                 }
-                System.out.println("Vacia");
             }
         } );
         if(!listView.getItems().isEmpty()){
@@ -158,7 +156,7 @@ public class ProductController extends ProductParentController implements IListC
         } else {
             listView.setDisable(false);
             showList(products, listView, ProductListViewCell.class);
-            filteredProducts = new FilteredList<>(listView.getItems(), p ->true);
+            actualList.setAll(products);
         }
     }
 
@@ -351,7 +349,7 @@ public class ProductController extends ProductParentController implements IListC
         //Disable edit option
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
-        index = productObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+        index = productObservableList.indexOf(actualProduct);
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
             //Find the controller to the type product
@@ -361,9 +359,12 @@ public class ProductController extends ProductParentController implements IListC
                 if(actualProduct.getPrivacy() == null) {
                     actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
                     actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
+                    System.out.println("busqueda");
+                    actualList.set(actualList.indexOf(listView.getSelectionModel().getSelectedItem()), actualProduct);
+                    if(listView.getSelectionModel().getSelectedItem() != actualProduct) {
+                        listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualProduct);
+                    }
                     productObservableList.set(index, actualProduct);
-                    int listIndex = listView.getSelectionModel().getSelectedIndex();
-                    listView.getItems().set(listIndex, actualProduct);
                 }else{
                     actualPropertiesController.setObject(actualProduct);
                 }
