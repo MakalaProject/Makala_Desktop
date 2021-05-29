@@ -60,9 +60,8 @@ public class ProductController extends ProductParentController implements IListC
             editView(fieldsAnchorPane, editSwitch, updateButton);
         });
         selectClassification();
-
-        //Search filter
         filteredProducts = new FilteredList<>(listView.getItems(), p ->true);
+        //Search filter
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
                 filteredProducts.setPredicate(product -> {
@@ -85,6 +84,7 @@ public class ProductController extends ProductParentController implements IListC
                     sended.addAll(filteredProducts);
                     showList(sended, listView, ProductListViewCell.class);
                 }
+                System.out.println("Vacia");
             }
         } );
         if(!listView.getItems().isEmpty()){
@@ -158,6 +158,7 @@ public class ProductController extends ProductParentController implements IListC
         } else {
             listView.setDisable(false);
             showList(products, listView, ProductListViewCell.class);
+            filteredProducts = new FilteredList<>(listView.getItems(), p ->true);
         }
     }
 

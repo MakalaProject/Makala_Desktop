@@ -31,7 +31,9 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ManualController implements Initializable, IListController<ArrayList<Step>>, IControllerCreate<ArrayList<Step>> {
     @FXML FontAwesomeIconView updateButton;
@@ -151,8 +153,8 @@ public class ManualController implements Initializable, IListController<ArrayLis
         showList();
     }
     private void showList(){
-        stepListView.getItems().setAll(stepObservableList);
-        stepListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(stepObservableList)).multiply(23.7));
+        stepListView.getItems().setAll(FXCollections.observableList(stepObservableList.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
+        stepListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(stepListView.getItems())).multiply(23.7));
     }
 
     @Override
@@ -167,6 +169,7 @@ public class ManualController implements Initializable, IListController<ArrayLis
 
     public void setObject(Gift gift, ArrayList<Step> steps) {
         stepObservableList.setAll(steps);
+        stepObservableList.sort(Comparator.comparing(Step::getStepNumber));
         actualGift = gift;
         putFields();
     }
