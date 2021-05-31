@@ -55,21 +55,32 @@ public class ManualStepController implements Initializable {
         tiempoField.focusedProperty().addListener(new FocusVerificationFields(tiempoField, false, 3));
         tiempoField.textProperty().addListener(new ChangedVerificationFields(tiempoField, false, 3));
         deleteButton.setOnMouseClicked(mouseEvent -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
-            ImageView imageView = new ImageView(image);
-            alert.setGraphic(imageView);
-            alert.setTitle("Eliminar paso");
-            alert.setHeaderText("Estas a punto de eliminar un paso");
-            alert.setContentText("¿Seguro quieres eliminarlo?");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-                Node source = (Node)  mouseEvent.getSource();
-                Stage stage  = (Stage) source.getScene().getWindow();
-                actualStep.setAction(Action.DELETE);
-                setInfo(actualStep);
-                stage.setUserData(actualStep);
-                stage.close();
+            if(!actualStep.isPublic()){
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
+                ImageView imageView = new ImageView(image);
+                alert.setGraphic(imageView);
+                alert.setTitle("Eliminar paso");
+                alert.setHeaderText("Estas a punto de eliminar un paso");
+                alert.setContentText("¿Seguro quieres eliminarlo?");
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    Node source = (Node)  mouseEvent.getSource();
+                    Stage stage  = (Stage) source.getScene().getWindow();
+                    actualStep.setAction(Action.DELETE);
+                    setInfo(actualStep);
+                    stage.setUserData(actualStep);
+                    stage.close();
+                }
+            }else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
+                ImageView imageView = new ImageView(image);
+                alert.setGraphic(imageView);
+                alert.setTitle("Accion imposible");
+                alert.setHeaderText("No es posible eliminar un paso de un regalo ya público");
+                alert.setContentText("Edite los pasos del regalo o agregue nuevos");
+                alert.showAndWait();
             }
         });
 
@@ -221,7 +232,7 @@ class InstructionElement{
     private String format;
 
     public String formatedElement(){
-        return format + productId + ":" + listId+"}";
+        return format + productId + "-" + listId+"}";
     }
     public InstructionElement(String format){
         this.format = format;

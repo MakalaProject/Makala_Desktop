@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="951.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ClientController">
+<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="904.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ClientController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
             <children>
@@ -23,9 +23,9 @@
                 <FontAwesomeIconView fx:id="addButton" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="652.0" style="-fx-background-color: #E3DAD8;">
+        <AnchorPane fx:id="informationPane" style="-fx-background-color: #E3DAD8;">
             <children>
-            <AnchorPane fx:id="fieldsAnchorPane" disable="true" prefHeight="215.0" prefWidth="516.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
+            <AnchorPane fx:id="fieldsAnchorPane" prefHeight="215.0" prefWidth="516.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
                <children>
                       <Label layoutX="40.0" layoutY="25.0" prefHeight="28.0" prefWidth="90.0" text="Nombres" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="386.0" AnchorPane.topAnchor="25.0">
                           <font>
@@ -37,7 +37,7 @@
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                      <TextField fx:id="nombresField" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="23.0" />
+                      <TextField fx:id="nombresField" editable="false" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="23.0" />
                       <Label text="Telefono" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="105.0">
                           <font>
                               <Font name="Roboto Light" size="20.0" />
@@ -48,11 +48,10 @@
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                      <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="63.0" />
-                      <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="289.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="103.0" />
-                      <TextField fx:id="correoField" prefHeight="27.0" prefWidth="289.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="143.0" />
+                      <TextField fx:id="apellidosField" editable="false" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="63.0" />
+                      <TextField fx:id="telefonoField" editable="false" prefHeight="27.0" prefWidth="289.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="103.0" />
+                      <TextField fx:id="correoField" editable="false" prefHeight="27.0" prefWidth="289.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="143.0" />
                </children></AnchorPane>
-            <ListView fx:id="historyList" layoutX="116.0" layoutY="520.0" prefHeight="429.0" prefWidth="516.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="520.0" />
                 <Label alignment="CENTER" layoutY="475.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Historial" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="475.0">
                     <font>
                         <Font name="Roboto Light" size="27.0" />
@@ -93,6 +92,11 @@
                     <effect>
                         <DropShadow />
                     </effect></AnchorPane>
+            <VBox layoutX="92.0" layoutY="520.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="520.0">
+               <children>
+                  <ListView fx:id="historyList" prefHeight="0.0" prefWidth="518.0" />
+               </children>
+            </VBox>
             </children></AnchorPane>
     </items>
 </SplitPane>
