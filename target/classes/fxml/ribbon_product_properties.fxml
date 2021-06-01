@@ -16,7 +16,6 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-   <ColorPicker fx:id="colorPicker" layoutX="190.0" layoutY="184.0" prefHeight="27.0" prefWidth="191.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="85.0" />
     <Label layoutX="417.0" layoutY="35.0" text="&quot;" AnchorPane.leftAnchor="417.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="35.0">
       <font>
          <Font size="15.0" />
@@ -29,5 +28,6 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
+   <ColorPicker fx:id="colorPicker" layoutX="190.0" layoutY="184.0" prefHeight="27.0" prefWidth="191.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="85.0" />
 
 </AnchorPane>

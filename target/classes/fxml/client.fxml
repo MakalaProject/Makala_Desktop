@@ -69,7 +69,6 @@
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="nombresField" editable="false" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="23.0" />
                                     <Label text="Telefono" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="105.0">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
@@ -80,6 +79,7 @@
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
+                                    <TextField fx:id="nombresField" editable="false" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="23.0" />
                                     <TextField fx:id="apellidosField" editable="false" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="63.0" />
                                     <TextField fx:id="telefonoField" editable="false" prefHeight="27.0" prefWidth="289.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="103.0" />
                                     <TextField fx:id="correoField" editable="false" prefHeight="27.0" prefWidth="289.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="143.0" />

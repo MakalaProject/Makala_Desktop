@@ -42,7 +42,7 @@ public interface IListController<D>{
         alert.setTitle(element + " sin guardar");
         alert.setHeaderText("Tienes cambios sin guardar de '" + elementName + "'");
         alert.setContentText("¿Quieres mantener los cambios?");
-        ButtonType noBttn = new ButtonType("No guardar", ButtonBar.ButtonData.NO);
+        ButtonType noBttn = new ButtonType("Salir sin guardar", ButtonBar.ButtonData.NO);
         Node closeButton = alert.getDialogPane().lookupButton(ButtonType.CANCEL);
         closeButton.managedProperty().bind(closeButton.visibleProperty());
         closeButton.setVisible(false);
@@ -51,7 +51,7 @@ public interface IListController<D>{
         if (result.get() == ButtonType.OK){
             update();
             return false;
-        }else return result.get().getText().equals("No guardar");
+        }else return result.get().getText().equals("Salir sin guardar");
     }
     void delete();
     void update();

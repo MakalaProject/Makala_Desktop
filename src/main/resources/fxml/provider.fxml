@@ -127,6 +127,11 @@
                    <ComboBox fx:id="ciudadComboBox" layoutX="169.0" layoutY="465.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="465.0" />
                    <TextField fx:id="codigoPostalField" layoutX="169.0" layoutY="504.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="504.0" />
                    <TextField fx:id="addressField" layoutX="169.0" layoutY="546.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="546.0" />
+                     <Label layoutX="443.0" layoutY="144.0" prefHeight="28.0" prefWidth="49.0" text="días">
+                        <font>
+                           <Font name="Roboto Light" size="20.0" />
+                        </font>
+                     </Label>
                </children></AnchorPane>
                 </ScrollPane>
 
