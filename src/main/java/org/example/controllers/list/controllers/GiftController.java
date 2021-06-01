@@ -171,8 +171,6 @@ public class GiftController extends GiftParentController implements IListControl
         });
     }
 
-
-
     @Override
     public boolean existChanges(){
         if(actualGift == null){
@@ -221,66 +219,75 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public void update() {
-        if(!nombreField.getText().isEmpty()){
-            Gift gift = new Gift();
-            setInfo(gift);
-            Gift returnedGift = null;
-            try {
-                ArrayList<Picture> picturesOriginal = new ArrayList<>(gift.getPictures());
-                gift.setPictures(new ArrayList<>());
-                if(!gift.getPrivacy().equals("Privado")){
-                    gift.setStaticProducts(null);
-                    gift.setRibbons(null);
-                    gift.setPapers(null);
-                }
-                Request.putJ(gift.getRoute(), gift);
-                gift = (Gift) Request.find(gift.getRoute(), gift.getIdGift(), gift.getClass());
-                List<String> urls = ImageService.uploadImages(files);
-                files = urls;
-                gift.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
-                for (String s : urls) {
-                    gift.getPictures().add(new Picture(s));
-                }
-                files = new ArrayList<>();
-                if(deleteFiles.size() != 0){
-                    int counter = 0;
-                    ArrayList<Picture> pictures = new ArrayList<>(picturesOriginal);
-                    for (Picture p : pictures) {
-                        files.add(p.getPath());
-                        for(String s: deleteFiles){
-                            if(s.equals(picturesOriginal.get(counter).getPath())){
-                                picturesOriginal.remove(counter);
-                                counter--;
-                            }
+        if( !nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
+            if (Float.parseFloat(laborCostField.getText())>0) {
+                if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
+                    Gift gift = new Gift();
+                    setInfo(gift);
+                    Gift returnedGift = null;
+                    try {
+                        ArrayList<Picture> picturesOriginal = new ArrayList<>(gift.getPictures());
+                        gift.setPictures(new ArrayList<>());
+                        if(!gift.getPrivacy().equals("Privado")){
+                            gift.setStaticProducts(null);
+                            gift.setRibbons(null);
+                            gift.setPapers(null);
                         }
-                        counter++;
+                        Request.putJ(gift.getRoute(), gift);
+                        gift = (Gift) Request.find(gift.getRoute(), gift.getIdGift(), gift.getClass());
+                        List<String> urls = ImageService.uploadImages(files);
+                        files = urls;
+                        gift.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
+                        for (String s : urls) {
+                            gift.getPictures().add(new Picture(s));
+                        }
+                        files = new ArrayList<>();
+                        if(deleteFiles.size() != 0){
+                            int counter = 0;
+                            ArrayList<Picture> pictures = new ArrayList<>(picturesOriginal);
+                            for (Picture p : pictures) {
+                                files.add(p.getPath());
+                                for(String s: deleteFiles){
+                                    if(s.equals(picturesOriginal.get(counter).getPath())){
+                                        picturesOriginal.remove(counter);
+                                        counter--;
+                                    }
+                                }
+                                counter++;
+                            }
+                            new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualGift.getPictures(), picturesOriginal);
+                            gift.setPictures(picturesOriginal);
+                            ImageService.deleteImages(deleteFiles);
+                        }
+                        if(!gift.getPrivacy().equals("Privado")){
+                            gift.setStaticProducts(null);
+                            gift.setRibbons(null);
+                            gift.setPapers(null);
+                        }
+                        returnedGift = (Gift) Request.putJ(gift.getRoute(), gift);
+                    } catch (Exception e) {
+                        duplyElementAlert(gift.getIdentifier());
+                        return;
                     }
-                    new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualGift.getPictures(), picturesOriginal);
-                    gift.setPictures(picturesOriginal);
-                    ImageService.deleteImages(deleteFiles);
+                    gift.setPictures(returnedGift.getPictures());
+                    actualGift = returnedGift;
+                    setExtendedInternalProducts(actualGift);
+                    pictureList = new ArrayList<>(gift.getPictures());
+                    giftObservableList.set(index, actualGift);
+                    listView.scrollTo(gift);
+                    putFields();
+                    privacyProduct();
+                }else {
+                    showAlertEmptyFields("No puedes dejar un regalo sin listones o productos");
                 }
-                if(!gift.getPrivacy().equals("Privado")){
-                    gift.setStaticProducts(null);
-                    gift.setRibbons(null);
-                    gift.setPapers(null);
-                }
-                returnedGift = (Gift) Request.putJ(gift.getRoute(), gift);
-            } catch (Exception e) {
-                duplyElementAlert(gift.getIdentifier());
-                return;
+            }else {
+                showAlertEmptyFields("El precio de elaboración no puede ser 0");
             }
-            gift.setPictures(returnedGift.getPictures());
-            actualGift = returnedGift;
-            setExtendedInternalProducts(actualGift);
-            pictureList = new ArrayList<>(gift.getPictures());
-            giftObservableList.set(index, actualGift);
-            listView.getSelectionModel().select(actualGift);
-            listView.scrollTo(gift);
-            putFields();
-            privacyProduct();
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
+        listView.getSelectionModel().select(actualGift);
+        updateView();
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
     }

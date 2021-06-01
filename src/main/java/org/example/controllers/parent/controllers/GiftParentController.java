@@ -186,7 +186,7 @@ public class GiftParentController implements Initializable, IPictureController, 
                     giftProducts.add((T)giftProductsToSend);
                 }else {
                     if (giftProductsToSend.getAction() == Action.DELETE){
-                        giftProducts.removeIf(g -> g.getId().equals(giftProductsToSend.getId()));
+                        giftProducts.remove((T)giftProductsToSend);
                     }else {
                         giftProducts.set(giftProducts.indexOf(listViewProducts.getSelectionModel().getSelectedItem()), (T)giftProductsToSend);
                     }

@@ -114,7 +114,7 @@
          </AnchorPane>
          <VBox>
             <children>
-               <ListView fx:id="holesListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+               <ListView fx:id="holesListView" fixedCellSize="25.7" prefHeight="0.0" prefWidth="452.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
             </children>
             <cursor>
                <Cursor fx:constant="HAND" />

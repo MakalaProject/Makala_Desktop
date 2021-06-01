@@ -129,7 +129,7 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                        <Label layoutX="45.0" layoutY="130.0" prefHeight="28.0" prefWidth="123.0" text="Contenedor" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="130.0">
+                        <Label layoutX="48.0" layoutY="129.0" prefHeight="28.0" prefWidth="123.0" text="Contenedor" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="129.0">
                                 <font>
                                     <Font name="Roboto Light" size="20.0" />
                                 </font>
@@ -150,13 +150,13 @@
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="387.0" layoutY="187.0" text="\$" />
+                  <Label layoutX="387.0" layoutY="187.0" text="\$" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="187.0" />
                   <Label layoutX="44.0" layoutY="217.0" prefHeight="28.0" prefWidth="128.0" text="Mano de Obra">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="387.0" layoutY="231.0" text="\$" />
+                  <Label layoutX="387.0" layoutY="231.0" text="\$" AnchorPane.rightAnchor="97.0" AnchorPane.topAnchor="231.0" />
                         <Rating fx:id="giftRating" disable="true" layoutX="191.0" layoutY="275.0" rating="5.0">
                             
                         </Rating>
@@ -176,14 +176,14 @@
                      </font>
                   </Label>
                   <FontAwesomeIconView fx:id="manualButton" glyphName="EDIT" layoutX="406.0" layoutY="353.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="64.42857170104992" AnchorPane.topAnchor="327.2857151031494" />
-                <TextField fx:id="nombreField" layoutX="158.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="20.0">
+                <TextField fx:id="nombreField" layoutX="158.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="20.0">
                     <font>
                         <Font size="15.0" />
                     </font>
 
                 </TextField>
                 <ComboBox fx:id="privacidadComboBox" layoutX="158.0" layoutY="80.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="80.0" />
-                  <TextField fx:id="precioField" disable="true" layoutX="181.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                  <TextField fx:id="precioField" disable="true" layoutX="181.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="170.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -191,7 +191,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <TextField fx:id="laborCostField" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                  <TextField fx:id="laborCostField" layoutX="181.0" layoutY="214.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="181.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="214.0">
                      <font>
                         <Font size="15.0" />
                      </font>

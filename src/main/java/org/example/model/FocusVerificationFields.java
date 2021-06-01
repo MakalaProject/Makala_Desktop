@@ -16,13 +16,14 @@ public class FocusVerificationFields extends RegexVerificationParent implements 
 
     @Override
     public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
-
-        if (isDecimal){
-            if (textField.getText().matches("^(\\d{0,"+maxRangeInteger+"}\\.)?$")) {
-                textField.setText(textField.getText() + "0");
-            }
-            if (textField.getText().matches("^(\\.\\d{0,"+maxRangeDecimal+"})?$")) {
-                textField.setText("0" + textField.getText());
+        if(!textField.getText().isEmpty()) {
+            if (isDecimal) {
+                if (textField.getText().matches("^(\\d{0," + maxRangeInteger + "}\\.)?$")) {
+                    textField.setText(textField.getText() + "0");
+                }
+                if (textField.getText().matches("^(\\.\\d{0," + maxRangeDecimal + "})?$")) {
+                    textField.setText("0" + textField.getText());
+                }
             }
         }
     }

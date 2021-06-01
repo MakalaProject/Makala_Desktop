@@ -18,6 +18,7 @@ import org.example.interfaces.IListController;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
+import org.example.model.GiftProductsToSend;
 import org.example.model.products.*;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -54,8 +55,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     public void showList(){
         ObservableList<Hole> holes = FXCollections.observableList(holeList.stream().filter(hole -> !hole.isToDelete()).collect(Collectors.toList()));
+        holes.sort(Comparator.comparing(Hole::getHoleNumber));
         holesListView.setItems(holes);
-        holesListView.prefHeightProperty().bind(Bindings.size(holes).multiply(25.7));
+        holesListView.prefHeightProperty().bind(Bindings.size(holes).multiply(26.1));
     }
 
     @Override
