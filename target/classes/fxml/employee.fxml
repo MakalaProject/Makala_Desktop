@@ -56,8 +56,8 @@
                         <DropShadow />
                     </effect>
                 </AnchorPane>
-                <ScrollPane fitToWidth="true" layoutY="266.0" prefHeight="593.0" prefWidth="518.0" style="-fx-background-color: wite;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="266.0">
-            <AnchorPane fx:id="fieldsAnchorPane" cache="true" focusTraversable="true" layoutY="256.0" mouseTransparent="true" pickOnBounds="false" prefHeight="607.0" prefWidth="516.0" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
+                <ScrollPane fitToWidth="true" layoutY="265.0" prefHeight="594.0" prefWidth="518.0" style="-fx-background-color: wite;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="265.0">
+            <AnchorPane fx:id="fieldsAnchorPane" cache="true" focusTraversable="true" layoutY="256.0" mouseTransparent="true" pickOnBounds="false" prefHeight="579.0" prefWidth="516.0" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
                <children>
                       <TextField fx:id="telefonoField" layoutX="175.0" layoutY="139.0" prefHeight="27.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="139.0" />
                       <Label layoutX="29.0" layoutY="140.0" prefHeight="28.0" prefWidth="113.0" text="Telefono" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="140.0">

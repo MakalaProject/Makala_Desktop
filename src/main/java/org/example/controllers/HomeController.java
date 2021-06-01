@@ -43,6 +43,7 @@ public class HomeController implements Initializable {
     @FXML FontAwesomeIconView menuButton;
     @FXML FontAwesomeIconView settings;
     @FXML Label userName;
+    @FXML Label titleLabel;
     @FXML BorderPane principalPane;
     @FXML AnchorPane menuPane;
     @FXML AnchorPane topPane;
@@ -95,33 +96,33 @@ public class HomeController implements Initializable {
             }
         });
 
-        productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product"));
+        productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product", "Productos"));
 
-        proveedoresButton.setOnMouseClicked(new HomeLoader("/fxml/provider.fxml","provider"));
+        proveedoresButton.setOnMouseClicked(new HomeLoader("/fxml/provider.fxml","provider", "Proveedores"));
 
-        catalogosButton.setOnMouseClicked(new HomeLoader("/fxml/catalog.fxml","catalog"));
+        catalogosButton.setOnMouseClicked(new HomeLoader("/fxml/catalog.fxml","catalog", "Catalogos"));
 
-        empleadosButton.setOnMouseClicked(new HomeLoader("/fxml/employee.fxml","employee"));
+        empleadosButton.setOnMouseClicked(new HomeLoader("/fxml/employee.fxml","employee", "Empleados"));
 
-        regalosButton.setOnMouseClicked(new HomeLoader("/fxml/gift.fxml","storage"));
+        regalosButton.setOnMouseClicked(new HomeLoader("/fxml/gift.fxml","storage", "Regalos"));
 
-        clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client"));
+        clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client", "Clientes"));
 
-        comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase"));
+        comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase", "Compras"));
 
-        caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package"));
+        caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package", "Productos en Caducidad"));
 
-        rebajasButton.setOnMouseClicked(new HomeLoader("/fxml/rebates.fxml","rebates"));
+        rebajasButton.setOnMouseClicked(new HomeLoader("/fxml/rebates.fxml","rebates", "Rebajas"));
 
-        ventasButton.setOnMouseClicked(new HomeLoader("/fxml/order_list.fxml", "orders"));
+        ventasButton.setOnMouseClicked(new HomeLoader("/fxml/order_list.fxml", "orders", "Ventas"));
 
-        calendarioButton.setOnMouseClicked(new HomeLoader("/fxml/calendar.fxml", "calendar"));
+        calendarioButton.setOnMouseClicked(new HomeLoader("/fxml/calendar.fxml", "calendar", "Calendario"));
 
-        contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/contability.fxml", "accounting"));
+        contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/contability.fxml", "accounting", "Contabilidad"));
 
-        analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics"));
+        analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics", "Estadisticas"));
 
-        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production"));
+        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion"));
 
     }
 
@@ -155,10 +156,12 @@ public class HomeController implements Initializable {
     public class HomeLoader implements EventHandler{
         private final String rootResourceNameCompare;
         private final String resource;
+        private final String title;
 
-        public HomeLoader(String resource, String rootName){
+        public HomeLoader(String resource, String rootName, String title){
             this.resource = resource;
             this.rootResourceNameCompare = rootName;
+            this.title = title;
         }
 
         @Override
@@ -168,6 +171,7 @@ public class HomeController implements Initializable {
                     return;
                 loadView(resource);
                 rootResourceName = rootResourceNameCompare;
+                titleLabel.setText(title);
             }
         }
     }

@@ -69,7 +69,6 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="payMethodComboBox" layoutX="177.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="277.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="81.0" />
                 <Label layoutX="45.0" layoutY="173.0" prefHeight="28.0" prefWidth="90.0" text="Precio">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -95,15 +94,16 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <DatePicker id="orderDatePicker" fx:id="orderDatePicker" editable="false" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="264.0" />
-                <DatePicker id="receivedDatePicker" fx:id="receivedDatePicker" editable="false" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="270.0" />
-                <DatePicker id="payDatePicker" fx:id="payDatePicker" editable="false" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="268.0" />
-                <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="271.0" />
                 <Label layoutX="40.0" layoutY="315.0" prefHeight="28.0" prefWidth="137.0" text="Comentario">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
+                <DatePicker id="orderDatePicker" fx:id="orderDatePicker" editable="false" layoutX="191.0" layoutY="24.0" prefHeight="27.0" prefWidth="264.0" />
+                <ComboBox fx:id="payMethodComboBox" layoutX="177.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="277.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="81.0" />
+                <DatePicker id="payDatePicker" fx:id="payDatePicker" editable="false" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="268.0" />
+                <DatePicker id="receivedDatePicker" fx:id="receivedDatePicker" editable="false" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="270.0" />
+                <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="271.0" />
             </AnchorPane>
         </ScrollPane>
         <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="254.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

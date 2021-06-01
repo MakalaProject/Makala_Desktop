@@ -13,7 +13,6 @@
     <children>
         <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
             <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefWidth="499.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
-                <ComboBox fx:id="productTypeComboBox" layoutX="187.0" layoutY="28.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="28.0" />
                 <Label fx:id="objectLabel" layoutX="37.0" layoutY="74.0" prefHeight="28.0" prefWidth="121.0" text="Nombre" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="424.0" AnchorPane.topAnchor="74.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -30,18 +29,11 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="porcentajeField" focusTraversable="false" layoutX="173.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="211.0">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                </TextField>
                 <Label layoutX="40.0" layoutY="154.0" prefHeight="28.0" prefWidth="137.0" text="Dia final">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <DatePicker fx:id="endDatePicker" layoutX="205.0" layoutY="154.0" prefHeight="27.0" prefWidth="230.0" />
-                <DatePicker fx:id="startDatePicker" layoutX="205.0" layoutY="112.0" prefHeight="27.0" prefWidth="230.0" />
             <Label fx:id="objectLabel1" layoutX="37.0" layoutY="29.0" prefHeight="28.0" prefWidth="121.0" text="Tipo">
                <font>
                   <Font name="Roboto Light" size="20.0" />
@@ -52,8 +44,21 @@
                   <Font name="Roboto Light" size="20.0" />
                </font>
             </Label>
-            <ComboBox fx:id="tipoComboBox" layoutX="199.0" layoutY="265.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" />
             <Label fx:id="rebajaLabel" layoutX="36.0" layoutY="266.0" prefHeight="28.0" prefWidth="121.0" text="Tipo Rebaja">
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font>
+            </Label>
+                <ComboBox fx:id="productTypeComboBox" layoutX="187.0" layoutY="28.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="28.0" />
+                <DatePicker fx:id="startDatePicker" layoutX="205.0" layoutY="112.0" prefHeight="27.0" prefWidth="230.0" />
+                <DatePicker fx:id="endDatePicker" layoutX="205.0" layoutY="154.0" prefHeight="27.0" prefWidth="230.0" />
+                <TextField fx:id="porcentajeField" focusTraversable="false" layoutX="173.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="211.0">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </TextField>
+            <ComboBox fx:id="tipoComboBox" layoutX="199.0" layoutY="265.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" />
+            <Label layoutX="528.0" layoutY="218.0" prefHeight="28.0" prefWidth="28.0" text="\%" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="218.0">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>

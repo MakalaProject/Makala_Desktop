@@ -51,48 +51,38 @@
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                  <TextField fx:id="nombresField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="m" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="23.0" />
                       <Label prefHeight="28.0" prefWidth="100.0" text="Apellidos" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="383.0" AnchorPane.topAnchor="65.0">
                           <font>
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                  <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="ap" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="63.0" />
                       <Label prefHeight="28.0" prefWidth="100.0" text="Telefono" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="368.0" AnchorPane.topAnchor="105.0">
                           <font>
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                  <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="33" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="103.0" />
                       <Label layoutX="28.0" layoutY="144.0" prefHeight="28.0" prefWidth="174.0" text="Tiempo de entrega " AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="144.0">
                           <font>
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
                    <FontAwesomeIconView fx:id="productsButton" fill="WHITE" glyphName="EDIT" layoutX="451.0" layoutY="619.0" size="30" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="593.2857151031494" />
-                   <TextField fx:id="tiempoField" prefHeight="27.0" prefWidth="227.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="143.0" />
                       <Label layoutX="28.0" layoutY="184.0" prefHeight="28.0" prefWidth="103.0" text="Tarjeta" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="363.0" AnchorPane.topAnchor="184.0">
                           <font>
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                  <TextField fx:id="tarjetaField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="1010" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="183.0" />
-                   <TextField fx:id="estadoField" editable="false" layoutX="169.0" layoutY="417.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="Jalisco" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="417.0" />
-                   <TextField fx:id="codigoPostalField" layoutX="169.0" layoutY="504.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="504.0" />
-                   <TextField fx:id="addressField" layoutX="169.0" layoutY="546.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="546.0" />
 
                    <Label layoutX="35.0" layoutY="548.0" prefHeight="28.0" prefWidth="114.0" text="Dirección" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="548.0">
                        <font>
                            <Font name="Roboto Light" size="20.0" />
                        </font>
                    </Label>
-                  <TextField fx:id="emailField" layoutX="175.0" layoutY="223.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="223.0" />
                       <Label layoutX="25.0" layoutY="271.0" prefHeight="28.0" prefWidth="72.0" text="Tipo" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="401.0" AnchorPane.topAnchor="271.0">
                           <font>
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                      <ComboBox fx:id="tipoComboBox" layoutX="175.0" layoutY="272.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="272.0" />
                   <Label layoutX="22.0" layoutY="324.0" prefHeight="28.0" prefWidth="142.0" text="Tipo Producto" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="324.0">
                       <font>
                           <Font name="Roboto Light" size="20.0" />
@@ -118,15 +108,25 @@
                               <Font name="Roboto Light" size="20.0" />
                           </font>
                       </Label>
-                      <RadioButton fx:id="siRadio" layoutX="196.0" layoutY="382.0" mnemonicParsing="false" text="Si" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="382.0" />
-                      <RadioButton fx:id="noRadio" layoutX="266.0" layoutY="382.0" mnemonicParsing="false" text="No" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="382.0" />
-                  <ComboBox fx:id="classificationComboBox" layoutX="175.0" layoutY="325.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="325.0" />
-                   <ComboBox fx:id="ciudadComboBox" layoutX="169.0" layoutY="465.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="465.0" />
                      <AnchorPane layoutY="631.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="627.0">
                         <children>
                            <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                      </AnchorPane>
+                  <TextField fx:id="nombresField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="m" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="23.0" />
+                  <TextField fx:id="apellidosField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="ap" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="63.0" />
+                  <TextField fx:id="telefonoField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="33" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="103.0" />
+                   <TextField fx:id="tiempoField" prefHeight="27.0" prefWidth="227.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="143.0" />
+                  <TextField fx:id="tarjetaField" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="1010" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="183.0" />
+                  <TextField fx:id="emailField" layoutX="175.0" layoutY="223.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="223.0" />
+                      <ComboBox fx:id="tipoComboBox" layoutX="175.0" layoutY="272.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="272.0" />
+                  <ComboBox fx:id="classificationComboBox" layoutX="175.0" layoutY="325.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="325.0" />
+                      <RadioButton fx:id="siRadio" layoutX="196.0" layoutY="382.0" mnemonicParsing="false" text="Si" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="382.0" />
+                      <RadioButton fx:id="noRadio" layoutX="266.0" layoutY="382.0" mnemonicParsing="false" text="No" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="382.0" />
+                   <TextField fx:id="estadoField" editable="false" layoutX="169.0" layoutY="417.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="Jalisco" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="417.0" />
+                   <ComboBox fx:id="ciudadComboBox" layoutX="169.0" layoutY="465.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="465.0" />
+                   <TextField fx:id="codigoPostalField" layoutX="169.0" layoutY="504.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="504.0" />
+                   <TextField fx:id="addressField" layoutX="169.0" layoutY="546.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="546.0" />
                </children></AnchorPane>
                 </ScrollPane>
 

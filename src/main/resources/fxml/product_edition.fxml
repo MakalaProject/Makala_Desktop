@@ -23,12 +23,6 @@
                             <Font name="Roboto Light" size="20.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="nombreField" editable="false" focusTraversable="false" layoutX="178.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="246.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="20.0">
-                        <font>
-                            <Font size="15.0" />
-                        </font>
-                    </TextField>
-                    <TextField fx:id="cantidadField" editable="false" focusTraversable="false" layoutX="186.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="230.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
                     <Label alignment="CENTER" layoutY="150.0" prefHeight="39.0" prefWidth="486.0" style="-fx-background-color: #A39D9B;" text="Producto Original" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
                         <font>
                             <Font name="Roboto Light" size="27.0" />
@@ -51,6 +45,12 @@
                      <Font size="15.0" />
                   </font>
                </TextField>
+                    <TextField fx:id="nombreField" editable="false" focusTraversable="false" layoutX="178.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="246.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="20.0">
+                        <font>
+                            <Font size="15.0" />
+                        </font>
+                    </TextField>
+                    <TextField fx:id="cantidadField" editable="false" focusTraversable="false" layoutX="186.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="230.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
 
                 </AnchorPane>
             </ScrollPane>

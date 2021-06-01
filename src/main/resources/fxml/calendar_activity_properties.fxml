@@ -13,17 +13,11 @@
     <children>
         <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="41.0" pannable="true" prefWidth="600.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="41.0">
             <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="462.0" prefWidth="585.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
-                <ComboBox fx:id="empleadoComboBox" layoutX="168.0" layoutY="47.0" prefHeight="29.0" prefWidth="338.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="47.0" />
                 <Label fx:id="objectLabel" layoutX="24.0" layoutY="108.0" prefHeight="28.0" prefWidth="121.0" text="Fecha Inicio" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="437.0" AnchorPane.topAnchor="108.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="fechaInicioField" editable="false" focusTraversable="false" layoutX="158.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="95.0">
-                    <font>
-                        <Font size="16.0" />
-                    </font>
-                </TextField>
                 <Label fx:id="objectLabel1" layoutX="47.0" layoutY="30.0" prefHeight="30.0" prefWidth="96.0" text="Empleado">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -44,6 +38,22 @@
                   <Font name="Roboto Light" size="20.0" />
                </font>
             </Label>
+            <Label layoutX="527.0" layoutY="217.0" prefHeight="28.0" prefWidth="37.0" text="min">
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="objectLabel11" layoutX="37.0" layoutY="61.0" prefHeight="30.0" prefWidth="121.0" text="responsable">
+               <font>
+                  <Font name="Roboto Light" size="20.0" />
+               </font>
+            </Label>
+                <ComboBox fx:id="empleadoComboBox" layoutX="168.0" layoutY="47.0" prefHeight="29.0" prefWidth="338.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="168.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="47.0" />
+                <TextField fx:id="fechaInicioField" editable="false" focusTraversable="false" layoutX="158.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="95.0">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </TextField>
             <TextField fx:id="fechaFinField" editable="false" focusTraversable="false" layoutX="160.0" layoutY="151.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="350.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
                <font>
                   <Font size="16.0" />
@@ -54,17 +64,7 @@
                   <Font size="16.0" />
                </font>
             </TextField>
-            <Label layoutX="527.0" layoutY="217.0" prefHeight="28.0" prefWidth="37.0" text="min">
-               <font>
-                  <Font name="Roboto Light" size="20.0" />
-               </font>
-            </Label>
             <TextArea fx:id="tareaTextArea" editable="false" layoutX="160.0" layoutY="267.0" prefHeight="90.0" prefWidth="356.0" wrapText="true" />
-            <Label fx:id="objectLabel11" layoutX="37.0" layoutY="61.0" prefHeight="30.0" prefWidth="121.0" text="responsable">
-               <font>
-                  <Font name="Roboto Light" size="20.0" />
-               </font>
-            </Label>
             </AnchorPane>
         </ScrollPane>
         <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="40.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
