@@ -103,9 +103,9 @@ public class CatalogParentController implements Initializable {
     }
 
 
-    private void showGiftsList(ObservableList<Gift> list){
+    protected void showGiftsList(ObservableList<Gift> list){
         giftListView.setItems(FXCollections.observableList(list.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
-        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(23.7));
+        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(25.7));
     }
 
     protected void uploadImage(Stage s){

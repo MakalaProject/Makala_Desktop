@@ -132,7 +132,7 @@ public class ProviderController extends UserParentController<Provider> {
     }
     public void showProductsList(ObservableList<Product> products){
         productsListView.setItems(FXCollections.observableList(products.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
-        productsListView.prefHeightProperty().bind(Bindings.size(productsListView.getItems()).multiply(23.7));
+        productsListView.prefHeightProperty().bind(Bindings.size(productsListView.getItems()).multiply(25.7));
     }
 
     public void verifyClassification(){

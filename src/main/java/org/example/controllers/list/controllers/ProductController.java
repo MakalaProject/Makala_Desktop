@@ -237,7 +237,7 @@ public class ProductController extends ProductParentController implements IListC
                         pictureList = new ArrayList<>(product.getPictures());
                         comboBox.setValue(actualProduct.getProductClassDto().getProductType());
                         productObservableList.set(index, actualProduct);
-                        selectClassification();
+                        changeList();
                         listView.getSelectionModel().select(actualProduct);
                         listView.scrollTo(product);
                     }
@@ -273,12 +273,11 @@ public class ProductController extends ProductParentController implements IListC
                 changeList();
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
-                updateView();
             }
-            /*if(actualProduct != null) {
+            if(actualProduct != null) {
                 actualPropertiesController.setObject(actualProduct);
                 updateView();
-            }*/
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

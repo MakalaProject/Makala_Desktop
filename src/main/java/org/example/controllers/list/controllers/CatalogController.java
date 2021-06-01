@@ -240,6 +240,7 @@ public class CatalogController extends CatalogParentController implements Initia
         actualCatalog = listView.getSelectionModel().getSelectedItem();
         index = catalogObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
+        showGiftsList(giftObservableList);
         editView(fieldsAnchorPane, editSwitch, updateButton);
         putFields();
     }
