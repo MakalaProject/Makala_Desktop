@@ -40,7 +40,7 @@ public class WorkDayController implements Initializable, IListController<WorkDay
             alert.setGraphic(imageView);
             alert.setTitle("Eliminar intervalo de trabajo");
             alert.setHeaderText("Estas a punto de eliminar un intervalo de trabajo");
-            alert.setContentText("¿Seguro quieres eliminarlo?");
+            alert.setContentText("Si eliminas este intervalo de trabajo y tiene actividades programadas, estas seguiran perteneciendo a este empleado");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK){
                 delete();
