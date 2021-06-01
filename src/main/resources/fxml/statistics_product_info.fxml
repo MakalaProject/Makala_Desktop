@@ -50,7 +50,7 @@
         <children>
             <AnchorPane layoutX="3.0" layoutY="3.0" prefHeight="39.0" prefWidth="289.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0">
             </AnchorPane>
-            <ImageView fx:id="imagen" fitHeight="180.0" fitWidth="231.0" focusTraversable="true" layoutX="119.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="50.0">
+            <ImageView fx:id="imagen" fitHeight="180.0" fitWidth="231.0" focusTraversable="true" layoutX="121.0" layoutY="53.0" preserveRatio="true" smooth="false" AnchorPane.leftAnchor="121.0" AnchorPane.rightAnchor="120.26881408691406" AnchorPane.topAnchor="53.0">
                 <effect>
                     <DropShadow />
                 </effect>

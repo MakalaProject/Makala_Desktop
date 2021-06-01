@@ -3,7 +3,13 @@ package org.example.services;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.exceptions.ProductDeleteException;
 import org.example.exceptions.ProductErrorRequest;
 import org.example.model.products.Product;
@@ -26,7 +32,7 @@ import java.util.Locale;
 
 public class Request<D> {
     public static final String REST_URL = "http://25.4.107.19:9080/";
-
+    private static Stage stage = new Stage();
 
     private static final Gson deserializerGson = new GsonBuilder()
             .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
@@ -165,7 +171,6 @@ public class Request<D> {
                             );
                         }
                     }).build().send(request, HttpResponse.BodyHandlers.ofString());
-
             Gson gson = new Gson();
             return gson.fromJson(response.body(), classType);
 
@@ -360,6 +365,7 @@ public class Request<D> {
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         try {
+            Thread.sleep(500);
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             D[] arrays = new Gson().fromJson(response.body(), classType);
             list = new ArrayList<D>(Arrays.asList(arrays));
@@ -377,5 +383,18 @@ public class Request<D> {
             e.printStackTrace();
         }
         return null;
+    }
+    private static void load(){
+        FXMLLoader fxmlLoader = new FXMLLoader(Request.class.getResource("/fxml/loading.fxml"));
+        try {
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent);
+            stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

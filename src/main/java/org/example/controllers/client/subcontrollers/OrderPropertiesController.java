@@ -15,10 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.interfaces.IControllerCreate;
-import org.example.model.Catalog;
-import org.example.model.Comment;
-import org.example.model.GiftEditable;
-import org.example.model.Order;
+import org.example.model.*;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -84,14 +81,14 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
         statusField.setText(order.getStatus());
         envioPrecioField.setText(order.getShippingPrice().toString());
         totalField.setText(order.getTotalPrice().toString());
-        fechaEstimadaField.setText(order.getEstimatedShippingDate().toString());
+        fechaEstimadaField.setText(Formatter.FormatDate(order.getEstimatedShippingDate()));
         if(order.getAdvanceDate() != null)
-        fechaAvanceField.setText(order.getAdvanceDate().toString());
+        fechaAvanceField.setText(Formatter.FormatDateTime(order.getAdvanceDate()));
         if(order.getShippingDate() != null)
-        fechaEnvioField.setText(order.getShippingDate().toString());
+        fechaEnvioField.setText(Formatter.FormatDateTime(order.getShippingDate()));
         if(order.getTotalPaymentDate() != null)
-        fechaPagoField.setText(order.getTotalPaymentDate().toString());
-        fechaCompraField.setText(order.getDate().toString());
+        fechaPagoField.setText(Formatter.FormatDateTime(order.getTotalPaymentDate()));
+        fechaCompraField.setText(Formatter.FormatDateTime(order.getDate()));
         estadoField.setText(order.getAddress().getCity().getState().getName());
         ciudadField.setText(order.getAddress().getCity().getName());
         direccionField.setText(order.getAddress().getAddress());

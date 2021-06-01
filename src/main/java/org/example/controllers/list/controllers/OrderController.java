@@ -70,6 +70,7 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);
+            updateButton.setVisible(actualOrder.getShippingDate() == null);
         });
 
         updateButton.setOnMouseClicked(mouseEvent -> {
@@ -124,7 +125,7 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
         if (envioDatePicker.getValue() != null){
             Order order = new Order();
             setInfo(order);
-            if (order.getShippingDate().compareTo(order.getTotalPaymentDate()) > -1)
+            if (order.getShippingDate() != null && order.getShippingDate().compareTo(order.getTotalPaymentDate()) > -1)
             {
                 try {
                     Order orderR = (Order) Request.putJ(actualOrder.getRoute(), order);
@@ -157,27 +158,25 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
         statusField.setText(actualOrder.getStatus());
         envioPrecioField.setText(actualOrder.getShippingPrice().toString());
         totalField.setText(actualOrder.getTotalPrice().toString());
-        fechaEstimadaField.setText(actualOrder.getEstimatedShippingDate().toString());
+        fechaEstimadaField.setText(Formatter.FormatDate(actualOrder.getEstimatedShippingDate()));
         if(actualOrder.getAdvanceDate() != null)
-            fechaAvanceField.setText(actualOrder.getAdvanceDate().toString());
+            fechaAvanceField.setText(Formatter.FormatDateTime(actualOrder.getAdvanceDate()));
         else
             fechaAvanceField.setText("");
 
         if(actualOrder.getTotalPaymentDate() != null)
-            fechaPagoField.setText(actualOrder.getTotalPaymentDate().toString());
+            fechaPagoField.setText(Formatter.FormatDateTime(actualOrder.getTotalPaymentDate()));
         else
             fechaPagoField.setText("");
-        fechaCompraField.setText(actualOrder.getDate().toString());
+        fechaCompraField.setText(Formatter.FormatDateTime(actualOrder.getDate()));
         estadoField.setText(actualOrder.getAddress().getCity().getState().getName());
         ciudadField.setText(actualOrder.getAddress().getCity().getName());
         direccionField.setText(actualOrder.getAddress().getAddress());
         envioDatePicker.setDisable(actualOrder.getTotalPaymentDate() == null);
         if (actualOrder.getShippingDate() != null){
             envioDatePicker.setValue(actualOrder.getShippingDate().toLocalDate());
-            updateButton.setVisible(false);
         }else{
             envioDatePicker.setValue(null);
-            updateButton.setVisible(true);
         }
         envioDatePicker.setDayCellFactory(d ->
                 new DateCell() {
@@ -190,6 +189,8 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
 
     @Override
     public void updateView() {
+        editSwitch.setSelected(false);
+        editView(fieldsAnchorPane, editSwitch, updateButton);
         actualOrder = listView.getSelectionModel().getSelectedItem();
         actualOrder = (Order)Request.find("orders", actualOrder.getIdOrder(), Order.class);
         index = orderObservableList.indexOf(listView.getSelectionModel().getSelectedItem());

@@ -17,7 +17,6 @@ public class PurchaseCreateController extends PurchaseParentController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-
         provider = providers.get(0);
         setProviderData();
         orderDatePicker.setValue(LocalDate.now());
@@ -40,7 +39,7 @@ public class PurchaseCreateController extends PurchaseParentController {
                         setDisable(item.isBefore(LocalDate.now()));
                     }});
         updateButton.setOnMouseClicked(mouseEvent -> {
-            if (actualPurchase.getProducts().size() > 0){
+            if (!productListView.getItems().isEmpty()){
                 Purchase purchase = new Purchase();
                 setInfo(purchase);
                 if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) ||(purchase.getPayDate() != null && purchase.getReceivedDate() == null))

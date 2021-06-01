@@ -104,21 +104,11 @@
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="statusField" editable="false" focusTraversable="false" layoutX="171.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="244.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="21.0">
-                                        <font>
-                                            <Font size="15.0" />
-                                        </font>
-                                    </TextField>
-                                    <TextField fx:id="totalField" editable="false" focusTraversable="false" layoutX="179.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="244.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="113.0" />
-                                    <TextField fx:id="fechaAvanceField" editable="false" focusTraversable="false" layoutX="184.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="242.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="204.0" />
-                                    <TextField fx:id="fechaPagoField" editable="false" focusTraversable="false" layoutX="188.0" layoutY="298.0" prefHeight="31.0" prefWidth="239.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="298.0" />
                                     <Label layoutX="36.0" layoutY="116.0" prefHeight="28.0" prefWidth="129.0" text="Total">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="envioPrecioField" editable="false" focusTraversable="false" layoutX="178.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="243.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
-                                    <TextField fx:id="fechaEstimadaField" editable="false" focusTraversable="false" layoutX="182.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="242.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
                                     <Label layoutX="36.0" layoutY="205.0" prefHeight="28.0" prefWidth="131.0" text="Fecha Avance">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
@@ -139,25 +129,35 @@
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="fechaCompraField" editable="false" focusTraversable="false" layoutX="193.0" layoutY="343.0" prefHeight="31.0" prefWidth="237.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.bottomAnchor="756.0" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" />
                                     <Label layoutX="36.0" layoutY="386.0" prefHeight="28.0" prefWidth="69.0" text="Estado">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
-                                    <TextField fx:id="estadoField" editable="false" focusTraversable="false" layoutX="193.0" layoutY="385.0" prefHeight="31.0" prefWidth="240.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="385.0" />
                                     <Label layoutX="36.0" layoutY="429.0" prefHeight="28.0" prefWidth="69.0" text="Ciudad">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
-                                    <DatePicker fx:id="envioDatePicker" layoutX="187.0" layoutY="258.0" prefHeight="27.0" prefWidth="241.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="258.0" />
-                                    <TextField fx:id="ciudadField" editable="false" focusTraversable="false" layoutX="185.0" layoutY="428.0" prefHeight="31.0" prefWidth="254.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="428.0" />
                                     <Label layoutX="36.0" layoutY="471.0" prefHeight="28.0" prefWidth="90.0" text="Direccion">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
                                         </font>
                                     </Label>
+                                    <TextField fx:id="statusField" editable="false" focusTraversable="false" layoutX="171.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="244.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="21.0">
+                                        <font>
+                                            <Font size="15.0" />
+                                        </font>
+                                    </TextField>
+                                    <TextField fx:id="envioPrecioField" editable="false" focusTraversable="false" layoutX="178.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="243.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
+                                    <TextField fx:id="totalField" editable="false" focusTraversable="false" layoutX="179.0" layoutY="113.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="244.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="113.0" />
+                                    <TextField fx:id="fechaEstimadaField" editable="false" focusTraversable="false" layoutX="182.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="242.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
+                                    <TextField fx:id="fechaAvanceField" editable="false" focusTraversable="false" layoutX="184.0" layoutY="204.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="242.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="204.0" />
+                                    <DatePicker fx:id="envioDatePicker" layoutX="187.0" layoutY="258.0" prefHeight="27.0" prefWidth="241.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="74.0" AnchorPane.topAnchor="258.0" />
+                                    <TextField fx:id="fechaPagoField" editable="false" focusTraversable="false" layoutX="188.0" layoutY="298.0" prefHeight="31.0" prefWidth="239.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="298.0" />
+                                    <TextField fx:id="fechaCompraField" editable="false" focusTraversable="false" layoutX="193.0" layoutY="343.0" prefHeight="31.0" prefWidth="237.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.bottomAnchor="756.0" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" />
+                                    <TextField fx:id="estadoField" editable="false" focusTraversable="false" layoutX="193.0" layoutY="385.0" prefHeight="31.0" prefWidth="240.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="385.0" />
+                                    <TextField fx:id="ciudadField" editable="false" focusTraversable="false" layoutX="185.0" layoutY="428.0" prefHeight="31.0" prefWidth="254.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="428.0" />
                                     <TextField fx:id="direccionField" editable="false" focusTraversable="false" layoutX="175.0" layoutY="470.0" prefHeight="31.0" prefWidth="264.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="470.0" />
                                 </AnchorPane>
                         </children>

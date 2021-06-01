@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import org.example.model.CalendarActivity;
 import org.example.model.CalendarDetailedActivity;
 import org.example.model.Employee;
+import org.example.model.Formatter;
 import org.example.services.Request;
 
 import java.net.URL;
@@ -56,8 +57,8 @@ public class ActivityPropertiesController implements Initializable {
     private void putFields(){
         empleadoComboBox.setItems(employeeObservableList);
         empleadoComboBox.setValue(actualActivity.getUserObject().getEmployee());
-        fechaInicioField.setText(actualActivity.getStartDate().toString());
-        fechaFinField.setText(actualActivity.getEndDate().toString());
+        fechaInicioField.setText(Formatter.FormatDate(actualActivity.getStartDate()));
+        fechaFinField.setText(Formatter.FormatDate(actualActivity.getEndDate()));
         tiempoField.setText(actualActivity.getUserObject().getTime().toString());
         tareaTextArea.setText(actualActivity.getUserObject().getTask());
     }

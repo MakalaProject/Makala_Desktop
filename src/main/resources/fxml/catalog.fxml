@@ -36,7 +36,6 @@
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                        <ComboBox fx:id="clasificacionComboBox" layoutX="209.0" layoutY="337.0" prefHeight="27.0" prefWidth="200.0" style="-fx-background-color: #CFC7C4;" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="337.0" />
                         <Label alignment="CENTER" layoutY="385.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Regalos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="385.0">
                             <font>
                                 <Font name="Roboto Light" size="27.0" />
@@ -52,6 +51,7 @@
                   <FontAwesomeIconView fx:id="giftButton" fill="WHITE" glyphName="PLUS" layoutX="483.0" layoutY="418.0" size="30" wrappingWidth="27.57142829895008" />
                         <ListView fx:id="giftListView" layoutY="431.0" prefHeight="428.0" prefWidth="518.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="431.0" />
                     <TextField fx:id="nombreField" layoutX="193.0" layoutY="274.0" prefHeight="27.0" prefWidth="248.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
+                        <ComboBox fx:id="clasificacionComboBox" layoutX="209.0" layoutY="337.0" prefHeight="27.0" prefWidth="200.0" style="-fx-background-color: #CFC7C4;" AnchorPane.leftAnchor="209.0" AnchorPane.rightAnchor="108.0" AnchorPane.topAnchor="337.0" />
                     </children>
                 </AnchorPane>
 

@@ -29,6 +29,9 @@ import java.util.stream.Collectors;
 
 public class GiftCreateController extends GiftParentController {
     @FXML protected ComboBox<String> privacidadComboBox;
+
+
+    protected final ObservableList<String> createItems = FXCollections.observableArrayList( "Privado");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
@@ -36,7 +39,7 @@ public class GiftCreateController extends GiftParentController {
         container = actualGift.getContainer();
         containerName.setText(container.getName());
         containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
-        privacidadComboBox.getItems().addAll(privacyItems);
+        privacidadComboBox.getItems().addAll(createItems);
         privacidadComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty()){
@@ -58,8 +61,11 @@ public class GiftCreateController extends GiftParentController {
                         }
                         newGift.setPictures(new ArrayList<>());
                         newGift.setPictures(pictures);
+                        gift.setPapers(null);
+                        gift.setRibbons(null);
+                        gift.setStaticProducts(null);
                         gift = (Gift)Request.putJ(gift.getRoute(), gift);
-                        newGift.setPictures(gift.getPictures());
+                        newGift = gift;
                     } catch (Exception e) {
                         ImageService.deleteImages(files);
                         duplyElementAlert(gift.getIdentifier());
@@ -80,8 +86,6 @@ public class GiftCreateController extends GiftParentController {
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
         });
-
-
         privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
@@ -95,7 +99,6 @@ public class GiftCreateController extends GiftParentController {
                 }
             }
         });
-
         privacidadComboBox.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

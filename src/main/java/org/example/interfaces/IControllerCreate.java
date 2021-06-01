@@ -22,7 +22,7 @@ public interface IControllerCreate<D> {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(identifier +" duplicado");
         alert.setHeaderText(identifier +" duplicado");
-        alert.setContentText("No puedes introducir un"+identifier.toLowerCase()+"con el mismo nombre");
+        alert.setContentText("No puedes introducir un "+identifier.toLowerCase()+" con el mismo nombre");
         alert.showAndWait();
     }
     default void errorAlert(String errorMessage){

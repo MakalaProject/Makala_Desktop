@@ -77,11 +77,14 @@ public class ManualController implements Initializable, IListController<ArrayLis
             Parent parent = fxmlLoader.load();
             dialogController.setObject(actualGift);
             if(action == Action.UPDATE) {
+                Step step = stepListView.getSelectionModel().getSelectedItem();
+                step.setPublic(true);
                 dialogController.setStep(stepListView.getSelectionModel().getSelectedItem());
                 index = stepObservableList.indexOf(stepListView.getSelectionModel().getSelectedItem());
             }
             else{
                 Step step = new Step();
+                step.setPublic(false);
                 step.setAction(action);
                 dialogController.setStep(step);
             }
@@ -109,6 +112,7 @@ public class ManualController implements Initializable, IListController<ArrayLis
                     sortNewIds();
                 }
                 else {
+
                     object.setStepNumber(stepObservableList.size() + 1);
                     object.setAction(Action.UPDATE);
                     stepObservableList.add(object);

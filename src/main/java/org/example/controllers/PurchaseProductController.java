@@ -29,7 +29,7 @@ public class PurchaseProductController implements Initializable, IControllerCrea
     public void setProduct(PurchaseProduct product, boolean isCreate) {
         deleteButton.setVisible(!isCreate);
         purchaseProduct = product;
-        if (!product.getProduct().getProductClassDto().getProductType().equals("Comestible") && !product.getProduct().getProductClassDto().getProductType().equals("Granel")){
+        if (product.getProduct().getProductClassDto() != null && !product.getProduct().getProductClassDto().getProductType().equals("Comestible") && !product.getProduct().getProductClassDto().getProductType().equals("Granel")){
             expiryDatePicker.setVisible(false);
             expiryDateLabel.setVisible(false);
         }else {

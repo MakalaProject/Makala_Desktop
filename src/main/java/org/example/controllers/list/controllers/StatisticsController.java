@@ -23,6 +23,7 @@ import org.example.controllers.elements.controllers.StatisticsProductInfo;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
 import org.example.model.*;
+import org.example.model.products.Product;
 import org.example.services.Request;
 
 import java.io.IOException;
@@ -39,13 +40,15 @@ public class StatisticsController implements Initializable, IListController<Data
     @FXML private DatePicker datePicker;
     @FXML private Button startButton;
     @FXML private BarChart<String, Integer> graph;
+    @FXML private Button productTypeButton;
 
     private String actualGraph = "";
 
     private final String[] statisticsRoutes = new String[3];
     private final String[] timeFilterWords = new String[2];
     private final Class[] dataTypes = new Class[3];
-
+    private boolean validation = true;
+    List<DataAnalysisReceived> statistics;
     private ObservableList<String> statisticsItems = FXCollections.observableArrayList("Catálogos", "Regalos", "Productos");
     private ObservableList<String> timeFilterItems = FXCollections.observableArrayList("Mes", "Año");
 
@@ -53,7 +56,6 @@ public class StatisticsController implements Initializable, IListController<Data
     public void initialize(URL url, ResourceBundle resourceBundle) {
         estadisticaComboBox.setItems(statisticsItems);
         timeFilterCB.setItems(timeFilterItems);
-
         estadisticaComboBox.getSelectionModel().select(0);
         timeFilterCB.getSelectionModel().select(0);
 
@@ -72,21 +74,56 @@ public class StatisticsController implements Initializable, IListController<Data
                 actualGraph = estadisticaComboBox.getValue();
                 DataAnalysis sendData = new DataAnalysis(datePicker.getValue(), timeFilterWords[timeFilterCB.getSelectionModel().getSelectedIndex()]);
                 String route = statisticsRoutes[estadisticaComboBox.getSelectionModel().getSelectedIndex()] + "?timeFilter=" + sendData.getTimeFilter() + "&date=" + sendData.getDate();
-                List<DataAnalysisReceived> statistics = Request.getJ(route, dataTypes[estadisticaComboBox.getSelectionModel().getSelectedIndex()], false);
+                statistics = Request.getJ(route, dataTypes[estadisticaComboBox.getSelectionModel().getSelectedIndex()], false);
+                String type = statisticsRoutes[estadisticaComboBox.getSelectionModel().getSelectedIndex()];
+                if(type.equals("data-analysis/products")){
+                    productTypeButton.setVisible(true);
+                }else{
+                    productTypeButton.setVisible(false);
+                    validation = true;
+                }
                 paintChart(statistics);
             }
         });
+
+        productTypeButton.setOnMouseClicked(mouseEvent -> {
+            validation = !validation;
+            paintChart(statistics);
+        });
     }
 
-    private void paintChart(List<DataAnalysisReceived> products){
+    private void paintChart(List<DataAnalysisReceived> products) {
         graph.getData().clear();
-        XYChart.Series<String,Integer> xy = new XYChart.Series<String, Integer>();
-        for (DataAnalysisReceived p: products) {
-            xy.getData().add(new XYChart.Data<String,Integer>(p.toString(),p.getAmount()));
+        XYChart.Series<String, Integer> xyNormal = new XYChart.Series<String, Integer>();
+        XYChart.Series<String, Integer> xyBulk = new XYChart.Series<String, Integer>();
+        for (DataAnalysisReceived p : products) {
+            String name;
+            String type = statisticsRoutes[estadisticaComboBox.getSelectionModel().getSelectedIndex()];
+            if (p.toString().length() > 10) {
+                name = p.toString().substring(0, 8);
+                name += "...";
+            } else {
+                name = p.toString();
+            }
+            if (type.equals("data-analysis/products")) {
+                Product product = (Product) p.getObject();
+                if (product.getProductClassDto().getProductType().equals("Granel") || product.getProductClassDto().getProductType().equals("Creados")) {
+                    xyBulk.getData().add(new XYChart.Data<String, Integer>(name, p.getAmount()));
+                    continue;
+                }
+            }
+            xyNormal.getData().add(new XYChart.Data<String, Integer>(name, p.getAmount()));
         }
         graph.setAnimated(false);
-        graph.getData().addAll(xy);
-
+        if(validation) {
+            productTypeButton.setText("Granel");
+            graph.getData().clear();
+            graph.getData().addAll(xyNormal);
+        }else {
+            productTypeButton.setText("Fijos");
+            graph.getData().clear();
+            graph.getData().addAll(xyBulk);
+        }
         for (XYChart.Series<String,Integer> serie: graph.getData()){
             for (int i = 0; i < serie.getData().size(); i++) {
                 int finalI = i;

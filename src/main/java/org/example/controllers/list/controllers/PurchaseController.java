@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
@@ -35,6 +36,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
     @FXML TextField searchField;
     @FXML ListView<Purchase> listView;
     @FXML ToggleSwitch editSwitch;
+    @FXML AnchorPane disableAnchorPane;
     private final ObservableList<Purchase> purchaseObservableList = FXCollections.observableArrayList();
     private int index;
     @Override
@@ -244,14 +246,17 @@ public class PurchaseController extends PurchaseParentController implements ILis
         index = purchaseObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
         if (actualPurchase.getReceivedDate() != null){
+            disableAnchorPane.setVisible(true);
             editSwitch.setVisible(false);
             updateButton.setVisible(false);
         }else{
+            disableAnchorPane.setVisible(false);
             editSwitch.setVisible(true);
             updateButton.setVisible(true);
         }
         purchaseProducts = new ArrayList<>(actualPurchase.getProducts());
         editView(fieldsAnchorPane, editSwitch, updateButton);
+        fieldsAnchorPane.setDisable(false);
         provider = providers.stream().filter(p -> p.getIdUser().equals(actualPurchase.getIdProvider())).findAny().orElse(null);
         putFields();
     }
@@ -266,4 +271,5 @@ public class PurchaseController extends PurchaseParentController implements ILis
         priceField.setText("");
 
     }
+
 }

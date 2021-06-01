@@ -32,18 +32,7 @@
                 <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
 
                     <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefWidth="499.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
-                        <TextField fx:id="porcentajeField" focusTraversable="false" layoutX="162.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="230.0">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                        </TextField>
-                        <ComboBox fx:id="tipoComboBox" disable="true" editable="true" layoutX="164.0" layoutY="299.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="299.0" />
                         <Label fx:id="objectLabel" layoutX="36.0" layoutY="33.0" prefHeight="28.0" prefWidth="123.0" text="Elemento" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="343.0" AnchorPane.topAnchor="33.0">
-                            <font>
-                                <Font name="Roboto Light" size="20.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="objectName" alignment="CENTER" layoutX="172.0" layoutY="33.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Provider" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="33.0">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
@@ -60,14 +49,30 @@
                                 <Font name="Roboto Light" size="20.0" />
                             </font>
                         </Label>
-                        <DatePicker fx:id="endDatePicker" disable="true" editable="false" layoutX="188.0" layoutY="170.0" prefHeight="27.0" prefWidth="230.0" />
-                        <DatePicker fx:id="startDatePicker" disable="true" editable="false" layoutX="188.0" layoutY="102.0" prefHeight="27.0" prefWidth="230.0" />
                   <Label layoutX="32.0" layoutY="233.0" prefHeight="28.0" prefWidth="137.0" text="Porcentaje">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
                   <Label fx:id="rebajaLabel" layoutX="22.0" layoutY="299.0" prefHeight="28.0" prefWidth="137.0" text="Tipo">
+                     <font>
+                        <Font name="Roboto Light" size="20.0" />
+                     </font>
+                  </Label>
+                        <TextField fx:id="porcentajeField" focusTraversable="false" layoutX="162.0" layoutY="230.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="230.0">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </TextField>
+                        <Label fx:id="objectName" alignment="CENTER" layoutX="172.0" layoutY="33.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Provider" AnchorPane.leftAnchor="172.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="33.0">
+                            <font>
+                                <Font name="Roboto Light" size="20.0" />
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="startDatePicker" disable="true" editable="false" layoutX="188.0" layoutY="102.0" prefHeight="27.0" prefWidth="230.0" />
+                        <DatePicker fx:id="endDatePicker" disable="true" editable="false" layoutX="188.0" layoutY="170.0" prefHeight="27.0" prefWidth="230.0" />
+                        <ComboBox fx:id="tipoComboBox" disable="true" editable="true" layoutX="164.0" layoutY="299.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="299.0" />
+                  <Label layoutX="443.0" layoutY="234.0" prefHeight="28.0" prefWidth="19.0" text="\%" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="234.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>

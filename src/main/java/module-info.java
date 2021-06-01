@@ -13,6 +13,7 @@ module org.example {
     requires lombok;
     requires org.apache.commons.text;
     requires com.calendarfx.view;
+    requires AnimateFX;
 
     opens org.example;
     opens org.example.controllers;

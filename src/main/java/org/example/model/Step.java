@@ -15,6 +15,7 @@ public class Step  implements IChangeable<Integer> {
     private Integer time;
     private Action action = Action.UPDATE;
     private boolean toDelete = false;
+    private boolean isPublic;
 
     @Override
     public String toString() {
