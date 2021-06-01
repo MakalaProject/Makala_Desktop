@@ -1,10 +1,12 @@
 package org.example.customCells;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
+import org.example.model.Formatter;
 import org.example.model.Gift;
 import org.example.model.Order;
 
@@ -16,6 +18,7 @@ public class OrderListViewCell extends ListCell<Order> {
 
     @FXML
     private AnchorPane anchorPane;
+    @FXML FontAwesomeIconView statusIcon;
 
 
     private FXMLLoader mLLoader;
@@ -25,7 +28,6 @@ public class OrderListViewCell extends ListCell<Order> {
         super.updateItem(order, empty);
 
         if(empty || order == null) {
-
             setText(null);
             setGraphic(null);
 
@@ -40,7 +42,8 @@ public class OrderListViewCell extends ListCell<Order> {
                 }
 
             }
-            orderName.setText(String.valueOf(order));
+            orderName.setText(String.valueOf(order) + "- " + Formatter.FormatDateTime(order.getDate()));
+            statusIcon.setVisible(order.getShippingDate() != null);
             setText(null);
             setGraphic(anchorPane);
 
