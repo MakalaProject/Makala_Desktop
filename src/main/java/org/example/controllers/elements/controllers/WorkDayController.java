@@ -79,13 +79,18 @@ public class WorkDayController implements Initializable, IListController<WorkDay
         setInfo(workDays);
         if(workDays.getAction() == Action.UPDATE){
             try {
-                Request.putJ("employee/work-days", workDays);
+                Request.putJ("employee-work-days", workDays);
             } catch (ProductDeleteException e) {
-                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Información invalida");
+                alert.setHeaderText("Intervalo ya registrado");
+                alert.setContentText("El intervalo que estas tratando de ingresar, ya está registrado, ingrese uno nuevo");
+                alert.showAndWait();
+                return false;
             }
         }else{
             try {
-                Request.postk("employee/work-days", workDays, WorkDays.class);
+                Request.postk("employee-work-days", workDays, WorkDays.class);
             } catch (Exception e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Información invalida");

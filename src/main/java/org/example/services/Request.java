@@ -292,10 +292,7 @@ public class Request<D> {
     }
 
     public static <D> D post(String link, Object object, Class<D> dclass){
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-                .create();
-        String jsonString = gson.toJson(object);
+        String jsonString = serializergson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
@@ -304,7 +301,7 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            D ob = (D)gson.fromJson(response.body(), dclass);
+            D ob = (D)deserializerGson.fromJson(response.body(), dclass);
             System.out.println(response.body());
             if (response.statusCode() != 404){
                 return ob;
@@ -322,10 +319,7 @@ public class Request<D> {
     }
 
     public static <D> D postk(String link, Object object, Class<D> dclass) throws Exception {
-        Gson gson = new GsonBuilder()
-                .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
-                .create();
-        String jsonString = gson.toJson(object);
+        String jsonString = serializergson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
@@ -334,7 +328,7 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            D ob = (D)gson.fromJson(response.body(), dclass);
+            D ob = (D)deserializerGson.fromJson(response.body(), dclass);
             System.out.println(response.body());
             if(response.statusCode() == 400){
                 throw new Exception();
