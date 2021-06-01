@@ -170,7 +170,7 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     public void showList(){
         internalProductsListView.setItems(insideProductList);
-        internalProductsListView.prefHeightProperty().bind(Bindings.size(insideProductList).multiply(25.7));
+        internalProductsListView.prefHeightProperty().bind(Bindings.size(insideProductList).multiply(24));
     }
 
     public void clearController(){

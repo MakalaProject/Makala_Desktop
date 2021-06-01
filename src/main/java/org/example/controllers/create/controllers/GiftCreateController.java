@@ -42,46 +42,54 @@ public class GiftCreateController extends GiftParentController {
         privacidadComboBox.getItems().addAll(createItems);
         privacidadComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {
-            if( !nombreField.getText().isEmpty()){
-                Gift gift = new Gift();
-                setExtendedInternalProducts(gift);
-                setInfo(gift);
-                    Gift newGift = null;
-                    try {
-                        gift.setPictures(new ArrayList<>());
-                        newGift = (Gift) Request.postJ(gift.getRoute(), gift);
-                        gift.setIdGift(newGift.getIdGift());
-                        gift = newGift;
-                        ArrayList<Picture> pictures = new ArrayList<>();
-                        files = ImageService.uploadImages(files);
-                        if(files != null){
-                            for(String s: files){
-                                pictures.add(new Picture(s));
+            if( !nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
+                if (Float.parseFloat(laborCostField.getText())>0) {
+                    if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
+                        Gift gift = new Gift();
+                        setExtendedInternalProducts(gift);
+                        setInfo(gift);
+                        Gift newGift = null;
+                        try {
+                            gift.setPictures(new ArrayList<>());
+                            newGift = (Gift) Request.postJ(gift.getRoute(), gift);
+                            gift.setIdGift(newGift.getIdGift());
+                            gift = newGift;
+                            ArrayList<Picture> pictures = new ArrayList<>();
+                            files = ImageService.uploadImages(files);
+                            if (files != null) {
+                                for (String s : files) {
+                                    pictures.add(new Picture(s));
+                                }
                             }
+                            newGift.setPictures(new ArrayList<>());
+                            newGift.setPictures(pictures);
+                            gift.setPapers(null);
+                            gift.setRibbons(null);
+                            gift.setStaticProducts(null);
+                            gift = (Gift) Request.putJ(gift.getRoute(), gift);
+                            newGift = gift;
+                        } catch (Exception e) {
+                            ImageService.deleteImages(files);
+                            duplyElementAlert(gift.getIdentifier());
+                            return;
                         }
-                        newGift.setPictures(new ArrayList<>());
-                        newGift.setPictures(pictures);
-                        gift.setPapers(null);
-                        gift.setRibbons(null);
-                        gift.setStaticProducts(null);
-                        gift = (Gift)Request.putJ(gift.getRoute(), gift);
-                        newGift = gift;
-                    } catch (Exception e) {
-                        ImageService.deleteImages(files);
-                        duplyElementAlert(gift.getIdentifier());
-                        return;
+                        Node source = (Node) mouseEvent.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        files = new ArrayList<>();
+                        deleteFiles = new ArrayList<>();
+                        imageIndex = 0;
+                        if (newGift != null) {
+                            gift.setIdGift(newGift.getIdGift());
+                            newGift.setPrice(gift.getPrice());
+                            stage.setUserData(newGift);
+                        }
+                        stage.close();
+                    }else {
+                        showAlertEmptyFields("No puedes dejar un regalo sin listones o productos");
                     }
-                    Node source = (Node)  mouseEvent.getSource();
-                    Stage stage  = (Stage) source.getScene().getWindow();
-                    files = new ArrayList<>();
-                    deleteFiles = new ArrayList<>();
-                    imageIndex = 0;
-                    if(newGift != null) {
-                        gift.setIdGift(newGift.getIdGift());
-                        newGift.setPrice(gift.getPrice());
-                        stage.setUserData(newGift);
-                    }
-                    stage.close();
+                }else {
+                    showAlertEmptyFields("El precio de elaboración no puede ser 0");
+                }
             }else{
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
