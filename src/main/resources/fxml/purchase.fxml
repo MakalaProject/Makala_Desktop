@@ -124,6 +124,7 @@
                   <DatePicker fx:id="payDatePicker" editable="false" layoutX="188.0" layoutY="218.0" prefHeight="27.0" prefWidth="230.0" />
                   <DatePicker fx:id="receivedDatePicker" editable="false" layoutX="188.0" layoutY="267.0" prefHeight="27.0" prefWidth="230.0" />
                   <TextArea fx:id="commentTextArea" layoutX="190.0" layoutY="303.0" prefHeight="52.0" prefWidth="226.0" />
+                  <AnchorPane fx:id="disableAnchorPane" layoutX="104.0" layoutY="70.0" prefHeight="366.0" prefWidth="503.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="254.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

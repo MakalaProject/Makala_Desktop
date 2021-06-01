@@ -157,17 +157,17 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
         statusField.setText(actualOrder.getStatus());
         envioPrecioField.setText(actualOrder.getShippingPrice().toString());
         totalField.setText(actualOrder.getTotalPrice().toString());
-        fechaEstimadaField.setText(actualOrder.getEstimatedShippingDate().toString());
+        fechaEstimadaField.setText(Formatter.FormatDate(actualOrder.getEstimatedShippingDate()));
         if(actualOrder.getAdvanceDate() != null)
-            fechaAvanceField.setText(actualOrder.getAdvanceDate().toString());
+            fechaAvanceField.setText(Formatter.FormatDateTime(actualOrder.getAdvanceDate()));
         else
             fechaAvanceField.setText("");
 
         if(actualOrder.getTotalPaymentDate() != null)
-            fechaPagoField.setText(actualOrder.getTotalPaymentDate().toString());
+            fechaPagoField.setText(Formatter.FormatDateTime(actualOrder.getTotalPaymentDate()));
         else
             fechaPagoField.setText("");
-        fechaCompraField.setText(actualOrder.getDate().toString());
+        fechaCompraField.setText(Formatter.FormatDateTime(actualOrder.getDate()));
         estadoField.setText(actualOrder.getAddress().getCity().getState().getName());
         ciudadField.setText(actualOrder.getAddress().getCity().getName());
         direccionField.setText(actualOrder.getAddress().getAddress());

@@ -81,7 +81,7 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
         statusField.setText(order.getStatus());
         envioPrecioField.setText(order.getShippingPrice().toString());
         totalField.setText(order.getTotalPrice().toString());
-        fechaEstimadaField.setText(order.getEstimatedShippingDate().toString());
+        fechaEstimadaField.setText(Formatter.FormatDate(order.getEstimatedShippingDate()));
         if(order.getAdvanceDate() != null)
         fechaAvanceField.setText(Formatter.FormatDateTime(order.getAdvanceDate()));
         if(order.getShippingDate() != null)
