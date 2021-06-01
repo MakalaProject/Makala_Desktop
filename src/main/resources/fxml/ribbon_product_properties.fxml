@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -29,5 +30,8 @@
       </cursor>
     </TextField>
    <ColorPicker fx:id="colorPicker" layoutX="190.0" layoutY="184.0" prefHeight="27.0" prefWidth="191.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="85.0" />
+   <padding>
+      <Insets bottom="20.0" />
+   </padding>
 
 </AnchorPane>

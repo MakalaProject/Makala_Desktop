@@ -1,5 +1,4 @@
 package org.example.controllers.list.controllers;
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -8,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.ProductParentController;
@@ -17,7 +17,6 @@ import org.example.model.products.Product;
 import org.example.model.products.ProductClassDto;
 import org.example.services.*;
 import org.example.customCells.ProductListViewCell;
-import javafx.scene.layout.AnchorPane;
 import org.example.model.*;
 import org.controlsfx.control.ToggleSwitch;
 import javafx.collections.FXCollections;
@@ -27,7 +26,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,7 +35,6 @@ public class ProductController extends ProductParentController implements IListC
     @FXML TextField searchField;
     @FXML ComboBox<String> comboBox;
     @FXML ListView<Product> listView;
-    @FXML AnchorPane propertiesAnchorPane;
     @FXML ToggleSwitch editSwitch;
     FilteredList<Product> filteredProducts;
     Product actualProduct;
@@ -335,7 +332,7 @@ public class ProductController extends ProductParentController implements IListC
         maxField.setText("");
         minField.setText("");
         precioField.setText("");
-        propertiesAnchorPane.getChildren().clear();
+        propertiesVBox.getChildren().clear();
     }
 
     @Override
@@ -392,14 +389,14 @@ public class ProductController extends ProductParentController implements IListC
             clasificacionComboBox.setDisable(true);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
-            propertiesAnchorPane.setDisable(true);
+            propertiesVBox.setDisable(true);
         }else {
             userClicked = false;
             nombreField.setDisable(false);
             clasificacionComboBox.setDisable(false);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
-            propertiesAnchorPane.setDisable(false);
+            propertiesVBox.setDisable(false);
         }
     }
 

@@ -1,6 +1,7 @@
 package org.example.controllers.create.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -27,6 +28,7 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class ProviderCreateController extends UserGenericController<Provider> {
     @FXML TextField tiempoField;
@@ -124,7 +126,7 @@ public class ProviderCreateController extends UserGenericController<Provider> {
                 if (providerInstance!=null ) {
                     providerInstance.setSelectedProducts();
                     products.setAll(providerInstance.getProducts());
-                    showProductsList();
+                    showProductsList(products);
                     if (providerInstance.getProducts().size() > 0){
                         classificationComboBox.setDisable(true);
                     }else {
@@ -137,8 +139,9 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         });
     }
 
-    public void showProductsList(){
-        productsListView.setItems(FXCollections.observableArrayList(products));
+    public void showProductsList(ObservableList<Product> products){
+        productsListView.setItems(FXCollections.observableList(products.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
+        productsListView.prefHeightProperty().bind(Bindings.size(productsListView.getItems()).multiply(23.7));
     }
 
     @Override

@@ -13,19 +13,6 @@
     <ScrollPane fitToWidth="true" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
         <AnchorPane fx:id="fieldsAnchorPane" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
             <children>
-
-                <Label alignment="CENTER" layoutY="555.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="555.0">
-                    <font>
-                        <Font name="Roboto Light" size="27.0" />
-                    </font>
-                    <effect>
-                        <DropShadow blurType="TWO_PASS_BOX">
-                            <color>
-                                <Color red="0.5" green="0.5" blue="0.5" />
-                            </color>
-                        </DropShadow>
-                    </effect>
-                </Label>
                 <Label layoutX="27.0" layoutY="229.0" prefHeight="28.0" prefWidth="110.0" text="Email" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="449.0" AnchorPane.topAnchor="229.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -51,7 +38,6 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <FontAwesomeIconView fx:id="productsButton" fill="WHITE" glyphName="EDIT" layoutX="525.0" layoutY="588.0" size="30" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="562.2857151031494" />
                 <Label layoutX="25.0" layoutY="185.0" prefHeight="28.0" prefWidth="141.0" text="Tarjeta" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="185.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -107,17 +93,37 @@
                 <TextField fx:id="estadoField" disable="true" editable="false" layoutX="169.0" layoutY="389.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="Jalisco" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="389.0" />
                 <TextField fx:id="codigoPostalField" layoutX="169.0" layoutY="475.0" prefHeight="27.0" prefWidth="261.0" promptText="45618" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="475.0" />
                 <TextField fx:id="addressField" layoutX="169.0" layoutY="511.0" prefHeight="27.0" prefWidth="261.0" promptText="Av. de la cruz #1570" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="511.0" />
-                <AnchorPane layoutY="631.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="600.0">
-               <children>
-                        <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-                </AnchorPane>
+                <AnchorPane layoutY="631.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="600.0" />
             <Label layoutX="481.0" layoutY="145.0" prefHeight="28.0" prefWidth="39.0" text="días" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="145.0">
                <font>
                   <Font name="Roboto Light" size="15.0" />
                </font>
             </Label>
-            </children></AnchorPane>
+                <VBox layoutY="553.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="553.0">
+                    <children>
+                        <AnchorPane>
+                            <children>
+
+                                <Label alignment="CENTER" layoutX="-202.0" layoutY="1.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <font>
+                                        <Font name="Roboto Light" size="27.0" />
+                                    </font>
+                                    <effect>
+                                        <DropShadow blurType="TWO_PASS_BOX">
+                                            <color>
+                                                <Color red="0.5" green="0.5" blue="0.5" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                </Label>
+                                <FontAwesomeIconView fx:id="productsButton" fill="WHITE" glyphName="EDIT" layoutX="450.0" layoutY="34.0" size="30" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.285715103149414" />
+                            </children>
+                        </AnchorPane>
+                        <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
     </ScrollPane>
     <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
