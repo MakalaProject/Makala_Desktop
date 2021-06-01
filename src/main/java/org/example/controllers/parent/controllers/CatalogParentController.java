@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.example.controllers.elements.controllers.SelectListGifts;
 import org.example.model.Catalog;
 import org.example.model.CatalogClassification;
@@ -105,7 +106,8 @@ public class CatalogParentController implements Initializable {
 
     protected void showGiftsList(ObservableList<Gift> list){
         giftListView.setItems(FXCollections.observableList(list.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
-        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(25.7));
+        double b = giftListView.getFixedCellSize();
+        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(26.1));
     }
 
     protected void uploadImage(Stage s){

@@ -54,9 +54,9 @@
                         <DropShadow />
                     </effect>
                 </AnchorPane>
-                <ScrollPane fitToWidth="true" layoutY="264.0" prefHeight="595.0" prefWidth="518.0" style="-fx-background-color: wite;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="264.0">
+                <ScrollPane fitToWidth="true" maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-background-color: wite;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="264.0">
                     <content>
-                    <AnchorPane fx:id="fieldsAnchorPane" cache="true" focusTraversable="true" pickOnBounds="false" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
+                    <AnchorPane fx:id="fieldsAnchorPane" cache="true" focusTraversable="true" maxHeight="1.7976931348623157E308" pickOnBounds="false" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
                         <children>
                             <TextField fx:id="telefonoField" layoutX="175.0" layoutY="139.0" prefHeight="27.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="139.0" />
                             <Label layoutX="29.0" layoutY="140.0" prefHeight="28.0" prefWidth="113.0" text="Telefono" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="374.0" AnchorPane.topAnchor="140.0">
@@ -88,7 +88,7 @@
                                 </font>
                             </Label>
                             <TextField fx:id="idField" editable="false" layoutX="175.0" layoutY="24.0" prefHeight="31.0" prefWidth="290.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="24.0" />
-                              <VBox layoutY="226.0" prefHeight="367.0" prefWidth="516.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="226.0">
+                              <VBox layoutY="226.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="226.0">
                                   <AnchorPane>
                                       <children>
                                           <Label alignment="CENTER" layoutY="2.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -112,7 +112,7 @@
                                   </AnchorPane>
                                   <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                       <children>
-                                          <ListView fx:id="departmentList" prefHeight="0.0" />
+                                          <ListView fx:id="departmentList" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
                                       </children>
                                       <VBox.margin>
                                           <Insets />
@@ -144,7 +144,7 @@
                                   </AnchorPane>
                                   <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                       <children>
-                                          <ListView fx:id="workDayList" prefHeight="0.0" />
+                                          <ListView fx:id="workDayList" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
                                       </children>
                                       <VBox.margin>
                                           <Insets />
