@@ -104,6 +104,9 @@ public class Request<D> {
                 exception.setStatus(response.statusCode());
                 throw new ProductDeleteException(exception.getMessage(), exception.getStatus());
             }
+            else if(response.statusCode() == 412){
+                throw new Exception("No puedes borrar un empleado qué este trabajando actualmente");
+            }
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setHeaderText("Error");
