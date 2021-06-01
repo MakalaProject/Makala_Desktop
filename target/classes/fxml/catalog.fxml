@@ -16,10 +16,8 @@
             <children>
                 <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="35.0" size="20" AnchorPane.rightAnchor="401.4285717010498" AnchorPane.topAnchor="17.85714340209961" />
                 <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
-                <ListView fx:id="listView" layoutX="14.0" layoutY="70.0" prefHeight="789.0" prefWidth="434.0" style="-fx-background-color: white; -fx-selection-bar: darkgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-               <effect>
-                  <DropShadow />
-               </effect></ListView>
+                <ListView fx:id="listView" layoutX="14.0" layoutY="70.0" prefHeight="789.0" prefWidth="434.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+             </ListView>
                 <FontAwesomeIconView fx:id="addButton" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
             </children>
         </AnchorPane>

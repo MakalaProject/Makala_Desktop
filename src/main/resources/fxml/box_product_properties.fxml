@@ -8,57 +8,44 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="516.0" prefWidth="557.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <Label layoutX="92.0" layoutY="93.0" prefHeight="28.0" prefWidth="89.0" text="Alto ext." AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="40.0">
+<AnchorPane prefHeight="375.0" prefWidth="452.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <Label layoutX="92.0" layoutY="93.0" prefHeight="28.0" prefWidth="88.0" text="Alto ext." AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="40.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="76.0" layoutY="123.0" prefHeight="28.0" prefWidth="103.0" text="Largo ext. " AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="334.0" AnchorPane.topAnchor="123.0">
+    <Label layoutX="76.0" layoutY="123.0" prefHeight="28.0" prefWidth="99.0" text="Largo ext. " AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="123.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="77.0" layoutY="83.0" prefHeight="28.0" prefWidth="110.0" text="Ancho ext." AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="329.0" AnchorPane.topAnchor="83.0">
+    <Label layoutX="77.0" layoutY="83.0" prefHeight="28.0" prefWidth="105.0" text="Ancho ext." AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="277.0" AnchorPane.topAnchor="83.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="74.0" layoutY="161.0" prefHeight="28.0" prefWidth="110.0" text="Alto int." AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="332.0" AnchorPane.topAnchor="163.0">
+    <Label layoutX="74.0" layoutY="161.0" prefHeight="28.0" prefWidth="88.0" text="Alto int." AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="163.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="76.0" layoutY="202.0" prefHeight="28.0" prefWidth="110.0" text="Ancho int." AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="333.0" AnchorPane.topAnchor="203.0">
+    <Label layoutX="76.0" layoutY="202.0" prefHeight="28.0" prefWidth="99.0" text="Ancho int." AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="283.0" AnchorPane.topAnchor="203.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="76.0" layoutY="246.0" prefHeight="28.0" prefWidth="110.0" text="Largo int." AnchorPane.leftAnchor="77.0" AnchorPane.rightAnchor="333.0" AnchorPane.topAnchor="243.0">
+    <Label layoutX="76.0" layoutY="246.0" prefHeight="28.0" prefWidth="105.0" text="Largo int." AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="243.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label fx:id="labelDivisions" alignment="CENTER" layoutY="341.0" style="-fx-background-color: #A39D9B;" text="Divisiones" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="341.0">
-        <font>
-            <Font name="Roboto Light" size="27.0" />
-        </font>
-        <effect>
-            <DropShadow blurType="TWO_PASS_BOX">
-                <color>
-                    <Color red="0.5" green="0.5" blue="0.5" />
-                </color>
-            </DropShadow>
-        </effect>
-    </Label>
-    <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="509.0" layoutY="371.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="20.42857170104992" AnchorPane.topAnchor="345.2857151031494" />
-    <Label layoutX="444.0" layoutY="249.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="249.0" />
-    <Label layoutX="444.0" layoutY="208.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="208.0" />
-    <Label layoutX="444.0" layoutY="166.0" text="cm" AnchorPane.rightAnchor="94.0" />
-    <Label layoutX="444.0" layoutY="128.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="128.0" />
-    <Label layoutX="444.0" layoutY="88.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="88.0" />
-    <Label layoutX="444.0" layoutY="46.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="46.0" />
-    <TextField fx:id="altoField" layoutX="215.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="5.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="40.0">
+    <Label layoutX="336.0" layoutY="249.0" text="cm" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="249.0" />
+    <Label layoutX="336.0" layoutY="208.0" text="cm" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="208.0" />
+    <Label layoutX="336.0" layoutY="169.0" text="cm" AnchorPane.rightAnchor="99.0" />
+    <Label layoutX="336.0" layoutY="128.0" text="cm" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="128.0" />
+    <Label layoutX="336.0" layoutY="88.0" text="cm" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="88.0" />
+    <Label layoutX="336.0" layoutY="46.0" text="cm" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="46.0" />
+    <TextField fx:id="altoField" layoutX="191.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="118.0" promptText="5.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="38.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -66,7 +53,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-    <TextField fx:id="anchoField" layoutX="215.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="5.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="80.0">
+    <TextField fx:id="anchoField" layoutX="215.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="118.0" promptText="5.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="80.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -74,7 +61,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-    <TextField fx:id="largoField" layoutX="215.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="5.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="120.0">
+    <TextField fx:id="largoField" layoutX="215.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="118.0" promptText="5.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="120.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -82,7 +69,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-    <TextField fx:id="altoIntField" layoutX="215.0" layoutY="158.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="158.0">
+    <TextField fx:id="altoIntField" layoutX="215.0" layoutY="158.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="118.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="158.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -90,7 +77,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-    <TextField fx:id="anchoIntField" layoutX="215.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="200.0">
+    <TextField fx:id="anchoIntField" layoutX="215.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="118.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="200.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -98,7 +85,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-    <TextField fx:id="largoIntField" layoutX="215.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="244.0">
+    <TextField fx:id="largoIntField" layoutX="215.0" layoutY="244.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="118.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="134.0" AnchorPane.topAnchor="244.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -106,15 +93,36 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-   <VBox layoutY="380.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="378.0">
+   <VBox layoutY="334.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="334.0">
       <children>
-         <ListView fx:id="holesListView" prefHeight="0.0" />
+         <AnchorPane prefHeight="33.0" prefWidth="200.0">
+            <children>
+                <Label fx:id="labelDivisions" alignment="CENTER" style="-fx-background-color: #A39D9B;" text="Divisiones" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="Roboto Light" size="27.0" />
+                    </font>
+                    <effect>
+                        <DropShadow blurType="TWO_PASS_BOX">
+                            <color>
+                                <Color red="0.5" green="0.5" blue="0.5" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Label>
+                <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="394.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="30.42857170104992" AnchorPane.topAnchor="4.285715103149414" />
+            </children>
+         </AnchorPane>
+         <VBox>
+            <children>
+               <ListView fx:id="holesListView" prefHeight="0.0" />
+            </children>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </VBox>
       </children>
-      <cursor>
-         <Cursor fx:constant="HAND" />
-      </cursor>
    </VBox>
-   <CheckBox fx:id="isClosed" layoutX="222.0" layoutY="298.0" mnemonicParsing="false" prefWidth="174.0" text="Caja cerrada">
+   <CheckBox fx:id="isClosed" layoutX="164.0" layoutY="291.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="155.0" text="Caja cerrada" AnchorPane.leftAnchor="164.0" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="291.0">
       <font>
          <Font name="Roboto Light" size="17.0" />
       </font>

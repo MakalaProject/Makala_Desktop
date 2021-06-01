@@ -10,8 +10,8 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="824.0" prefWidth="644.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.ProductCreateController">
-    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutY="293.0" pannable="true" prefHeight="531.0" prefWidth="646.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="293.0">
+<AnchorPane style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.ProductCreateController">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutY="293.0" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="293.0">
         <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
             <Label layoutX="49.0" layoutY="396.0" prefHeight="28.0" prefWidth="103.0" text="Tipo" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="495.0" AnchorPane.topAnchor="143.0">
                 <font>
@@ -79,24 +79,31 @@
             <cursor>
                <Cursor fx:constant="TEXT" />
             </cursor></TextField>
-
-            <AnchorPane fx:id="propertiesAnchorPane" layoutY="384.0" prefHeight="166.0" prefWidth="644.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="384.0">
-            <padding>
-               <Insets bottom="30.0" />
-            </padding></AnchorPane>
-            <Label alignment="CENTER" layoutY="318.0" style="-fx-background-color: #A39D9B;" text="Propiedades" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
-                <font>
-                    <Font name="Roboto Light" size="27.0" />
-                </font>
-                <effect>
-                    <DropShadow blurType="TWO_PASS_BOX">
-                        <color>
-                            <Color red="0.5" green="0.5" blue="0.5" />
-                        </color>
-                    </DropShadow>
-                </effect>
-            </Label>
-         <Label fx:id="minLabel" layoutX="551.0" layoutY="223.0" prefHeight="28.0" prefWidth="45.0" text="pzas" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="223.0">
+            <VBox layoutY="353.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="353.0">
+                <children>
+                    <AnchorPane>
+                        <children>
+                            <Label alignment="CENTER" prefHeight="47.0" prefWidth="497.0" style="-fx-background-color: #A39D9B;" text="Propiedades" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <font>
+                                    <Font name="Roboto Light" size="27.0" />
+                                </font>
+                                <effect>
+                                    <DropShadow blurType="TWO_PASS_BOX">
+                                        <color>
+                                            <Color red="0.5" green="0.5" blue="0.5" />
+                                        </color>
+                                    </DropShadow>
+                                </effect>
+                            </Label>
+                        </children>
+                    </AnchorPane>
+                    <VBox fx:id="propertiesVBox" style="-fx-background-color: white;">
+                        <padding>
+                            <Insets bottom="10.0" />
+                        </padding>
+                    </VBox>
+                </children></VBox>
+            <Label fx:id="minLabel" layoutX="551.0" layoutY="223.0" prefHeight="28.0" prefWidth="45.0" text="pzas" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="223.0">
             <font>
                <Font name="Roboto Light" size="15.0" />
             </font>

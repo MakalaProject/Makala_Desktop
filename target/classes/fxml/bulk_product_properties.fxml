@@ -12,7 +12,12 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <TextField fx:id="porcentajeField" layoutX="227.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="\%" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0.0" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="30.0">
+    <Label layoutX="394.0" layoutY="30.0" prefHeight="33.0" prefWidth="26.0" text="\%" AnchorPane.leftAnchor="394.0" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="30.0">
+        <font>
+            <Font name="Roboto Light" size="15.0" />
+        </font>
+    </Label>
+    <TextField fx:id="porcentajeField" layoutX="227.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText=".5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="133.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font size="15.0" />
         </font>
