@@ -97,11 +97,7 @@
                             </Label>
                         </children>
                     </AnchorPane>
-                    <VBox fx:id="propertiesVBox" style="-fx-background-color: white;">
-                        <padding>
-                            <Insets bottom="10.0" />
-                        </padding>
-                    </VBox>
+                    <VBox fx:id="propertiesVBox" style="-fx-background-color: white;" />
                 </children></VBox>
             <Label fx:id="minLabel" layoutX="551.0" layoutY="223.0" prefHeight="28.0" prefWidth="45.0" text="pzas" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="223.0">
             <font>

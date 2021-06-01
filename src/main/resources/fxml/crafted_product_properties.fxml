@@ -53,7 +53,7 @@
     <FontAwesomeIconView fx:id="addInternalProductButton" fill="WHITE" glyphName="PLUS" layoutX="506.0" layoutY="248.0" size="30" text="" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="220.0" />
    <VBox layoutY="255.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="253.0">
       <children>
-         <ListView fx:id="internalProductsListView" prefHeight="0.0" />
+         <ListView fx:id="internalProductsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
       </children>
    </VBox>
     <TextField fx:id="altoField" layoutX="215.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="156.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="225.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="75.0">

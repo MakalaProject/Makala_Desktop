@@ -191,7 +191,9 @@ public class CatalogController extends CatalogParentController implements Initia
             giftListView.getItems().setAll(actualCatalog.getGifts());
         }else {
             showAlertEmptyFields("Tienes un campo indispensable vacio");
+            updateView();
         }
+
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
     }

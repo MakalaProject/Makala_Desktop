@@ -94,7 +94,7 @@
                      <children>
                         <AnchorPane>
                            <children>
-                            <Label alignment="CENTER" disable="true" prefHeight="47.0" prefWidth="497.0" style="-fx-background-color: #A39D9B;" text="Propiedades" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <Label alignment="CENTER" prefHeight="47.0" prefWidth="497.0" style="-fx-background-color: #A39D9B;" text="Propiedades" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <font>
                                     <Font name="Roboto Light" size="27.0" />
                                 </font>
@@ -109,11 +109,17 @@
                            </children>
                         </AnchorPane>
                         <VBox fx:id="propertiesVBox" style="-fx-background-color: white;">
-                           <padding>
-                              <Insets bottom="10.0" />
-                           </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </VBox>
-                     </children></VBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></VBox>
                   <Label fx:id="stockLabel" layoutX="401.0" layoutY="307.0" prefHeight="24.0" prefWidth="46.0" text="pzas" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="307.0">
                      <font>
                         <Font name="Roboto Light" size="15.0" />
