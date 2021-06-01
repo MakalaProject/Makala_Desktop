@@ -139,7 +139,7 @@
         <AnchorPane fx:id="topPane" prefHeight="85.0" prefWidth="1067.0" style="-fx-background-color: black;" BorderPane.alignment="TOP_CENTER">
             <children>
                 <FontAwesomeIconView fx:id="menuButton" fill="WHITE" glyphName="BARS" layoutX="14.0" layoutY="53.0" size="30" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="27.285715103149414" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="442.0" layoutY="15.0" prefHeight="55.0" prefWidth="204.0" text="MAKALA" textFill="WHITE" AnchorPane.leftAnchor="442.0" AnchorPane.rightAnchor="441.0" AnchorPane.topAnchor="15.0">
+            <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="462.0" layoutY="15.0" prefHeight="55.0" prefWidth="412.0" text="MAKALA" textFill="WHITE" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font name="Roboto Light" size="40.0" />
                </font>

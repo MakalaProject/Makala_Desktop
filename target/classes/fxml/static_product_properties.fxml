@@ -24,7 +24,7 @@
     <Label layoutX="444.0" layoutY="128.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="145.0" />
     <Label layoutX="444.0" layoutY="88.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="95.0" />
     <Label layoutX="444.0" layoutY="46.0" text="cm" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="45.0" />
-    <TextField fx:id="anchoField" layoutX="187.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="184.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="85.0">
+    <TextField fx:id="altoField" layoutX="187.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="184.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="30.0">
         <font>
             <Font size="15.0" />
         </font>
@@ -32,7 +32,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-    <TextField fx:id="altoField" layoutX="187.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="184.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="30.0">
+    <TextField fx:id="anchoField" layoutX="187.0" layoutY="143.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="184.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0.0" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="145.0" AnchorPane.topAnchor="85.0">
         <font>
             <Font size="15.0" />
         </font>
