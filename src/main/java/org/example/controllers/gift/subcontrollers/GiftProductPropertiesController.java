@@ -44,17 +44,22 @@ public class GiftProductPropertiesController implements Initializable, IControll
         categoriaComboBox.setItems(categoryItems);
         categoriaComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
             setInfo(giftProductToSend);
-            if (!volumeValidation()){
-                alertOutOfBounds();
-                return;
+            if(giftProductToSend.getAmount() > 0){
+                Node source = (Node)  mouseEvent.getSource();
+                Stage stage  = (Stage) source.getScene().getWindow();
+                if (!volumeValidation()){
+                    alertOutOfBounds();
+                    return;
+                }
+                giftProductToSend.setProduct(staticProduct);
+                giftProductToSend.setAction(Action.UPDATE);
+                stage.setUserData(giftProductToSend);
+                stage.close();
             }
-            giftProductToSend.setProduct(staticProduct);
-            giftProductToSend.setAction(Action.UPDATE);
-            stage.setUserData(giftProductToSend);
-            stage.close();
+            else{
+                showAlertEmptyFields("Cantidad vacia");
+            }
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
