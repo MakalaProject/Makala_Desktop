@@ -38,10 +38,19 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
         updateButton.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.close();
             Hole hole = new Hole();
-            setInfo(hole);
-            stage.setUserData(new HoleToSend(hole, Action.UPDATE));
+            if (!anchoField.getText().isEmpty() && !anchoField.getText().isEmpty()) {
+                if (Float.parseFloat(anchoField.getText())>0 && Float.parseFloat(altoField.getText())>0) {
+                    setInfo(hole);
+                    stage.setUserData(new HoleToSend(hole, Action.UPDATE));
+                    stage.close();
+                }else {
+                    showAlertEmptyFields("Las medidas no pueden ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar los campos de las medidas vacios");
+            }
+
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {

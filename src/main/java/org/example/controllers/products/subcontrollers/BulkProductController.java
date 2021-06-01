@@ -3,6 +3,7 @@ package org.example.controllers.products.subcontrollers;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IControllerProducts;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.products.BulkProduct;
@@ -12,7 +13,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class BulkProductController implements Initializable, IControllerProducts<BulkProduct> {
+public class BulkProductController implements Initializable, IControllerProducts<BulkProduct>, IControllerCreate<BulkProduct> {
     @FXML public TextField porcentajeField;
 
     @Override
@@ -32,10 +33,23 @@ public class BulkProductController implements Initializable, IControllerProducts
 
     @Override
     public BulkProduct getObject() {
+        if (!porcentajeField.getText().isEmpty()){
+            if(Float.parseFloat(porcentajeField.getText())>0) {
+                BulkProduct bulkProduct = new BulkProduct();
+                bulkProduct.setLossPercent(new BigDecimal(porcentajeField.getText()));
+                return bulkProduct;
+            }else {
+                showAlertEmptyFields("El porcentaje de perdida no puede ser 0");
+            }
+        }else {
+            showAlertEmptyFields("No puedes dejar el campo de porcentaje de perdida vacio");
+        }
+        return null;
+    }
 
-        BulkProduct bulkProduct = new BulkProduct();
-        bulkProduct.setLossPercent(new BigDecimal(porcentajeField.getText()));
-        return bulkProduct;
+    @Override
+    public BulkProduct getObjectInstance() {
+        return new BulkProduct();
     }
 
     @Override
@@ -50,6 +64,11 @@ public class BulkProductController implements Initializable, IControllerProducts
 
     @Override
     public void updateList() {
+
+    }
+
+    @Override
+    public void setInfo(BulkProduct object) {
 
     }
 }

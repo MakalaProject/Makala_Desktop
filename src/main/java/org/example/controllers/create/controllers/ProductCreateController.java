@@ -42,55 +42,59 @@ public class ProductCreateController extends ProductParentController {
                             e.printStackTrace();
                         }
                         changeType(actualPropertiesController);
-                        product = (Product) actualPropertiesController.getObject();
-                        product.formatStock(stockLabel);
-                        product.formatStock(minLabel);
-                        product.formatStock(maxLabel);
+                        product = (Product) actualPropertiesController.getObjectInstance();
+                            product.formatStock(stockLabel);
+                            product.formatStock(minLabel);
+                            product.formatStock(maxLabel);
                     }
                 }
             }
         });
         updateButton.setOnMouseClicked(mouseEvent -> {
-            if( !nombreField.getText().isEmpty()){
-                if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())) {
-                    Product product = (Product) actualPropertiesController.getObject();
-                    if (product != null) {
-                        setInfo(product);
-                        Product newProduct = null;
-                        try {
-                            product.setPictures(new ArrayList<>());
-                            newProduct = (Product) Request.postJ(product.getRoute(), product);
-                            product.setIdProduct(newProduct.getIdProduct());
-                            newProduct = product;
-                            ArrayList<Picture> pictures = new ArrayList<>();
-                            files = ImageService.uploadImages(files);
-                            if (files != null) {
-                                for (String s : files) {
-                                    pictures.add(new Picture(s));
+            if(!nombreField.getText().isEmpty() && !minField.getText().isEmpty() && !maxField.getText().isEmpty() && !stockField.getText().isEmpty() && !precioField.getText().isEmpty()){
+                if(Integer.parseInt(minField.getText())>0 && Integer.parseInt(maxField.getText())>0 && Float.parseFloat(precioField.getText())>0){
+                    if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())) {
+                        Product product = (Product) actualPropertiesController.getObject();
+                        if (product != null) {
+                            setInfo(product);
+                            Product newProduct = null;
+                            try {
+                                product.setPictures(new ArrayList<>());
+                                newProduct = (Product) Request.postJ(product.getRoute(), product);
+                                product.setIdProduct(newProduct.getIdProduct());
+                                newProduct = product;
+                                ArrayList<Picture> pictures = new ArrayList<>();
+                                files = ImageService.uploadImages(files);
+                                if (files != null) {
+                                    for (String s : files) {
+                                        pictures.add(new Picture(s));
+                                    }
                                 }
+                                newProduct.setPictures(new ArrayList<>());
+                                newProduct.setPictures(pictures);
+                                product = (Product) Request.putJ(product.getRoute(), product);
+                                newProduct.setPictures(product.getPictures());
+                            } catch (Exception e) {
+                                ImageService.deleteImages(files);
+                                duplyElementAlert(product.getIdentifier());
+                                return;
                             }
-                            newProduct.setPictures(new ArrayList<>());
-                            newProduct.setPictures(pictures);
-                            product = (Product) Request.putJ(product.getRoute(), product);
-                            newProduct.setPictures(product.getPictures());
-                        } catch (Exception e) {
-                            ImageService.deleteImages(files);
-                            duplyElementAlert(product.getIdentifier());
-                            return;
+                            Node source = (Node) mouseEvent.getSource();
+                            Stage stage = (Stage) source.getScene().getWindow();
+                            files = new ArrayList<>();
+                            deleteFiles = new ArrayList<>();
+                            imageIndex = 0;
+                            if (newProduct != null) {
+                                product.setIdProduct(newProduct.getIdProduct());
+                                stage.setUserData(newProduct);
+                            }
+                            stage.close();
                         }
-                        Node source = (Node) mouseEvent.getSource();
-                        Stage stage = (Stage) source.getScene().getWindow();
-                        files = new ArrayList<>();
-                        deleteFiles = new ArrayList<>();
-                        imageIndex = 0;
-                        if (newProduct != null) {
-                            product.setIdProduct(newProduct.getIdProduct());
-                            stage.setUserData(newProduct);
-                        }
-                        stage.close();
+                    }else{
+                        showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
                     }
-                }else{
-                    showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
+                }else {
+                    showAlertEmptyFields("Los campos númericos no pueden ser 0");
                 }
             }else{
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");

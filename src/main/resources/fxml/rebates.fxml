@@ -19,10 +19,8 @@
                 <FontAwesomeIconView fx:id="addButton" focusTraversable="true" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
                 <VBox layoutY="67.0" prefHeight="762.0" prefWidth="434.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
                     <children>
-                        <ListView fx:id="listView" prefHeight="0.0" style="-fx-background-color: white; -fx-selection-bar: black;">
-                            <effect>
-                                <DropShadow />
-                            </effect>
+                        <ListView fx:id="listView" prefHeight="0.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; ">
+
                         </ListView>
                     </children>
                 </VBox>

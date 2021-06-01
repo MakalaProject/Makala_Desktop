@@ -145,13 +145,21 @@ public class ProviderController extends UserParentController<Provider> {
 
     @Override
     public void update() {
-        if (!tiempoField.getText().isEmpty() || !tiempoField.getText().isEmpty() || !telefonoField.getText().isEmpty()) {
-            if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
-                super.update();
-                actualUser.setSelectedProducts();
-                productsItems.setAll(actualUser.getProducts());
+        if ( !tiempoField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
+            if(telefonoField.getText().length()>9 && Integer.parseInt(tiempoField.getText()) >0) {
+                if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+                    if (emailField.getText().isEmpty() || (!emailField.getText().isEmpty() && emailField.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"))) {
+                        super.update();
+                        actualUser.setSelectedProducts();
+                        productsItems.setAll(actualUser.getProducts());
+                    }else {
+                        showAlertEmptyFields("Verifica el formato de la dirección de correo electrónico");
+                    }
+                }else {
+                    showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+                }
             }else {
-                showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+                showAlertEmptyFields("Los dígitos del teléfono deben ser 10 y el tiempo de entrega mayor a 0");
             }
         }else{
             showAlertEmptyFields("No puedes dejar campos campos necesarios sin llenar");

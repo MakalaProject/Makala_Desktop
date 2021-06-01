@@ -31,7 +31,7 @@ public class GiftListViewCell extends ListCell<Gift> {
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/fxml/product_list_view.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("/fxml/gift_list_view.fxml"));
                 mLLoader.setController(this);
                 try {
                     mLLoader.load();

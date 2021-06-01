@@ -13,6 +13,8 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.interfaces.IControllerCreate;
+import org.example.interfaces.IListController;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
@@ -71,31 +73,47 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     public BoxProduct getObject(){
         BoxProduct boxProduct = getLocalObject();
         if (boxProduct != null){
-            new ListToChangeTools<Hole,Integer>().setToDeleteItems(originalHoleList, holeList);
-            boxProduct.setHolesDimensions(holeList);
-            return boxProduct;
+            if(!altoIntField.getText().isEmpty() && !anchoIntField.getText().isEmpty() && !largoIntField.getText().isEmpty()) {
+                if (Float.parseFloat(altoIntField.getText()) > 0 && Float.parseFloat(anchoIntField.getText()) > 0 && Float.parseFloat(largoIntField.getText()) > 0) {
+                    new ListToChangeTools<Hole, Integer>().setToDeleteItems(originalHoleList, holeList);
+                    boxProduct.setHolesDimensions(holeList);
+                    return boxProduct;
+                } else {
+                    showAlertEmptyFields("Las medidas no pueden ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar los campos de las medidas vacios");
+            }
         }
+        return new BoxProduct();
+    }
+
+    @Override
+    public BoxProduct getObjectInstance() {
         return new BoxProduct();
     }
 
     public BoxProduct getLocalObject(){
         BoxProduct boxProduct = super.getObject(BoxProduct.class);
-        boxProduct.setHolesDimensions(holeList);
-        boxProduct.setClosed(isClosed.isSelected());
-        boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
-        boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
-        boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
-        Measure3Dimensions internalMeasure = boxProduct.getInternalMeasures();
-        Measure3Dimensions externalMeasures = boxProduct.getMeasures();
-        if (externalMeasures.getZ().compareTo(internalMeasure.getZ()) > 0 && externalMeasures.getX().compareTo(internalMeasure.getX()) > 0 && externalMeasures.getY().compareTo(internalMeasure.getY()) > 0) {
-            if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) < 1) {
-                return boxProduct;
+        if (boxProduct != null) {
+            boxProduct.setHolesDimensions(holeList);
+            boxProduct.setClosed(isClosed.isSelected());
+            boxProduct.getInternalMeasures().setX(new BigDecimal(anchoIntField.getText()));
+            boxProduct.getInternalMeasures().setY(new BigDecimal(altoIntField.getText()));
+            boxProduct.getInternalMeasures().setZ(new BigDecimal(largoIntField.getText()));
+            Measure3Dimensions internalMeasure = boxProduct.getInternalMeasures();
+            Measure3Dimensions externalMeasures = boxProduct.getMeasures();
+            if (externalMeasures.getZ().compareTo(internalMeasure.getZ()) > 0 && externalMeasures.getX().compareTo(internalMeasure.getX()) > 0 && externalMeasures.getY().compareTo(internalMeasure.getY()) > 0) {
+                if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) < 1) {
+                    return boxProduct;
+                }
             }
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Medidas fuera de rango");
+            alert.setContentText("Las medidas de la caja son invalidas");
+            alert.showAndWait();
+
         }
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText("Medidas fuera de rango");
-        alert.setContentText("Las medidas de la caja son invalidas");
-        alert.showAndWait();
         return null;
     }
 
@@ -157,6 +175,11 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         alert.setContentText("Las medidas de la caja son invalidas");
         alert.showAndWait();
         return true;
+    }
+
+    @Override
+    public void setInfo(StaticProduct object) {
+
     }
 
     class ShowDialog implements EventHandler<MouseEvent> {

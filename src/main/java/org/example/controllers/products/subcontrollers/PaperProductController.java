@@ -36,6 +36,11 @@ public class PaperProductController implements Initializable, IControllerProduct
     }
 
     @Override
+    public PaperProduct getObjectInstance() {
+        return new PaperProduct();
+    }
+
+    @Override
     public void setObject(PaperProduct paperProduct) {
         colorPicker.setValue(Color.web(paperProduct.getRgb()));
     }

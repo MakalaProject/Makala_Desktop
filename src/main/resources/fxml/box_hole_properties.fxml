@@ -29,12 +29,12 @@
       </Label>
       <Label layoutX="379.0" layoutY="122.0" text="cm" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="122.0" />
       <Label layoutX="379.0" layoutY="176.0" text="cm" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="176.0" />
-      <TextField fx:id="altoField" layoutX="174.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="193.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="168.0">
+      <TextField fx:id="altoField" layoutX="174.0" layoutY="168.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="193.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="168.0">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="anchoField" layoutX="174.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="193.0" promptText="cm" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="114.0">
+      <TextField fx:id="anchoField" layoutX="174.0" layoutY="114.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="193.0" promptText="5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" AnchorPane.leftAnchor="174.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="114.0">
          <font>
             <Font size="15.0" />
          </font>

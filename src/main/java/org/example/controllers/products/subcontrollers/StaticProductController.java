@@ -11,7 +11,17 @@ public class StaticProductController extends StaticParentProductController<Stati
     }
 
     @Override
+    public StaticProduct getObjectInstance() {
+        return new StaticProduct();
+    }
+
+    @Override
     public StaticProduct findObject(Product object) {
         return findObject( object,"products/statics", StaticProduct.class);
+    }
+
+    @Override
+    public void setInfo(StaticProduct object) {
+
     }
 }

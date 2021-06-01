@@ -33,9 +33,18 @@ public class InsideProductController implements Initializable, IControllerCreate
         updateButton.setOnMouseClicked(mouseEvent -> {
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.close();
-            setInfo(insideProduct);
-            stage.setUserData(new InternalProductPropertiesToSend(insideProduct, Action.UPDATE));
+            if (!cantidadField.getText().isEmpty()){
+                if (Float.parseFloat(cantidadField.getText())>0){
+                    setInfo(insideProduct);
+                    stage.setUserData(new InternalProductPropertiesToSend(insideProduct, Action.UPDATE));
+                    stage.close();
+                }else {
+                    showAlertEmptyFields("La cantidad no puede ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar el campo de cantidad vacio");
+            }
+
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {

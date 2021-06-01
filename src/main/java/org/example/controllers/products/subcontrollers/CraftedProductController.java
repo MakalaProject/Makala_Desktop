@@ -195,11 +195,26 @@ public class CraftedProductController extends StaticParentProductController<Craf
         new ListToChangeTools<InsideProduct,Integer>().setToDeleteItems(originalInsideProductList, insideProductList);
         craftedProduct1.setProductsInside(insideProductList);
         craftedProduct1.setProductContainer(productContainer);
-        return craftedProduct1;
+        if (insideProductList.size()>0){
+            return craftedProduct1;
+        }else {
+            showAlertEmptyFields("Debes agregar productos internos");
+        }
+        return null;
+    }
+
+    @Override
+    public CraftedProduct getObjectInstance() {
+        return new CraftedProduct();
     }
 
     @Override
     public CraftedProduct findObject(Product object) {
         return findObject(object,"products/crafted", CraftedProduct.class );
+    }
+
+    @Override
+    public void setInfo(StaticProduct object) {
+
     }
 }

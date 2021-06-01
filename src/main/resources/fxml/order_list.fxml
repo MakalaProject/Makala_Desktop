@@ -18,10 +18,7 @@
                 <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
                 <VBox layoutY="109.0" prefHeight="1.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
                     <children>
-                        <ListView fx:id="listView" prefHeight="0.0" prefWidth="435.0" style="-fx-background-color: white; -fx-selection-bar: black;">
-                            <effect>
-                                <DropShadow />
-                            </effect>
+                        <ListView fx:id="listView" prefHeight="0.0" prefWidth="435.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; ">
                         </ListView>
                     </children>
                 </VBox>

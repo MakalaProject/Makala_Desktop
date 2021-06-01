@@ -24,10 +24,6 @@ public class FocusVerificationFields extends RegexVerificationParent implements 
             if (textField.getText().matches("^(\\.\\d{0,"+maxRangeDecimal+"})?$")) {
                 textField.setText("0" + textField.getText());
             }
-        }else {
-            if (textField.getText().isEmpty()){
-                textField.setText("1");
-            }
         }
     }
 }

@@ -9,7 +9,7 @@
 
 <BorderPane fx:id="principalPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1067.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.HomeController">
     <left>
-        <AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="TOP_LEFT">
+        <AnchorPane fx:id="menuPane" prefHeight="714.0" prefWidth="200.0" style="-fx-background-color: white; -fx-border-color: white;" BorderPane.alignment="TOP_LEFT">
             <children>
                 <VBox layoutX="7.0" layoutY="130.0" prefHeight="568.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="130.0">
                     <children>
@@ -150,7 +150,7 @@
             </padding></AnchorPane>
     </top>
    <center>
-       <AnchorPane fx:id="universalPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="867.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+       <AnchorPane fx:id="universalPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="698.0" prefWidth="867.0" style="-fx-background-color: white; -fx-border-color: white;" BorderPane.alignment="CENTER">
 
        </AnchorPane>
    </center>

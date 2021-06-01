@@ -7,6 +7,7 @@ public interface IControllerProducts<D> {
     String[] getIdentifier();
     String getResource();
     D getObject();
+    D getObjectInstance();
     void setObject(D object);
     default void clearController(){};
 

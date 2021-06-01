@@ -188,68 +188,72 @@ public class ProductController extends ProductParentController implements IListC
 
     @Override
     public void update() {
-        if(!nombreField.getText().isEmpty()){
-            if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())){
-                Product product = (Product) actualPropertiesController.getObject();
-                if (product != null) {
-                    setInfo(product);
-                    Product returnedProduct = null;
-                    try {
-                        ArrayList<Picture> picturesOriginal = new ArrayList<>(product.getPictures());
-                        product.setPictures(new ArrayList<>());
-                        Request.putJ(product.getRoute(), product);
-                        returnedProduct = (Product) Request.find(product.getRoute(), product.getIdProduct(), product.getClass());
-                        List<String> urls = ImageService.uploadImages(files);
-                        files = urls;
-                        returnedProduct.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
-                        for (String s : urls) {
-                            returnedProduct.getPictures().add(new Picture(s));
-                        }
-                        files = new ArrayList<>();
-                        if(deleteFiles.size() != 0){
-                            int counter = 0;
-                            ArrayList<Picture> pictures = new ArrayList<>(picturesOriginal);
-                            for (Picture p : pictures) {
-                                files.add(p.getPath());
-                                for(String s: deleteFiles){
-                                    if(s.equals(picturesOriginal.get(counter).getPath())){
-                                        picturesOriginal.remove(counter);
-                                        counter--;
-                                    }
-                                }
-                                counter++;
+        if(!nombreField.getText().isEmpty() && !minField.getText().isEmpty() && !maxField.getText().isEmpty() && !stockField.getText().isEmpty() && !precioField.getText().isEmpty()){
+            if(Integer.parseInt(minField.getText())>0 && Integer.parseInt(maxField.getText())>0 && Float.parseFloat(precioField.getText())>0){
+                if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())){
+                    Product product = (Product) actualPropertiesController.getObject();
+                    if (product != null) {
+                        setInfo(product);
+                        Product returnedProduct = null;
+                        try {
+                            ArrayList<Picture> picturesOriginal = new ArrayList<>(product.getPictures());
+                            product.setPictures(new ArrayList<>());
+                            Request.putJ(product.getRoute(), product);
+                            returnedProduct = (Product) Request.find(product.getRoute(), product.getIdProduct(), product.getClass());
+                            List<String> urls = ImageService.uploadImages(files);
+                            files = urls;
+                            returnedProduct.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
+                            for (String s : urls) {
+                                returnedProduct.getPictures().add(new Picture(s));
                             }
-                            new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualProduct.getPictures(), picturesOriginal);
-                            returnedProduct.setPictures(picturesOriginal);
-                            ImageService.deleteImages(deleteFiles);
-                        }
-                        returnedProduct = (Product) Request.putJ(product.getRoute(), returnedProduct);
-                    } catch (ProductDeleteException e) {
-                        if(e.getStatus() == 423){
-                            errorAlert(e.getMessage());
-                            updateView();
+                            files = new ArrayList<>();
+                            if(deleteFiles.size() != 0){
+                                int counter = 0;
+                                ArrayList<Picture> pictures = new ArrayList<>(picturesOriginal);
+                                for (Picture p : pictures) {
+                                    files.add(p.getPath());
+                                    for(String s: deleteFiles){
+                                        if(s.equals(picturesOriginal.get(counter).getPath())){
+                                            picturesOriginal.remove(counter);
+                                            counter--;
+                                        }
+                                    }
+                                    counter++;
+                                }
+                                new ListToChangeTools<Picture,Integer>().setToDeleteItems(actualProduct.getPictures(), picturesOriginal);
+                                returnedProduct.setPictures(picturesOriginal);
+                                ImageService.deleteImages(deleteFiles);
+                            }
+                            returnedProduct = (Product) Request.putJ(product.getRoute(), returnedProduct);
+                        } catch (ProductDeleteException e) {
+                            if(e.getStatus() == 423){
+                                errorAlert(e.getMessage());
+                                updateView();
+                                return;
+                            }
+                            duplyElementAlert(product.getIdentifier());
                             return;
                         }
-                        duplyElementAlert(product.getIdentifier());
-                        return;
+                        product.setPictures(returnedProduct.getPictures());
+                        actualPropertiesController.setObject(returnedProduct);
+                        actualProduct = product;
+                        pictureList = new ArrayList<>(product.getPictures());
+                        comboBox.setValue(actualProduct.getProductClassDto().getProductType());
+                        productObservableList.set(index, actualProduct);
+                        selectClassification();
+                        listView.getSelectionModel().select(actualProduct);
+                        listView.scrollTo(product);
                     }
-                    product.setPictures(returnedProduct.getPictures());
-                    actualPropertiesController.setObject(returnedProduct);
-                    actualProduct = product;
-                    pictureList = new ArrayList<>(product.getPictures());
-                    comboBox.setValue(actualProduct.getProductClassDto().getProductType());
-                    productObservableList.set(index, actualProduct);
-                    selectClassification();
-                    listView.getSelectionModel().select(actualProduct);
-                    listView.scrollTo(product);
-                    updateView();
+                }else {
+                    showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
                 }
             }else {
-                showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
+                showAlertEmptyFields("Los campos númericos no pueden ser 0");
             }
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
+        updateView();
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
     }

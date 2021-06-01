@@ -76,22 +76,31 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         });
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            if (!nombresField.getText().isEmpty() || !tiempoField.getText().isEmpty() || !telefonoField.getText().isEmpty()){
-                if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
-                    setInfo(provider);
-                    Provider returnedProvider = null;
-                    try {
-                        returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider);
-                    } catch (Exception e) {
-                        duplyElementAlert(provider.getIdentifier());
-                        return;
+            if (!nombresField.getText().isEmpty() && !tiempoField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
+                if(telefonoField.getText().length()>9 && Integer.parseInt(tiempoField.getText()) >0) {
+                    if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+                        if (emailField.getText().isEmpty() || (!emailField.getText().isEmpty() && emailField.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")))
+                        {
+                            setInfo(provider);
+                            Provider returnedProvider = null;
+                            try {
+                                returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider);
+                            } catch (Exception e) {
+                                duplyElementAlert(provider.getIdentifier());
+                                return;
+                            }
+                            Node source = (Node) mouseEvent.getSource();
+                            Stage stage = (Stage) source.getScene().getWindow();
+                            stage.close();
+                            stage.setUserData(returnedProvider);
+                        }else{
+                            showAlertEmptyFields("Verifica el formato de la dirección de correo electrónico");
+                        }
+                    } else {
+                        showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
                     }
-                    Node source = (Node) mouseEvent.getSource();
-                    Stage stage = (Stage) source.getScene().getWindow();
-                    stage.close();
-                    stage.setUserData(returnedProvider);
                 }else {
-                    showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+                    showAlertEmptyFields("Los dígitos del teléfono deben ser 10 y el tiempo de entrega mayor a 0");
                 }
             }else {
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
