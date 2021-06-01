@@ -60,7 +60,6 @@ public class GiftController extends GiftParentController implements IListControl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         giftObservableList.addAll(Request.getJ("/gifts/criteria-basic?size=10000",Gift[].class, true));
         super.initialize(url, resourceBundle);
-
         privacidadComboBox.getItems().addAll(privacyItems);
         privacidadComboBox.getSelectionModel().select(0);
         showList(FXCollections.observableList(giftObservableList), listView, GiftListViewCell.class);

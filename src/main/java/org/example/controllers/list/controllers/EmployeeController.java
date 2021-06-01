@@ -102,6 +102,7 @@ public class EmployeeController extends UserParentController<Employee> {
                         if(index < 0){
                             index = 0;
                         }
+                        return;
                     }
                     workDayItems.set(index, employee);
                 }

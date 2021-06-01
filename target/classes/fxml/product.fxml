@@ -19,18 +19,14 @@
                 <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
                 <ComboBox fx:id="comboBox" layoutX="112.0" layoutY="64.0" prefHeight="27.0" prefWidth="211.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="111.0" AnchorPane.topAnchor="64.0" />
                 <FontAwesomeIconView fx:id="addButton" focusTraversable="true" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
-            <VBox layoutY="109.0" prefHeight="840.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
-               <children>
-                      <ListView fx:id="listView" disable="true" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; ">
-                          <effect>
-                        <Blend />
-                          </effect>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                  </ListView>
-               </children>
-            </VBox>
+                <ListView fx:id="listView" disable="true" layoutY="103.0" prefHeight="297.0" prefWidth="248.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; " AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="103.0">
+                    <effect>
+                  <Blend />
+                    </effect>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </ListView>
             </children>
         </AnchorPane>
 
