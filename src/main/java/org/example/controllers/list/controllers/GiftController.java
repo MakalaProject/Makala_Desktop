@@ -349,7 +349,6 @@ public class GiftController extends GiftParentController implements IListControl
         editView(fieldsAnchorPane, editSwitch, updateButton);
         privacyProduct();
         putFields();
-        checkInternalProducts();
         actualGift.setContainer(containerExtended);
         files = new ArrayList<>();
         deleteFiles = new ArrayList<>();
