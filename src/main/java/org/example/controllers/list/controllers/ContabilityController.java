@@ -30,6 +30,7 @@ public class ContabilityController implements Initializable, IListController<Acc
     @FXML ComboBox<String> timeFilterCB;
     @FXML Button calcularButton;
     @FXML ListView<Accounting> contabilityListView;
+    @FXML Label dataLabel;
 
 
     private static final ObservableList<String> comboBoxItems = FXCollections.observableArrayList("Mes", "Año");
@@ -42,10 +43,12 @@ public class ContabilityController implements Initializable, IListController<Acc
         calcularButton.setOnMouseClicked(mouseEvent -> {
             if(timeFilterCB.getValue().equals("Mes")){
                 Accounting accounting = (Accounting) Request.find("data-analysis/accounting/find-one?criteria="+ datePicker.getValue().toString(),Accounting.class);
-                contabilityListView.setItems(FXCollections.observableArrayList());
-                contabilityListView.prefHeightProperty().bind(Bindings.size(accountingObservableList).multiply(23.7));
+                contabilityListView.setVisible(false);
+                dataLabel.setVisible(true);
                 loadObject(accounting);
             }else{
+                dataLabel.setVisible(false);
+                contabilityListView.setVisible(true);
                 contabilityListView.setItems(accountingObservableList);
                 contabilityListView.prefHeightProperty().bind(Bindings.size(accountingObservableList).multiply(23.7));
             }
