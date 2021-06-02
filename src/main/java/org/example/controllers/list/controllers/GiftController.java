@@ -224,15 +224,15 @@ public class GiftController extends GiftParentController implements IListControl
                 if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
                     Gift gift = new Gift();
                     setInfo(gift);
-                    if(!actualGift.getPrivacy().equals("Privado")){
-                        gift.setStaticProducts(null);
-                        gift.setRibbons(null);
-                        gift.setPapers(null);
-                    }
                     Gift returnedGift = null;
                     try {
                         ArrayList<Picture> picturesOriginal = new ArrayList<>(gift.getPictures());
                         gift.setPictures(new ArrayList<>());
+                        if(!actualGift.getPrivacy().equals("Privado")){
+                            gift.setStaticProducts(null);
+                            gift.setRibbons(null);
+                            gift.setPapers(null);
+                        }
                         Request.putJ(gift.getRoute(), gift);
                         gift = (Gift) Request.find(gift.getRoute(), gift.getIdGift(), gift.getClass());
                         List<String> urls = ImageService.uploadImages(files);
@@ -379,7 +379,6 @@ public class GiftController extends GiftParentController implements IListControl
             containerButton.setDisable(false);
             productsAnchorPane.setDisable(false);
         }
-
         privacidadComboBox.getSelectionModel().select(actualGift.getPrivacy());
     }
 
@@ -392,7 +391,6 @@ public class GiftController extends GiftParentController implements IListControl
         internalPapersListView.getItems().clear();
         internalRibbonsListView.getItems().clear();
         internalProductsListView.getItems().clear();
-
     }
 
     private void fillImageList(){

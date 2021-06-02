@@ -12,8 +12,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <ScrollPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <AnchorPane fx:id="informationPane" style="-fx-background-color: #E3DAD8;">
+        <ScrollPane mouseTransparent="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="informationPane" mouseTransparent="true" pickOnBounds="false" style="-fx-background-color: #E3DAD8;">
                 <children>
                     <AnchorPane fx:id="containerAnchorPane" disable="true" layoutY="45.0" prefHeight="614.0" prefWidth="562.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
                         <children>
