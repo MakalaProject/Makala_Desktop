@@ -47,6 +47,24 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         editSwitch.setVisible(false);
+
+        giftListView.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_edition.fxml"));
+            try {
+                GiftEditionPropertiesController dialogController = new GiftEditionPropertiesController();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                dialogController.setObject(giftListView.getSelectionModel().getSelectedItem());
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
         commentsListView.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/order_comment.fxml"));
             try {

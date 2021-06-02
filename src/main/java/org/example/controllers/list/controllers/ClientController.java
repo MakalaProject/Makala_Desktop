@@ -24,9 +24,6 @@ import java.util.ResourceBundle;
 public class ClientController extends UserParentController<Client> {
     @FXML ListView<Order> historyList;
     @FXML TextField correoField;
-
-
-
     ObservableList<Order> ordersObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -52,8 +52,8 @@
                         <DropShadow />
                     </effect>
                 </AnchorPane>
-                <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="-1.0" layoutY="241.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="241.0">
-                    <AnchorPane fx:id="dataAnchorPane" layoutY="244.0" prefHeight="280.0" prefWidth="517.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="244.0">
+                <ScrollPane fitToWidth="true" layoutX="-1.0" layoutY="241.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="241.0">
+                    <AnchorPane fx:id="dataAnchorPane" prefWidth="517.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="244.0">
                         <children>
                             <AnchorPane fx:id="fieldsAnchorPane" layoutY="-53.0" prefHeight="191.0" prefWidth="517.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <children>
@@ -95,15 +95,11 @@
                                     </DropShadow>
                                 </effect>
                             </Label>
-                            <AnchorPane layoutY="248.0" prefHeight="367.0" prefWidth="517.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="248.0">
-                                <children>
-                                    <VBox layoutX="92.0" layoutY="520.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                        <children>
-                                            <ListView fx:id="historyList" prefHeight="0.0" prefWidth="518.0" />
-                                        </children>
-                                    </VBox>
-                                </children>
-                            </AnchorPane>
+                              <VBox layoutY="252.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="249.0">
+                                  <children>
+                                      <ListView fx:id="historyList" prefHeight="0.0" prefWidth="518.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6;" />
+                                  </children>
+                              </VBox>
                         </children>
                     </AnchorPane>
                 </ScrollPane>
