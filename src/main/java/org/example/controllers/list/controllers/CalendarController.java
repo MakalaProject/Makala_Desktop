@@ -239,6 +239,7 @@ public class CalendarController implements Initializable, IListController<Calend
             List<Integer> ids = new ArrayList<>();
             boolean validation = true;
             //ArrayList<WorkDays> activeEmployees = Request.getJ("employee-work-days/list-criteria?date="+ , WorkDays[].class, false);
+            int c = 0;
             for (Entry<CalendarDetailedActivity> e : allActivities) {
                 for (Integer i : ids) {
                     if (i.equals(e.getUserObject().getIdEmployee())) {
@@ -275,7 +276,11 @@ public class CalendarController implements Initializable, IListController<Calend
             LocalTime time = LocalTime.of(9, 0);
             for (Order order : shippings) {
                 Entry<Order> calendarShippingActivities = new Entry<>("Envio de venta " + order.getIdOrder());
-                calendarShippingActivities.setInterval(order.getEstimatedShippingDate(), time, order.getEstimatedShippingDate(), time.plusMinutes(18));
+                if(order.getShippingDate()== null) {
+                    calendarShippingActivities.setInterval(order.getEstimatedShippingDate(), time, order.getEstimatedShippingDate(), time.plusMinutes(18));
+                }else{
+                    calendarShippingActivities.setInterval(order.getShippingDate().toLocalDate(), time, order.getShippingDate().toLocalDate(), time.plusMinutes(18));
+                }
                 time = time.plusMinutes(18);
                 calendarShippingActivities.setUserObject(order);
                 shippingActivities.add(calendarShippingActivities);

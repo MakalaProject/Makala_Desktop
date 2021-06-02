@@ -80,11 +80,11 @@
                 <TextField fx:id="precioField" layoutX="178.0" layoutY="434.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="210.0" promptText="50.50" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="185.0" />
                 <TextField fx:id="minField" layoutX="178.0" layoutY="469.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="211.0" promptText="5" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="225.0" />
                 <TextField fx:id="maxField" layoutX="178.0" layoutY="503.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="211.0" promptText="20" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="265.0" />
+                  <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" prefHeight="31.0" prefWidth="211.0" promptText="10" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="305.0" />
                   <Label layoutX="51.0" layoutY="302.0" prefHeight="28.0" prefWidth="123.0" text="Stock*" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="303.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font></Label>
-                  <TextField fx:id="stockField" layoutX="177.0" layoutY="302.0" prefHeight="31.0" prefWidth="211.0" promptText="10" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="177.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="305.0" />
    
                <VBox layoutY="353.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="353.0">
                      <children>
