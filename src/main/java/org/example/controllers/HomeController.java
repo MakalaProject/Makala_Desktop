@@ -20,9 +20,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.example.controllers.elements.controllers.NotificationController;
 import org.example.controllers.elements.controllers.StatisticsProductInfo;
 import org.example.interfaces.IListController;
 import org.example.model.Employee;
+import org.example.model.Notification;
+import org.example.services.Request;
 
 public class HomeController implements Initializable {
     @FXML JFXButton productosButton;
@@ -43,6 +46,7 @@ public class HomeController implements Initializable {
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
     @FXML FontAwesomeIconView settings;
+    @FXML FontAwesomeIconView notifications;
     @FXML Label userName;
     @FXML Label titleLabel;
     @FXML BorderPane principalPane;
@@ -57,7 +61,10 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        Notification notification = (Notification) Request.getJ("notifications", Notification.class);
+        if(notification.isNextMonthBusy() || notification.isWeek3Busy()){
+            notifications.setStyle("-fx-fill: RED;");
+        }
         settings.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/admin_info.fxml"));
             try {
@@ -71,6 +78,21 @@ public class HomeController implements Initializable {
                 stage.showAndWait();
                 administrator = (Employee) stage.getUserData();
                 userName.setText(administrator.getFirstName());
+            } catch (IOException e) {
+                e.printStackTrace();
+            };
+        });
+        notifications.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/notification.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                NotificationController dialogController = fxmlLoader.getController();
+                dialogController.setObject(notification);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
             } catch (IOException e) {
                 e.printStackTrace();
             };
