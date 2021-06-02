@@ -238,6 +238,7 @@ public class CalendarController implements Initializable, IListController<Calend
             int counter = 0;
             List<Integer> ids = new ArrayList<>();
             boolean validation = true;
+            //ArrayList<WorkDays> activeEmployees = Request.getJ("employee-work-days/list-criteria?date="+ , WorkDays[].class, false);
             for (Entry<CalendarDetailedActivity> e : allActivities) {
                 for (Integer i : ids) {
                     if (i.equals(e.getUserObject().getIdEmployee())) {

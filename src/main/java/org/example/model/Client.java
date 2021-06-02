@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 public class Client extends User{
     private String password;
     private String mail;
+    private int gifts;
+    private boolean frequentClient;
     public Client(){
         mail = "xx";
         password = "";
