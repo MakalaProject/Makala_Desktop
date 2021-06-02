@@ -125,6 +125,14 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="COG" size="20" />
                      </graphic>
                   </JFXButton>
+                  <JFXButton fx:id="tiempoStockButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="504.0" prefHeight="27.0" prefWidth="200.0" text="Promedio Stock" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="APPLE" size="20" />
+                     </graphic>
+                  </JFXButton>
                     </children></VBox>
                 <FontAwesomeIconView glyphName="USER" layoutX="82.0" layoutY="68.0" size="50" AnchorPane.leftAnchor="82.0" AnchorPane.rightAnchor="82.28571319580078" AnchorPane.topAnchor="10.0" />
                 <Label fx:id="userName" alignment="CENTER" layoutX="32.0" layoutY="69.0" prefHeight="28.0" prefWidth="136.0" text="USER" textAlignment="CENTER">

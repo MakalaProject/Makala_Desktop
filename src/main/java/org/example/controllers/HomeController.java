@@ -39,6 +39,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton contabilidadButton;
     @FXML JFXButton analisisButton;
     @FXML JFXButton produccionButton;
+    @FXML JFXButton tiempoStockButton;
     @FXML AnchorPane universalPane;
     @FXML FontAwesomeIconView menuButton;
     @FXML FontAwesomeIconView settings;
@@ -123,6 +124,10 @@ public class HomeController implements Initializable {
         analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics", "Estadisticas"));
 
         produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion"));
+
+        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion"));
+
+        tiempoStockButton.setOnMouseClicked(new HomeLoader("/fxml/product_stock_time.fxml", "stock", "Promedio tiempo Stock"));
 
     }
 
