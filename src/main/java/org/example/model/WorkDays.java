@@ -16,7 +16,6 @@ public class WorkDays {
     private LocalDate finishDate;
     private boolean monToFri = true;
     private Action action = Action.UPDATE;
-
     @Override
     public String toString() {
         return "Intervalo de trabajo";

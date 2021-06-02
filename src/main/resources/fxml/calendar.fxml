@@ -5,17 +5,18 @@
 
 <?import com.calendarfx.view.DetailedDayView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.ComboBox?>
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.CalendarController">
     <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="4.285715103149414" />
         </children>
     </AnchorPane>
+    <ComboBox fx:id="calendarType" layoutX="178.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="90" AnchorPane.rightAnchor="90" AnchorPane.topAnchor="50.0" />
 
-    <DetailedDayView  fx:id="diaDayView" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0" AnchorPane.bottomAnchor="0.0" prefWidth="500">
+    <DetailedDayView  fx:id="diaDayView" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="89.0" AnchorPane.bottomAnchor="0.0" prefWidth="500">
 
     </DetailedDayView>
-    <MonthPage fx:id="mesPage" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="39.0" AnchorPane.bottomAnchor="0.0">
-
+    <MonthPage fx:id="mesPage" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="89.0" AnchorPane.bottomAnchor="0.0">
     </MonthPage>
 </AnchorPane>

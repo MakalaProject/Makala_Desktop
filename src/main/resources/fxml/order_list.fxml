@@ -27,68 +27,10 @@
 
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
             <children>
-                <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="42.0" pannable="true" prefHeight="907.0" prefWidth="517.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" disable="true" layoutY="257.0" prefHeight="916.0" prefWidth="502.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
-
+                <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="42.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+                    <AnchorPane fx:id="fieldsAnchorPane" disable="true" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                         <children>
-                                <AnchorPane style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <AnchorPane layoutY="524.0" prefHeight="606.0" prefWidth="498.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="524.0">
-                                        <children>
-                                            <VBox layoutY="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                <AnchorPane>
-                                                    <children>
-                                                        <Label alignment="CENTER" layoutY="-5.0" style="-fx-background-color: #A39D9B;" text="Regalos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <font>
-                                                                <Font name="Roboto Light" size="27.0" />
-                                                            </font>
-                                                            <effect>
-                                                                <DropShadow blurType="TWO_PASS_BOX">
-                                                                    <color>
-                                                                        <Color red="0.5" green="0.5" blue="0.5" />
-                                                                    </color>
-                                                                </DropShadow>
-                                                            </effect>
-                                                        </Label>
-                                                    </children>
-                                                </AnchorPane>
-                                                <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                    <children>
-                                                        <ListView fx:id="giftListView" prefHeight="0.0">
-                                          <VBox.margin>
-                                             <Insets />
-                                          </VBox.margin></ListView>
-                                                    </children>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" />
-                                                    </VBox.margin>
-                                                </VBox>
-                                                <AnchorPane>
-                                                    <children>
-                                                        <Label alignment="CENTER" layoutX="2.0" layoutY="-4.0" style="-fx-background-color: #A39D9B;" text="Comentarios" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                            <font>
-                                                                <Font name="Roboto Light" size="27.0" />
-                                                            </font>
-                                                            <effect>
-                                                                <DropShadow blurType="TWO_PASS_BOX">
-                                                                    <color>
-                                                                        <Color red="0.5" green="0.5" blue="0.5" />
-                                                                    </color>
-                                                                </DropShadow>
-                                                            </effect>
-                                                        </Label>
-                                                    </children>
-                                                </AnchorPane>
-                                                <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                                    <children>
-                                                        <ListView fx:id="commentsListView" prefHeight="0.0" />
-                                                    </children>
-                                                    <VBox.margin>
-                                                        <Insets bottom="10.0" />
-                                                    </VBox.margin>
-                                                </VBox>
-                                            </VBox>
-                                        </children>
-                                    </AnchorPane>
+                                <AnchorPane layoutY="13.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <Label layoutX="36.0" layoutY="71.0" prefHeight="28.0" prefWidth="115.0" text="Precio Envio" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="71.0">
                                         <font>
                                             <Font name="Roboto Light" size="20.0" />
@@ -159,6 +101,60 @@
                                     <TextField fx:id="estadoField" editable="false" focusTraversable="false" layoutX="193.0" layoutY="385.0" prefHeight="31.0" prefWidth="240.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="385.0" />
                                     <TextField fx:id="ciudadField" editable="false" focusTraversable="false" layoutX="185.0" layoutY="428.0" prefHeight="31.0" prefWidth="254.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="428.0" />
                                     <TextField fx:id="direccionField" editable="false" focusTraversable="false" layoutX="175.0" layoutY="470.0" prefHeight="31.0" prefWidth="264.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="470.0" />
+                                      <VBox layoutY="515.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="515.0">
+                                          <AnchorPane>
+                                              <children>
+                                                  <Label alignment="CENTER" layoutY="-5.0" style="-fx-background-color: #A39D9B;" text="Regalos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <font>
+                                                          <Font name="Roboto Light" size="27.0" />
+                                                      </font>
+                                                      <effect>
+                                                          <DropShadow blurType="TWO_PASS_BOX">
+                                                              <color>
+                                                                  <Color red="0.5" green="0.5" blue="0.5" />
+                                                              </color>
+                                                          </DropShadow>
+                                                      </effect>
+                                                  </Label>
+                                              </children>
+                                          </AnchorPane>
+                                          <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                              <children>
+                                                  <ListView fx:id="giftListView" prefHeight="0.0">
+                                    <VBox.margin>
+                                       <Insets />
+                                    </VBox.margin>
+                                 </ListView>
+                                              </children>
+                                              <VBox.margin>
+                                                  <Insets />
+                                              </VBox.margin>
+                                          </VBox>
+                                          <AnchorPane>
+                                              <children>
+                                                  <Label alignment="CENTER" layoutX="2.0" layoutY="-4.0" style="-fx-background-color: #A39D9B;" text="Comentarios" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <font>
+                                                          <Font name="Roboto Light" size="27.0" />
+                                                      </font>
+                                                      <effect>
+                                                          <DropShadow blurType="TWO_PASS_BOX">
+                                                              <color>
+                                                                  <Color red="0.5" green="0.5" blue="0.5" />
+                                                              </color>
+                                                          </DropShadow>
+                                                      </effect>
+                                                  </Label>
+                                              </children>
+                                          </AnchorPane>
+                                          <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                              <children>
+                                                  <ListView fx:id="commentsListView" prefHeight="0.0" />
+                                              </children>
+                                              <VBox.margin>
+                                                  <Insets />
+                                              </VBox.margin>
+                                          </VBox>
+                                      </VBox>
                                 </AnchorPane>
                         </children>
                     </AnchorPane>
@@ -167,7 +163,7 @@
                     <children>
                         <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="122.4285717010498" AnchorPane.topAnchor="4.285715103149414">
+                                <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" visible="false" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="122.4285717010498" AnchorPane.topAnchor="4.285715103149414">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor></FontAwesomeIconView>
@@ -176,10 +172,6 @@
                                         <Font name="Roboto Thin" size="13.0" />
                                     </font>
                                 </ToggleSwitch>
-                                <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor></FontAwesomeIconView>
                             </children>
                         </AnchorPane>
                     </children>

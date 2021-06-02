@@ -7,12 +7,12 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,11 +24,14 @@ import org.example.exceptions.ProductDeleteException;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
 import org.example.model.*;
+import org.example.model.products.Action;
 import org.example.services.Request;
 
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class OrderController implements Initializable, IControllerCreate<Order>, IListController<Order> {
@@ -59,9 +62,9 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
     private ObservableList<Order> orderObservableList = FXCollections.observableArrayList(Request.getJ("orders/basics", Order[].class, false));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        orderObservableList.sort(Comparator.comparing(Order::getDate).reversed());
         listView.setItems(orderObservableList);
         showList(orderObservableList, listView, OrderListViewCell.class);
-
         listView.setOnMouseClicked(mouseEvent -> {
             if (listView.getSelectionModel().getSelectedItem() != null && !existChanges()) {
                 updateView();
@@ -128,13 +131,20 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
             if (order.getShippingDate() != null && order.getShippingDate().compareTo(order.getTotalPaymentDate()) > -1)
             {
                 try {
-                    Order orderR = (Order) Request.putJ(actualOrder.getRoute(), order);
-                    orderObservableList.set(index, order);
-                    actualOrder = order;
-                    listView.setItems(orderObservableList);
-                    listView.getSelectionModel().select(actualOrder);
-                    listView.scrollTo(actualOrder);
-                    updateView();
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Actualizar fecha de envio");
+                    alert.setHeaderText("Estas a punto de actualizar la fecha de envio");
+                    alert.setContentText("Una vez que actualices coloques la fecha de envio, no podrás volver a colocar fecha");
+                    Optional<ButtonType> result = alert.showAndWait();
+                    if (result.get() == ButtonType.OK){
+                        Order orderR = (Order) Request.putJ(actualOrder.getRoute(), order);
+                        orderObservableList.set(index, order);
+                        actualOrder = order;
+                        listView.setItems(orderObservableList);
+                        listView.getSelectionModel().select(actualOrder);
+                        listView.scrollTo(actualOrder);
+                        updateView();
+                    }
                 } catch (ProductDeleteException e) {
                     e.printStackTrace();
                 }

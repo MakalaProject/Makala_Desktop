@@ -11,10 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.example.model.CalendarActivity;
-import org.example.model.CalendarDetailedActivity;
-import org.example.model.Employee;
-import org.example.model.Formatter;
+import org.example.model.*;
 import org.example.services.Request;
 
 import java.net.URL;
@@ -26,10 +23,11 @@ public class ActivityPropertiesController implements Initializable {
     @FXML TextField fechaInicioField;
     @FXML TextField fechaFinField;
     @FXML TextField tiempoField;
+    @FXML TextField repeticionesField;
     @FXML TextArea tareaTextArea;
     @FXML FontAwesomeIconView updateButton;
     Entry<CalendarDetailedActivity> actualActivity;
-    ObservableList<Employee> employeeObservableList = FXCollections.observableArrayList(Request.getJ("users/employees", Employee[].class, true));
+    ObservableList<WorkDays> employeeObservableList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,12 +53,22 @@ public class ActivityPropertiesController implements Initializable {
 
 
     private void putFields(){
-        empleadoComboBox.setItems(employeeObservableList);
-        empleadoComboBox.setValue(actualActivity.getUserObject().getEmployee());
+        employeeObservableList = FXCollections.observableArrayList(Request.getJ("employee-work-days/list-criteria?date="+actualActivity.getStartDate().toString(), WorkDays[].class, false));
+        WorkDays workDay = new WorkDays();
+        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        for(WorkDays workDays : employeeObservableList){
+            employees.add(workDays.getEmployee());
+            if(workDays.getEmployee().getIdUser() == actualActivity.getUserObject().getIdEmployee()){
+                workDay = workDays;
+            }
+        }
+        empleadoComboBox.setItems(employees);
+        empleadoComboBox.setValue(workDay.getEmployee());
         fechaInicioField.setText(Formatter.FormatDate(actualActivity.getStartDate()));
         fechaFinField.setText(Formatter.FormatDate(actualActivity.getEndDate()));
         tiempoField.setText(actualActivity.getUserObject().getTime().toString());
         tareaTextArea.setText(actualActivity.getUserObject().getTask());
+        repeticionesField.setText(actualActivity.getUserObject().getAmount().toString());
     }
 
 
