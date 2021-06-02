@@ -228,7 +228,7 @@ public class GiftController extends GiftParentController implements IListControl
                     try {
                         ArrayList<Picture> picturesOriginal = new ArrayList<>(gift.getPictures());
                         gift.setPictures(new ArrayList<>());
-                        if(!gift.getPrivacy().equals("Privado")){
+                        if(!actualGift.getPrivacy().equals("Privado")){
                             gift.setStaticProducts(null);
                             gift.setRibbons(null);
                             gift.setPapers(null);
@@ -379,7 +379,6 @@ public class GiftController extends GiftParentController implements IListControl
             containerButton.setDisable(false);
             productsAnchorPane.setDisable(false);
         }
-
         privacidadComboBox.getSelectionModel().select(actualGift.getPrivacy());
     }
 
@@ -392,7 +391,6 @@ public class GiftController extends GiftParentController implements IListControl
         internalPapersListView.getItems().clear();
         internalRibbonsListView.getItems().clear();
         internalProductsListView.getItems().clear();
-
     }
 
     private void fillImageList(){
