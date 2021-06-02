@@ -179,7 +179,7 @@ public class GiftController extends GiftParentController implements IListControl
         Gift gift = new Gift();
         setInfo(gift);
         if (!actualGift.equals(gift)){
-            if(!showAlertUnsavedElement(gift.getName(), gift.getIdentifier())) {
+            if(!showAlertUnsavedElement(actualGift.getName(), gift.getIdentifier())) {
                 listView.getSelectionModel().select(gift);
             }else{
                 updateView();
@@ -274,9 +274,14 @@ public class GiftController extends GiftParentController implements IListControl
                     setExtendedInternalProducts(actualGift);
                     pictureList = new ArrayList<>(gift.getPictures());
                     giftObservableList.set(index, actualGift);
+                    listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualGift);
                     listView.scrollTo(gift);
                     putFields();
                     privacyProduct();
+                    editSwitch.setSelected(false);
+                    editView(fieldsAnchorPane, editSwitch, updateButton);
+                    listView.getSelectionModel().select(actualGift);
+                    updateView();
                 }else {
                     showAlertEmptyFields("No puedes dejar un regalo sin listones o productos");
                 }
@@ -286,10 +291,8 @@ public class GiftController extends GiftParentController implements IListControl
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
-        listView.getSelectionModel().select(actualGift);
-        updateView();
-        editSwitch.setSelected(false);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
+
+
     }
 
     public void add(){
@@ -332,6 +335,9 @@ public class GiftController extends GiftParentController implements IListControl
         ribbonsObservableList.setAll(actualGift.getRibbons());
         papersObservableList.setAll(actualGift.getPapers());
         productsObservableList.setAll(actualGift.getStaticProducts());
+        actualProductsObservableList.setAll(actualGift.getStaticProducts());
+        actualPapersObservableList.setAll(actualGift.getPapers());
+        actualRibbonsObservableList.setAll(actualGift.getRibbons());
         showProductsList();
         checkInternalProducts();
     }
@@ -344,6 +350,7 @@ public class GiftController extends GiftParentController implements IListControl
             actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
             setExtendedInternalProducts(actualGift);
         }
+        listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualGift);
         giftObservableList.set(index, actualGift);
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
@@ -356,8 +363,6 @@ public class GiftController extends GiftParentController implements IListControl
         fillImageList();
         checkIndex();
     }
-
-
 
     private void privacyProduct() {
         userClicked = false;

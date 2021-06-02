@@ -12,11 +12,14 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.apache.commons.text.StringSubstitutor;
+import org.controlsfx.control.ToggleSwitch;
+import org.example.interfaces.IControllerCreate;
 import org.example.model.*;
 import org.example.model.products.Action;
 import org.example.model.products.Product;
@@ -27,10 +30,14 @@ import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ManualStepController implements Initializable {
+public class ManualStepController implements Initializable, IControllerCreate<Step> {
     @FXML FontAwesomeIconView updateButton;
     @FXML FontAwesomeIconView deleteButton;
     @FXML TextArea instructionsTextArea;
+    @FXML
+    AnchorPane containerAnchorPane;
+    @FXML
+    ToggleSwitch editSwitch;
     @FXML protected ListView<Product> containerListView;
     @FXML protected TextField tiempoField;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
@@ -51,7 +58,8 @@ public class ManualStepController implements Initializable {
     String imageFile;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        editSwitch.setSelected(false);
+        editview();
         tiempoField.focusedProperty().addListener(new FocusVerificationFields(tiempoField, false, 3));
         tiempoField.textProperty().addListener(new ChangedVerificationFields(tiempoField, false, 3));
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -85,18 +93,29 @@ public class ManualStepController implements Initializable {
         });
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
-            if(actualStep.getAction() == Action.UPDATE){
-                setInfo(actualStep);
-                stage.setUserData(actualStep);
-            }else{
-                setInfo(actualStep);
-                stage.setUserData(actualStep);
+            if (!instructionsTextArea.getText().isEmpty() && !tiempoField.getText().isEmpty()) {
+                if (Integer.parseInt(tiempoField.getText())>0) {
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    if (actualStep.getAction() == Action.UPDATE) {
+                        setInfo(actualStep);
+                        stage.setUserData(actualStep);
+                    } else {
+                        setInfo(actualStep);
+                        stage.setUserData(actualStep);
+                    }
+                    stage.close();
+                }else {
+                    showAlertEmptyFields("El tiempo de elaboración no puede ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar campos vacios");
             }
-            stage.close();
         });
 
+        editSwitch.setOnMouseClicked(mouseEvent -> {
+            editview();
+        });
         containerListView.setOnMouseClicked(mouseEvent -> {
             InstructionElement instructionElement = new InstructionElement("{c}");
             instructionElements.add(instructionElement);
@@ -131,7 +150,15 @@ public class ManualStepController implements Initializable {
             removePicutre();
         });
 
-
+    }
+    private void editview(){
+        if (editSwitch.isSelected()){
+            containerAnchorPane.setDisable(false);
+            updateButton.setVisible(true);
+        }else {
+            updateButton.setVisible(false);
+            containerAnchorPane.setDisable(true);
+        }
     }
 
     protected void removePicutre() {
@@ -178,6 +205,7 @@ public class ManualStepController implements Initializable {
     }
 
     public void setObject(Gift gift){
+
         actualGift = gift;
         papersObservableList.setAll(actualGift.getPapers());
         ribbonsObservableList.setAll(actualGift.getRibbons());
@@ -200,8 +228,12 @@ public class ManualStepController implements Initializable {
         actualStep = step;
         if(step.getAction() == Action.UPDATE){
             putStepFields();
+            editSwitch.setVisible(true);
             deleteButton.setVisible(true);
         }else{
+            updateButton.setVisible(true);
+            containerAnchorPane.setDisable(false);
+            editSwitch.setVisible(false);
             deleteButton.setVisible(false);
         }
     }
@@ -211,17 +243,12 @@ public class ManualStepController implements Initializable {
         tiempoField.setText(actualStep.getTime().toString());
     }
 
-    private Step setInfo(Step step){
+    public void setInfo(Step step){
         step.setInstruction(instructionsTextArea.getText());
         step.setTime(15);
         step.setPath(imageFile);
         step.setTime(Integer.parseInt(tiempoField.getText()));
-        return step;
     }
-
-
-
-
 
 }
 @Data

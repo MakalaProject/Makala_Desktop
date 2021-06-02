@@ -76,25 +76,27 @@ public abstract class UserParentController <D extends User> extends UserGenericC
         showList(userObservableList, listView, UserListViewCell.class);
     }
 
-
     protected void editView() {
         editView(fieldsAnchorPane,editSwitch,updateButton);
     }
 
-
     @Override
     public void update() {
-        if (!nombresField.getText().isEmpty() ){
-            setInfo(actualUser);
-            userObservableList.set(userObservableList.indexOf(actualUser), actualUser);
-            showList();
-            try {
-                Request.putJ(actualUser.getRoute(), actualUser);
-            } catch (Exception e) {
-                e.printStackTrace();
+        if (!nombresField.getText().isEmpty() && !apellidosField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
+            if (telefonoField.getText().length() == 10) {
+                setInfo(actualUser);
+                userObservableList.set(userObservableList.indexOf(actualUser), actualUser);
+                showList();
+                try {
+                    Request.putJ(actualUser.getRoute(), actualUser);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                editSwitch.setSelected(false);
+                editView();
+            }else {
+                showAlertEmptyFields("Los dígitos del teléfono deben ser 10");
             }
-            editSwitch.setSelected(false);
-            editView();
         }else{
             showAlertEmptyFields("No puedes dejar campos indispensables vacios");
         }

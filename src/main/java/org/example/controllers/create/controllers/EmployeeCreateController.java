@@ -40,18 +40,22 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
 
         updateButton.setOnMouseClicked(mouseEvent -> {
             if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() || !telefonoField.getText().isEmpty() || !contraseñaField.getText().isEmpty()){
-                setInfo(employee);
-                Employee returnedEmployee = null;
-                try {
-                    returnedEmployee = (Employee) Request.postJ(employee.getRoute(),employee);
-                } catch (Exception e) {
-                    duplyElementAlert(employee.getIdentifier());
-                    return;
+                if (telefonoField.getText().length() == 10) {
+                    setInfo(employee);
+                    Employee returnedEmployee = null;
+                    try {
+                        returnedEmployee = (Employee) Request.postJ(employee.getRoute(), employee);
+                    } catch (Exception e) {
+                        duplyElementAlert(employee.getIdentifier());
+                        return;
+                    }
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    stage.setUserData(returnedEmployee);
+                }else {
+                    showAlertEmptyFields("Los dígitos del teléfono deben ser 10");
                 }
-                Node source = (Node)  mouseEvent.getSource();
-                Stage stage  = (Stage) source.getScene().getWindow();
-                stage.close();
-                stage.setUserData(returnedEmployee);
             }else{
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }

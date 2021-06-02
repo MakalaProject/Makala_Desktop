@@ -48,18 +48,21 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     protected ObservableList<String> payMethods = FXCollections.observableArrayList("Efectivo", "Transferencia");
     protected Purchase actualPurchase;
     protected Provider provider;
+    protected boolean editProduct;
     protected ArrayList<PurchaseProduct> purchaseProducts = new ArrayList<>();
     protected ObservableList<Provider> providers = FXCollections.observableArrayList(Request.getJ("users/providers",Provider[].class,true));
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        priceField.textProperty().addListener(new ChangedVerificationFields(priceField, true, 4,2));
+        priceField.focusedProperty().addListener(new FocusVerificationFields(priceField, true, 4,2));
         actualPurchase = new Purchase();
         payMethodComboBox.getItems().setAll(payMethods);
         payMethodComboBox.getSelectionModel().select(0);
         orderDatePicker.setValue(LocalDate.now());
         productListView.setOnMouseClicked(mouseEvent -> {
-            propertiesPurchasesProducts(false, productListView.getSelectionModel().getSelectedItem());
+            propertiesPurchasesProducts(false, productListView.getSelectionModel().getSelectedItem(), editProduct);
         });
         productosButton.setOnMouseClicked(mouseEvent -> {
             ArrayList<Product> purchaseProducts = new ArrayList<>();
@@ -68,7 +71,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
             }
             Product product = loadDialog(FXCollections.observableArrayList(provider.getProducts()), FXCollections.observableArrayList(purchaseProducts));
             if (product != null) {
-                propertiesPurchasesProducts(true, new PurchaseProduct(product, new BigDecimal(0)));
+                propertiesPurchasesProducts(true, new PurchaseProduct(product, new BigDecimal(0)), editProduct);
             }
         });
         providerButton.setOnMouseClicked(mouseEvent -> {
@@ -116,7 +119,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         purchase.setOrderDate(orderDatePicker.getValue());
         new ListToChangeTools<PurchaseProduct,Integer>().setToDeleteItems(purchaseProducts, actualPurchase.getProducts());
         purchase.setProducts(actualPurchase.getProducts());
-        purchase.setPrice(new BigDecimal(priceField.getText()));
+        purchase.setPrice( new BigDecimal(!priceField.getText().isEmpty() ? priceField.getText() : "0"));
         purchase.setPayMethod(payMethodComboBox.getSelectionModel().getSelectedItem());
         purchase.setIdProvider(provider.getIdUser());
         if (actualPurchase.getComment()!=null) {
@@ -131,12 +134,12 @@ public class PurchaseParentController implements Initializable, IControllerCreat
             purchase.getComment().setDate(LocalDateTime.parse(LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         }
     }
-        protected void propertiesPurchasesProducts(boolean isCreate, PurchaseProduct product){
+        protected void propertiesPurchasesProducts(boolean isCreate, PurchaseProduct product, boolean edit){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/purchase_product.fxml"));
         try {
             Parent parent = fxmlLoader.load();
             PurchaseProductController dialogController = fxmlLoader.getController();
-            dialogController.setProduct(product, isCreate);
+            dialogController.setProduct(product, isCreate, edit);
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);

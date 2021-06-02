@@ -78,7 +78,7 @@ public class ProductController extends ProductParentController implements IListC
                     }
                 });
                 if (!filteredProducts.isEmpty()) {
-                    showList(filteredProducts, listView, ProductListViewCell.class);
+                    showList(FXCollections.observableArrayList(filteredProducts), listView, ProductListViewCell.class);
                 }
             }
         } );
@@ -240,7 +240,11 @@ public class ProductController extends ProductParentController implements IListC
                         changeList();
                         listView.getSelectionModel().select(actualProduct);
                         listView.scrollTo(product);
+                        updateView();
+                        editSwitch.setSelected(false);
+                        editView(fieldsAnchorPane, editSwitch, updateButton);
                     }
+
                 }else {
                     showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
                 }
@@ -250,9 +254,7 @@ public class ProductController extends ProductParentController implements IListC
         }else{
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
-        updateView();
-        editSwitch.setSelected(false);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
+
     }
 
     public void add() {
@@ -298,7 +300,7 @@ public class ProductController extends ProductParentController implements IListC
         product.sortList();
         actualProduct.sortList();
         if (!actualProduct.equals(product)){
-            if(!showAlertUnsavedElement(product.getName(), product.getIdentifier())) {
+            if(!showAlertUnsavedElement(actualProduct.getName(), product.getIdentifier())) {
                 listView.getSelectionModel().select(actualProduct);
             }else{
                 updateView();
@@ -360,9 +362,10 @@ public class ProductController extends ProductParentController implements IListC
                     actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
                     actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
                     System.out.println("busqueda");
+                    Product p = listView.getSelectionModel().getSelectedItem();
                     actualList.set(actualList.indexOf(listView.getSelectionModel().getSelectedItem()), actualProduct);
                     if(listView.getSelectionModel().getSelectedItem() != actualProduct) {
-                        listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualProduct);
+                        listView.getItems().set(listView.getItems().indexOf(p), actualProduct);
                     }
                     productObservableList.set(index, actualProduct);
                 }else{

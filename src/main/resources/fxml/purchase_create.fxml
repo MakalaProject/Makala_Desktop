@@ -74,7 +74,7 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <TextField fx:id="priceField" layoutX="181.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="249.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                <TextField fx:id="priceField" layoutX="181.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="249.0" promptText="300" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
                     <font>
                         <Font size="15.0" />
                     </font>

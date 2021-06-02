@@ -44,21 +44,24 @@ public class GiftProductPropertiesController implements Initializable, IControll
         categoriaComboBox.setItems(categoryItems);
         categoriaComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {
-            setInfo(giftProductToSend);
-            if(giftProductToSend.getAmount() > 0){
-                Node source = (Node)  mouseEvent.getSource();
-                Stage stage  = (Stage) source.getScene().getWindow();
-                if (!volumeValidation()){
-                    alertOutOfBounds();
-                    return;
+            if (!cantidadField.getText().isEmpty() ) {
+                if (Integer.parseInt(cantidadField.getText()) > 0 ) {
+                    setInfo(giftProductToSend);
+                    Node source = (Node)  mouseEvent.getSource();
+                    Stage stage  = (Stage) source.getScene().getWindow();
+                    if (!volumeValidation()){
+                        alertOutOfBounds();
+                        return;
+                    }
+                    giftProductToSend.setProduct(staticProduct);
+                    giftProductToSend.setAction(Action.UPDATE);
+                    stage.setUserData(giftProductToSend);
+                    stage.close();
+                }else {
+                    showAlertEmptyFields("Los valores de los campos no pueden ser 0");
                 }
-                giftProductToSend.setProduct(staticProduct);
-                giftProductToSend.setAction(Action.UPDATE);
-                stage.setUserData(giftProductToSend);
-                stage.close();
-            }
-            else{
-                showAlertEmptyFields("Cantidad vacia");
+            }else {
+                showAlertEmptyFields("No puedes dejar campos vacios");
             }
         });
 
