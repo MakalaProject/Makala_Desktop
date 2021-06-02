@@ -43,7 +43,7 @@
                              </AnchorPane>
                              <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalProductsListView" prefHeight="0.0" />
+                                     <ListView fx:id="internalProductsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -72,7 +72,7 @@
                              </AnchorPane>
                              <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalPapersListView" prefHeight="0.0" />
+                                     <ListView fx:id="internalPapersListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -101,7 +101,7 @@
                              </AnchorPane>
                              <VBox layoutY="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalRibbonsListView" prefHeight="0.0" />
+                                     <ListView fx:id="internalRibbonsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -115,7 +115,7 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                        <Label layoutX="44.0" layoutY="107.0" prefHeight="28.0" prefWidth="124.0" text="Contenedor" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="349.0" AnchorPane.topAnchor="107.0">
+                        <Label layoutX="44.0" layoutY="107.0" prefHeight="28.0" prefWidth="107.0" text="Contenedor" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="366.0" AnchorPane.topAnchor="107.0">
                                 <font>
                                     <Font name="Roboto Light" size="20.0" />
                                 </font>
@@ -131,13 +131,13 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                  <Label layoutX="44.0" layoutY="142.0" prefHeight="28.0" prefWidth="90.0" text="Precio">
+                  <Label layoutX="44.0" layoutY="146.0" prefHeight="28.0" prefWidth="90.0" text="Precio" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="383.0" AnchorPane.topAnchor="146.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
                   <Label layoutX="435.0" layoutY="148.0" text="\$" />
-                  <Label layoutX="44.0" layoutY="186.0" prefHeight="28.0" prefWidth="136.0" text="Mano de Obra*">
+                  <Label layoutX="44.0" layoutY="186.0" prefHeight="28.0" prefWidth="136.0" text="Mano de Obra*" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="186.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>

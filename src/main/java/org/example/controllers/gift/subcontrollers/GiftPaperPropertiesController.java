@@ -38,15 +38,19 @@ public class GiftPaperPropertiesController implements Initializable, IController
         cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            setInfo(paperProductToSend);
-            if(paperProductToSend.getAmount() > 0) {
-                Node source = (Node) mouseEvent.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-                paperProductToSend.setAction(Action.UPDATE);
-                stage.setUserData(paperProductToSend);
-            }else{
-                showAlertEmptyFields("Cantidad vacia");
+            if (!cantidadField.getText().isEmpty() && !anchoField.getText().isEmpty() && !largoField.getText().isEmpty()) {
+                if (Integer.parseInt(cantidadField.getText()) > 0 && Float.parseFloat(anchoField.getText()) > 0 && Float.parseFloat(largoField.getText())>0) {
+                    setInfo(paperProductToSend);
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    paperProductToSend.setAction(Action.UPDATE);
+                    stage.setUserData(paperProductToSend);
+                }else {
+                    showAlertEmptyFields("Los valores de los campos no pueden ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar campos vacios");
             }
         });
 

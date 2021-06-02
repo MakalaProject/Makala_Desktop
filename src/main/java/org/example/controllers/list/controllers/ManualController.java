@@ -78,13 +78,13 @@ public class ManualController implements Initializable, IListController<ArrayLis
             dialogController.setObject(actualGift);
             if(action == Action.UPDATE) {
                 Step step = stepListView.getSelectionModel().getSelectedItem();
-                step.setPublic(true);
+                step.setPublic(actualGift.getPrivacy().equals("Publico"));
                 dialogController.setStep(stepListView.getSelectionModel().getSelectedItem());
                 index = stepObservableList.indexOf(stepListView.getSelectionModel().getSelectedItem());
             }
             else{
                 Step step = new Step();
-                step.setPublic(false);
+                step.setPublic(actualGift.getPrivacy().equals("Publico"));
                 step.setAction(action);
                 dialogController.setStep(step);
             }

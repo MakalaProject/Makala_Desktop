@@ -151,29 +151,31 @@ public class PurchaseController extends PurchaseParentController implements ILis
 
     @Override
     public void update() {
-        if (actualPurchase.getProducts().size() > 0){
-            Purchase purchase = new Purchase();
-            setInfo(purchase);
-            if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null))
-            {
-                try {
-                    Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
-                    purchaseObservableList.set(index, purchase);
-                    actualPurchase = purchase;
-                    actualPurchase.setSelectedProducts();
-                    listView.setItems(purchaseObservableList);
-                    listView.getSelectionModel().select(actualPurchase);
-                    listView.scrollTo(actualPurchase);
-                    updateView();
-                } catch (ProductDeleteException e) {
-                    e.printStackTrace();
+        if (actualPurchase.getProducts().size() > 0 && !priceField.getText().isEmpty()) {
+            if (Float.parseFloat(priceField.getText()) > 0) {
+                Purchase purchase = new Purchase();
+                setInfo(purchase);
+                if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
+                    try {
+                        Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
+                        purchaseObservableList.set(index, purchase);
+                        actualPurchase = purchase;
+                        actualPurchase.setSelectedProducts();
+                        listView.setItems(purchaseObservableList);
+                        listView.getSelectionModel().select(actualPurchase);
+                        listView.scrollTo(actualPurchase);
+                        updateView();
+                    } catch (ProductDeleteException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    showAlertEmptyFields("Verifica las fechas");
                 }
             }else{
-                showAlertEmptyFields("Verifica las fechas");
+                showAlertEmptyFields("El precio de la compra no puede ser 0");
             }
-
-        }else {
-            showAlertEmptyFields("No puedes dejar la compra sin productos");
+        } else {
+            showAlertEmptyFields("No puedes dejar la compra sin productos o sin precio");
         }
     }
 
@@ -246,10 +248,12 @@ public class PurchaseController extends PurchaseParentController implements ILis
         index = purchaseObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
         if (actualPurchase.getReceivedDate() != null){
+            editProduct = false;
             disableAnchorPane.setVisible(true);
             editSwitch.setVisible(false);
             updateButton.setVisible(false);
         }else{
+            editProduct = true;
             disableAnchorPane.setVisible(false);
             editSwitch.setVisible(true);
             updateButton.setVisible(true);

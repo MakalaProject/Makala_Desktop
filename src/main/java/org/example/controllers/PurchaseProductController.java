@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
+import org.example.model.ChangedVerificationFields;
+import org.example.model.FocusVerificationFields;
 import org.example.model.ProductExpiration;
 import org.example.model.PurchaseProduct;
 import org.example.model.products.Action;
@@ -26,8 +28,14 @@ public class PurchaseProductController implements Initializable, IControllerCrea
     @FXML public FontAwesomeIconView deleteButton;
     PurchaseProduct purchaseProduct = new PurchaseProduct();
 
-    public void setProduct(PurchaseProduct product, boolean isCreate) {
+    public void setProduct(PurchaseProduct product, boolean isCreate, boolean edit) {
         deleteButton.setVisible(!isCreate);
+        if (!edit){
+            deleteButton.setVisible(false);
+            updateButton.setVisible(false);
+            cantidadField.setEditable(false);
+            expiryDatePicker.setEditable(false);
+        }
         purchaseProduct = product;
         if (product.getProduct().getProductClassDto() != null && !product.getProduct().getProductClassDto().getProductType().equals("Comestible") && !product.getProduct().getProductClassDto().getProductType().equals("Granel")){
             expiryDatePicker.setVisible(false);
@@ -42,6 +50,9 @@ public class PurchaseProductController implements Initializable, IControllerCrea
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 4));
+        cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, false, 4));
+
         expiryDatePicker.setDayCellFactory(d ->
         new DateCell() {
             @Override public void updateItem(LocalDate item, boolean empty) {
@@ -50,12 +61,20 @@ public class PurchaseProductController implements Initializable, IControllerCrea
             }});
         expiryDatePicker.setValue(LocalDate.now());
         updateButton.setOnMouseClicked(mouseEvent -> {
-            setInfo(purchaseProduct);
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
-            purchaseProduct.setAction(Action.UPDATE);
-            stage.setUserData(purchaseProduct);
-            stage.close();
+            if (!cantidadField.getText().isEmpty()) {
+                if (Integer.parseInt(cantidadField.getText())>0) {
+                    setInfo(purchaseProduct);
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    purchaseProduct.setAction(Action.UPDATE);
+                    stage.setUserData(purchaseProduct);
+                    stage.close();
+                }else {
+                    showAlertEmptyFields("La cantidad no puede ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar el campo de cantidad vacio");
+            }
         });
         deleteButton.setOnMouseClicked(mouseEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

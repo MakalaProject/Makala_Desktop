@@ -39,15 +39,19 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
         cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            setInfo(ribbonProductToSend);
-            if(ribbonProductToSend.getAmount() > 0) {
-                Node source = (Node) mouseEvent.getSource();
-                Stage stage = (Stage) source.getScene().getWindow();
-                stage.close();
-                ribbonProductToSend.setAction(Action.UPDATE);
-                stage.setUserData(ribbonProductToSend);
-            }else{
-                showAlertEmptyFields("Campos vacios");
+            if (!cantidadField.getText().isEmpty() && !largoField.getText().isEmpty()) {
+                if (Integer.parseInt(cantidadField.getText()) > 0 && Float.parseFloat(largoField.getText())>0) {
+                    setInfo(ribbonProductToSend);
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    ribbonProductToSend.setAction(Action.UPDATE);
+                    stage.setUserData(ribbonProductToSend);
+                }else {
+                    showAlertEmptyFields("Los valores de los campos no pueden ser 0");
+                }
+            }else {
+                showAlertEmptyFields("No puedes dejar campos vacios");
             }
         });
 
