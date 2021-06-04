@@ -25,7 +25,7 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected BigDecimal price;
     protected Integer max;
     protected Integer min;
-    protected Integer avgDays;
+    protected BigDecimal avgDays;
     @EqualsAndHashCode.Exclude
     protected BigDecimal stock;
     @EqualsAndHashCode.Exclude
