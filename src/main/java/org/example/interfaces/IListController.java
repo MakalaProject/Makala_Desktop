@@ -21,10 +21,7 @@ import java.util.Optional;
 
 public interface IListController<D>{
     default void deleteAlert(String element){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
-        ImageView imageView = new ImageView(image);
-        alert.setGraphic(imageView);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Eliminar " + element);
         alert.setHeaderText("Estas a punto de eliminar un " + element);
         alert.setContentText("¿Seguro quieres eliminarlo?");

@@ -1,5 +1,7 @@
 package org.example.customCells;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import org.example.interfaces.IConstructor;
 import org.example.model.products.Product;
 import javafx.fxml.FXML;
@@ -16,7 +18,7 @@ public class ProductListViewCell extends ListCell<Product> implements IConstruct
     Label productName;
 
     @FXML
-    ImageView productImage;
+    FontAwesomeIconView productIcon;
 
     @FXML
     private AnchorPane anchorPane;
@@ -43,7 +45,21 @@ public class ProductListViewCell extends ListCell<Product> implements IConstruct
                     e.printStackTrace();
                 }
             }
-
+            if (product.getProductClassDto().getProductType().equals("Fijo")){
+                productIcon.setIcon(FontAwesomeIcon.GLASS);
+            }else if(product.getProductClassDto().getProductType().equals("Contenedores")){
+                productIcon.setIcon(FontAwesomeIcon.INBOX);
+            }else if(product.getProductClassDto().getProductType().equals("Granel")){
+                productIcon.setIcon(FontAwesomeIcon.LEAF);
+            }else if(product.getProductClassDto().getProductType().equals("Papeles")){
+                productIcon.setIcon(FontAwesomeIcon.STICKY_NOTE);
+            }else if(product.getProductClassDto().getProductType().equals("Listones")){
+                productIcon.setIcon(FontAwesomeIcon.CUT);
+            }else if(product.getProductClassDto().getProductType().equals("Creados")){
+                productIcon.setIcon(FontAwesomeIcon.HAND_STOP_ALT);
+            }else if(product.getProductClassDto().getProductType().equals("Comestible")){
+                productIcon.setIcon(FontAwesomeIcon.APPLE);
+            }
             productName.setText(String.valueOf(product.getName()));
             setText(null);
             setGraphic(anchorPane);

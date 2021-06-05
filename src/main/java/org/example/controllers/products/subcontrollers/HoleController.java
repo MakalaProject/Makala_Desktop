@@ -36,11 +36,12 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
         anchoField.focusedProperty().addListener(new FocusVerificationFields(anchoField, true, 3,2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
-            Hole hole = new Hole();
-            if (!anchoField.getText().isEmpty() && !anchoField.getText().isEmpty()) {
+            checkFields();
+            if (!anchoField.getText().isEmpty() && !altoField.getText().isEmpty()) {
                 if (Float.parseFloat(anchoField.getText())>0 && Float.parseFloat(altoField.getText())>0) {
+                    Node source = (Node)  mouseEvent.getSource();
+                    Stage stage  = (Stage) source.getScene().getWindow();
+                    Hole hole = new Hole();
                     setInfo(hole);
                     stage.setUserData(new HoleToSend(hole, Action.UPDATE));
                     stage.close();
@@ -50,12 +51,11 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
             }else {
                 showAlertEmptyFields("No puedes dejar los campos de las medidas vacios");
             }
-
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Eliminar orificio");
+            alert.setTitle("Eliminar división");
             alert.setContentText("¿Seguro quieres eliminarlo?");
             Optional<ButtonType> result = alert.showAndWait();
             Node source = (Node)  mouseEvent.getSource();
@@ -77,5 +77,17 @@ public class HoleController implements Initializable, IControllerCreate<Hole> {
         this.actualHole =  new Hole(hole.getHoleNumber(), new Measure2Dimensions(hole.getHoleDimensions().getX(), hole.getHoleDimensions().getY()),false);
         anchoField.setText(hole.getHoleDimensions().getX().toString());
         altoField.setText(hole.getHoleDimensions().getX().toString());
+    }
+    private void checkFields(){
+        if (altoField.getText().isEmpty() || Float.parseFloat(altoField.getText())==0){
+            altoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            altoField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+        if (anchoField.getText().isEmpty() || Float.parseFloat(anchoField.getText())==0){
+            anchoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            anchoField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
     }
 }

@@ -21,6 +21,18 @@ public class UserGenericController <D extends User> implements Initializable, IC
         telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
         telefonoField.focusedProperty().addListener(new FocusVerificationFields(telefonoField,false,10));
     }
+    protected void checkFields() {
+        if (nombresField.getText().isEmpty()) {
+            nombresField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            nombresField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (telefonoField.getText().isEmpty() || telefonoField.getText().length() < 10) {
+            telefonoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            telefonoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
 
     @Override
     public void setInfo(D object) {

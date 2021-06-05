@@ -118,7 +118,7 @@ public abstract class ProductParentController implements Initializable, IControl
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Cuidado");
                     alert.setHeaderText("Producto no editable");
-                    alert.setContentText("Una vez establecido este producto no podras cambiarlo después");
+                    alert.setContentText("Una vez establecida esta privacidad, no podras editar las propiedades, clasificación o nombre de este producto");
                     alert.showAndWait();
                 }
             }
@@ -213,6 +213,44 @@ public abstract class ProductParentController implements Initializable, IControl
             AnchorPane.setLeftAnchor(root,0D);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    protected void checkFields(){
+
+        if (nombreField.getText().isEmpty()) {
+            nombreField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            nombreField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (minField.getText().isEmpty() || Integer.parseInt(minField.getText())==0) {
+            minField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            minField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (maxField.getText().isEmpty() || Integer.parseInt(maxField.getText())==0) {
+            maxField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            maxField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (precioField.getText().isEmpty() || Float.parseFloat(precioField.getText())==0) {
+            precioField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            precioField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (stockField.getText().isEmpty()) {
+            stockField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            stockField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (!minField.getText().isEmpty() && !maxField.getText().isEmpty()) {
+            if (Integer.parseInt(minField.getText()) >= Integer.parseInt(maxField.getText())) {
+                minField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+                maxField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+            } else {
+                minField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+                maxField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+            }
         }
     }
 }

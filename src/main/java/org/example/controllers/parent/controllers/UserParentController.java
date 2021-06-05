@@ -27,7 +27,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
     @FXML protected ListView<D> listView;
     protected D actualUser;
     protected final ObservableList<D> userObservableList = FXCollections.observableArrayList();
-    protected final FilteredList<D> filteredUsers = new FilteredList<>(FXCollections.observableArrayList(userObservableList), p ->true);
+    protected FilteredList<D> filteredUsers;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,9 +80,11 @@ public abstract class UserParentController <D extends User> extends UserGenericC
         editView(fieldsAnchorPane,editSwitch,updateButton);
     }
 
+
+
     @Override
     public void update() {
-        if (!nombresField.getText().isEmpty() && !apellidosField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
+        if (!nombresField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
             if (telefonoField.getText().length() == 10) {
                 setInfo(actualUser);
                 userObservableList.set(userObservableList.indexOf(actualUser), actualUser);
@@ -98,7 +100,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
                 showAlertEmptyFields("Los dígitos del teléfono deben ser 10");
             }
         }else{
-            showAlertEmptyFields("No puedes dejar campos indispensables vacios");
+            showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
         }
     }
 

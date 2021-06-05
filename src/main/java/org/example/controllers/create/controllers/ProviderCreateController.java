@@ -78,34 +78,38 @@ public class ProviderCreateController extends UserGenericController<Provider> {
         });
 
         updateButton.setOnMouseClicked(mouseEvent -> {
+            checkFields();
             if (!nombresField.getText().isEmpty() && !tiempoField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
                 if(telefonoField.getText().length()>9 && Integer.parseInt(tiempoField.getText()) >0) {
-                    if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
-                        if (emailField.getText().isEmpty() || (!emailField.getText().isEmpty() && emailField.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b")))
-                        {
-                            setInfo(provider);
-                            Provider returnedProvider = null;
-                            try {
-                                returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider);
-                            } catch (Exception e) {
-                                duplyElementAlert(provider.getIdentifier());
-                                return;
+                    if (products.size()>0) {
+                        if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+                            if (emailField.getText().isEmpty() || (!emailField.getText().isEmpty() && emailField.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"))) {
+                                setInfo(provider);
+                                Provider returnedProvider = null;
+                                try {
+                                    returnedProvider = (Provider) Request.postJ(provider.getRoute(), provider);
+                                } catch (Exception e) {
+                                    duplyElementAlert(provider.getIdentifier());
+                                    return;
+                                }
+                                Node source = (Node) mouseEvent.getSource();
+                                Stage stage = (Stage) source.getScene().getWindow();
+                                stage.close();
+                                stage.setUserData(returnedProvider);
+                            } else {
+                                showAlertEmptyFields("Verifica el formato de la dirección de correo electrónico");
                             }
-                            Node source = (Node) mouseEvent.getSource();
-                            Stage stage = (Stage) source.getScene().getWindow();
-                            stage.close();
-                            stage.setUserData(returnedProvider);
-                        }else{
-                            showAlertEmptyFields("Verifica el formato de la dirección de correo electrónico");
+                        } else {
+                            showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
                         }
-                    } else {
-                        showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+                    }else{
+                        showAlertEmptyFields("Debes agregar productos");
                     }
                 }else {
                     showAlertEmptyFields("Los dígitos del teléfono deben ser 10 y el tiempo de entrega mayor a 0");
                 }
             }else {
-                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
+                showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
             }
         });
         productsButton.setOnMouseClicked(mouseEvent -> {
@@ -142,6 +146,22 @@ public class ProviderCreateController extends UserGenericController<Provider> {
     public void showProductsList(ObservableList<Product> products){
         productsListView.setItems(FXCollections.observableList(products.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
         productsListView.prefHeightProperty().bind(Bindings.size(productsListView.getItems()).multiply(23.7));
+    }
+    protected void checkFields() {
+        super.checkFields();
+        if (tiempoField.getText().isEmpty() || Integer.parseInt(tiempoField.getText()) == 0) {
+            tiempoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            tiempoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+            addressField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+            codigoPostalField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+
+        }else{
+            addressField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+            codigoPostalField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
 
     @Override

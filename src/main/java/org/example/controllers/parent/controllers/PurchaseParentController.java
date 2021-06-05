@@ -4,6 +4,8 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -50,6 +52,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     protected Provider provider;
     protected boolean editProduct;
     protected ArrayList<PurchaseProduct> purchaseProducts = new ArrayList<>();
+    protected ArrayList<PurchaseProduct> originalPurchaseProducts = new ArrayList<>();
     protected ObservableList<Provider> providers = FXCollections.observableArrayList(Request.getJ("users/providers",Provider[].class,true));
 
 
@@ -57,19 +60,45 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     public void initialize(URL url, ResourceBundle resourceBundle) {
         priceField.textProperty().addListener(new ChangedVerificationFields(priceField, true, 4,2));
         priceField.focusedProperty().addListener(new FocusVerificationFields(priceField, true, 4,2));
+        orderDatePicker.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                receivedDatePicker.setDayCellFactory(d ->
+                        new DateCell() {
+                            @Override public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setDisable(item.isBefore(orderDatePicker.getValue()));
+                            }});
+                if (receivedDatePicker.getValue() != null && receivedDatePicker.getValue().compareTo(orderDatePicker.getValue())<0){
+                    receivedDatePicker.setValue(orderDatePicker.getValue());
+                }
+                payDatePicker.setDayCellFactory(d ->
+                        new DateCell() {
+                            @Override public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setDisable(item.isBefore(orderDatePicker.getValue()));
+                            }});
+                if (payDatePicker.getValue() != null && payDatePicker.getValue().compareTo(orderDatePicker.getValue())<0){
+                    payDatePicker.setValue(orderDatePicker.getValue());
+                }
+            }
+        });
         actualPurchase = new Purchase();
         payMethodComboBox.getItems().setAll(payMethods);
         payMethodComboBox.getSelectionModel().select(0);
         orderDatePicker.setValue(LocalDate.now());
         productListView.setOnMouseClicked(mouseEvent -> {
-            propertiesPurchasesProducts(false, productListView.getSelectionModel().getSelectedItem(), editProduct);
+            Product product = (Product)Request.find("products", productListView.getSelectionModel().getSelectedItem().getProduct().getIdProduct(), Product.class);
+            PurchaseProduct productP = productListView.getSelectionModel().getSelectedItem();
+            productP.getProduct().setProductClassDto(product.getProductClassDto());
+            propertiesPurchasesProducts(false, productP, editProduct);
         });
         productosButton.setOnMouseClicked(mouseEvent -> {
-            ArrayList<Product> purchaseProducts = new ArrayList<>();
-            for(PurchaseProduct p : actualPurchase.getProducts()){
-                purchaseProducts.add(new Product(p.getProduct().getIdProduct()));
+            ArrayList<Product> purchaseP = new ArrayList<>();
+            for(PurchaseProduct p : purchaseProducts){
+                purchaseP.add(new Product(p.getProduct().getIdProduct()));
             }
-            Product product = loadDialog(FXCollections.observableArrayList(provider.getProducts()), FXCollections.observableArrayList(purchaseProducts));
+            Product product = loadDialog(FXCollections.observableArrayList(provider.getProducts()), FXCollections.observableArrayList(purchaseP));
             if (product != null) {
                 propertiesPurchasesProducts(true, new PurchaseProduct(product, new BigDecimal(0)), editProduct);
             }
@@ -103,12 +132,20 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         providerName.setText(provider.getFirstName());
     }
     public void setProductsList(){
-        productListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualPurchase.getProducts()) ).multiply(23.7));
-        productListView.getItems().setAll(actualPurchase.getProducts());
+        productListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(purchaseProducts) ).multiply(23.7));
+        productListView.getItems().setAll(purchaseProducts);
     }
 
     public void verifyProducts(){
         providerButton.setDisable(actualPurchase.getProducts().size() > 0);
+    }
+
+    protected void checkFields() {
+        if (priceField.getText().isEmpty()) {
+            priceField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            priceField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
 
     @Override
@@ -117,8 +154,8 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         purchase.setReceivedDate(receivedDatePicker.getValue());
         purchase.setPayDate(payDatePicker.getValue());
         purchase.setOrderDate(orderDatePicker.getValue());
-        new ListToChangeTools<PurchaseProduct,Integer>().setToDeleteItems(purchaseProducts, actualPurchase.getProducts());
-        purchase.setProducts(actualPurchase.getProducts());
+        new ListToChangeTools<PurchaseProduct,Integer>().setToDeleteItems(originalPurchaseProducts, purchaseProducts);
+        purchase.setProducts(purchaseProducts);
         purchase.setPrice( new BigDecimal(!priceField.getText().isEmpty() ? priceField.getText() : "0"));
         purchase.setPayMethod(payMethodComboBox.getSelectionModel().getSelectedItem());
         purchase.setIdProvider(provider.getIdUser());
@@ -148,12 +185,12 @@ public class PurchaseParentController implements Initializable, IControllerCreat
             PurchaseProduct purchaseProduct = (PurchaseProduct) stage.getUserData();
             if (purchaseProduct != null) {
                 if (isCreate){
-                    actualPurchase.getProducts().add(purchaseProduct);
+                    purchaseProducts.add(purchaseProduct);
                 }else {
                     if (purchaseProduct.getAction() == Action.DELETE){
-                        actualPurchase.getProducts().remove(purchaseProduct);
+                        purchaseProducts.remove(purchaseProduct);
                     }else {
-                        actualPurchase.getProducts().set(actualPurchase.getProducts().indexOf(productListView.getSelectionModel().getSelectedItem()), purchaseProduct);
+                        purchaseProducts.set(actualPurchase.getProducts().indexOf(productListView.getSelectionModel().getSelectedItem()), purchaseProduct);
                     }
                 }
                 setProductsList();

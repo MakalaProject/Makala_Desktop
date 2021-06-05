@@ -26,27 +26,51 @@ public class RebateCreateController extends RebateParentController {
         productTypeComboBox.setOnAction(actionEvent -> {
             objectLabel.setText(productTypeComboBox.getValue());
             identifier = productTypeComboBox.getValue();
+            tipoComboBox.setVisible(false);
+            rebajaLabel.setVisible(false);
         });
         startDatePicker.setValue(LocalDate.now());
-        endDatePicker.setValue(LocalDate.now());
+        endDatePicker.setValue(LocalDate.now().plusDays(1));
         updateButton.setOnMouseClicked(mouseEvent -> {
-            Rebate rebate = getInstance();
-            verifyClassType(rebate);
-            setInfo(rebate);
-            Rebate returnedRebate = null;
-            try {
-                returnedRebate = (Rebate) Request.postJ(rebate.getRoute(),rebate);
-                System.out.println(returnedRebate);
-            } catch (Exception e) {
-                return;
+            checkFields();
+            if ((identifier.equals("Producto") && product!= null) || (identifier.equals("Regalo") && gift!=null)) {
+                if (!porcentajeField.getText().isEmpty()) {
+                    if (Integer.parseInt(porcentajeField.getText()) > 0) {
+                        Rebate rebate = getInstance();
+                        verifyClassType(rebate);
+                        setInfo(rebate);
+                        Rebate returnedRebate = null;
+                        try {
+                            returnedRebate = (Rebate) Request.postJ(rebate.getRoute(), rebate);
+                            System.out.println(returnedRebate);
+                        } catch (Exception e) {
+                            return;
+                        }
+                        Node source = (Node) mouseEvent.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        stage.close();
+                        stage.setUserData(returnedRebate);
+                    } else {
+                        showAlertEmptyFields("El porcentaje no puede ser 0");
+                    }
+                } else {
+                    showAlertEmptyFields("No puedes dejar el campo de porcentaje vacio");
+                }
+            }else{
+                showAlertEmptyFields("Debes de elegir un regalo o producto");
             }
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
-            stage.close();
-            stage.setUserData(returnedRebate);
         });
+
     }
 
+    protected void checkFields() {
+        super.checkFields();
+        if (product == null && gift == null) {
+            porcentajeField.setStyle("-fx-border-color: #fea08c;");
+        } else {
+            porcentajeField.setStyle("-fx-border-color: #black;");
+        }
+    }
 
     public void verifyClassType(Rebate rebate){
         identifier = productTypeComboBox.getSelectionModel().getSelectedItem();

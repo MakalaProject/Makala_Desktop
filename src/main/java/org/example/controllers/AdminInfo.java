@@ -27,23 +27,46 @@ public class AdminInfo implements Initializable, IControllerCreate<Employee> {
         telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
+
             if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() || !telefonoField.getText().isEmpty()){
-                setInfo(employee);
-                Employee returnedEmployee = null;
-                try {
-                    returnedEmployee = (Employee) Request.putJ(employee.getRoute(),employee);
-                } catch (Exception e) {
-                    duplyElementAlert(employee.getIdentifier());
-                    return;
+                if (telefonoField.getText().length()>9) {
+                    setInfo(employee);
+                    Employee returnedEmployee = null;
+                    try {
+                        returnedEmployee = (Employee) Request.putJ(employee.getRoute(), employee);
+                    } catch (Exception e) {
+                        duplyElementAlert(employee.getIdentifier());
+                        return;
+                    }
+                    Node source = (Node) mouseEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    stage.setUserData(returnedEmployee);
+                }else{
+                    showAlertEmptyFields("Los dígitos del telefono debn ser 10");
                 }
-                Node source = (Node)  mouseEvent.getSource();
-                Stage stage  = (Stage) source.getScene().getWindow();
-                stage.close();
-                stage.setUserData(returnedEmployee);
             }else{
-                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
+                showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
             }
         });
+    }
+
+    protected void checkFields(){
+        if (nombresField.getText().isEmpty()) {
+            nombresField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            nombresField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (apellidosField.getText().isEmpty()) {
+            apellidosField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            apellidosField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (telefonoField.getText().isEmpty() || telefonoField.getText().length()<10) {
+            telefonoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            telefonoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
     public void setEmployee(Employee object) {
         employee = object;
@@ -56,6 +79,8 @@ public class AdminInfo implements Initializable, IControllerCreate<Employee> {
         object.setFirstName(nombresField.getText());
         object.setLastName(apellidosField.getText());
         object.setPhone(telefonoField.getText());
-        object.setPassword(contraseñaField.getText());
+        if (!contraseñaField.getText().isEmpty()){
+            object.setPassword(contraseñaField.getText());
+        }
     }
 }

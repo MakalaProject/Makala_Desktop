@@ -41,31 +41,32 @@ public class RebateParentController implements Initializable, IControllerCreate<
     protected @FXML ComboBox<String> tipoComboBox;
     protected @FXML Label rebajaLabel;
     protected @FXML TextField porcentajeField;
-    @FXML
-    protected FontAwesomeIconView updateButton;
+    @FXML protected FontAwesomeIconView updateButton;
     protected @FXML FontAwesomeIconView objectButton;
     protected Rebate actualRebate;
-    protected Gift gift = new Gift();
-    protected Product product = new Product();
+    protected Gift gift;
+    protected Product product;
     protected String identifier = "Producto";
     ObservableList<IChangeable> products = FXCollections.observableArrayList(Request.getJ("products/basics/list",Product[].class,false));
     ObservableList<IChangeable> gifts = FXCollections.observableArrayList(Request.getJ("gifts/criteria-basic",Gift[].class,true));
     ObservableList<String> types = FXCollections.observableArrayList("Existencia", "Temporada");
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        porcentajeField.textProperty().addListener(new ChangedVerificationFields(porcentajeField, false,2));
         tipoComboBox.setItems(types);
         tipoComboBox.setValue("Existencia");
-        startDatePicker.setOnAction(actionEvent -> {
-            endDatePicker.setDayCellFactory(d ->
-                    new DateCell() {
-                        @Override public void updateItem(LocalDate item, boolean empty) {
-                            super.updateItem(item, empty);
-                            setDisable(item.isBefore(endDatePicker.getValue()));
-                        }});
-            if (endDatePicker.getValue().compareTo(startDatePicker.getValue()) > 0){
-                endDatePicker.setValue(startDatePicker.getValue().plusDays(1));
-            }
-        });
+        startDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isBefore(LocalDate.now()));
+                    }});
+        endDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isBefore(LocalDate.now().plusDays(1)));
+                    }});
         objectButton.setOnMouseClicked(mouseEvent -> {
             verifyClassType(actualRebate);
             if (identifier.equals("Producto")){
@@ -94,12 +95,14 @@ public class RebateParentController implements Initializable, IControllerCreate<
     public void setInfo(Rebate rebate) {
         rebate.setStartDate(LocalDateTime.parse(startDatePicker.getValue().atTime(LocalTime.now()).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
         rebate.setEndDate(LocalDateTime.parse(endDatePicker.getValue().atTime(LocalTime.now()).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME).substring(0,19), DateTimeFormatter.ISO_LOCAL_DATE_TIME));
-        rebate.setPercent(Integer.parseInt(porcentajeField.getText()));
+        rebate.setPercent(porcentajeField.getText().isEmpty() ? 0 :Integer.parseInt(porcentajeField.getText()));
         rebate.setType(tipoComboBox.getValue());
-        if (identifier.equals("Producto")){
-
-        }else {
-            ((GiftRebate) rebate).setGift(gift);
+    }
+    protected void checkFields() {
+        if (porcentajeField.getText().isEmpty()) {
+            porcentajeField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            porcentajeField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }
     }
 

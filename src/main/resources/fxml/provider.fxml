@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1058.0" prefWidth="951.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ProviderController">
+<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1058.0" prefWidth="951.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ProviderController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
             <children>
@@ -23,8 +23,8 @@
         </AnchorPane>
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="506.0" style="-fx-background-color: #E3DAD8;">
             <children>
-                <ScrollPane fitToWidth="true" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
-            <AnchorPane fx:id="fieldsAnchorPane" disable="true" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
+                <ScrollPane fitToWidth="true" layoutY="298.0" pannable="true" prefHeight="758.0" prefWidth="512.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0">
+            <AnchorPane fx:id="fieldsAnchorPane" disable="true" prefHeight="624.0" prefWidth="510.0" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
                <children>
                       <Label layoutX="28.0" layoutY="224.0" prefHeight="28.0" prefWidth="90.0" text="Email" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="224.0">
                           <font>
@@ -126,7 +126,7 @@
                                <FontAwesomeIconView fx:id="productsButton" fill="WHITE" glyphName="EDIT" layoutX="450.0" layoutY="34.0" size="30" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.285715103149414" />
                               </children>
                            </AnchorPane>
-                           <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+                           <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                      </VBox>
                      <Label layoutX="395.0" layoutY="144.0" prefHeight="28.0" prefWidth="39.0" text="días" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="144.0">
@@ -136,6 +136,11 @@
                      </Label>
                </children></AnchorPane>
                 </ScrollPane>
+                <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="266.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="266.0">
+                    <font>
+                        <Font name="Roboto Light" size="17.0" />
+                    </font>
+                </Label>
 
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>

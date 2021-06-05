@@ -11,7 +11,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.EmployeeController">
+<SplitPane fx:id="principalSplitPane" dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.EmployeeController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
             <children>
@@ -23,7 +23,7 @@
             </children>
         </AnchorPane>
 
-        <AnchorPane fx:id="informationPane" focusTraversable="true" minHeight="0.0" minWidth="0.0" style="-fx-background-color: white;">
+        <AnchorPane fx:id="informationPane" focusTraversable="true" minHeight="0.0" minWidth="0.0" style="-fx-background-color: #E3DAD8;">
             <children>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
@@ -54,7 +54,7 @@
                         <DropShadow />
                     </effect>
                 </AnchorPane>
-                <ScrollPane fitToWidth="true" layoutY="259.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="517.0" style="-fx-background-color: wite;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="259.0">
+                <ScrollPane fitToWidth="true" layoutY="296.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="563.0" prefWidth="517.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="296.0">
                     <content>
                     <AnchorPane fx:id="fieldsAnchorPane" cache="true" focusTraversable="true" maxHeight="1.7976931348623157E308" pickOnBounds="false" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="256.0">
                         <children>
@@ -156,6 +156,11 @@
                     </AnchorPane>
                 </content>
                 </ScrollPane>
+                <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="266.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="266.0">
+                    <font>
+                        <Font name="Roboto Light" size="17.0" />
+                    </font>
+                </Label>
 
             </children></AnchorPane>
     </items>

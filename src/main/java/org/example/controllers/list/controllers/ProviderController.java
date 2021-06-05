@@ -4,6 +4,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -62,17 +63,19 @@ public class ProviderController extends UserParentController<Provider> {
         siRadio.setToggleGroup(returnRadioGroup);
         noRadio.setToggleGroup(returnRadioGroup);
         ciudadComboBox.getItems().addAll(citysList);
+        ciudadComboBox.getSelectionModel().select(0);
         userObservableList.addAll(Request.getJ("users/providers",Provider[].class,true));
         userObservableList.sort(Comparator.comparing(Provider::getFirstName));
+        filteredUsers = new FilteredList<>(userObservableList, p ->true);
         super.initialize(url,resourceBundle);
         classificationComboBox.itemsProperty().setValue(productClassObservableList);
-
         classificationComboBox.valueProperty().addListener(new ChangeListener<ProductClassDto>() {
             @Override
             public void changed(ObservableValue<? extends ProductClassDto> observableValue, ProductClassDto productClassDto, ProductClassDto t1) {
                 actualUser.setProductClassDto(t1);
             }
         });
+
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()){
                 filteredUsers.setPredicate(employee -> {
@@ -143,26 +146,49 @@ public class ProviderController extends UserParentController<Provider> {
         }
     }
 
+    protected void checkFields() {
+        super.checkFields();
+        if (tiempoField.getText().isEmpty() || Integer.parseInt(tiempoField.getText()) == 0) {
+            tiempoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            tiempoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+            addressField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+            codigoPostalField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+
+        }else{
+            addressField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+            codigoPostalField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+
+    }
+
     @Override
     public void update() {
-        if ( !tiempoField.getText().isEmpty() && !telefonoField.getText().isEmpty()){
+        checkFields();
+        if (!tiempoField.getText().isEmpty()){
             if(telefonoField.getText().length()>9 && Integer.parseInt(tiempoField.getText()) >0) {
-                if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
-                    if (emailField.getText().isEmpty() || (!emailField.getText().isEmpty() && emailField.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"))) {
-                        super.update();
-                        actualUser.setSelectedProducts();
-                        productsItems.setAll(actualUser.getProducts());
-                    }else {
-                        showAlertEmptyFields("Verifica el formato de la dirección de correo electrónico");
+                if (productsItems.size()>0) {
+                    if ((addressField.getText().isEmpty() && codigoPostalField.getText().isEmpty()) || (!addressField.getText().isEmpty() && !codigoPostalField.getText().isEmpty())) {
+                        if (emailField.getText().isEmpty() || (!emailField.getText().isEmpty() && emailField.getText().matches("\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b"))) {
+                            super.update();
+                            actualUser.setSelectedProducts();
+                            productsItems.setAll(actualUser.getProducts());
+                        } else {
+                            showAlertEmptyFields("Verifica el formato de la dirección de correo electrónico");
+                        }
+                    } else {
+                        showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
                     }
                 }else {
-                    showAlertEmptyFields("Puedes dejar los campos de dirección vacios pero no incompletos");
+                    showAlertEmptyFields("Debes agregar productos");
                 }
             }else {
-                showAlertEmptyFields("Los dígitos del teléfono deben ser 10 y el tiempo de entrega mayor a 0");
+                showAlertEmptyFields("El tiempo de entrega debe ser mayor a 0");
             }
         }else{
-            showAlertEmptyFields("No puedes dejar campos campos necesarios sin llenar");
+            showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
         }
     }
 

@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
@@ -33,6 +34,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     @FXML public FontAwesomeIconView addHoleButton;
     @FXML public ListView<Hole> holesListView;
     @FXML public CheckBox isClosed;
+    @FXML public AnchorPane disableAnchorPane;
+    @FXML public Label warningLabel;
+    @FXML public FontAwesomeIconView warningIcon;
     private ObservableList<Hole> holeList;
     private final Set<Hole> originalHoleList = new HashSet<>();
     private BoxProduct actualBoxProduct;
@@ -73,6 +77,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
 
     @Override
     public BoxProduct getObject(){
+        checkFields();
         BoxProduct boxProduct = getLocalObject();
         if (boxProduct != null){
             if(!altoIntField.getText().isEmpty() && !anchoIntField.getText().isEmpty() && !largoIntField.getText().isEmpty()) {
@@ -87,7 +92,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                 showAlertEmptyFields("No puedes dejar los campos de las medidas vacios");
             }
         }
-        return new BoxProduct();
+        return null;
     }
 
     @Override
@@ -106,17 +111,33 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
             Measure3Dimensions internalMeasure = boxProduct.getInternalMeasures();
             Measure3Dimensions externalMeasures = boxProduct.getMeasures();
             if (externalMeasures.getZ().compareTo(internalMeasure.getZ()) > 0 && externalMeasures.getX().compareTo(internalMeasure.getX()) > 0 && externalMeasures.getY().compareTo(internalMeasure.getY()) > 0) {
-                if (boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) < 1) {
                     return boxProduct;
-                }
             }
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setHeaderText("Medidas fuera de rango");
-            alert.setContentText("Las medidas de la caja son invalidas");
+            alert.setHeaderText("Medidas invalidas");
+            alert.setContentText("Las medidas internas de la caja no pueden ser mayores a las externas");
             alert.showAndWait();
-
         }
         return null;
+    }
+
+    public void checkFields() {
+        super.checkFields();
+        if (altoIntField.getText().isEmpty() || Float.parseFloat(altoIntField.getText()) == 0) {
+            altoIntField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        } else {
+            altoIntField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+        if (anchoIntField.getText().isEmpty() || Float.parseFloat(anchoIntField.getText()) == 0) {
+            anchoIntField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        } else {
+            anchoIntField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+        if (largoIntField.getText().isEmpty() || Float.parseFloat(largoIntField.getText()) == 0) {
+            largoIntField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        } else {
+            largoIntField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
     }
 
     public void clearController(){
@@ -125,6 +146,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     }
 
     public void verifyAvailableArea(){
+
         boolean t = actualBoxProduct.getAvailableArea().compareTo(new BigDecimal(0)) != 0;
         addHoleButton.setVisible(t);
     }
@@ -134,6 +156,9 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         actualBoxProduct = boxProduct;
         verifyAvailableArea();
         clearController();
+        if (!actualBoxProduct.getPrivacy().equals("Publico")){
+            existHoles();
+        }
         if (boxProduct.getHolesDimensions() != null){
             for (Hole hole : boxProduct.getHolesDimensions()) {
                 originalHoleList.add(new Hole(hole.getHoleNumber(), hole.getHoleDimensions(),false));
@@ -148,6 +173,18 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         super.setObject(boxProduct);
     }
 
+    private void existHoles(){
+        if (actualBoxProduct.getHolesDimensions().size() > 0) {
+            warningLabel.setVisible(true);
+            warningIcon.setVisible(true);
+            disableAnchorPane.setVisible(true);
+        } else {
+            disableAnchorPane.setVisible(false);
+            warningLabel.setVisible(false);
+            warningIcon.setVisible(false);
+        }
+    }
+
     @Override
     public BoxProduct findObject(Product object) {
         return findObject(object,"products/boxes", BoxProduct.class );
@@ -156,7 +193,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     public void alertOutOfBounds(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Medidas fuera de rango");
-        alert.setContentText("El orificio que intentas crear excede el area de la caja, espacio disponible: " + actualBoxProduct.getAvailableArea() + "cm");
+        alert.setContentText("La división que intentas crear excede el area de la caja, espacio disponible: " + actualBoxProduct.getAvailableArea() + "cm2");
         alert.showAndWait();
     }
 
@@ -173,8 +210,8 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
             return boxProduct.getTotalHolesArea().compareTo(boxProduct.getArea()) >= 1;
         }
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText("Medidas fuera de rango");
-        alert.setContentText("Las medidas de la caja son invalidas");
+        alert.setHeaderText("Medidas invalidas");
+        alert.setContentText("Las medidas internas de la caja no pueden ser mayores a las externas");
         alert.showAndWait();
         return true;
     }
@@ -237,6 +274,7 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
                     }
                     showList();
                     actualBoxProduct.setHolesDimensions(holeList);
+                    existHoles();
                     verifyAvailableArea();
                 }
             } catch (IOException e) {

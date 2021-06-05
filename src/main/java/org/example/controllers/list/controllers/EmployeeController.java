@@ -1,6 +1,7 @@
 package org.example.controllers.list.controllers;
 
 import javafx.beans.binding.Bindings;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.layout.AnchorPane;
 import org.example.controllers.elements.controllers.WorkDayController;
 import org.example.controllers.parent.controllers.UserParentController;
@@ -58,6 +59,7 @@ public class EmployeeController extends UserParentController<Employee> {
                 add("/fxml/employee_create.fxml", listView, userObservableList, UserListViewCell.class);
             }
         });
+        filteredUsers = new FilteredList<>(userObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
                 filteredUsers.setPredicate(employee -> {
@@ -163,10 +165,28 @@ public class EmployeeController extends UserParentController<Employee> {
 
     @Override
     public void update(){
-        super.update();
-        actualUser.setSelectedDepartments();
-        actualUser.setPassword(null);
-        contraseñaField.setText("");
+        checkFields();
+        if (!apellidosField.getText().isEmpty()) {
+            if (departmentsItems.size()>0) {
+                super.update();
+                actualUser.setSelectedDepartments();
+                actualUser.setPassword(null);
+                contraseñaField.setText("");
+            }else {
+                showAlertEmptyFields("Debes agregar departamentos");
+            }
+        }else {
+            showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
+        }
+    }
+
+    protected void checkFields(){
+        super.checkFields();
+        if (apellidosField.getText().isEmpty()) {
+            apellidosField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            apellidosField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
 
     @Override

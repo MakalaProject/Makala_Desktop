@@ -18,7 +18,7 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label fx:id="objectName" alignment="CENTER" layoutX="173.0" layoutY="73.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Provider" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="73.0">
+                <Label fx:id="objectName" alignment="CENTER" layoutX="173.0" layoutY="73.0" prefHeight="28.0" prefWidth="270.0" style="-fx-border-color: #A39D9B;" text="Regalo/Producto" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="73.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
@@ -39,26 +39,26 @@
                   <Font name="Roboto Light" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="33.0" layoutY="215.0" prefHeight="28.0" prefWidth="127.0" text="Procentaje">
+            <Label layoutX="33.0" layoutY="201.0" prefHeight="28.0" prefWidth="127.0" text="Procentaje">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="rebajaLabel" layoutX="36.0" layoutY="266.0" prefHeight="28.0" prefWidth="121.0" text="Tipo Rebaja">
+            <Label fx:id="rebajaLabel" layoutX="33.0" layoutY="253.0" prefHeight="28.0" prefWidth="121.0" text="Tipo Rebaja">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>
             </Label>
-                <ComboBox fx:id="productTypeComboBox" layoutX="187.0" layoutY="28.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="28.0" />
+                <ComboBox fx:id="productTypeComboBox" layoutX="187.0" layoutY="28.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="129.0" AnchorPane.topAnchor="28.0" />
                 <DatePicker fx:id="startDatePicker" layoutX="205.0" layoutY="112.0" prefHeight="27.0" prefWidth="230.0" />
                 <DatePicker fx:id="endDatePicker" layoutX="205.0" layoutY="154.0" prefHeight="27.0" prefWidth="230.0" />
-                <TextField fx:id="porcentajeField" focusTraversable="false" layoutX="173.0" layoutY="211.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="211.0">
+                <TextField fx:id="porcentajeField" focusTraversable="false" layoutX="202.0" layoutY="199.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="236.0" promptText="50" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="202.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="199.0">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </TextField>
-            <ComboBox fx:id="tipoComboBox" layoutX="199.0" layoutY="265.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-radius: 10; -fx-background-color: white; -fx-border-color: white; -fx-border-radius: 10;" />
-            <Label layoutX="528.0" layoutY="218.0" prefHeight="28.0" prefWidth="28.0" text="\%" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="218.0">
+            <ComboBox fx:id="tipoComboBox" layoutX="202.0" layoutY="252.0" prefHeight="29.0" prefWidth="266.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" />
+            <Label layoutX="439.0" layoutY="201.0" prefHeight="28.0" prefWidth="28.0" text="\%" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="201.0">
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font>

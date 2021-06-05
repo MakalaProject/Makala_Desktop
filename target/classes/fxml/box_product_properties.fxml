@@ -127,5 +127,14 @@
          <Font name="Roboto Light" size="17.0" />
       </font>
    </CheckBox>
+   <Label fx:id="warningLabel" alignment="TOP_RIGHT" layoutX="88.0" layoutY="11.0" prefHeight="19.0" prefWidth="350.0" text="No puedes editar las medidas, elimina las divisiónes primero" textFill="#909090" visible="false" AnchorPane.leftAnchor="88.0" AnchorPane.topAnchor="11.0">
+      <font>
+         <Font name="Roboto Light" size="13.0" />
+      </font></Label>
+    <FontAwesomeIconView fx:id="warningIcon" glyphName="WARNING" layoutX="70.0" layoutY="25.0" size="15" visible="false" wrappingWidth="17.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="12.142857551574707" />
+   <AnchorPane fx:id="disableAnchorPane" prefHeight="278.0" prefWidth="452.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+
+
+
 
 </AnchorPane>

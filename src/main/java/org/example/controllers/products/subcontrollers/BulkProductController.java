@@ -33,6 +33,7 @@ public class BulkProductController implements Initializable, IControllerProducts
 
     @Override
     public BulkProduct getObject() {
+        checkFields();
         if (!porcentajeField.getText().isEmpty()){
             if(Float.parseFloat(porcentajeField.getText())>0) {
                 BulkProduct bulkProduct = new BulkProduct();
@@ -55,6 +56,15 @@ public class BulkProductController implements Initializable, IControllerProducts
     @Override
     public void setObject(BulkProduct bulkProduct) {
         porcentajeField.setText(bulkProduct.getLossPercent().toString());
+    }
+
+    @Override
+    public void checkFields() {
+        if (porcentajeField.getText().isEmpty() || Float.parseFloat(porcentajeField.getText())==0){
+            porcentajeField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            porcentajeField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
     }
 
     @Override
