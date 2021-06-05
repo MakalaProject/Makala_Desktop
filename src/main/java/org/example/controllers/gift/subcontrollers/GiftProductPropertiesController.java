@@ -58,11 +58,14 @@ public class GiftProductPropertiesController implements Initializable, IControll
                     stage.setUserData(giftProductToSend);
                     stage.close();
                 }else {
+                    checkFields();
                     showAlertEmptyFields("Los valores de los campos no pueden ser 0");
                 }
             }else {
+                checkFields();
                 showAlertEmptyFields("No puedes dejar campos vacios");
             }
+            checkFields();
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -112,6 +115,14 @@ public class GiftProductPropertiesController implements Initializable, IControll
             orificioComboBox.setValue(orificioComboBox.getItems().stream().filter(pro -> pro.getHoleNumber().equals(giftProductToSend.getHoleNumber())).findAny().orElse(null));
         }
     }
+    protected void checkFields(){
+        if (cantidadField.getText().isEmpty() || Integer.parseInt(cantidadField.getText())==0) {
+            cantidadField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            cantidadField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
+
 
     private boolean volumeValidation(){
         staticProduct = (StaticProduct) Request.find("products/statics", giftProductToSend.getProduct().getIdProduct(), StaticProduct.class);

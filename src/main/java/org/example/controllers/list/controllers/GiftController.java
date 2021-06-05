@@ -225,7 +225,7 @@ public class GiftController extends GiftParentController implements IListControl
 
     @Override
     public void update() {
-        if( !nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
+        if(!nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
             if (Float.parseFloat(laborCostField.getText())>0) {
                 if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
                     Gift gift = new Gift();
@@ -294,11 +294,26 @@ public class GiftController extends GiftParentController implements IListControl
             }else {
                 showAlertEmptyFields("El precio de elaboración no puede ser 0");
             }
-        }else{
+        }else {
+            checkFields();
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
+        checkFields();
+    }
 
+    protected void checkFields(){
 
+        if (nombreField.getText().isEmpty()) {
+            nombreField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            nombreField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+
+        if (laborCostField.getText().isEmpty() || Float.parseFloat(laborCostField.getText())==0) {
+            laborCostField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            laborCostField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
 
     public void add(){

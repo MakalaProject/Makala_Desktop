@@ -49,10 +49,13 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
                     stage.setUserData(ribbonProductToSend);
                 }else {
                     showAlertEmptyFields("Los valores de los campos no pueden ser 0");
+                    checkFields();
                 }
             }else {
                 showAlertEmptyFields("No puedes dejar campos vacios");
+                checkFields();
             }
+            checkFields();
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -77,6 +80,19 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
         titleLabel.setText(ribbonProduct.getProduct().getName());
         cantidadField.setText(ribbonProduct.getAmount().toString());
         largoField.setText(ribbonProduct.getLengthCm().toString());
+    }
+
+    protected void checkFields(){
+        if (largoField.getText().isEmpty() || Float.parseFloat(largoField.getText())==0) {
+            largoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            largoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (cantidadField.getText().isEmpty() || Integer.parseInt(cantidadField.getText())==0) {
+            cantidadField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            cantidadField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
 
     @Override

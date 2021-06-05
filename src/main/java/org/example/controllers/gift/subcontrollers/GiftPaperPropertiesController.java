@@ -47,11 +47,14 @@ public class GiftPaperPropertiesController implements Initializable, IController
                     paperProductToSend.setAction(Action.UPDATE);
                     stage.setUserData(paperProductToSend);
                 }else {
+                    checkFields();
                     showAlertEmptyFields("Los valores de los campos no pueden ser 0");
                 }
             }else {
+                checkFields();
                 showAlertEmptyFields("No puedes dejar campos vacios");
             }
+            checkFields();
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -67,6 +70,24 @@ public class GiftPaperPropertiesController implements Initializable, IController
             }
             stage.close();
         });
+    }
+
+    protected void checkFields(){
+        if (largoField.getText().isEmpty() || Float.parseFloat(largoField.getText())==0) {
+            largoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            largoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (anchoField.getText().isEmpty() || Float.parseFloat(anchoField.getText())==0) {
+            anchoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            anchoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (cantidadField.getText().isEmpty() || Integer.parseInt(cantidadField.getText())==0) {
+            cantidadField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            cantidadField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
     }
 
     @Override

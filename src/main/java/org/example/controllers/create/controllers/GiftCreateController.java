@@ -91,8 +91,10 @@ public class GiftCreateController extends GiftParentController {
                     showAlertEmptyFields("El precio de elaboración no puede ser 0");
                 }
             }else{
+                checkFields();
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
+            checkFields();
         });
         privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -115,7 +117,20 @@ public class GiftCreateController extends GiftParentController {
         });
 
     }
+    protected void checkFields(){
 
+        if (nombreField.getText().isEmpty()) {
+            nombreField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            nombreField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+
+        if (laborCostField.getText().isEmpty() || Float.parseFloat(laborCostField.getText())==0) {
+            laborCostField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            laborCostField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
     @Override
     public void setInfo(Gift gift){
         super.setInfo(gift);

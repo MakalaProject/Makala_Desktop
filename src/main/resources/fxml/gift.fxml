@@ -183,8 +183,9 @@
 
                 </TextField>
                 <ComboBox fx:id="privacidadComboBox" layoutX="158.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="67.0" />
-                  <TextField fx:id="precioField" disable="true" layoutX="182.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="153.0">
-                     <font>
+                  <TextField fx:id="precioField" editable="false" layoutX="182.0" layoutY="153.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="114.0" AnchorPane.topAnchor="153.0">
+                     <tooltip><Tooltip text="El precio se calcula de manera automatica" /></tooltip>
+                      <font>
                         <Font size="15.0" />
                      </font>
                      <cursor>

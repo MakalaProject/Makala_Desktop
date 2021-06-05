@@ -106,12 +106,16 @@ public class ManualStepController implements Initializable, IControllerCreate<St
                     }
                     stage.close();
                 }else {
+                    checkFields();
                     showAlertEmptyFields("El tiempo de elaboración no puede ser 0");
                 }
             }else {
+                checkFields();
                 showAlertEmptyFields("No puedes dejar un paso vacio");
             }
+            checkFields();
         });
+
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editview();
@@ -151,6 +155,20 @@ public class ManualStepController implements Initializable, IControllerCreate<St
         });
 
     }
+
+    protected void checkFields(){
+        if (tiempoField.getText().isEmpty() || Integer.parseInt(tiempoField.getText())==0) {
+            tiempoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            tiempoField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (instructionsTextArea.getText().isEmpty()) {
+            instructionsTextArea.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            instructionsTextArea.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
+
     private void editview(){
         if (editSwitch.isSelected()){
             containerAnchorPane.setDisable(false);
