@@ -29,8 +29,8 @@
 
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
             <children>
-                <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="284.0" pannable="true" prefHeight="655.0" prefWidth="511.0" style="-fx-background-color: #E3DAD8;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="284.0">
+                    <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="653.0" prefWidth="496.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                   <AnchorPane fx:id="productsAnchorPane" layoutY="375.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
                      <children>
                          <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -255,6 +255,11 @@
                         <Color red="0.01315789483487606" green="0.013036062009632587" blue="0.013036062009632587" />
                      </color></DropShadow>
                     </effect></AnchorPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="255.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+               <font>
+                  <Font name="Roboto Light" size="17.0" />
+               </font>
+            </Label>
             </children>
         </AnchorPane>
     </items>
