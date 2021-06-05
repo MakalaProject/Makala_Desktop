@@ -162,6 +162,14 @@ public class CatalogController extends CatalogParentController implements Initia
         }
     }
 
+    protected void checkFields(){
+        if (nombreField.getText().isEmpty()) {
+            nombreField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            nombreField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
+
     @Override
     public void update() {
         if(!nombreField.getText().isEmpty()){
@@ -189,8 +197,10 @@ public class CatalogController extends CatalogParentController implements Initia
             editSwitch.setSelected(false);
             editView(fieldsAnchorPane, editSwitch, updateButton);
         }else {
+            checkFields();
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
+        checkFields();
     }
 
 

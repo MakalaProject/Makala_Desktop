@@ -36,7 +36,7 @@ public class CatalogCreateController extends CatalogParentController implements 
                         images.add(catalog.getPath());
                         images = ImageService.uploadImages(images);
                         catalog.setPath(images.get(0));
-                        returnedCatalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
+                        catalog = (Catalog) Request.putJ(catalog.getRoute(), catalog);
                     }
                 } catch (Exception e) {
                     duplyElementAlert(catalog.getIdentifier());
@@ -45,14 +45,22 @@ public class CatalogCreateController extends CatalogParentController implements 
                 Node source = (Node)  mouseEvent.getSource();
                 Stage stage  = (Stage) source.getScene().getWindow();
                 stage.close();
-                stage.setUserData(returnedCatalog);
+                stage.setUserData(catalog);
             }else{
+                checkFields();
                 showAlertEmptyFields("No puedes dejar campos indispensables vacios");
             }
+            checkFields();
         });
     }
 
-
+    protected void checkFields(){
+        if (nombreField.getText().isEmpty()) {
+            nombreField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }else{
+            nombreField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
 
     @Override
     public void setInfo(Catalog catalog) {
