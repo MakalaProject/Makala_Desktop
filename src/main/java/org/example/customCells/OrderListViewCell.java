@@ -17,6 +17,8 @@ public class OrderListViewCell extends ListCell<Order> {
     Label orderName;
     @FXML
     Label fechaLabel;
+    @FXML
+    Label enviadoLabel;
 
     @FXML
     private AnchorPane anchorPane;
@@ -46,7 +48,8 @@ public class OrderListViewCell extends ListCell<Order> {
             }
             orderName.setText(String.valueOf(order) + "- " + Formatter.FormatDateTime(order.getDate()));
             fechaLabel.setVisible(order.getShippingDate() != null);
-            statusIcon.setVisible(order.getShippingDate() != null);
+            statusIcon.setVisible(order.getStatus().equals("Enviado"));
+            enviadoLabel.setVisible(order.getStatus().equals("Enviado"));
             setText(null);
             setGraphic(anchorPane);
 
