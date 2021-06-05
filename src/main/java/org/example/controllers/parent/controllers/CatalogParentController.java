@@ -20,6 +20,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.example.controllers.elements.controllers.SelectListGifts;
+import org.example.customCells.CatalogGiftListViewCell;
+import org.example.customCells.CatalogListViewCell;
 import org.example.model.Catalog;
 import org.example.model.CatalogClassification;
 import org.example.model.Gift;
@@ -107,7 +109,8 @@ public class CatalogParentController implements Initializable {
     protected void showGiftsList(ObservableList<Gift> list){
         giftListView.setItems(FXCollections.observableList(list.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
         double b = giftListView.getFixedCellSize();
-        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(26.1));
+        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(35));
+        giftListView.setCellFactory(cellList -> new CatalogGiftListViewCell());
     }
 
     protected void uploadImage(Stage s){

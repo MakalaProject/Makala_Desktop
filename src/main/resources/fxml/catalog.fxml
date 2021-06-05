@@ -60,7 +60,7 @@
                                         <FontAwesomeIconView fx:id="giftButton" fill="WHITE" glyphName="PLUS" layoutX="466.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="4.285715103149414" />
                                     </children>
                                 </AnchorPane>
-                                <ListView fx:id="giftListView" fixedCellSize="25.7" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+                                <ListView fx:id="giftListView" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
                             </children>
                         </VBox>
 

@@ -27,6 +27,8 @@ public class Gift implements IChangeable<Integer> {
     private int rating;
     private boolean toDelete;
     private int totalTime = 0;
+    @EqualsAndHashCode.Exclude
+    private int stock = 0;
     private ArrayList<Step> steps = new ArrayList<>();
 
     public Gift(){

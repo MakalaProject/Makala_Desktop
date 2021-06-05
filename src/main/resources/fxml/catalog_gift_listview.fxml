@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="28.0" prefWidth="234.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="giftLabel" layoutX="14.0" layoutY="8.0" prefHeight="25.0" prefWidth="220.0" text="Label" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font></Label>
+      <Label fx:id="stockLabel" layoutX="124.0" layoutY="8.0" prefHeight="25.0" prefWidth="92.0" text="Stock" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
