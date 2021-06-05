@@ -302,13 +302,11 @@ public class GiftController extends GiftParentController implements IListControl
     }
 
     protected void checkFields(){
-
         if (nombreField.getText().isEmpty()) {
             nombreField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }else{
             nombreField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }
-
         if (laborCostField.getText().isEmpty() || Float.parseFloat(laborCostField.getText())==0) {
             laborCostField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }else{

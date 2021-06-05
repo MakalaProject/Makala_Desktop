@@ -52,9 +52,7 @@ public class CatalogController extends CatalogParentController implements Initia
     @FXML protected AnchorPane fieldsAnchorPane;
     Catalog actualCatalog = new Catalog();
     private ObservableList<Catalog> catalogObservableList = FXCollections.observableArrayList();
-
-
-
+    FilteredList<Catalog> filteredCatalog;
     private int index;
 
     @Override
@@ -62,7 +60,7 @@ public class CatalogController extends CatalogParentController implements Initia
         super.initialize(url, resourceBundle);
         catalogObservableList.setAll(Request.getJ("catalogs",Catalog[].class, false));
         showList(catalogObservableList, listView,CatalogListViewCell.class);
-        FilteredList<Catalog> filteredCatalog = new FilteredList<>(FXCollections.observableArrayList(catalogObservableList), p ->true);
+        filteredCatalog = new FilteredList<>(catalogObservableList, p ->true);
         //Check if the list is empty to update the view and show its values at the beggining
         if(!catalogObservableList.isEmpty()){
             listView.getSelectionModel().select(0);
@@ -80,8 +78,7 @@ public class CatalogController extends CatalogParentController implements Initia
                     return false;
                 }
             });
-            SortedList<Catalog> sortedCatalogs = new SortedList<>(filteredCatalog);
-            catalogObservableList = FXCollections.observableList(sortedCatalogs);
+            showList(FXCollections.observableArrayList(filteredCatalog), listView, CatalogListViewCell.class);
         } );
 
         listView.setOnMouseClicked(mouseEvent -> {
