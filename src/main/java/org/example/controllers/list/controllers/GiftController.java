@@ -51,11 +51,12 @@ public class GiftController extends GiftParentController implements IListControl
     @FXML ToggleSwitch editSwitch;
     @FXML protected FontAwesomeIconView manualButton;
     private final ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Gift> actualObservableList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
     private int index;
     private ArrayList<Step> stepList = new ArrayList<>();
     ManualController dialogController;
-
+    FilteredList<Gift> filteredGifts;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         giftObservableList.addAll(Request.getJ("/gifts/criteria-basic?size=10000",Gift[].class, true));
@@ -63,7 +64,7 @@ public class GiftController extends GiftParentController implements IListControl
         privacidadComboBox.getItems().addAll(privacyItems);
         privacidadComboBox.getSelectionModel().select(0);
         showList(FXCollections.observableList(giftObservableList), listView, GiftListViewCell.class);
-        FilteredList<Gift> filteredGifts = new FilteredList<>(giftObservableList, p ->true);
+        filteredGifts = new FilteredList<>(giftObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
                 filteredGifts.setPredicate(gift -> {
