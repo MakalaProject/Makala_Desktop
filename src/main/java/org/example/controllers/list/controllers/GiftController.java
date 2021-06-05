@@ -143,7 +143,13 @@ public class GiftController extends GiftParentController implements IListControl
         privacidadComboBox.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                if(userClicked && stepList.isEmpty() && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
+                ArrayList<Step> steps = new ArrayList<>();
+                for(Step e : stepList){
+                    if(!e.isToDelete()){
+                        steps.add(e);
+                    }
+                }
+                if(userClicked && steps.isEmpty() && (privacidadComboBox.getValue().equals("Publico") || privacidadComboBox.getValue().equals("Premium"))){
                     userClicked = false;
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Error");

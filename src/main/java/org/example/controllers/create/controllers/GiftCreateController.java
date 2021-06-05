@@ -44,10 +44,10 @@ public class GiftCreateController extends GiftParentController {
         updateButton.setOnMouseClicked(mouseEvent -> {
             if( !nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
                 if (Float.parseFloat(laborCostField.getText())>0) {
-                    if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
-                        Gift gift = new Gift();
-                        setExtendedInternalProducts(gift);
-                        setInfo(gift);
+                    Gift gift = new Gift();
+                    setExtendedInternalProducts(gift);
+                    setInfo(gift);
+                    if(gift.getRibbons().size()>0 && gift.getStaticProducts().size()>0) {
                         Gift newGift = null;
                         try {
                             gift.setPictures(new ArrayList<>());
