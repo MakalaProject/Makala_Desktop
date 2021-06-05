@@ -25,8 +25,10 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class RebateController extends RebateParentController implements IListController<Rebate> {
     @FXML FontAwesomeIconView deleteButton;
@@ -43,6 +45,7 @@ public class RebateController extends RebateParentController implements IListCon
         super.initialize(url, resourceBundle);
         rebatesObservableList.addAll(Request.getJ("gift-rebates", GiftRebate[].class,true));
         rebatesObservableList.addAll(Request.getJ("product-rebates", ProductRebate[].class, true));
+        rebatesObservableList.setAll(rebatesObservableList.stream().filter(r -> r.getEndDate().compareTo(LocalDateTime.now())>-1).collect(Collectors.toList()));
         showList(rebatesObservableList,listView, RebateListViewCell.class);
         FilteredList<Rebate> rebateFilteredList = new FilteredList<>(rebatesObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -151,23 +154,32 @@ public class RebateController extends RebateParentController implements IListCon
 
     @Override
     public void update() {
+        checkFields();
         Rebate rebate = actualRebate;
-        verifyClassType(rebate);
-        setInfo(rebate);
-            try {
-                Rebate rebateR = (Rebate) Request.putJ(actualRebate.getRoute(), rebate);
-                rebatesObservableList.set(index, rebate);
-                actualRebate = rebateR;
-                listView.setItems(rebatesObservableList);
-                showList(rebatesObservableList,listView, RebateListViewCell.class);
-                listView.getSelectionModel().select(actualRebate);
-                listView.scrollTo(actualRebate);
-                editSwitch.setSelected(false);
-                editView(fieldsAnchorPane, editSwitch, updateButton);
-                updateView();
-            } catch (ProductDeleteException e) {
-                e.printStackTrace();
+        if (!porcentajeField.getText().isEmpty()) {
+            if (Integer.parseInt(porcentajeField.getText())>0) {
+                verifyClassType(rebate);
+                setInfo(rebate);
+                try {
+                    Rebate rebateR = (Rebate) Request.putJ(actualRebate.getRoute(), rebate);
+                    rebatesObservableList.set(index, rebate);
+                    actualRebate = rebateR;
+                    listView.setItems(rebatesObservableList);
+                    showList(rebatesObservableList, listView, RebateListViewCell.class);
+                    listView.getSelectionModel().select(actualRebate);
+                    listView.scrollTo(actualRebate);
+                    editSwitch.setSelected(false);
+                    editView(fieldsAnchorPane, editSwitch, updateButton);
+                    updateView();
+                } catch (ProductDeleteException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                showAlertEmptyFields("El porcentaje no puede ser 0");
             }
+        }else{
+            showAlertEmptyFields("No puedes dejar el campo de porcentaje vacio");
+        }
 
     }
 
@@ -217,9 +229,6 @@ public class RebateController extends RebateParentController implements IListCon
         index = rebatesObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
         updateButton.setVisible(true);
-        if (actualRebate.getEndDate().compareTo(LocalDate.now().atTime(LocalTime.now())) > -1){
-            updateButton.setVisible(false);
-        }
         editView(fieldsAnchorPane, editSwitch, updateButton);
         putFields();
     }

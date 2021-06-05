@@ -31,9 +31,10 @@ public class InsideProductController implements Initializable, IControllerCreate
         cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, true, 3,2));
         cantidadField.focusedProperty().addListener(new FocusVerificationFields(cantidadField, true, 3,2));
         updateButton.setOnMouseClicked(mouseEvent -> {
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
+            checkFields();
             if (!cantidadField.getText().isEmpty()){
+                Node source = (Node)  mouseEvent.getSource();
+                Stage stage  = (Stage) source.getScene().getWindow();
                 if (Float.parseFloat(cantidadField.getText())>0){
                     setInfo(insideProduct);
                     stage.setUserData(new InternalProductPropertiesToSend(insideProduct, Action.UPDATE));
@@ -44,7 +45,6 @@ public class InsideProductController implements Initializable, IControllerCreate
             }else {
                 showAlertEmptyFields("No puedes dejar el campo de cantidad vacio");
             }
-
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
@@ -61,6 +61,13 @@ public class InsideProductController implements Initializable, IControllerCreate
         });
     }
 
+    private void checkFields(){
+        if (cantidadField.getText().isEmpty() || Float.parseFloat(cantidadField.getText())==0){
+            cantidadField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            cantidadField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+    }
 
     public void setInternalProduct(InsideProduct insideProduct){
         this.insideProduct = insideProduct;

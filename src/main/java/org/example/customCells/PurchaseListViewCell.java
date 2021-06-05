@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import org.example.interfaces.IConstructor;
+import org.example.model.Formatter;
 import org.example.model.Purchase;
 
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class PurchaseListViewCell extends ListCell<Purchase> implements IConstru
                 }
             }
 
-            purchaseDate.setText(String.valueOf(purchase.getOrderDate()));
+            purchaseDate.setText(String.valueOf(purchase) + "- " +Formatter.FormatDate(purchase.getOrderDate()));
             setText(null);
             setGraphic(anchorPane);
         }

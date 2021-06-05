@@ -51,6 +51,7 @@ public class ProductCreateController extends ProductParentController {
             }
         });
         updateButton.setOnMouseClicked(mouseEvent -> {
+            checkFields();
             if(!nombreField.getText().isEmpty() && !minField.getText().isEmpty() && !maxField.getText().isEmpty() && !stockField.getText().isEmpty() && !precioField.getText().isEmpty()){
                 if(Integer.parseInt(minField.getText())>0 && Integer.parseInt(maxField.getText())>0 && Float.parseFloat(precioField.getText())>0){
                     if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())) {
@@ -91,14 +92,16 @@ public class ProductCreateController extends ProductParentController {
                             stage.close();
                         }
                     }else{
-                        showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
+                        showAlertEmptyFields("La cantidad mínima no puede ser mayor a la maxima");
                     }
                 }else {
                     showAlertEmptyFields("Los campos númericos no pueden ser 0");
                 }
             }else{
-                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
+                showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
+
             }
         });
     }
+
 }

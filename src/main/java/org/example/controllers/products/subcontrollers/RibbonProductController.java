@@ -38,11 +38,11 @@ public class RibbonProductController implements Initializable, IControllerProduc
     @Override
     public RibbonProduct getObject() {
         RibbonProduct ribbonProduct = new RibbonProduct();
-        ribbonProduct.setWidthIn(new BigDecimal(anchoField.getText()));
-        ribbonProduct.setRgb(colorPicker.getValue().toString().substring(2));
+        checkFields();
         if (!anchoField.getText().isEmpty()){
             if (Float.parseFloat(anchoField.getText())>0){
-
+                ribbonProduct.setWidthIn(new BigDecimal(anchoField.getText()));
+                ribbonProduct.setRgb(colorPicker.getValue().toString().substring(2));
             }else {
                 showAlertEmptyFields("El ancho no puede ser igual a 0");
             }
@@ -63,6 +63,14 @@ public class RibbonProductController implements Initializable, IControllerProduc
         colorPicker.setValue(Color.web(ribbonProduct.getRgb()));
     }
 
+    @Override
+    public void checkFields() {
+        if (anchoField.getText().isEmpty() || Float.parseFloat(anchoField.getText())==0){
+            anchoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            anchoField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+    }
 
     @Override
     public RibbonProduct findObject(Product object) {

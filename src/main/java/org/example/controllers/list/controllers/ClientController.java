@@ -3,6 +3,7 @@ package org.example.controllers.list.controllers;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,6 +38,7 @@ public class ClientController extends UserParentController<Client> {
         addButton.setOnMouseClicked(mouseEvent -> {
             add("/fxml/client_create.fxml", listView, userObservableList, UserListViewCell.class);
         });
+        filteredUsers = new FilteredList<>(userObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
                 filteredUsers.setPredicate(client -> {

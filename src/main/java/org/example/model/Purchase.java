@@ -25,4 +25,9 @@ public class Purchase {
     public void setSelectedProducts(){
         products.removeIf(PurchaseProduct::getToDelete);
     }
+
+    @Override
+    public String toString(){
+        return "Compra: " + id;
+    }
 }

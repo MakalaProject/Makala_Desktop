@@ -1,5 +1,7 @@
 package org.example.controllers.create.controllers;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.DateCell;
 import javafx.stage.Stage;
@@ -40,11 +42,12 @@ public class PurchaseCreateController extends PurchaseParentController {
                         setDisable(item.isBefore(LocalDate.now()));
                     }});
         updateButton.setOnMouseClicked(mouseEvent -> {
+            checkFields();
             if (!productListView.getItems().isEmpty() && !priceField.getText().isEmpty()){
                 if (Float.parseFloat(priceField.getText()) > 0) {
                     Purchase purchase = new Purchase();
                     setInfo(purchase);
-                    if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
+                    if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
                         Purchase returnedPurchase = null;
                         try {
                             returnedPurchase = (Purchase) Request.postJ(purchase.getRoute(), purchase);
@@ -56,13 +59,13 @@ public class PurchaseCreateController extends PurchaseParentController {
                         stage.close();
                         stage.setUserData(returnedPurchase);
                     } else {
-                        showAlertEmptyFields("Verifica las fechas");
+                        showAlertEmptyFields("No puedes dejar la fecha de pago vacia si ya estableciste fecha de entrega");
                     }
                 }else {
                     showAlertEmptyFields("El precio de la compra no puede ser 0");
                 }
             }else {
-                showAlertEmptyFields("No puedes dejar la compra sin productos o  campos vacios");
+                showAlertEmptyFields("No puedes dejar la compra sin productos o sin precio");
             }
         });
     }

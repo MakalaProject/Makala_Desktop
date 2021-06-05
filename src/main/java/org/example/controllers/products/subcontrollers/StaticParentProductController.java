@@ -42,9 +42,9 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
     public abstract  D findObject(Product object);
 
     public D getObject(Class<?> classType) {
+        checkFields();
         if(!altoField.getText().isEmpty() && !anchoField.getText().isEmpty() && !largoField.getText().isEmpty()) {
             if (Float.parseFloat(altoField.getText()) > 0 && Float.parseFloat(anchoField.getText()) > 0 && Float.parseFloat(largoField.getText()) > 0) {
-
                 D object = null;
                 try {
                     object = (D) classType.newInstance();
@@ -63,6 +63,25 @@ public abstract class StaticParentProductController <D extends StaticProduct> im
         }
         return null;
     }
+    @Override
+    public void checkFields() {
+        if (altoField.getText().isEmpty() || Float.parseFloat(altoField.getText())==0){
+            altoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            altoField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+        if (anchoField.getText().isEmpty() || Float.parseFloat(anchoField.getText())==0){
+            anchoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            anchoField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+        if (largoField.getText().isEmpty() || Float.parseFloat(largoField.getText())==0){
+            largoField.setStyle("-fx-background-color: #fea08c; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }else{
+            largoField.setStyle("-fx-background-color: white; -fx-border-color: white white black white; -fx-border-width: 2;");
+        }
+    }
+
 
     @Override
     public void setObject(D staticProduct) {

@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class PurchaseController extends PurchaseParentController implements IListController<Purchase> {
@@ -43,6 +44,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
         purchaseObservableList.setAll(Request.getJ("/purchases", Purchase[].class, true));
+        purchaseObservableList.sort(Comparator.comparing(Purchase::getOrderDate).reversed());
         showList(purchaseObservableList, listView, PurchaseListViewCell.class);
         FilteredList<Purchase> filteredPurchases = new FilteredList<>(purchaseObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -151,11 +153,12 @@ public class PurchaseController extends PurchaseParentController implements ILis
 
     @Override
     public void update() {
+        checkFields();
         if (actualPurchase.getProducts().size() > 0 && !priceField.getText().isEmpty()) {
             if (Float.parseFloat(priceField.getText()) > 0) {
                 Purchase purchase = new Purchase();
                 setInfo(purchase);
-                if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null && purchase.getPayDate().compareTo(purchase.getOrderDate()) > -1 && purchase.getReceivedDate().compareTo(purchase.getOrderDate()) > -1) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
+                if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
                     try {
                         Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
                         purchaseObservableList.set(index, purchase);
@@ -169,7 +172,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
                         e.printStackTrace();
                     }
                 } else {
-                    showAlertEmptyFields("Verifica las fechas");
+                    showAlertEmptyFields("No puedes dejar la fecha de pago vacia si ya estableciste fecha de entrega");
                 }
             }else{
                 showAlertEmptyFields("El precio de la compra no puede ser 0");
@@ -202,12 +205,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
     @Override
     public void putFields() {
         orderDatePicker.setValue(actualPurchase.getOrderDate());
-        orderDatePicker.setDayCellFactory(d ->
-                new DateCell() {
-                    @Override public void updateItem(LocalDate item, boolean empty) {
-                        super.updateItem(item, empty);
-                        setDisable(item.isBefore(actualPurchase.getOrderDate()));
-                    }});
+        orderDatePicker.setDisable(true);
         payDatePicker.setDayCellFactory(d ->
                 new DateCell() {
                     @Override public void updateItem(LocalDate item, boolean empty) {
@@ -248,6 +246,8 @@ public class PurchaseController extends PurchaseParentController implements ILis
         index = purchaseObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
         if (actualPurchase.getReceivedDate() != null){
+            orderDatePicker.setDisable(false);
+            editSwitch.setSelected(true);
             editProduct = false;
             disableAnchorPane.setVisible(true);
             editSwitch.setVisible(false);
@@ -259,8 +259,8 @@ public class PurchaseController extends PurchaseParentController implements ILis
             updateButton.setVisible(true);
         }
         purchaseProducts = new ArrayList<>(actualPurchase.getProducts());
+        originalPurchaseProducts = new ArrayList<>(actualPurchase.getProducts());
         editView(fieldsAnchorPane, editSwitch, updateButton);
-        fieldsAnchorPane.setDisable(false);
         provider = providers.stream().filter(p -> p.getIdUser().equals(actualPurchase.getIdProvider())).findAny().orElse(null);
         putFields();
     }

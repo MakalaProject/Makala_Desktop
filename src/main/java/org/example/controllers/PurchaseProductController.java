@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.ChangedVerificationFields;
@@ -24,8 +25,10 @@ public class PurchaseProductController implements Initializable, IControllerCrea
     @FXML public TextField cantidadField;
     @FXML public DatePicker expiryDatePicker;
     @FXML public Label expiryDateLabel;
+    @FXML public Label unidadLabel;
     @FXML public FontAwesomeIconView updateButton;
     @FXML public FontAwesomeIconView deleteButton;
+    @FXML public AnchorPane disableAnchorPane;
     PurchaseProduct purchaseProduct = new PurchaseProduct();
 
     public void setProduct(PurchaseProduct product, boolean isCreate, boolean edit) {
@@ -33,11 +36,17 @@ public class PurchaseProductController implements Initializable, IControllerCrea
         if (!edit){
             deleteButton.setVisible(false);
             updateButton.setVisible(false);
-            cantidadField.setEditable(false);
-            expiryDatePicker.setEditable(false);
+            disableAnchorPane.setVisible(true);
         }
         purchaseProduct = product;
         if (product.getProduct().getProductClassDto() != null && !product.getProduct().getProductClassDto().getProductType().equals("Comestible") && !product.getProduct().getProductClassDto().getProductType().equals("Granel")){
+            if (product.getProduct().getProductClassDto().getProductType().equals("Granel")){
+                unidadLabel.setText("grs");
+            }else if(product.getProduct().getProductClassDto().getProductType().equals("Listones")){
+                unidadLabel.setText("m");
+            }else if(product.getProduct().getProductClassDto().getProductType().equals("Papeles")){
+                unidadLabel.setText("m2");
+            }
             expiryDatePicker.setVisible(false);
             expiryDateLabel.setVisible(false);
         }else {
@@ -93,10 +102,16 @@ public class PurchaseProductController implements Initializable, IControllerCrea
 
     @Override
     public void setInfo(PurchaseProduct purchaseProduct) {
-        purchaseProduct.setAmount(new BigDecimal(cantidadField.getText()));
         if (purchaseProduct.getProduct().getProductClassDto().getProductType().equals("Comestible") || purchaseProduct.getProduct().getProductClassDto().getProductType().equals("Granel")){
             ProductExpiration productExpiration = new ProductExpiration(expiryDatePicker.getValue(), purchaseProduct.getAmount());
             purchaseProduct.setPackageP(productExpiration);
+        }
+        if(purchaseProduct.getProduct().getProductClassDto().getProductType().equals("Listones")){
+            purchaseProduct.setAmount(new BigDecimal(cantidadField.getText()).multiply(new BigDecimal("10")));
+        }else if(purchaseProduct.getProduct().getProductClassDto().getProductType().equals("Papeles")){
+            purchaseProduct.setAmount(new BigDecimal(cantidadField.getText()).multiply(new BigDecimal("100")));
+        }else {
+            purchaseProduct.setAmount(new BigDecimal(cantidadField.getText()));
         }
 
     }

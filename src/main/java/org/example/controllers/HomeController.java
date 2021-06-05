@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -58,6 +59,7 @@ public class HomeController implements Initializable {
     String rootResourceName = "";
     boolean menuIsOpen = false;
     private Employee administrator;
+    JFXButton actualButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,8 +78,11 @@ public class HomeController implements Initializable {
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();
-                administrator = (Employee) stage.getUserData();
-                userName.setText(administrator.getFirstName());
+                Employee employee = (Employee) stage.getUserData();
+                if (employee != null){
+                    administrator = employee;
+                    userName.setText(administrator.getFirstName());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             };
@@ -119,37 +124,35 @@ public class HomeController implements Initializable {
             }
         });
 
-        productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product", "Productos"));
+        productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product", "Productos",produccionButton));
 
-        proveedoresButton.setOnMouseClicked(new HomeLoader("/fxml/provider.fxml","provider", "Proveedores"));
+        proveedoresButton.setOnMouseClicked(new HomeLoader("/fxml/provider.fxml","provider", "Proveedores", proveedoresButton));
 
-        catalogosButton.setOnMouseClicked(new HomeLoader("/fxml/catalog.fxml","catalog", "Catalogos"));
+        catalogosButton.setOnMouseClicked(new HomeLoader("/fxml/catalog.fxml","catalog", "Catalogos", catalogosButton));
 
-        empleadosButton.setOnMouseClicked(new HomeLoader("/fxml/employee.fxml","employee", "Empleados"));
+        empleadosButton.setOnMouseClicked(new HomeLoader("/fxml/employee.fxml","employee", "Empleados", empleadosButton));
 
-        regalosButton.setOnMouseClicked(new HomeLoader("/fxml/gift.fxml","storage", "Regalos"));
+        regalosButton.setOnMouseClicked(new HomeLoader("/fxml/gift.fxml","storage", "Regalos", regalosButton));
 
-        clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client", "Clientes"));
+        clientesButton.setOnMouseClicked(new HomeLoader("/fxml/client.fxml","client", "Clientes",clientesButton));
 
-        comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase", "Compras"));
+        comprasButton.setOnMouseClicked(new HomeLoader("/fxml/purchase.fxml","purchase", "Compras",comprasButton));
 
-        caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package", "Productos en Caducidad"));
+        caducidadButton.setOnMouseClicked(new HomeLoader("/fxml/expiration_products.fxml","package", "Productos en Caducidad", caducidadButton));
 
-        rebajasButton.setOnMouseClicked(new HomeLoader("/fxml/rebates.fxml","rebates", "Rebajas"));
+        rebajasButton.setOnMouseClicked(new HomeLoader("/fxml/rebates.fxml","rebates", "Rebajas", rebajasButton));
 
-        ventasButton.setOnMouseClicked(new HomeLoader("/fxml/order_list.fxml", "orders", "Ventas"));
+        ventasButton.setOnMouseClicked(new HomeLoader("/fxml/order_list.fxml", "orders", "Ventas", ventasButton));
 
-        calendarioButton.setOnMouseClicked(new HomeLoader("/fxml/calendar.fxml", "calendar", "Calendario"));
+        calendarioButton.setOnMouseClicked(new HomeLoader("/fxml/calendar.fxml", "calendar", "Calendario", calendarioButton));
 
-        contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/contability.fxml", "accounting", "Contabilidad"));
+        contabilidadButton.setOnMouseClicked(new HomeLoader("/fxml/contability.fxml", "accounting", "Contabilidad", contabilidadButton));
 
-        analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics", "Estadisticas"));
+        analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics", "Estadisticas",analisisButton));
 
-        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion"));
+        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion", produccionButton));
 
-        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion"));
-
-        tiempoStockButton.setOnMouseClicked(new HomeLoader("/fxml/product_stock_time.fxml", "stock", "Promedio tiempo Stock"));
+        tiempoStockButton.setOnMouseClicked(new HomeLoader("/fxml/product_stock_time.fxml", "stock", "Promedio tiempo Stock", tiempoStockButton));
 
     }
 
@@ -184,8 +187,10 @@ public class HomeController implements Initializable {
         private final String rootResourceNameCompare;
         private final String resource;
         private final String title;
+        private final JFXButton button;
 
-        public HomeLoader(String resource, String rootName, String title){
+        public HomeLoader(String resource, String rootName, String title, JFXButton button){
+            this.button = button;
             this.resource = resource;
             this.rootResourceNameCompare = rootName;
             this.title = title;
@@ -197,6 +202,11 @@ public class HomeController implements Initializable {
                 if (saveCanges())
                     return;
                 loadView(resource);
+                if (actualButton!=null){
+                    actualButton.setStyle(" -fx-background-color: black;");
+                }
+                button.setStyle(" -fx-background-color: #a99f9f;");
+                actualButton = button;
                 rootResourceName = rootResourceNameCompare;
                 titleLabel.setText(title);
             }

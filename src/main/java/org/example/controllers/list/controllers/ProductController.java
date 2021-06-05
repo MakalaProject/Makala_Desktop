@@ -185,6 +185,7 @@ public class ProductController extends ProductParentController implements IListC
 
     @Override
     public void update() {
+        checkFields();
         if(!nombreField.getText().isEmpty() && !minField.getText().isEmpty() && !maxField.getText().isEmpty() && !stockField.getText().isEmpty() && !precioField.getText().isEmpty()){
             if(Integer.parseInt(minField.getText())>0 && Integer.parseInt(maxField.getText())>0 && Float.parseFloat(precioField.getText())>0){
                 if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())){
@@ -271,10 +272,12 @@ public class ProductController extends ProductParentController implements IListC
                 actualProduct = object;
                 productObservableList.add(object);
                 userClicked = false;
+                actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
                 comboBox.setValue(object.getProductClassDto().getProductType());
                 changeList();
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
+                updateView();
             }
             if(actualProduct != null) {
                 actualPropertiesController.setObject(actualProduct);
@@ -320,6 +323,7 @@ public class ProductController extends ProductParentController implements IListC
         stockField.setText(actualProduct.formatStock(stockLabel).toString());
         actualProduct.formatStock(minLabel);
         actualProduct.formatStock(maxLabel);
+        clasificacionComboBox.setDisable(actualProduct.getPrivacy().equals("Publico"));
         privacidadComboBox.setValue(actualProduct.getPrivacy());
         tipoComboBox.setValue(actualProduct.getProductClassDto().getProductType());
         clasificacionComboBox.setValue(actualProduct.getProductClassDto());
@@ -361,7 +365,6 @@ public class ProductController extends ProductParentController implements IListC
                 if(actualProduct.getPrivacy() == null) {
                     actualProduct = (Product) controller.findObject(listView.getSelectionModel().getSelectedItem());
                     actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
-                    System.out.println("busqueda");
                     Product p = listView.getSelectionModel().getSelectedItem();
                     actualList.set(actualList.indexOf(listView.getSelectionModel().getSelectedItem()), actualProduct);
                     if(listView.getSelectionModel().getSelectedItem() != actualProduct) {
@@ -387,15 +390,13 @@ public class ProductController extends ProductParentController implements IListC
     private void privacyProduct(){
         if (!actualProduct.getPrivacy().equals("Privado")){
             userClicked = false;
-            nombreField.setDisable(true);
-            clasificacionComboBox.setDisable(true);
+            nombreField.setEditable(false);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
             propertiesVBox.setDisable(true);
         }else {
             userClicked = false;
-            nombreField.setDisable(false);
-            clasificacionComboBox.setDisable(false);
+            nombreField.setEditable(true);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             propertiesVBox.setDisable(false);

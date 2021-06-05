@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="519.0" prefWidth="595.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AdminInfo">
-    <Label layoutX="41.0" layoutY="302.0" text="Nombres" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="302.0">
+<AnchorPane prefHeight="463.0" prefWidth="595.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.AdminInfo">
+    <Label layoutX="41.0" layoutY="305.0" prefHeight="28.0" prefWidth="102.0" text="Nombres*" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="305.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label layoutX="42.0" layoutY="341.0" text="Apellidos" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="341.0">
+    <Label layoutX="42.0" layoutY="341.0" prefHeight="28.0" prefWidth="102.0" text="Apellidos*" AnchorPane.leftAnchor="42.0" AnchorPane.topAnchor="341.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
     <TextField fx:id="nombresField" layoutX="175.0" layoutY="303.0" prefHeight="27.0" prefWidth="248.0" promptText="Juan" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="303.0" />
-    <Label layoutX="41.0" layoutY="380.0" text="Telefono" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="380.0">
+    <Label layoutX="41.0" layoutY="380.0" prefHeight="28.0" prefWidth="102.0" text="Telefono*" AnchorPane.leftAnchor="41.0" AnchorPane.topAnchor="380.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
         </font>
@@ -57,5 +57,10 @@
         <effect>
             <DropShadow />
         </effect></AnchorPane>
+    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="266.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="266.0">
+        <font>
+            <Font name="Roboto Light" size="17.0" />
+        </font>
+    </Label>
 
 </AnchorPane>

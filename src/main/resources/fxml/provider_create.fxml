@@ -9,8 +9,8 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.ProviderCreateController">
-    <ScrollPane fitToWidth="true" pannable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
+<AnchorPane prefHeight="714.0" prefWidth="645.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.ProviderCreateController">
+    <ScrollPane fitToWidth="true" layoutY="293.0" pannable="true" prefHeight="567.0" prefWidth="645.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="293.0">
         <AnchorPane fx:id="fieldsAnchorPane" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
             <children>
                 <Label layoutX="27.0" layoutY="229.0" prefHeight="28.0" prefWidth="110.0" text="Email" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="449.0" AnchorPane.topAnchor="229.0">
@@ -119,12 +119,17 @@
                                 <FontAwesomeIconView fx:id="productsButton" fill="WHITE" glyphName="EDIT" layoutX="450.0" layoutY="34.0" size="30" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="8.285715103149414" />
                             </children>
                         </AnchorPane>
-                        <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+                        <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </VBox>
             </children>
         </AnchorPane>
     </ScrollPane>
+    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="263.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="263.0">
+        <font>
+            <Font name="Roboto Light" size="17.0" />
+        </font>
+    </Label>
     <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
                     <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="214.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="213.66586303710938" AnchorPane.topAnchor="50.0">

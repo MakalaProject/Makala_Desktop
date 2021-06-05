@@ -39,25 +39,30 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
         telefonoField.textProperty().addListener(new ChangedVerificationFields(telefonoField,false,10));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
+            checkFields();
             if(!nombresField.getText().isEmpty() || !apellidosField.getText().isEmpty() || !telefonoField.getText().isEmpty() || !contraseñaField.getText().isEmpty()){
                 if (telefonoField.getText().length() == 10) {
-                    setInfo(employee);
-                    Employee returnedEmployee = null;
-                    try {
-                        returnedEmployee = (Employee) Request.postJ(employee.getRoute(), employee);
-                    } catch (Exception e) {
-                        duplyElementAlert(employee.getIdentifier());
-                        return;
+                    if (departments.size()>0) {
+                        setInfo(employee);
+                        Employee returnedEmployee = null;
+                        try {
+                            returnedEmployee = (Employee) Request.postJ(employee.getRoute(), employee);
+                        } catch (Exception e) {
+                            duplyElementAlert(employee.getIdentifier());
+                            return;
+                        }
+                        Node source = (Node) mouseEvent.getSource();
+                        Stage stage = (Stage) source.getScene().getWindow();
+                        stage.close();
+                        stage.setUserData(returnedEmployee);
+                    }else {
+                        showAlertEmptyFields("Debes agregar departamentos");
                     }
-                    Node source = (Node) mouseEvent.getSource();
-                    Stage stage = (Stage) source.getScene().getWindow();
-                    stage.close();
-                    stage.setUserData(returnedEmployee);
                 }else {
                     showAlertEmptyFields("Los dígitos del teléfono deben ser 10");
                 }
             }else{
-                showAlertEmptyFields("No puedes dejar campos indispensables vacios");
+                showAlertEmptyFields("No puedes dejar campos marcados con * vacios");
             }
         });
 
@@ -89,6 +94,19 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
         departmentList.setItems(FXCollections.observableArrayList(departments));
     }
 
+    protected void checkFields(){
+        super.checkFields();
+        if (apellidosField.getText().isEmpty()) {
+            apellidosField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            apellidosField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+        if (contraseñaField.getText().isEmpty()) {
+            contraseñaField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        } else {
+            contraseñaField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
+        }
+    }
     @Override
     public void setInfo(Employee employee) {
         super.setInfo(employee);
