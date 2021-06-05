@@ -155,6 +155,7 @@
                                               </VBox.margin>
                                           </VBox>
                                       </VBox>
+                        <AnchorPane fx:id="blockPane" layoutX="5.0" layoutY="1.0" prefHeight="512.0" prefWidth="497.0" AnchorPane.bottomAnchor="617.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0" />
                                 </AnchorPane>
                         </children>
                     </AnchorPane>

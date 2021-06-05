@@ -1,6 +1,7 @@
 package org.example.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.example.model.Adress.Address;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Order {
     protected Integer idOrder;
     protected BigDecimal totalPrice;

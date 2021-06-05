@@ -47,6 +47,7 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
     @FXML TextField fechaCompraField;
     @FXML TextField estadoField;
     @FXML TextField ciudadField;
+    @FXML AnchorPane blockPane;
     @FXML TextField direccionField;
     @FXML ListView<GiftEditable> giftListView;
     @FXML ListView<Comment> commentsListView;
@@ -70,6 +71,8 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
                 updateView();
             }
         });
+        listView.getSelectionModel().select(0);
+        updateView();
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);
@@ -159,6 +162,12 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
 
     @Override
     public boolean existChanges() {
+        if((envioDatePicker.getValue() != null) && actualOrder.getShippingDate() == null){
+             if(showAlertUnsavedElement(actualOrder.toString(), "Catalogo")){
+                 return false;
+             };
+            return true;
+        }
         return false;
     }
 
@@ -199,12 +208,23 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
 
     @Override
     public void updateView() {
-        editSwitch.setSelected(false);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
         actualOrder = listView.getSelectionModel().getSelectedItem();
         actualOrder = (Order)Request.find("orders", actualOrder.getIdOrder(), Order.class);
         index = orderObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         putFields();
+        if(actualOrder.getShippingDate() == null) {
+            blockPane.setVisible(false);
+            editSwitch.setVisible(true);
+            editSwitch.setSelected(false);
+            editView(fieldsAnchorPane, editSwitch, updateButton);
+        }else{
+            blockPane.setVisible(true);
+            editSwitch.setSelected(true);
+            editSwitch.setVisible(false);
+            editView(fieldsAnchorPane, editSwitch, updateButton);
+            updateButton.setVisible(false);
+        }
+
     }
 
     @Override

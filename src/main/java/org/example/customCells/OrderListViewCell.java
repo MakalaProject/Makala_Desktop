@@ -15,6 +15,8 @@ import java.io.IOException;
 public class OrderListViewCell extends ListCell<Order> {
     @FXML
     Label orderName;
+    @FXML
+    Label fechaLabel;
 
     @FXML
     private AnchorPane anchorPane;
@@ -43,6 +45,7 @@ public class OrderListViewCell extends ListCell<Order> {
 
             }
             orderName.setText(String.valueOf(order) + "- " + Formatter.FormatDateTime(order.getDate()));
+            fechaLabel.setVisible(order.getShippingDate() != null);
             statusIcon.setVisible(order.getShippingDate() != null);
             setText(null);
             setGraphic(anchorPane);

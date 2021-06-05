@@ -5,15 +5,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="orderName" layoutX="55.0" layoutY="33.0" prefHeight="28.0" prefWidth="331.0" text="Orden" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="33.0">
+        <Label fx:id="orderName" layoutX="55.0" layoutY="6.0" prefHeight="77.0" prefWidth="211.0" text="Orden" wrapText="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="6.0">
             <font>
                 <Font name="Roboto Light" size="20.0" />
             </font></Label>
         <FontAwesomeIconView glyphName="TICKET" layoutX="14.0" layoutY="57.0" size="30" AnchorPane.bottomAnchor="32.714284896850586" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.285715103149414">
 
         </FontAwesomeIconView>
-      <FontAwesomeIconView fx:id="statusIcon" glyphName="CHECK_CIRCLE" layoutX="267.0" layoutY="64.0" size="50" wrappingWidth="50.0" AnchorPane.bottomAnchor="22.85714340209961" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="21.14285659790039" />
+      <FontAwesomeIconView fx:id="statusIcon" fill="#53d037" glyphName="CHECK_CIRCLE" layoutX="286.0" layoutY="57.0" size="30" wrappingWidth="50.0" AnchorPane.bottomAnchor="32.714284896850586" AnchorPane.rightAnchor="83.0" AnchorPane.topAnchor="31.285715103149414" />
+      <Label fx:id="fechaLabel" layoutX="336.0" layoutY="13.0" prefHeight="62.0" prefWidth="82.0" text="Fecha de envio establecida " wrapText="true" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="13.0">
+         <font>
+            <Font name="Roboto Light" size="12.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
