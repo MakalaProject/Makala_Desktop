@@ -109,7 +109,7 @@ public class ManualStepController implements Initializable, IControllerCreate<St
                     showAlertEmptyFields("El tiempo de elaboración no puede ser 0");
                 }
             }else {
-                showAlertEmptyFields("No puedes dejar campos vacios");
+                showAlertEmptyFields("No puedes dejar un paso vacio");
             }
         });
 
