@@ -89,18 +89,25 @@ public class StatisticsController implements Initializable, IListController<Data
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
                 LocalDate today = LocalDate.now();
+                inicioDatePicker.setValue(finalDatePicker.getValue().plusMonths(-1));
                 setDisable(empty || date.compareTo(today) > 0 );
             }
         });
         inicioDatePicker.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
-                LocalDate today = LocalDate.now();
+                LocalDate today = finalDatePicker.getValue();
                 today = today.plusMonths(-1);
                 setDisable(empty || date.compareTo(today) > 0 );
             }
         });
         startButton.setOnMouseClicked(mouseEvent -> {
+            if(inicioDatePicker.getValue().compareTo(finalDatePicker.getValue()) > 0){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Fechas incorrectas");
+                alert.setHeaderText("Las fechas de fin es menor a la de inicio");
+                alert.setContentText("Una vez que actualices coloques la fecha de envio, no podrás volver a colocar fecha");
+            }
             actualGraph = estadisticaComboBox.getValue();
             //DataAnalysis sendData = new DataAnalysis(inicioDatePicker.getValue(), timeFilterWords[timeFilterCB.getSelectionModel().getSelectedIndex()]);
             String route;
