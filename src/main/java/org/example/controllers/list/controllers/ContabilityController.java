@@ -3,6 +3,8 @@ package org.example.controllers.list.controllers;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -33,15 +35,43 @@ public class ContabilityController implements Initializable, IListController<Acc
     @FXML ComboBox<String> timeFilterCB;
     @FXML AnchorPane propertiesAnchorPane;
     @FXML Button calcularButton;
-
     @FXML Label startLabel;
     @FXML Label endLabel;
     Parent root = null;
 
     private static final ObservableList<String> comboBoxItems = FXCollections.observableArrayList("Mes", "Año","Intervalo");
-    private static final ObservableList<Accounting> accountingObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        startDatePicker.setValue(LocalDate.now().minusMonths(1));
+        endDatePicker.setValue(LocalDate.now());
+        startDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(LocalDate.now()));
+                    }});
+        endDatePicker.setDayCellFactory(d ->
+                new DateCell() {
+                    @Override public void updateItem(LocalDate item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setDisable(item.isAfter(LocalDate.now()));
+                    }});
+        startDatePicker.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                endDatePicker.setDayCellFactory(d ->
+                        new DateCell() {
+                            @Override public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                setDisable(item.isBefore(startDatePicker.getValue().plusMonths(1)) || item.isAfter(LocalDate.now()));
+                            }});
+                if (endDatePicker.getValue().compareTo(startDatePicker.getValue())<0){
+                    endDatePicker.setValue(endDatePicker.getValue().plusMonths(1));
+                }
+            }
+        });
+
+
         timeFilterCB.getItems().addAll(comboBoxItems);
         timeFilterCB.setValue("Mes");
         startLabel.setVisible(false);
@@ -51,7 +81,7 @@ public class ContabilityController implements Initializable, IListController<Acc
             if (timeFilterCB.getValue().equals("Intervalo")){
                 startLabel.setVisible(true);
                 endLabel.setVisible(true);
-                endDatePicker.setDisable(true);
+                endDatePicker.setVisible(true);
             }else {
                 startLabel.setVisible(false);
                 endLabel.setVisible(false);
@@ -70,6 +100,16 @@ public class ContabilityController implements Initializable, IListController<Acc
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }else if(timeFilterCB.getValue().equals("Intervalo")){
+                /*Accounting accounting = (Accounting) Request.find("data-analysis/accounting/find-one?criteria="+ startDatePicker.getValue().toString(),Accounting.class);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contability_info .fxml"));
+                try {
+                    root = loader.load();
+                    ContabilityDetails controller = loader.getController();
+                    controller.setObject(accounting);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }*/
             }else{
                 ObservableList<Accounting> accountingObservableList = FXCollections.observableArrayList(Request.getJ("data-analysis/accounting?criteria=" + startDatePicker.getValue(), Accounting[].class, false));
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contability_list_properties.fxml"));

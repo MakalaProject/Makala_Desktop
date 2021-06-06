@@ -9,18 +9,33 @@
    <items>
       <AnchorPane prefHeight="398.0" prefWidth="371.0" style="-fx-background-color: white;">
          <children>
-             <AnchorPane layoutY="49.0" prefHeight="11.0" prefWidth="700.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="49.0" />
+             <AnchorPane layoutY="72.0" prefHeight="11.0" prefWidth="700.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="72.0" />
              <Label contentDisplay="RIGHT" layoutX="59.0" layoutY="17.0" prefHeight="32.0" prefWidth="111.0" text="Meses " textAlignment="CENTER" textFill="#757575" wrapText="true" AnchorPane.leftAnchor="59.0" AnchorPane.topAnchor="17.0">
                  <font>
                      <Font name="Roboto Light" size="20.0" />
                  </font>
              </Label>
              <FontAwesomeIconView glyphName="CALENDAR" layoutX="25.0" layoutY="40.0" size="20" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="22.85714340209961" />
-            <ListView fx:id="monthsListView" layoutX="25.0" layoutY="74.0" prefHeight="323.0" prefWidth="275.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0" />
+            <ListView fx:id="monthsListView" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; " layoutX="25.0" layoutY="83.0" prefHeight="315.0" prefWidth="321.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="83.0" />
          </children></AnchorPane>
        <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E3DAD8;">
            <children>
                <Label layoutX="14.0" layoutY="148.0" prefHeight="28.0" prefWidth="86.0" text="Vendido" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="213.0" AnchorPane.topAnchor="148.0">
+                   <font>
+                       <Font name="Roboto Light" size="20.0" />
+                   </font>
+               </Label>
+               <Label layoutX="268.0" layoutY="200.0" prefHeight="28.0" prefWidth="37.0" text="\$" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0">
+                   <font>
+                       <Font name="Roboto Light" size="20.0" />
+                   </font>
+               </Label>
+               <Label layoutX="268.0" layoutY="259.0" prefHeight="28.0" prefWidth="37.0" text="\$" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="259.0">
+                   <font>
+                       <Font name="Roboto Light" size="20.0" />
+                   </font>
+               </Label>
+               <Label layoutX="268.0" layoutY="148.0" prefHeight="28.0" prefWidth="37.0" text="\$" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="148.0">
                    <font>
                        <Font name="Roboto Light" size="20.0" />
                    </font>
@@ -35,29 +50,29 @@
                        <Font name="Roboto Light" size="20.0" />
                    </font>
                </Label>
-               <TextField fx:id="vendidoField" editable="false" focusTraversable="false" layoutX="117.0" layoutY="145.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="166.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="145.0">
+               <TextField fx:id="vendidoField" editable="false" focusTraversable="false" layoutX="117.0" layoutY="145.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="144.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="145.0">
                    <font>
                        <Font size="15.0" />
                    </font>
                </TextField>
-               <TextField fx:id="gastosField" editable="false" focusTraversable="false" layoutX="117.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="166.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="256.0">
+               <TextField fx:id="gastosField" editable="false" focusTraversable="false" layoutX="117.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="144.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="256.0">
                    <font>
                        <Font size="15.0" />
                    </font>
                </TextField>
-               <TextField fx:id="gananciaField" editable="false" focusTraversable="false" layoutX="117.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="166.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="196.0">
+               <TextField fx:id="gananciaField" editable="false" focusTraversable="false" layoutX="117.0" layoutY="196.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="144.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="196.0">
                    <font>
                        <Font size="15.0" />
                    </font>
                </TextField>
             <AnchorPane layoutX="7.0" prefHeight="123.0" prefWidth="313.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                     <Label fx:id="titleLabel" alignment="CENTER" prefHeight="28.0" prefWidth="221.0" text="Detalles de: ABRIL" textAlignment="CENTER" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="7.0">
+                     <Label fx:id="titleLabel" alignment="CENTER" prefHeight="28.0" prefWidth="221.0" text="Detalles de: ABRIL" textAlignment="CENTER" AnchorPane.leftAnchor="68.0" AnchorPane.rightAnchor="54.0" AnchorPane.topAnchor="7.0">
                          <font>
                              <Font name="Roboto Light" size="20.0" />
                          </font>
                      </Label>
-                     <FontAwesomeIconView glyphName="MONEY" size="60" AnchorPane.leftAnchor="115.28571319580078" AnchorPane.rightAnchor="132.71428680419922" AnchorPane.topAnchor="49.57143020629883">
+                     <FontAwesomeIconView glyphName="MONEY" layoutX="130.0" layoutY="99.0" size="60" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="47.57143020629883">
 
                </FontAwesomeIconView>
                </children></AnchorPane>
