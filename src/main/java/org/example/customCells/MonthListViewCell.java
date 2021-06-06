@@ -9,6 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.layout.AnchorPane;
 import org.example.interfaces.IConstructor;
 import org.example.model.Accounting;
+import org.example.model.Formatter;
 import org.example.model.products.Product;
 
 import java.io.IOException;
@@ -42,7 +43,7 @@ public class MonthListViewCell extends ListCell<Accounting> implements IConstruc
                     e.printStackTrace();
                 }
             }
-            monthName.setText(month.getMonth().toString());
+            monthName.setText(Formatter.FormatMonth(month.getMonth()));
             setText(null);
             setGraphic(anchorPane);
 

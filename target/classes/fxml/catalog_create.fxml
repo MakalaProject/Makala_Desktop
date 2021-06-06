@@ -74,10 +74,14 @@
                         <ListView fx:id="giftListView" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
                     </children>
                 </VBox>
-
             </children>
         </AnchorPane>
     </ScrollPane>
+       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+           <font>
+               <Font name="Roboto Light" size="17.0" />
+           </font>
+       </Label>
 
 
 </AnchorPane>

@@ -9,13 +9,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.example.customCells.MonthListViewCell;
 import org.example.model.Accounting;
+import org.example.model.Formatter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ContabilityListController implements Initializable {
     @FXML
-    ListView<Accounting> contabilityListView;
+    ListView<Accounting> monthsListView;
     Accounting actualAccounting;
     @FXML
     TextField vendidoField;
@@ -25,9 +26,9 @@ public class ContabilityListController implements Initializable {
     @FXML TextField gananciaField;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        contabilityListView.setOnMouseClicked(mouseEvent -> {
-            actualAccounting = contabilityListView.getSelectionModel().getSelectedItem();
-            titleLabel.setText("Detalles de: " + actualAccounting.getMonth().toString());
+        monthsListView.setOnMouseClicked(mouseEvent -> {
+            actualAccounting = monthsListView.getSelectionModel().getSelectedItem();
+            titleLabel.setText("Detalles de: " + Formatter.FormatMonth(actualAccounting.getMonth()));
             vendidoField.setText(actualAccounting.getSold().toString());
             gastosField.setText(actualAccounting.getBought().toString());
             gananciaField.setText(actualAccounting.getBalance().toString());
@@ -35,9 +36,8 @@ public class ContabilityListController implements Initializable {
     }
 
     public void setData(ObservableList<Accounting> accountingObservableList){
-
-        contabilityListView.setItems(accountingObservableList);
-        contabilityListView.setCellFactory(cellList -> new MonthListViewCell());
-        contabilityListView.prefHeightProperty().bind(Bindings.size(accountingObservableList).multiply(35));
+        monthsListView.setItems(accountingObservableList);
+        monthsListView.setCellFactory(cellList -> new MonthListViewCell());
+        monthsListView.prefHeightProperty().bind(Bindings.size(accountingObservableList).multiply(35));
     }
 }

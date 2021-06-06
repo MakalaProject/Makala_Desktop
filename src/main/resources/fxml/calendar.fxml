@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.calendarfx.view.*?>
 <?import com.calendarfx.view.page.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import com.calendarfx.view.DetailedDayView?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.text.Font?>
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.CalendarController">
     <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -13,10 +14,14 @@
         </children>
     </AnchorPane>
     <ComboBox fx:id="calendarType" layoutX="178.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="90" AnchorPane.rightAnchor="90" AnchorPane.topAnchor="50.0" />
-
-    <DetailedDayView  fx:id="diaDayView" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="89.0" AnchorPane.bottomAnchor="0.0" prefWidth="500">
+    <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="255.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+        <font>
+            <Font name="Roboto Light" size="17.0" />
+        </font>
+    </Label>
+    <DetailedDayView fx:id="diaDayView" prefWidth="500" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="89.0">
 
     </DetailedDayView>
-    <MonthPage fx:id="mesPage" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="89.0" AnchorPane.bottomAnchor="0.0">
+    <MonthPage fx:id="mesPage" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
     </MonthPage>
 </AnchorPane>

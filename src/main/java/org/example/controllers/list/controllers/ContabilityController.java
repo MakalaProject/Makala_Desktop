@@ -62,7 +62,7 @@ public class ContabilityController implements Initializable, IListController<Acc
         calcularButton.setOnMouseClicked(mouseEvent -> {
             if(timeFilterCB.getValue().equals("Mes")){
                 Accounting accounting = (Accounting) Request.find("data-analysis/accounting/find-one?criteria="+ startDatePicker.getValue().toString(),Accounting.class);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contability_info.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contability_info .fxml"));
                 try {
                     root = loader.load();
                     ContabilityDetails controller = loader.getController();

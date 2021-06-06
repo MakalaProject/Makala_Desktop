@@ -138,7 +138,6 @@ public class CalendarController implements Initializable, IListController<Calend
                 }
                 return false;
             }
-
         });
         updateButton.setOnMouseClicked(mouseEvent -> {
             for(Entry<CalendarDetailedActivity> entry : allActivities){
@@ -187,7 +186,6 @@ public class CalendarController implements Initializable, IListController<Calend
                 }
             }
         }
-
     }
 
     private void filterEntries(){

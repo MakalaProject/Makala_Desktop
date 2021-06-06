@@ -98,6 +98,12 @@
                <effect>
                   <DropShadow />
                </effect></AnchorPane>
-            </children></AnchorPane>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="255.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+                    <font>
+                        <Font name="Roboto Light" size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
     </items>
 </SplitPane>

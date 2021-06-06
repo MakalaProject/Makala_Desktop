@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="475.0" prefWidth="689.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ContabilityController">
+<AnchorPane prefHeight="497.0" prefWidth="757.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ContabilityController">
     <children>
-      <ScrollPane prefHeight="475.0" prefWidth="689.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <AnchorPane prefHeight="475.0" prefWidth="687.0" style="-fx-background-color: #E3DAD8;">
+            <AnchorPane style="-fx-background-color: #E3DAD8;">
                <children>
             
                     <Label alignment="CENTER" layoutX="116.0" layoutY="22.0" prefHeight="28.0" prefWidth="162.0" text="Fecha de cálculo" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="22.0">

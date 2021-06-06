@@ -14,7 +14,6 @@ public class ContabilityDetails implements Initializable {
     @FXML TextField vendidoField;
     @FXML TextField gastosField;
     @FXML TextField gananciaField;
-    @FXML TextField fechaField;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -30,6 +29,5 @@ public class ContabilityDetails implements Initializable {
         vendidoField.setText(actualAccounting.getSold().toString());
         gastosField.setText(actualAccounting.getBought().toString());
         gananciaField.setText(actualAccounting.getBalance().toString());
-        fechaField.setText(actualAccounting.getMonth().toString());
     }
 }

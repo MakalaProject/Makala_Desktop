@@ -7,7 +7,7 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="productName" layoutX="55.0" layoutY="33.0" prefHeight="28.0" prefWidth="276.0" text="Mes">
+        <Label fx:id="monthName" layoutX="55.0" layoutY="33.0" prefHeight="28.0" prefWidth="276.0" text="Mes">
             <font>
                 <Font name="Roboto Light" size="20.0" />
             </font></Label>
