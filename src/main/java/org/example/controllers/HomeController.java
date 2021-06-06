@@ -23,9 +23,12 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.example.controllers.elements.controllers.NotificationController;
 import org.example.controllers.elements.controllers.StatisticsProductInfo;
+import org.example.controllers.list.controllers.PurchaseController;
+import org.example.controllers.parent.controllers.PurchaseParentController;
 import org.example.interfaces.IListController;
 import org.example.model.Employee;
 import org.example.model.Notification;
+import org.example.model.Purchase;
 import org.example.services.Request;
 
 public class HomeController implements Initializable {
@@ -160,6 +163,10 @@ public class HomeController implements Initializable {
         try {
             loader = new FXMLLoader(getClass().getResource(xmlResource));
             root = loader.load();
+            if (rootResourceName.equals("purchase")){
+                PurchaseParentController controller = loader.getController();
+                controller.setActualEmployee(administrator);
+            }
             AnchorPane.setTopAnchor(root, 0D);
             AnchorPane.setBottomAnchor(root, 0D);
             AnchorPane.setRightAnchor(root, 0D);

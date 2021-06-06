@@ -6,11 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,6 +19,7 @@ import org.example.customCells.GiftListViewCell;
 import org.example.customCells.PurchaseListViewCell;
 import org.example.exceptions.ProductDeleteException;
 import org.example.interfaces.IListController;
+import org.example.model.Employee;
 import org.example.model.Provider;
 import org.example.model.Purchase;
 import org.example.services.Request;
@@ -29,6 +29,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PurchaseController extends PurchaseParentController implements IListController<Purchase> {
@@ -156,20 +157,23 @@ public class PurchaseController extends PurchaseParentController implements ILis
         checkFields();
         if (actualPurchase.getProducts().size() > 0 && !priceField.getText().isEmpty()) {
             if (Float.parseFloat(priceField.getText()) > 0) {
-                Purchase purchase = new Purchase();
                 setInfo(purchase);
                 if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
-                    try {
-                        Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
-                        purchaseObservableList.set(index, purchase);
-                        actualPurchase = purchase;
-                        actualPurchase.setSelectedProducts();
-                        listView.setItems(purchaseObservableList);
-                        listView.getSelectionModel().select(actualPurchase);
-                        listView.scrollTo(actualPurchase);
-                        updateView();
-                    } catch (ProductDeleteException e) {
-                        e.printStackTrace();
+                    if (purchase.getReceivedDate() != null) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Confirmar compra");
+                        alert.setHeaderText("Se confirmará la compra y se agregaran los productos al almacen");
+                        alert.setContentText("¿Seguro quieres confirmar?");
+                        Optional<ButtonType> result = alert.showAndWait();
+                        if (result.get() == ButtonType.OK) {
+                            purchase.setIdProvider(actualEmployee.getIdUser());
+                            createPurchase();
+                        } else {
+                            purchase.setReceivedDate(null);
+                            receivedDatePicker.setValue(null);
+                        }
+                    }else{
+                        createPurchase();
                     }
                 } else {
                     showAlertEmptyFields("No puedes dejar la fecha de pago vacia si ya estableciste fecha de entrega");
@@ -182,7 +186,20 @@ public class PurchaseController extends PurchaseParentController implements ILis
         }
     }
 
-
+    private void createPurchase(){
+        try {
+            Purchase purchaseR = (Purchase) Request.putJ(actualPurchase.getRoute(), purchase);
+            purchaseObservableList.set(index, purchase);
+            actualPurchase = purchase;
+            actualPurchase.setSelectedProducts();
+            listView.setItems(purchaseObservableList);
+            listView.getSelectionModel().select(actualPurchase);
+            listView.scrollTo(actualPurchase);
+            updateView();
+        } catch (ProductDeleteException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public boolean existChanges() {
         if(actualPurchase == null){
@@ -216,7 +233,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
                 new DateCell() {
                     @Override public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
-                        setDisable(item.isBefore(actualPurchase.getOrderDate()));
+                        setDisable(item.isAfter(LocalDate.now()));
                     }});
         if (actualPurchase.getPayDate() != null){
             payDatePicker.setValue(actualPurchase.getPayDate());
@@ -228,6 +245,15 @@ public class PurchaseController extends PurchaseParentController implements ILis
         }else{
             receivedDatePicker.setValue(null);
         }
+        if (actualPurchase.getIdProvider()!= null){
+            if (actualPurchase.getIdProvider().equals(actualPurchase.getId())){
+                employeeLabel.setText(actualEmployee.getFirstName());
+            }else
+            {
+                Employee employee = (Employee) Request.find("employees", Employee.class);
+                employeeLabel.setText(employee.getFirstName());
+            }
+        }
         setProviderData();
         setProductsList();
         verifyProducts();
@@ -236,7 +262,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
         if (actualPurchase.getComment() != null){
             commentTextArea.setText(actualPurchase.getComment().getComment());
         }else{
-            commentTextArea.setText("");
+            commentTextArea.clear();
         }
     }
 
@@ -245,6 +271,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
         actualPurchase = listView.getSelectionModel().getSelectedItem();
         index = purchaseObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
+        editView(fieldsAnchorPane, editSwitch, updateButton);
         if (actualPurchase.getReceivedDate() != null){
             orderDatePicker.setDisable(false);
             editSwitch.setSelected(true);
@@ -260,7 +287,6 @@ public class PurchaseController extends PurchaseParentController implements ILis
         }
         purchaseProducts = new ArrayList<>(actualPurchase.getProducts());
         originalPurchaseProducts = new ArrayList<>(actualPurchase.getProducts());
-        editView(fieldsAnchorPane, editSwitch, updateButton);
         provider = providers.stream().filter(p -> p.getIdUser().equals(actualPurchase.getIdProvider())).findAny().orElse(null);
         putFields();
     }

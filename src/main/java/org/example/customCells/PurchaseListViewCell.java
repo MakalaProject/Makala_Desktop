@@ -1,5 +1,7 @@
 package org.example.customCells;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -10,10 +12,15 @@ import org.example.model.Formatter;
 import org.example.model.Purchase;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class PurchaseListViewCell extends ListCell<Purchase> implements IConstructor<PurchaseListViewCell> {
     @FXML
     Label purchaseDate;
+    @FXML
+    Label infLabel;
+    @FXML
+    FontAwesomeIconView checkIcon;
 
     @FXML
     private AnchorPane anchorPane;
@@ -42,6 +49,13 @@ public class PurchaseListViewCell extends ListCell<Purchase> implements IConstru
             }
 
             purchaseDate.setText(String.valueOf(purchase) + "- " +Formatter.FormatDate(purchase.getOrderDate()));
+            if (purchase.getReceivedDate()!=null){
+                infLabel.setText("Recibida");
+                checkIcon.setIcon(FontAwesomeIcon.CHECK_CIRCLE);
+            }else{
+                checkIcon.setVisible(false);
+                infLabel.setVisible(false);
+            }
             setText(null);
             setGraphic(anchorPane);
         }
