@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="292.0" prefWidth="563.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="292.0" prefWidth="563.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.ContabilityDetails">
     <Label layoutX="14.0" layoutY="148.0" prefHeight="28.0" prefWidth="97.0" text="Vendido" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="452.0" AnchorPane.topAnchor="148.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
