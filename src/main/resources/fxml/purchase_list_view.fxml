@@ -7,12 +7,20 @@
 
 <AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="purchaseDate" layoutX="55.0" layoutY="33.0" prefHeight="28.0" prefWidth="276.0" text="Producto">
+      <Label fx:id="purchaseDate" layoutX="51.0" layoutY="33.0" prefHeight="28.0" prefWidth="145.0" text="Producto" AnchorPane.leftAnchor="51.0" AnchorPane.rightAnchor="135.0" AnchorPane.topAnchor="33.0">
          <font>
             <Font name="Roboto Light" size="20.0" />
          </font></Label>
-      <FontAwesomeIconView glyphName="SHOPPING_BAG" layoutX="14.0" layoutY="57.0" size="30">
+      <FontAwesomeIconView glyphName="SHOPPING_BAG" layoutX="14.0" layoutY="57.0" size="30" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.285715103149414">
          
       </FontAwesomeIconView>
+      <FontAwesomeIconView fx:id="checkIcon" glyphName="CLOCK_ALT" layoutX="199.0" layoutY="55.0" size="25" AnchorPane.rightAnchor="110.5714282989502" AnchorPane.topAnchor="33.571428298950195">
+
+      </FontAwesomeIconView>
+      <Label fx:id="infLabel" layoutX="229.0" layoutY="23.0" prefHeight="47.0" prefWidth="92.0" text="Producto" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="23.0">
+         <font>
+            <Font name="Roboto Light" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

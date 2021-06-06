@@ -40,6 +40,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     protected @FXML DatePicker receivedDatePicker;
     protected @FXML AnchorPane fieldsAnchorPane;
     protected @FXML Label providerName;
+    protected @FXML Label employeeLabel;
     protected @FXML TextField priceField;
     protected @FXML ListView<PurchaseProduct> productListView;
     protected @FXML FontAwesomeIconView updateButton;
@@ -51,6 +52,8 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     protected Purchase actualPurchase;
     protected Provider provider;
     protected boolean editProduct;
+    protected Employee actualEmployee;
+    protected Purchase purchase = new Purchase();
     protected ArrayList<PurchaseProduct> purchaseProducts = new ArrayList<>();
     protected ArrayList<PurchaseProduct> originalPurchaseProducts = new ArrayList<>();
     protected ObservableList<Provider> providers = FXCollections.observableArrayList(Request.getJ("users/providers",Provider[].class,true));
@@ -67,7 +70,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
                         new DateCell() {
                             @Override public void updateItem(LocalDate item, boolean empty) {
                                 super.updateItem(item, empty);
-                                setDisable(item.isBefore(orderDatePicker.getValue()));
+                                setDisable(item.isBefore(orderDatePicker.getValue()) || item.isAfter(LocalDate.now()));
                             }});
                 if (receivedDatePicker.getValue() != null && receivedDatePicker.getValue().compareTo(orderDatePicker.getValue())<0){
                     receivedDatePicker.setValue(orderDatePicker.getValue());
@@ -146,6 +149,10 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         } else {
             priceField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }
+    }
+
+    public void setActualEmployee(Employee actualEmployee) {
+        this.actualEmployee = actualEmployee;
     }
 
     @Override

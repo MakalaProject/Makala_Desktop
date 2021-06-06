@@ -32,10 +32,7 @@ public interface IListController<D>{
     };
 
     default boolean showAlertUnsavedElement(String elementName, String element){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
-        ImageView imageView = new ImageView(image);
-        alert.setGraphic(imageView);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(element + " sin guardar");
         alert.setHeaderText("Tienes cambios sin guardar de '" + elementName + "'");
         alert.setContentText("¿Quieres mantener los cambios?");

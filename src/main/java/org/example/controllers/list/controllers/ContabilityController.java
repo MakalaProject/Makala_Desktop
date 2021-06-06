@@ -9,8 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.controllers.ContabilityListController;
 import org.example.controllers.ExpirationProductInfoController;
 import org.example.controllers.elements.controllers.ContabilityDetails;
 import org.example.interfaces.IListController;
@@ -26,60 +28,72 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class ContabilityController implements Initializable, IListController<Accounting> {
-    @FXML DatePicker datePicker;
+    @FXML DatePicker startDatePicker;
+    @FXML DatePicker endDatePicker;
     @FXML ComboBox<String> timeFilterCB;
+    @FXML AnchorPane propertiesAnchorPane;
     @FXML Button calcularButton;
-    @FXML ListView<Accounting> contabilityListView;
-    @FXML Label dataLabel;
 
+    @FXML Label startLabel;
+    @FXML Label endLabel;
+    Parent root = null;
 
-    private static final ObservableList<String> comboBoxItems = FXCollections.observableArrayList("Mes", "Año");
-    private static final ObservableList<Accounting> accountingObservableList = FXCollections.observableArrayList(Request.getJ("data-analysis/accounting?criteria=2021-06-26", Accounting[].class, false));
+    private static final ObservableList<String> comboBoxItems = FXCollections.observableArrayList("Mes", "Año","Intervalo");
+    private static final ObservableList<Accounting> accountingObservableList = FXCollections.observableArrayList();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         timeFilterCB.getItems().addAll(comboBoxItems);
         timeFilterCB.setValue("Mes");
-
-        calcularButton.setOnMouseClicked(mouseEvent -> {
-            if(timeFilterCB.getValue().equals("Mes")){
-                Accounting accounting = (Accounting) Request.find("data-analysis/accounting/find-one?criteria="+ datePicker.getValue().toString(),Accounting.class);
-                contabilityListView.setVisible(false);
-                dataLabel.setVisible(true);
-                loadObject(accounting);
-            }else{
-                dataLabel.setVisible(false);
-                contabilityListView.setVisible(true);
-                contabilityListView.setItems(accountingObservableList);
-                contabilityListView.prefHeightProperty().bind(Bindings.size(accountingObservableList).multiply(23.7));
+        startLabel.setVisible(false);
+        endLabel.setVisible(false);
+        endDatePicker.setDisable(false);
+        timeFilterCB.setOnAction(actionEvent -> {
+            if (timeFilterCB.getValue().equals("Intervalo")){
+                startLabel.setVisible(true);
+                endLabel.setVisible(true);
+                endDatePicker.setDisable(true);
+            }else {
+                startLabel.setVisible(false);
+                endLabel.setVisible(false);
+                endDatePicker.setDisable(false);
             }
         });
 
-        contabilityListView.setOnMouseClicked(mouseEvent -> {
-            loadObject(contabilityListView.getSelectionModel().getSelectedItem());
+        calcularButton.setOnMouseClicked(mouseEvent -> {
+            if(timeFilterCB.getValue().equals("Mes")){
+                Accounting accounting = (Accounting) Request.find("data-analysis/accounting/find-one?criteria="+ startDatePicker.getValue().toString(),Accounting.class);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contability_info.fxml"));
+                try {
+                    root = loader.load();
+                    ContabilityDetails controller = loader.getController();
+                    controller.setObject(accounting);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }else{
+                ObservableList<Accounting> accountingObservableList = FXCollections.observableArrayList(Request.getJ("data-analysis/accounting?criteria=" + startDatePicker.getValue(), Accounting[].class, false));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/contability_list_properties.fxml"));
+                try {
+                    root = loader.load();
+                    ContabilityListController controller = loader.getController();
+                    controller.setData(accountingObservableList);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            AnchorPane.setTopAnchor(root, 0D);
+            AnchorPane.setBottomAnchor(root, 0D);
+            AnchorPane.setRightAnchor(root, 0D);
+            AnchorPane.setLeftAnchor(root, 0D);
+            propertiesAnchorPane.getChildren().setAll(root);
         });
 
-        datePicker.setDayCellFactory(d ->
+
+        startDatePicker.setDayCellFactory(d ->
                 new DateCell() {
                     @Override public void updateItem(LocalDate item, boolean empty) {
                         super.updateItem(item, empty);
                     }});
-    }
-
-    public void loadObject(Accounting accounting){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/contability_info .fxml"));
-        try {
-            ContabilityDetails loadDialog = new ContabilityDetails();
-            fxmlLoader.setController(loadDialog);
-            Parent parent = fxmlLoader.load();
-            loadDialog.setObject(accounting);
-            Scene scene = new Scene(parent);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override

@@ -6,29 +6,43 @@
 
 <AnchorPane prefHeight="475.0" prefWidth="689.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ContabilityController">
     <children>
-        <Label layoutX="80.0" layoutY="22.0" prefHeight="28.0" prefWidth="199.0" text="Fecha de cálculo" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="410.0" AnchorPane.topAnchor="22.0">
-            <font>
-                <Font name="Roboto Light" size="20.0" />
-            </font>
-        </Label>
-        <DatePicker fx:id="datePicker" editable="false" layoutX="51.0" layoutY="64.0" prefHeight="27.0" prefWidth="224.0" AnchorPane.leftAnchor="51.0" AnchorPane.topAnchor="64.0" />
-        <ComboBox fx:id="timeFilterCB" layoutX="414.0" layoutY="63.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="250.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="63.0" />
-        <Label layoutX="439.0" layoutY="22.0" prefHeight="28.0" prefWidth="154.0" text="Tipo de intervalo" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="22.0">
-            <font>
-                <Font name="Roboto Light" size="20.0" />
-            </font>
-        </Label>
-        <AnchorPane layoutX="1.0" layoutY="150.0" prefHeight="11.0" prefWidth="700.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="150.0" />
-      <VBox layoutY="285.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="285.0" />
-      <Button fx:id="calcularButton" layoutX="227.0" layoutY="108.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="236.0" text="Calcular" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="108.0">
-         <font>
-            <Font name="Roboto Light" size="13.0" />
-         </font></Button>
-      <ListView fx:id="contabilityListView" layoutX="14.0" layoutY="171.0" prefHeight="0.0" prefWidth="712.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="171.0" />
-      <Label fx:id="dataLabel" layoutX="220.0" layoutY="250.0" prefHeight="70.0" prefWidth="250.0" text="Sin datos...." visible="false" AnchorPane.leftAnchor="220.0" AnchorPane.rightAnchor="219.0" AnchorPane.topAnchor="250.0">
-         <font>
-            <Font name="Roboto Light" size="50.0" />
-         </font>
-      </Label>
+      <ScrollPane prefHeight="475.0" prefWidth="689.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane prefHeight="475.0" prefWidth="687.0" style="-fx-background-color: #E3DAD8;">
+               <children>
+            
+                    <Label alignment="CENTER" layoutX="116.0" layoutY="22.0" prefHeight="28.0" prefWidth="162.0" text="Fecha de cálculo" AnchorPane.leftAnchor="116.0" AnchorPane.topAnchor="22.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <DatePicker fx:id="startDatePicker" editable="false" layoutX="80.0" layoutY="64.0" prefHeight="27.0" prefWidth="235.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="64.0" />
+                   <DatePicker fx:id="endDatePicker" editable="false" layoutX="80.0" layoutY="101.0" prefHeight="27.0" prefWidth="233.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="101.0" />
+                    <ComboBox fx:id="timeFilterCB" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="250.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="63.0" />
+                    <Label prefHeight="28.0" prefWidth="154.0" text="Tipo de intervalo" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="22.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <AnchorPane layoutY="177.0" prefHeight="11.0" prefWidth="700.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="177.0" />
+                  <Button fx:id="calcularButton" layoutX="227.0" layoutY="142.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="236.0" text="Calcular" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="226.0" AnchorPane.topAnchor="142.0">
+                     <font>
+                        <Font name="Roboto Light" size="13.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="propertiesAnchorPane" layoutY="188.0" prefHeight="287.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="188.0" />
+                  <Label fx:id="startLabel" layoutX="14.0" layoutY="64.0" prefHeight="28.0" prefWidth="66.0" text="Inicio:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="64.0">
+                     <font>
+                        <Font name="Roboto Light" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="endLabel" layoutX="14.0" layoutY="101.0" prefHeight="28.0" prefWidth="66.0" text="Fin:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="101.0">
+                     <font>
+                        <Font name="Roboto Light" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content></ScrollPane>
     </children>
 </AnchorPane>

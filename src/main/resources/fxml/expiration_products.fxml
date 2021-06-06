@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
@@ -9,7 +10,15 @@
 
 <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.ExpirationProductsController">
    <children>
-       <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+       <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="17.0" prefHeight="22.0" prefWidth="594.0" text="Si tienes algun producto por caducarse aparecera aquí" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="17.0">
+           <font>
+               <Font name="Roboto Light" size="17.0" />
+           </font>
+       </Label>
+       <FontAwesomeIconView glyphName="CLOCK_ALT" layoutX="103.0" layoutY="36.0" size="20" AnchorPane.rightAnchor="540.8571434020996" AnchorPane.topAnchor="18.85714340209961">
+
+       </FontAwesomeIconView>
+       <VBox layoutY="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 
            <Label alignment="CENTER" layoutY="2.0" maxWidth="1.7976931348623157E308" prefHeight="39.0" prefWidth="601.0" style="-fx-background-color: #A39D9B;" text="Perdidos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
