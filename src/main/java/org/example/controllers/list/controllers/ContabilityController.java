@@ -46,7 +46,7 @@ public class ContabilityController implements Initializable, IListController<Acc
         timeFilterCB.setValue("Mes");
         startLabel.setVisible(false);
         endLabel.setVisible(false);
-        endDatePicker.setDisable(false);
+        endDatePicker.setVisible(false);
         timeFilterCB.setOnAction(actionEvent -> {
             if (timeFilterCB.getValue().equals("Intervalo")){
                 startLabel.setVisible(true);
@@ -55,7 +55,7 @@ public class ContabilityController implements Initializable, IListController<Acc
             }else {
                 startLabel.setVisible(false);
                 endLabel.setVisible(false);
-                endDatePicker.setDisable(false);
+                endDatePicker.setVisible(false);
             }
         });
 
