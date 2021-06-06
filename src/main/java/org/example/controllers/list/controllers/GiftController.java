@@ -242,6 +242,10 @@ public class GiftController extends GiftParentController implements IListControl
                         }
                         Request.putJ(gift.getRoute(), gift);
                         gift = (Gift) Request.find(gift.getRoute(), gift.getIdGift(), gift.getClass());
+                        if(gift.getSteps() != null) {
+                            stepList = gift.getSteps();
+                            uploadStepImages();
+                        }
                         List<String> urls = ImageService.uploadImages(files);
                         files = urls;
                         gift.getPictures().removeIf(p -> !p.getPath().contains("http://res.cloudinary.com"));
@@ -300,6 +304,20 @@ public class GiftController extends GiftParentController implements IListControl
             showAlertEmptyFields("Tienes un campo indispensable vacio");
         }
         checkFields();
+    }
+    protected void uploadStepImages(){
+        ArrayList<Step> newSteps = new ArrayList<>(stepList);
+        for(Step s : stepList){
+            if(s.getPath()!= null) {
+                if (s.getPath().contains("http://res.cloudinary.com")) {
+                    continue;
+                }
+                List<String> file = new ArrayList<>();
+                file.add(s.getPath());
+                List<String> returnedFiles = ImageService.uploadImages(file);
+                s.setPath(returnedFiles.get(0));
+            }
+        }
     }
 
     protected void checkFields(){

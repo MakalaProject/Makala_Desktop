@@ -223,7 +223,6 @@ public class ManualStepController implements Initializable, IControllerCreate<St
     }
 
     public void setObject(Gift gift){
-
         actualGift = gift;
         papersObservableList.setAll(actualGift.getPapers());
         ribbonsObservableList.setAll(actualGift.getRibbons());
@@ -259,11 +258,20 @@ public class ManualStepController implements Initializable, IControllerCreate<St
     private void putStepFields() {
         instructionsTextArea.setText(actualStep.getInstruction());
         tiempoField.setText(actualStep.getTime().toString());
+        if(actualStep.getPath() != null) {
+            if(actualStep.getPath().contains("http://res.cloudinary.com")){
+                Image img = new Image(actualStep.getPath());
+                stepImage.setImage(img);
+                return;
+            }
+            File file = new File(actualStep.getPath());
+            Image img = new Image(file.toURI().toString());
+            stepImage.setImage(img);
+        }
     }
 
     public void setInfo(Step step){
         step.setInstruction(instructionsTextArea.getText());
-        step.setTime(15);
         step.setPath(imageFile);
         step.setTime(Integer.parseInt(tiempoField.getText()));
     }
