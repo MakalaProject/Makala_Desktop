@@ -72,5 +72,9 @@
     <TextField fx:id="apellidosField" layoutX="175.0" layoutY="342.0" prefHeight="27.0" prefWidth="248.0" promptText="Perez" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="342.0" />
     <TextField fx:id="telefonoField" layoutX="175.0" layoutY="381.0" prefHeight="31.0" prefWidth="405.0" promptText="3423127689" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="381.0" />
     <TextField fx:id="contraseñaField" layoutX="175.0" layoutY="418.0" prefHeight="27.0" prefWidth="248.0" promptText="*****" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="418.0" />
-
+    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="266.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="266.0">
+        <font>
+            <Font name="Roboto Light" size="17.0" />
+        </font>
+    </Label>
 </AnchorPane>
