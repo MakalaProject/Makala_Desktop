@@ -17,7 +17,6 @@
                         </font>
                     </Label>
                     <DatePicker fx:id="startDatePicker" editable="false" layoutX="80.0" layoutY="64.0" prefHeight="27.0" prefWidth="235.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="64.0" />
-                   <DatePicker fx:id="endDatePicker" editable="false" layoutX="80.0" layoutY="101.0" prefHeight="27.0" prefWidth="233.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="101.0" />
                     <ComboBox fx:id="timeFilterCB" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="250.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.rightAnchor="48.0" AnchorPane.topAnchor="63.0" />
                     <Label prefHeight="28.0" prefWidth="154.0" text="Tipo de intervalo" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="22.0">
                         <font>
@@ -30,13 +29,11 @@
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </Button>
-                  <AnchorPane fx:id="propertiesAnchorPane" layoutY="188.0" prefHeight="287.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="188.0" />
+                  <AnchorPane fx:id="propertiesAnchorPane" layoutY="188.0" prefHeight="287.0" prefWidth="687.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="188.0">
+                     <children>
+
+                     </children></AnchorPane>
                   <Label fx:id="startLabel" layoutX="14.0" layoutY="64.0" prefHeight="28.0" prefWidth="66.0" text="Inicio:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="64.0">
-                     <font>
-                        <Font name="Roboto Light" size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="endLabel" layoutX="14.0" layoutY="101.0" prefHeight="28.0" prefWidth="66.0" text="Fin:" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="101.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>

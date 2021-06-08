@@ -32,7 +32,7 @@ public interface IListController<D>{
     };
 
     default boolean showAlertUnsavedElement(String elementName, String element){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(element + " sin guardar");
         alert.setHeaderText("Tienes cambios sin guardar de '" + elementName + "'");
         alert.setContentText("¿Quieres mantener los cambios?");

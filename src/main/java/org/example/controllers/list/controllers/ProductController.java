@@ -143,6 +143,7 @@ public class ProductController extends ProductParentController implements IListC
     }
 
     public void changeList(){
+        searchField.clear();
         ObservableList<Product> products = productObservableList.stream().filter(p -> p.getProductClassDto().getProductType().equals(comboBox.getValue()))
                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
         //check if list is empty
@@ -237,6 +238,11 @@ public class ProductController extends ProductParentController implements IListC
                         actualProduct = product;
                         pictureList = new ArrayList<>(product.getPictures());
                         comboBox.setValue(actualProduct.getProductClassDto().getProductType());
+                        Product p = listView.getSelectionModel().getSelectedItem();
+                        actualList.set(actualList.indexOf(listView.getSelectionModel().getSelectedItem()), actualProduct);
+                        if(listView.getSelectionModel().getSelectedItem() != actualProduct) {
+                            listView.getItems().set(listView.getItems().indexOf(p), actualProduct);
+                        }
                         productObservableList.set(index, actualProduct);
                         changeList();
                         listView.getSelectionModel().select(actualProduct);

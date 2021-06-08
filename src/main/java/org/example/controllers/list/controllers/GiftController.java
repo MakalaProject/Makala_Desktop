@@ -230,6 +230,7 @@ public class GiftController extends GiftParentController implements IListControl
         if(!nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
             if (Float.parseFloat(laborCostField.getText())>0) {
                 if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
+                    int listIndex = listView.getSelectionModel().getSelectedIndex();
                     Gift gift = new Gift();
                     setInfo(gift);
                     Gift returnedGift = null;
@@ -285,14 +286,18 @@ public class GiftController extends GiftParentController implements IListControl
                     actualGift = returnedGift;
                     setExtendedInternalProducts(actualGift);
                     pictureList = new ArrayList<>(gift.getPictures());
+                    Gift g = listView.getItems().get(listIndex);
+                    actualList.set(actualList.indexOf(g), actualGift);
+                    if(listView.getItems().get(listIndex) != actualGift) {
+                        listView.getItems().set(listIndex, actualGift);
+                    }
+                    listView.scrollTo(actualGift);
                     giftObservableList.set(index, actualGift);
-                    listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualGift);
-                    listView.scrollTo(gift);
                     putFields();
                     privacyProduct();
                     editSwitch.setSelected(false);
                     editView(fieldsAnchorPane, editSwitch, updateButton);
-                    listView.getSelectionModel().select(actualGift);
+                    listView.getSelectionModel().select(listIndex);
                     updateView();
                 }else {
                     showAlertEmptyFields("No puedes dejar un regalo sin listones o productos");
@@ -384,18 +389,17 @@ public class GiftController extends GiftParentController implements IListControl
     @Override
     public void updateView() {
         actualGift = listView.getSelectionModel().getSelectedItem();
-        index = giftObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+        index = giftObservableList.indexOf(actualGift);
         if(actualGift.getContainer() == null) {
             actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
             setExtendedInternalProducts(actualGift);
+            int listIndex = listView.getSelectionModel().getSelectedIndex();
+            actualList.set(actualList.indexOf(listView.getSelectionModel().getSelectedItem()), actualGift);
+            if(listView.getItems().get(listIndex) != actualGift) {
+                listView.getItems().set(listIndex, actualGift);
+            }
+            giftObservableList.set(index, actualGift);
         }
-        Gift g = listView.getSelectionModel().getSelectedItem();
-        actualList.set(actualList.indexOf(g), actualGift);
-        if(listView.getSelectionModel().getSelectedItem() != actualGift) {
-            listView.getItems().set(listView.getItems().indexOf(g), actualGift);
-        }
-        listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualGift);
-        giftObservableList.set(index, actualGift);
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, editSwitch, updateButton);
         privacyProduct();
