@@ -24,10 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ContextMenu;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -37,6 +34,7 @@ import org.example.customCells.GiftListViewCell;
 import org.example.exceptions.ProductDeleteException;
 import org.example.interfaces.IListController;
 import org.example.model.*;
+import org.example.model.Formatter;
 import org.example.model.products.InsideProduct;
 import org.example.services.Request;
 
@@ -51,6 +49,7 @@ public class CalendarController implements Initializable, IListController<Calend
     @FXML DetailedDayView diaDayView;
     @FXML MonthPage mesPage;
     @FXML FontAwesomeIconView updateButton;
+    @FXML Label dayLabel;
     @FXML ComboBox<String> calendarType;
     Calendar calendar = new Calendar();
     CalendarSource calendarSource = new CalendarSource("source");
@@ -73,6 +72,7 @@ public class CalendarController implements Initializable, IListController<Calend
     String identifier = "";
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        dayLabel.setText(Formatter.FormatCalendar(LocalDate.now()));
         calendarType.setItems(calendarOptions);
         calendarType.valueProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -158,6 +158,11 @@ public class CalendarController implements Initializable, IListController<Calend
             public ContextMenu call(DateControl.EntryContextMenuParameter entryContextMenuParameter) {
                 return null;
             }
+        });
+        mesPage.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+            LocalDate date = mesPage.getDate();
+            dayLabel.setText(Formatter.FormatCalendar(date));
+            diaDayView.setDate(date);
         });
     }
 
@@ -257,10 +262,7 @@ public class CalendarController implements Initializable, IListController<Calend
                 }
                 validation = true;
             }
-            mesPage.addEventFilter(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
-                LocalDate date = mesPage.getDate();
-                diaDayView.setDate(date);
-            });
+
             activitiesShown = true;
         }
         calendarSource.getCalendars().clear();

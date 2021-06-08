@@ -74,7 +74,6 @@ public class LoginController implements Initializable {
                     }
                 }
                 try {
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
                     Parent rootHome =  fxmlLoader.load();
                     HomeController homeController = fxmlLoader.getController();
@@ -86,6 +85,7 @@ public class LoginController implements Initializable {
                     stage.setMinHeight(700);
                     stage.setMinWidth(1300);
                     stage.show();
+                    ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -18,6 +18,14 @@ public class Formatter {
             // set locale
             .toFormatter(new Locale("es", "ES")
             );;
+    private static final DateTimeFormatter calendarDay = new DateTimeFormatterBuilder()
+            // case insensitive
+            .parseCaseInsensitive()
+            // pattern with full month name (MMMM)
+            .appendPattern("dd-MMMM-yyyy")
+            // set locale
+            .toFormatter(new Locale("es", "ES")
+            );;
 
     public static String FormatDateTime(LocalDateTime localDateTime){
         return dateTimeFormatter.format(localDateTime);
@@ -29,6 +37,10 @@ public class Formatter {
 
     public static String FormatMonth(LocalDate localDate){
         return monthSpecialFormatter.format(localDate);
+    }
+
+    public static String FormatCalendar(LocalDate localDate){
+        return calendarDay.format(localDate);
     }
 
 }

@@ -139,8 +139,9 @@
                <font>
                   <Font name="Roboto Light" size="20.0" />
                </font></Label>
-                <FontAwesomeIconView fx:id="settings" glyphName="COG" layoutX="57.0" layoutY="123.0" size="30" />
-            <FontAwesomeIconView fx:id="notifications" glyphName="BELL" layoutX="106.0" layoutY="123.0" size="30" />
+                <FontAwesomeIconView fx:id="settings" glyphName="COG" layoutX="32.0" layoutY="123.0" size="30" />
+            <FontAwesomeIconView fx:id="notifications" glyphName="BELL" layoutX="85.0" layoutY="123.0" size="30" />
+            <FontAwesomeIconView fx:id="exitButton" glyphName="SIGN_OUT" layoutX="144.0" layoutY="123.0" size="30" />
             </children>
         </AnchorPane>
     </left>

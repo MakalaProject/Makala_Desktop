@@ -15,6 +15,7 @@ public class CatalogGiftListViewCell extends ListCell<Gift> {
 
     @FXML Label giftLabel;
     @FXML Label stockLabel;
+    @FXML Label privadoLabel;
     @FXML
     private AnchorPane anchorPane;
 
@@ -39,7 +40,7 @@ public class CatalogGiftListViewCell extends ListCell<Gift> {
                 }
 
             }
-
+            privadoLabel.setVisible(!gift.getPrivacy().equals("Publico"));
             giftLabel.setText(gift.getName());
             stockLabel.setText("Stock: " + gift.getStock());
             if(gift.getStock()== 0){
