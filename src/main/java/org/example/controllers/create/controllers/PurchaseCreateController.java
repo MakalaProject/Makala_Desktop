@@ -46,7 +46,7 @@ public class PurchaseCreateController extends PurchaseParentController {
                             alert.setContentText("¿Seguro quieres confirmar?");
                             Optional<ButtonType> result = alert.showAndWait();
                             if (result.get() == ButtonType.OK){
-                                purchase.setIdProvider(actualEmployee.getIdUser());
+                                purchase.setEmployee(actualEmployee);
                                 createPurchase(mouseEvent);
                             }else {
                                 purchase.setReceivedDate(null);

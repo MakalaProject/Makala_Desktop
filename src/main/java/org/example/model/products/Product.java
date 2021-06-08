@@ -27,6 +27,8 @@ public class Product implements IPaths, IChangeable<Integer> {
     protected Integer min;
     protected BigDecimal avgDays;
     @EqualsAndHashCode.Exclude
+    protected boolean hasGifts;
+    @EqualsAndHashCode.Exclude
     protected BigDecimal stock;
     @EqualsAndHashCode.Exclude
     protected ObservableList<ProductClassDto> classificationsPerType = FXCollections.observableArrayList();

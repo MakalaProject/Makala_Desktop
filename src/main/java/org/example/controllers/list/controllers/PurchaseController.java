@@ -44,7 +44,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
-        purchaseObservableList.setAll(Request.getJ("/purchases", Purchase[].class, true));
+        purchaseObservableList.setAll(Request.getJ("purchases", Purchase[].class, true));
         purchaseObservableList.sort(Comparator.comparing(Purchase::getOrderDate).reversed());
         showList(purchaseObservableList, listView, PurchaseListViewCell.class);
         FilteredList<Purchase> filteredPurchases = new FilteredList<>(purchaseObservableList, p ->true);
@@ -166,7 +166,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
                         alert.setContentText("¿Seguro quieres confirmar?");
                         Optional<ButtonType> result = alert.showAndWait();
                         if (result.get() == ButtonType.OK) {
-                            purchase.setIdProvider(actualEmployee.getIdUser());
+                            purchase.setEmployee(actualEmployee);
                             createPurchase();
                         } else {
                             purchase.setReceivedDate(null);
@@ -245,14 +245,8 @@ public class PurchaseController extends PurchaseParentController implements ILis
         }else{
             receivedDatePicker.setValue(null);
         }
-        if (actualPurchase.getIdProvider()!= null){
-            if (actualPurchase.getIdProvider().equals(actualPurchase.getId())){
-                employeeLabel.setText(actualEmployee.getFirstName());
-            }else
-            {
-                Employee employee = (Employee) Request.find("employees", Employee.class);
-                employeeLabel.setText(employee.getFirstName());
-            }
+        if (actualPurchase.getEmployee()!= null){
+            employeeLabel.setText(actualPurchase.getEmployee().getFirstName());
         }
         setProviderData();
         setProductsList();

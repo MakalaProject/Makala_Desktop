@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="331.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="productName" layoutX="55.0" layoutY="33.0" prefHeight="28.0" prefWidth="276.0" text="Producto">
+            <font>
+                <Font name="Roboto Light" size="20.0" />
+            </font></Label>
+        <FontAwesomeIconView fx:id="productIcon" glyphName="CUT" layoutX="14.0" layoutY="57.0" size="30" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="31.285715103149414">
+
+        </FontAwesomeIconView>
+      <FontAwesomeIconView fx:id="inGift" glyphName="WARNING" layoutX="264.0" layoutY="57.0" size="30" AnchorPane.rightAnchor="37.0" AnchorPane.topAnchor="31.285715103149414">
+          <Tooltip text="Es necesario comprar productos" />
+      </FontAwesomeIconView>
+      <Button fx:id="tooltipButton" layoutX="254.0" layoutY="24.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="50.0" style="-fx-background-color: transparent;" textFill="#ff000000" AnchorPane.bottomAnchor="23.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="24.0">
+          <Tooltip text="Tienes regalos que requieren este producto en stock" />
+      </Button>
+    </children>
+</AnchorPane>

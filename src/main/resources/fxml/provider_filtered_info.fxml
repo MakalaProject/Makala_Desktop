@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="707.0" prefWidth="506.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ScrollPane fitToWidth="true" layoutY="298.0" pannable="true" prefHeight="758.0" prefWidth="512.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="298.0">
+            <AnchorPane fx:id="fieldsAnchorPane" prefHeight="624.0" prefWidth="510.0" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
+                <children>
+                    <Label layoutX="28.0" layoutY="224.0" prefHeight="28.0" prefWidth="90.0" text="Email" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="380.0" AnchorPane.topAnchor="224.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label prefHeight="28.0" prefWidth="96.0" text="Nombres*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="372.0" AnchorPane.topAnchor="25.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="nombresField" editable="false" prefHeight="27.0" prefWidth="261.0" promptText="Juan" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="23.0" />
+                    <Label prefHeight="28.0" prefWidth="100.0" text="Apellidos" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="383.0" AnchorPane.topAnchor="65.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="apellidosField" editable="false" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="Perez" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="63.0" />
+                    <Label prefHeight="28.0" prefWidth="100.0" text="Telefono*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="368.0" AnchorPane.topAnchor="105.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="telefonoField" editable="false" prefHeight="27.0" prefWidth="261.0" promptText="3215673409" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="103.0" />
+                    <Label layoutX="28.0" layoutY="144.0" prefHeight="28.0" prefWidth="174.0" text="Tiempo de entrega*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="144.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="tiempoField" editable="false" prefHeight="31.0" prefWidth="174.0" promptText="1" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="143.0" />
+                    <Label layoutX="28.0" layoutY="184.0" prefHeight="28.0" prefWidth="103.0" text="Tarjeta" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="363.0" AnchorPane.topAnchor="184.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="tarjetaField" editable="false" prefHeight="27.0" prefWidth="261.0" promptText="2312345432124567" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="183.0" />
+                    <TextField fx:id="emailField" editable="false" layoutX="175.0" layoutY="223.0" prefHeight="27.0" prefWidth="261.0" promptText="juan@gmail.com" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="223.0" />
+                    <TextField fx:id="estadoField" editable="false" layoutX="169.0" layoutY="417.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="Jalisco" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="417.0" />
+                    <TextField fx:id="codigoPostalField" editable="false" layoutX="169.0" layoutY="504.0" prefHeight="27.0" prefWidth="261.0" promptText="45618" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="504.0" />
+                    <TextField fx:id="addressField" editable="false" layoutX="169.0" layoutY="546.0" prefHeight="27.0" prefWidth="261.0" promptText="Av. de la cruz #1570" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="546.0" />
+
+                    <Label layoutX="35.0" layoutY="548.0" prefHeight="28.0" prefWidth="114.0" text="Dirección" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="361.0" AnchorPane.topAnchor="548.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="25.0" layoutY="271.0" prefHeight="28.0" prefWidth="72.0" text="Tipo" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="401.0" AnchorPane.topAnchor="271.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <ComboBox fx:id="tipoComboBox" disable="true" layoutX="175.0" layoutY="272.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="272.0" />
+                    <Label layoutX="22.0" layoutY="324.0" prefHeight="28.0" prefWidth="142.0" text="Tipo Producto" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="324.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="31.0" layoutY="418.0" prefHeight="21.0" prefWidth="107.0" text="Estado" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="418.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="30.0" layoutY="465.0" prefHeight="21.0" prefWidth="107.0" text="Ciudad" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="465.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="30.0" layoutY="493.0" prefHeight="21.0" prefWidth="107.0" text="Codigo Postal" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="342.0" AnchorPane.topAnchor="505.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="29.0" layoutY="376.0" prefHeight="28.0" prefWidth="122.0" text="Devolución" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="359.0" AnchorPane.topAnchor="376.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <RadioButton fx:id="siRadio" layoutX="196.0" layoutY="382.0" mnemonicParsing="false" text="Si" AnchorPane.leftAnchor="196.0" AnchorPane.rightAnchor="243.0" AnchorPane.topAnchor="382.0" />
+                    <RadioButton fx:id="noRadio" layoutX="266.0" layoutY="382.0" mnemonicParsing="false" text="No" AnchorPane.leftAnchor="266.0" AnchorPane.rightAnchor="167.0" AnchorPane.topAnchor="382.0" />
+                    <ComboBox fx:id="classificationComboBox" disable="true" layoutX="175.0" layoutY="325.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="325.0" />
+                    <ComboBox fx:id="ciudadComboBox" disable="true" editable="true" layoutX="169.0" layoutY="465.0" prefHeight="27.0" prefWidth="261.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="82.0" AnchorPane.topAnchor="465.0" />
+                    <VBox layoutY="600.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="600.0">
+                        <children>
+                            <AnchorPane>
+                                <children>
+
+                                    <Label alignment="CENTER" layoutX="-202.0" layoutY="1.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Productos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <font>
+                                            <Font name="Roboto Light" size="27.0" />
+                                        </font>
+                                        <effect>
+                                            <DropShadow blurType="TWO_PASS_BOX">
+                                                <color>
+                                                    <Color red="0.5" green="0.5" blue="0.5" />
+                                                </color>
+                                            </DropShadow>
+                                        </effect>
+                                    </Label>
+                                </children>
+                            </AnchorPane>
+                            <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        </children>
+                    </VBox>
+                    <Label layoutX="395.0" layoutY="144.0" prefHeight="28.0" prefWidth="39.0" text="días" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="144.0">
+                        <font>
+                            <Font name="Roboto Light" size="15.0" />
+                        </font>
+                    </Label>
+                </children></AnchorPane>
+        </ScrollPane>
+
+        <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="296.0" prefWidth="506.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="169.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="168.66586303710938" AnchorPane.topAnchor="47.0">
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                    <image>
+                        <Image url="@../Images/user.png" />
+                    </image>
+                </ImageView>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <effect>
+                <DropShadow />
+            </effect></AnchorPane>
+    </children></AnchorPane>

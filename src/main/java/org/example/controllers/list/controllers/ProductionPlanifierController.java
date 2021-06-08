@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.ProductionPlanifierInfo;
 import org.example.controllers.elements.controllers.StatisticsProductInfo;
 import org.example.customCells.ProductListViewCell;
+import org.example.customCells.ProductPlanifierListViewCell;
 import org.example.interfaces.IListController;
 import org.example.model.products.Product;
 import org.example.services.Request;
@@ -20,29 +21,28 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class ProductionPlanifierController implements Initializable, IListController<Product> {
     @FXML private ListView<Product> listView;
-    private ObservableList<Product> productObservableList = FXCollections.observableArrayList(Request.getJ("products?showMin=true&size=1000",Product[].class,true));
-    private ObservableList<Product> productAvg = FXCollections.observableArrayList(Request.getJ("products?hasGifts=true&showMin=true&size=1000",Product[].class,false));
+    private ObservableList<Product> productAvg = FXCollections.observableArrayList(Request.getJ("products/basics-avg/filter-list?showMin=true&size=1000",Product[].class,false));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        for (Product product: productObservableList
+        productAvg.sort(Comparator.comparing(Product::isHasGifts).reversed());
+        for (Product product: productAvg
              ) {
             if(product.getProductClassDto().getProductType().equals("Listones")){
                 product.setStock(product.getStock().divide(new BigDecimal(10)));
                 product.setMin(product.getMin()/10);
-                product.setMax(product.getMax()/10);
             }
             if(product.getProductClassDto().getProductType().equals("Papeles")){
                 product.setStock(product.getStock().divide(new BigDecimal(100)));
                 product.setMin(product.getMin()/100);
-                product.setMax(product.getMax()/100);
             }
         }
-        showList(productObservableList,listView, ProductListViewCell.class);
+        showList(productAvg,listView, ProductPlanifierListViewCell.class);
         listView.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/production_planifier_info.fxml"));
             try {
