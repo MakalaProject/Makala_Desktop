@@ -12,9 +12,11 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
@@ -51,6 +53,7 @@ public class HomeController implements Initializable {
     @FXML FontAwesomeIconView menuButton;
     @FXML FontAwesomeIconView settings;
     @FXML FontAwesomeIconView notifications;
+    @FXML FontAwesomeIconView exitButton;
     @FXML Label userName;
     @FXML Label titleLabel;
     @FXML BorderPane principalPane;
@@ -105,6 +108,20 @@ public class HomeController implements Initializable {
                 e.printStackTrace();
             };
         });
+        exitButton.setOnMouseClicked(mouseEvent -> {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            try {
+                Parent parent = fxmlLoader.load();
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.show();
+                ((Node)(mouseEvent.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         menuPane.setTranslateX(-200);
         menuButton.setOnMouseClicked(mouseEvent -> {
@@ -156,7 +173,49 @@ public class HomeController implements Initializable {
         produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion", produccionButton));
 
         tiempoStockButton.setOnMouseClicked(new HomeLoader("/fxml/product_stock_time.fxml", "stock", "Promedio tiempo Stock", tiempoStockButton));
+        try {
+            loadInitial();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void loadInitial() throws IOException {
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.2));
+        slide.setNode(menuPane);
+        if (!menuIsOpen){
+            slide.setToX(0);
+            slide.play();
+            menuPane.setTranslateX(-200);
+            menuIsOpen = true;
+            principalPane.setLeft(menuPane);
+
+        }else {
+            slide.setToX(-200);
+            slide.play();
+            menuPane.setTranslateX(0);
+            menuIsOpen = false;
+            principalPane.setLeft(null);
+        }
+        loader = new FXMLLoader(getClass().getResource("/fxml/catalog.fxml"));
+        root = loader.load();
+        if (rootResourceName.equals("purchase")){
+            PurchaseParentController controller = loader.getController();
+            controller.setActualEmployee(administrator);
+        }
+        AnchorPane.setTopAnchor(root, 0D);
+        AnchorPane.setBottomAnchor(root, 0D);
+        AnchorPane.setRightAnchor(root, 0D);
+        AnchorPane.setLeftAnchor(root, 0D);
+        universalPane.getChildren().setAll(root);
+        if (actualButton!=null){
+            actualButton.setStyle(" -fx-background-color: black;");
+        }
+        catalogosButton.setStyle(" -fx-background-color: #a99f9f;");
+        actualButton = catalogosButton;
+        rootResourceName = "catalog";
+        titleLabel.setText("Catalogos");
     }
 
     private void loadView(String xmlResource){
@@ -175,7 +234,6 @@ public class HomeController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
     public void setAdministrator(Employee employee){
         administrator = employee;

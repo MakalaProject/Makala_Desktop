@@ -25,8 +25,10 @@ import java.util.ResourceBundle;
 public class ProductionPlanifierController implements Initializable, IListController<Product> {
     @FXML private ListView<Product> listView;
     private ObservableList<Product> productObservableList = FXCollections.observableArrayList(Request.getJ("products?showMin=true&size=1000",Product[].class,true));
+    private ObservableList<Product> productAvg = FXCollections.observableArrayList(Request.getJ("products?hasGifts=true&showMin=true&size=1000",Product[].class,false));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         for (Product product: productObservableList
              ) {
             if(product.getProductClassDto().getProductType().equals("Listones")){
