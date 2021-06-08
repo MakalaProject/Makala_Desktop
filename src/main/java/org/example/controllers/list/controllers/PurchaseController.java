@@ -124,6 +124,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
             if(object != null){
                 actualPurchase = object;
                 purchaseObservableList.add(object);
+                purchaseObservableList.sort(Comparator.comparing(Purchase::getOrderDate).reversed());
                 showList(purchaseObservableList,listView, PurchaseListViewCell.class);
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);

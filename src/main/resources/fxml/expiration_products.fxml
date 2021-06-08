@@ -15,7 +15,7 @@
                <Font name="Roboto Light" size="17.0" />
            </font>
        </Label>
-       <FontAwesomeIconView glyphName="CLOCK_ALT" layoutX="103.0" layoutY="36.0" size="20" AnchorPane.rightAnchor="540.8571434020996" AnchorPane.topAnchor="18.85714340209961">
+       <FontAwesomeIconView glyphName="CLOCK_ALT" layoutX="103.0" layoutY="36.0" size="20" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="18.85714340209961">
 
        </FontAwesomeIconView>
        <VBox layoutY="59.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">

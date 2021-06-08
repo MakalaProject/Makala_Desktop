@@ -40,7 +40,7 @@ public class PurchaseCreateController extends PurchaseParentController {
                     setInfo(purchase);
                     if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
                         if (purchase.getReceivedDate() != null){
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                             alert.setTitle("Confirmar compra");
                             alert.setHeaderText("Se confirmará la compra y se agregaran los productos al almacen");
                             alert.setContentText("¿Seguro quieres confirmar?");

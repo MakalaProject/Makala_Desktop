@@ -170,7 +170,7 @@ public class HomeController implements Initializable {
 
         analisisButton.setOnMouseClicked(new HomeLoader("/fxml/statistics.fxml", "statistics", "Estadisticas",analisisButton));
 
-        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Produccion", produccionButton));
+        produccionButton.setOnMouseClicked(new HomeLoader("/fxml/production_planifier.fxml", "production", "Recursos", produccionButton));
 
         tiempoStockButton.setOnMouseClicked(new HomeLoader("/fxml/product_stock_time.fxml", "stock", "Promedio tiempo Stock", tiempoStockButton));
         try {
@@ -201,7 +201,7 @@ public class HomeController implements Initializable {
         loader = new FXMLLoader(getClass().getResource("/fxml/catalog.fxml"));
         root = loader.load();
         if (rootResourceName.equals("purchase")){
-            PurchaseController controller = loader.getController();
+            PurchaseParentController controller = loader.getController();
             controller.setActualEmployee(administrator);
         }
         AnchorPane.setTopAnchor(root, 0D);
@@ -266,13 +266,13 @@ public class HomeController implements Initializable {
             if(!rootResourceName.equals(rootResourceNameCompare)) {
                 if (saveCanges())
                     return;
+                rootResourceName = rootResourceNameCompare;
                 loadView(resource);
                 if (actualButton!=null){
                     actualButton.setStyle(" -fx-background-color: black;");
                 }
                 button.setStyle(" -fx-background-color: #a99f9f;");
                 actualButton = button;
-                rootResourceName = rootResourceNameCompare;
                 titleLabel.setText(title);
             }
         }
