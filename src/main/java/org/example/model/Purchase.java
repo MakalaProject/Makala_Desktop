@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class Purchase {
     Integer id;
-    Integer idEmployee;
+    Integer employee;
     Integer idProvider;
     LocalDate orderDate;
     LocalDate payDate;

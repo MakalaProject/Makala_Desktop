@@ -51,7 +51,7 @@ public class GiftController extends GiftParentController implements IListControl
     @FXML ToggleSwitch editSwitch;
     @FXML protected FontAwesomeIconView manualButton;
     private final ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
-    private final ObservableList<Gift> actualObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Gift> actualList = FXCollections.observableArrayList();
     protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
     private int index;
     private ArrayList<Step> stepList = new ArrayList<>();
@@ -60,11 +60,12 @@ public class GiftController extends GiftParentController implements IListControl
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         giftObservableList.addAll(Request.getJ("/gifts/criteria-basic?size=10000",Gift[].class, true));
+        actualList.setAll(giftObservableList);
         super.initialize(url, resourceBundle);
         privacidadComboBox.getItems().addAll(privacyItems);
         privacidadComboBox.getSelectionModel().select(0);
         showList(FXCollections.observableList(giftObservableList), listView, GiftListViewCell.class);
-        filteredGifts = new FilteredList<>(giftObservableList, p ->true);
+        filteredGifts = new FilteredList<>(actualList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
             if (!existChanges()) {
                 filteredGifts.setPredicate(gift -> {
@@ -387,6 +388,11 @@ public class GiftController extends GiftParentController implements IListControl
         if(actualGift.getContainer() == null) {
             actualGift = (Gift) Request.find(actualGift.getRoute(), actualGift.getIdGift(), Gift.class);
             setExtendedInternalProducts(actualGift);
+        }
+        Gift g = listView.getSelectionModel().getSelectedItem();
+        actualList.set(actualList.indexOf(g), actualGift);
+        if(listView.getSelectionModel().getSelectedItem() != actualGift) {
+            listView.getItems().set(listView.getItems().indexOf(g), actualGift);
         }
         listView.getItems().set(listView.getSelectionModel().getSelectedIndex(), actualGift);
         giftObservableList.set(index, actualGift);
