@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="504.0" prefWidth="462.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.StockTimeInfo">
+<AnchorPane prefHeight="548.0" prefWidth="462.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.StockTimeInfo">
     <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" layoutY="258.0" pannable="true" prefHeight="279.0" prefWidth="462.0" AnchorPane.bottomAnchor="-33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="258.0">
         <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="201.0" prefWidth="460.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
             <Label layoutX="26.0" layoutY="23.0" prefHeight="26.0" prefWidth="84.0" text="Nombre" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="23.0">

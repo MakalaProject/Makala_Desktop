@@ -158,13 +158,17 @@ public class PurchaseParentController implements Initializable, IControllerCreat
     @Override
     public void setInfo(Purchase purchase) {
         purchase.setId(actualPurchase.getId());
-        purchase.setReceivedDate(receivedDatePicker.getValue());
+        if (receivedDatePicker.getValue() != null){
+            purchase.setReceivedDate(receivedDatePicker.getValue());
+            if (actualPurchase.getEmployee() != null ){
+                purchase.setEmployee(actualPurchase.getEmployee());
+            }
+        }
         purchase.setPayDate(payDatePicker.getValue());
         purchase.setOrderDate(orderDatePicker.getValue());
         new ListToChangeTools<PurchaseProduct,Integer>().setToDeleteItems(originalPurchaseProducts, purchaseProducts);
         purchase.setProducts(purchaseProducts);
         purchase.setPrice( new BigDecimal(!priceField.getText().isEmpty() ? priceField.getText() : "0"));
-        purchase.setEmployee(actualEmployee);
         purchase.setPayMethod(payMethodComboBox.getSelectionModel().getSelectedItem());
         purchase.setIdProvider(provider.getIdUser());
         if (actualPurchase.getComment()!=null) {
