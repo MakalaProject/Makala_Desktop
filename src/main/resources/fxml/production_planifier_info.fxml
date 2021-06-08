@@ -22,27 +22,27 @@
                     <Font name="Roboto Light" size="20.0" />
                 </font>
             </Label>
-            <Label fx:id="unidadField" layoutX="397.0" layoutY="134.0" prefHeight="28.0" prefWidth="48.0" text="pzas" AnchorPane.leftAnchor="397.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="134.0">
+            <Label fx:id="unidadField" layoutX="422.0" layoutY="134.0" prefHeight="28.0" prefWidth="65.0" text="pzas" AnchorPane.leftAnchor="422.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="134.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
                 </font>
             </Label>
-            <Label layoutX="19.0" layoutY="79.0" prefHeight="28.0" prefWidth="119.0" text="Clasificación" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="79.0">
+            <Label layoutX="19.0" layoutY="79.0" prefHeight="28.0" prefWidth="119.0" text="Clasificación" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="348.0" AnchorPane.topAnchor="79.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
                 </font>
             </Label>
-            <Label layoutX="24.0" layoutY="187.0" prefHeight="57.0" prefWidth="108.0" text="Precio del pedido" wrapText="true" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="187.0">
+            <Label layoutX="14.0" layoutY="187.0" prefHeight="57.0" prefWidth="117.0" text="Precio del pedido" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="388.0" AnchorPane.topAnchor="187.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
                 </font>
             </Label>
-            <Label layoutX="21.0" layoutY="115.0" prefHeight="67.0" prefWidth="114.0" text="Cantidad a ordenar" wrapText="true" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="115.0">
+            <Label layoutX="14.0" layoutY="115.0" prefHeight="67.0" prefWidth="110.0" text="Cantidad a ordenar" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="395.0" AnchorPane.topAnchor="115.0">
                 <font>
                     <Font name="Roboto Light" size="20.0" />
                 </font>
             </Label>
-            <TextField fx:id="nombreField" editable="false" layoutX="102.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="324.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="21.0">
+            <TextField fx:id="nombreField" editable="false" layoutX="102.0" layoutY="21.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="324.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="102.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="21.0">
                 <font>
                     <Font size="15.0" />
                 </font>
@@ -50,46 +50,50 @@
                     <Cursor fx:constant="TEXT" />
                 </cursor>
             </TextField>
-            <TextField fx:id="clasificacionField" editable="false" layoutX="144.0" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="280.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="144.0" AnchorPane.topAnchor="77.0">
+            <TextField fx:id="clasificacionField" editable="false" layoutX="144.0" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="280.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="144.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="77.0">
                 <cursor>
                     <Cursor fx:constant="TEXT" />
                 </cursor></TextField>
-         <TextField fx:id="cantidadOrdenarField" editable="false" layoutX="126.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="258.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+         <TextField fx:id="cantidadOrdenarField" editable="false" layoutX="126.0" layoutY="133.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="258.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="133.0">
             <cursor>
                <Cursor fx:constant="TEXT" />
             </cursor>
          </TextField>
-         <TextField fx:id="pedidoField" editable="false" layoutX="125.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="259.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+         <TextField fx:id="pedidoField" editable="false" layoutX="135.0" layoutY="200.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="259.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="135.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="200.0">
             <cursor>
                <Cursor fx:constant="TEXT" />
             </cursor>
          </TextField>
          <VBox layoutX="113.0" layoutY="249.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="400.0">
-             <Label alignment="CENTER" layoutY="150.0" prefHeight="39.0" prefWidth="486.0" style="-fx-background-color: #A39D9B;" text="Proveedores" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
-                 <font>
-                     <Font name="Roboto Light" size="27.0" />
-                 </font>
-                 <effect>
-                     <DropShadow blurType="TWO_PASS_BOX">
-                         <color>
-                             <Color red="0.5" green="0.5" blue="0.5" />
-                         </color>
-                     </DropShadow>
-                 </effect>
-             </Label>
+            <AnchorPane>
+               <children>
+                   <Label alignment="CENTER" style="-fx-background-color: #A39D9B;" text="Proveedores" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <font>
+                           <Font name="Roboto Light" size="27.0" />
+                       </font>
+                       <effect>
+                           <DropShadow blurType="TWO_PASS_BOX">
+                               <color>
+                                   <Color red="0.5" green="0.5" blue="0.5" />
+                               </color>
+                           </DropShadow>
+                       </effect>
+                   </Label>
+               </children>
+            </AnchorPane>
             <ListView fx:id="providerListView" prefHeight="0.0" />
          </VBox>
-         <Label layoutX="24.0" layoutY="263.0" prefHeight="57.0" prefWidth="81.0" text="Stock actual" wrapText="true">
+         <Label layoutX="20.0" layoutY="264.0" prefHeight="57.0" prefWidth="101.0" text="Stock actual" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="264.0">
             <font>
                <Font name="Roboto Light" size="20.0" />
             </font>
          </Label>
-         <TextField fx:id="stockField" editable="false" layoutX="126.0" layoutY="276.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="259.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+         <TextField fx:id="stockField" editable="false" layoutX="126.0" layoutY="276.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="259.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="276.0">
             <cursor>
                <Cursor fx:constant="TEXT" />
             </cursor>
          </TextField>
-         <Label fx:id="unidadField1" layoutX="397.0" layoutY="278.0" prefHeight="28.0" prefWidth="48.0" text="pzas">
+         <Label fx:id="unidadField1" layoutX="427.0" layoutY="285.0" prefHeight="28.0" prefWidth="48.0" text="pzas" AnchorPane.leftAnchor="427.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="285.0">
             <font>
                <Font name="Roboto Light" size="20.0" />
             </font>

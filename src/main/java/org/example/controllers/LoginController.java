@@ -57,7 +57,7 @@ public class LoginController implements Initializable {
             }else{
                 if (employee.isFirstLogin()){
                     Optional<String> result = null;
-                    while (result.isEmpty()){
+                    do{
                         TextInputDialog dialog = new TextInputDialog("walter");
                         dialog.setTitle("Cambio de contraseña");
                         dialog.setHeaderText("Primer inicio de sesión");
@@ -65,13 +65,14 @@ public class LoginController implements Initializable {
                         result = dialog.showAndWait();
                         if (result.isPresent()){
                             employee.setPassword(result.get());
+                            employee.setFirstLogin(false);
                             try {
                                 Request.putJ(employee.getRoute(), employee);
                             } catch (ProductDeleteException e) {
                                 e.printStackTrace();
                             }
                         }
-                    }
+                    }while (result.isEmpty());
                 }
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));

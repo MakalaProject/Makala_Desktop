@@ -246,14 +246,16 @@ public class PurchaseController extends PurchaseParentController implements ILis
             payDatePicker.setValue(null);
         }
         if (actualPurchase.getReceivedDate() != null){
+            setActualEmployee(actualPurchase.getEmployee());
             receivedDatePicker.setValue(actualPurchase.getReceivedDate());
         }else{
             receivedDatePicker.setValue(null);
         }
         if (actualPurchase.getEmployee()!= null){
             employeeLabel.setText(actualPurchase.getEmployee().getFirstName());
+        }else{
+            employeeLabel.setText("Empleado");
         }
-        setActualEmployee(actualPurchase.getEmployee());
         setProviderData();
         setProductsList();
         verifyProducts();
