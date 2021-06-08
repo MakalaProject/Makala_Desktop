@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="156.0" prefWidth="385.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.NotificationController">
+    <Label layoutX="13.0" layoutY="34.0" prefHeight="28.0" prefWidth="118.0" text="Esta semana">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <TextField fx:id="semanaField" editable="false" focusTraversable="false" layoutX="157.0" layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="217.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="30.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </TextField>
+   <Label layoutX="19.0" layoutY="100.0" prefHeight="28.0" prefWidth="112.0" text="Este mes">
+      <font>
+         <Font name="Roboto Light" size="20.0" />
+      </font>
+   </Label>
+   <TextField fx:id="mesField" editable="false" focusTraversable="false" layoutX="131.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="226.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="97.0">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </TextField>
+</AnchorPane>

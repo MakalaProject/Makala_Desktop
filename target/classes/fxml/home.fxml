@@ -117,12 +117,12 @@
                         <FontAwesomeIconView fill="WHITE" glyphName="MONEY" size="20" />
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="produccionButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="478.0" prefHeight="27.0" prefWidth="200.0" text="Produccion" textFill="WHITE">
+                  <JFXButton fx:id="produccionButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="478.0" prefHeight="27.0" prefWidth="200.0" text="Recursos" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="COG" size="20" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" />
                      </graphic>
                   </JFXButton>
                   <JFXButton fx:id="tiempoStockButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="504.0" prefHeight="27.0" prefWidth="200.0" text="Promedio Stock" textFill="WHITE">

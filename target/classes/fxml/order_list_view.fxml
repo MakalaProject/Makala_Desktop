@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="94.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="orderName" layoutX="55.0" layoutY="6.0" prefHeight="77.0" prefWidth="211.0" text="Orden" wrapText="true" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="6.0">
+            <font>
+                <Font name="Roboto Light" size="20.0" />
+            </font></Label>
+        <FontAwesomeIconView glyphName="TICKET" layoutX="14.0" layoutY="57.0" size="30" AnchorPane.bottomAnchor="32.714284896850586" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.285715103149414">
+
+        </FontAwesomeIconView>
+      <FontAwesomeIconView fx:id="statusIcon" fill="#53d037" glyphName="ARCHIVE" layoutX="286.0" layoutY="50.0" size="30" text="" wrappingWidth="37.0" AnchorPane.bottomAnchor="42.0" AnchorPane.rightAnchor="96.0" AnchorPane.topAnchor="22.0" />
+      <Label fx:id="fechaLabel" layoutX="336.0" layoutY="13.0" prefHeight="62.0" prefWidth="82.0" text="Fecha de envio establecida " wrapText="true" AnchorPane.bottomAnchor="19.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="13.0">
+         <font>
+            <Font name="Roboto Light" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="enviadoLabel" layoutX="282.0" layoutY="50.0" prefHeight="19.0" prefWidth="45.0" text="Enviado" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="50.0">
+         <font>
+            <Font name="Roboto Light" size="12.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>

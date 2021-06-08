@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="184.0" prefWidth="441.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.PurchaseProductController">
+    <AnchorPane prefHeight="50.0" prefWidth="385.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <Label fx:id="titleLabel" layoutX="75.0" layoutY="11.0" prefHeight="28.0" prefWidth="206.0" text="Producto" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="68.0" AnchorPane.topAnchor="11.0">
+                <font>
+                    <Font name="Roboto Light" size="20.0" />
+                </font>
+            </Label>
+            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="307.0" layoutY="36.0" selectionFill="BLACK" size="30" text="" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="14.428571701049805" AnchorPane.topAnchor="8.0" />
+            <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="16.0" layoutY="35.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="9.285715103149414" />
+        </children>
+    </AnchorPane>
+    <Label layoutX="29.0" layoutY="71.0" prefHeight="28.0" prefWidth="106.0" text="Cantidad:" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="306.0" AnchorPane.topAnchor="71.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <Label fx:id="expiryDateLabel" layoutX="29.0" layoutY="126.0" prefHeight="28.0" prefWidth="185.0" text="Fecha de caducidad:" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="227.0" AnchorPane.topAnchor="126.0">
+        <font>
+            <Font name="Roboto Light" size="20.0" />
+        </font>
+    </Label>
+    <TextField fx:id="cantidadField" layoutX="159.0" layoutY="67.0" maxHeight="-Infinity" maxWidth="-Infinity" promptText="1.5" style="-fx-border-color: white white black white; -fx-background-color: white; -fx-border-width: 2;" text="1.5" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="67.0">
+        <font>
+            <Font size="15.0" />
+        </font>
+        <cursor>
+            <Cursor fx:constant="TEXT" />
+        </cursor>
+    </TextField>
+   <DatePicker fx:id="expiryDatePicker" layoutX="223.0" layoutY="126.0" prefHeight="27.0" prefWidth="196.0" AnchorPane.leftAnchor="223.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="126.0" />
+   <Label fx:id="unidadLabel" layoutX="360.0" layoutY="70.0" prefHeight="28.0" prefWidth="53.0" text="pzas" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="70.0">
+      <font>
+         <Font name="Roboto Light" size="15.0" />
+      </font>
+   </Label>
+   <AnchorPane fx:id="disableAnchorPane" layoutX="6.0" prefHeight="184.0" prefWidth="441.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+    <padding>
+        <Insets bottom="30.0" />
+    </padding>
+
+</AnchorPane>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<HBox alignment="CENTER" prefHeight="105.0" prefWidth="410.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.elements.controllers.LoadingController">
+   <Label text="Cargando">
+      <font>
+         <Font size="21.0" />
+      </font>
+      <HBox.margin>
+         <Insets right="20.0" />
+      </HBox.margin>
+   </Label>
+    <Circle fx:id="circle1" fill="#ffffff00" layoutX="122.0" layoutY="121.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0">
+      <HBox.margin>
+         <Insets right="40.0" />
+      </HBox.margin></Circle>
+   <Circle fx:id="circle2" fill="#ffffff00" layoutX="178.0" layoutY="63.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0">
+      <HBox.margin>
+         <Insets right="40.0" />
+      </HBox.margin>
+   </Circle>
+   <Circle fx:id="circle3" fill="#ffffff00" layoutX="201.0" layoutY="63.0" radius="23.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0">
+      <HBox.margin>
+         <Insets right="40.0" />
+      </HBox.margin>
+   </Circle>
+</HBox>

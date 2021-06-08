@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="369.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <AnchorPane fx:id="informationPane" layoutY="199.0" minHeight="0.0" minWidth="0.0" prefHeight="511.0" prefWidth="496.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="41.0" pannable="true" prefHeight="245.0" prefWidth="501.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="41.0">
+                <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="236.0" prefWidth="486.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                    <Label layoutX="36.0" layoutY="71.0" prefHeight="28.0" prefWidth="95.0" text="Cantidad" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="355.0" AnchorPane.topAnchor="71.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="36.0" layoutY="24.0" prefHeight="28.0" prefWidth="105.0" text="Nombre" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="345.0" AnchorPane.topAnchor="24.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <Label alignment="CENTER" layoutY="150.0" prefHeight="39.0" prefWidth="486.0" style="-fx-background-color: #A39D9B;" text="Producto Original" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+                        <font>
+                            <Font name="Roboto Light" size="27.0" />
+                        </font>
+                        <effect>
+                            <DropShadow blurType="TWO_PASS_BOX">
+                                <color>
+                                    <Color red="0.5" green="0.5" blue="0.5" />
+                                </color>
+                            </DropShadow>
+                        </effect>
+                    </Label>
+               <Label layoutX="44.0" layoutY="238.0" prefHeight="28.0" prefWidth="105.0" text="Nombre">
+                  <font>
+                     <Font name="Roboto Light" size="20.0" />
+                  </font>
+               </Label>
+               <TextField fx:id="originalNombreField" editable="false" focusTraversable="false" layoutX="178.0" layoutY="231.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="246.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+                  <font>
+                     <Font size="15.0" />
+                  </font>
+               </TextField>
+                    <TextField fx:id="nombreField" editable="false" focusTraversable="false" layoutX="178.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="246.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="20.0">
+                        <font>
+                            <Font size="15.0" />
+                        </font>
+                    </TextField>
+                    <TextField fx:id="cantidadField" editable="false" focusTraversable="false" layoutX="186.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="230.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" />
+
+                </AnchorPane>
+            </ScrollPane>
+            <AnchorPane layoutX="2.0" layoutY="41.0" prefHeight="0.0" prefWidth="634.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                </children>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <effect>
+                    <DropShadow>
+                        <color>
+                            <Color red="0.01315789483487606" green="0.013036062009632587" blue="0.013036062009632587" />
+                        </color></DropShadow>
+                </effect></AnchorPane>
+        </children>
+    </AnchorPane>
+
+</AnchorPane>

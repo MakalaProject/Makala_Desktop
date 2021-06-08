@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="369.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
+    <AnchorPane fx:id="informationPane" layoutY="199.0" minHeight="0.0" minWidth="0.0" prefHeight="511.0" prefWidth="496.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <children>
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="41.0" pannable="true" prefHeight="245.0" prefWidth="501.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="41.0">
+                <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="236.0" prefWidth="486.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                    <Label layoutX="191.0" layoutY="14.0" prefHeight="29.0" prefWidth="105.0" text="Comentario" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="14.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+               <TextArea fx:id="commentText" editable="false" layoutX="33.0" layoutY="57.0" prefHeight="243.0" prefWidth="427.0" wrapText="true" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="26.0">
+                  <font>
+                     <Font size="14.0" />
+                  </font></TextArea>
+
+                </AnchorPane>
+            </ScrollPane>
+            <AnchorPane layoutX="2.0" layoutY="41.0" prefHeight="0.0" prefWidth="634.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                </children>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <effect>
+                    <DropShadow>
+                        <color>
+                            <Color red="0.01315789483487606" green="0.013036062009632587" blue="0.013036062009632587" />
+                        </color></DropShadow>
+                </effect></AnchorPane>
+        </children>
+    </AnchorPane>
+
+</AnchorPane>

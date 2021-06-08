@@ -1,0 +1,4 @@
+.list-cell:empty {
+    -fx-visibility:hidden;
+    -fx-background-color:transparent;
+}
