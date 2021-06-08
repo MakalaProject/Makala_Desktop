@@ -57,7 +57,7 @@
                              </AnchorPane>
                              <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalProductsListView" prefHeight="0.0" />
+                                     <ListView fx:id="internalProductsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -86,7 +86,7 @@
                              </AnchorPane>
                              <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalPapersListView" prefHeight="0.0" />
+                                     <ListView fx:id="internalPapersListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -115,7 +115,7 @@
                              </AnchorPane>
                              <VBox layoutY="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalRibbonsListView" prefHeight="0.0" />
+                                     <ListView fx:id="internalRibbonsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
                                  </children>
                               <VBox.margin>
                                  <Insets />

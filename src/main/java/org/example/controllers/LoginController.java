@@ -58,7 +58,7 @@ public class LoginController implements Initializable {
                 if (employee.isFirstLogin()){
                     Optional<String> result = null;
                     do{
-                        TextInputDialog dialog = new TextInputDialog("walter");
+                        TextInputDialog dialog = new TextInputDialog("Contraseña");
                         dialog.setTitle("Cambio de contraseña");
                         dialog.setHeaderText("Primer inicio de sesión");
                         dialog.setContentText("Contraseña:");
