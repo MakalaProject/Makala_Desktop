@@ -18,21 +18,24 @@ import org.example.controllers.parent.controllers.PurchaseParentController;
 import org.example.customCells.GiftListViewCell;
 import org.example.customCells.PurchaseListViewCell;
 import org.example.exceptions.ProductDeleteException;
+import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
-import org.example.model.Employee;
-import org.example.model.Provider;
-import org.example.model.Purchase;
+import org.example.interfaces.ListToChangeTools;
+import org.example.model.*;
 import org.example.services.Request;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class PurchaseController extends PurchaseParentController implements IListController<Purchase> {
+public class PurchaseController extends PurchaseParentController implements IListController<Purchase>, IControllerCreate<Purchase>{
     @FXML FontAwesomeIconView deleteButton;
     @FXML FontAwesomeIconView addButton;
     @FXML TextField searchField;
@@ -192,6 +195,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
             purchaseObservableList.set(index, purchase);
             actualPurchase = purchase;
             actualPurchase.setSelectedProducts();
+            showList(purchaseObservableList,listView, PurchaseListViewCell.class);
             listView.setItems(purchaseObservableList);
             listView.getSelectionModel().select(actualPurchase);
             listView.scrollTo(actualPurchase);
@@ -248,6 +252,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
         if (actualPurchase.getEmployee()!= null){
             employeeLabel.setText(actualPurchase.getEmployee().getFirstName());
         }
+        setActualEmployee(actualPurchase.getEmployee());
         setProviderData();
         setProductsList();
         verifyProducts();
@@ -295,5 +300,6 @@ public class PurchaseController extends PurchaseParentController implements ILis
         priceField.setText("");
 
     }
+
 
 }

@@ -201,7 +201,7 @@ public class HomeController implements Initializable {
         loader = new FXMLLoader(getClass().getResource("/fxml/catalog.fxml"));
         root = loader.load();
         if (rootResourceName.equals("purchase")){
-            PurchaseParentController controller = loader.getController();
+            PurchaseController controller = loader.getController();
             controller.setActualEmployee(administrator);
         }
         AnchorPane.setTopAnchor(root, 0D);
@@ -223,7 +223,7 @@ public class HomeController implements Initializable {
             loader = new FXMLLoader(getClass().getResource(xmlResource));
             root = loader.load();
             if (rootResourceName.equals("purchase")){
-                PurchaseParentController controller = loader.getController();
+                PurchaseController controller = loader.getController();
                 controller.setActualEmployee(administrator);
             }
             AnchorPane.setTopAnchor(root, 0D);

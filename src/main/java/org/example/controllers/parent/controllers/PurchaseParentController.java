@@ -164,6 +164,7 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         new ListToChangeTools<PurchaseProduct,Integer>().setToDeleteItems(originalPurchaseProducts, purchaseProducts);
         purchase.setProducts(purchaseProducts);
         purchase.setPrice( new BigDecimal(!priceField.getText().isEmpty() ? priceField.getText() : "0"));
+        purchase.setEmployee(actualEmployee);
         purchase.setPayMethod(payMethodComboBox.getSelectionModel().getSelectedItem());
         purchase.setIdProvider(provider.getIdUser());
         if (actualPurchase.getComment()!=null) {

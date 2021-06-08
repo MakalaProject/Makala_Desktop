@@ -14,13 +14,12 @@
         </children>
     </AnchorPane>
     <ComboBox fx:id="calendarType" layoutX="178.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" style="-fx-background-color: #E3DAD8; -fx-border-radius: 10; -fx-border-color: #A39D9B;" AnchorPane.leftAnchor="90" AnchorPane.rightAnchor="90" AnchorPane.topAnchor="50.0" />
-    <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="255.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+    <Label fx:id="dayLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="255.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="75.0">
         <font>
-            <Font name="Roboto Light" size="17.0" />
+            <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <DetailedDayView fx:id="diaDayView" prefWidth="500" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="89.0">
-
+    <DetailedDayView fx:id="diaDayView" prefWidth="500" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="105.0">
     </DetailedDayView>
     <MonthPage fx:id="mesPage" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="100.0">
     </MonthPage>
