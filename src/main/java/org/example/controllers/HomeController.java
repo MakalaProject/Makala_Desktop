@@ -144,7 +144,7 @@ public class HomeController implements Initializable {
             }
         });
 
-        productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product", "Productos",produccionButton));
+        productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product", "Productos",productosButton));
 
         proveedoresButton.setOnMouseClicked(new HomeLoader("/fxml/provider.fxml","provider", "Proveedores", proveedoresButton));
 

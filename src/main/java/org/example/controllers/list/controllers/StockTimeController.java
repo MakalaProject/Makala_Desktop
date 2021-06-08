@@ -2,12 +2,14 @@ package org.example.controllers.list.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.ProductionPlanifierInfo;
@@ -25,6 +27,8 @@ import java.util.ResourceBundle;
 public class StockTimeController implements Initializable, IListController<Product> {
     @FXML
     private ListView<Product> listView;
+    @FXML private TextField searchField;
+    FilteredList<Product> filteredProducts;
     private ObservableList<Product> productObservableList = FXCollections.observableArrayList(Request.getJ("products/basics-avg/filter-list",Product[].class,false));
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -46,6 +50,30 @@ public class StockTimeController implements Initializable, IListController<Produ
                 e.printStackTrace();
             };
         });
+        filteredProducts = new FilteredList<>(productObservableList, p ->true);
+        //Search filter
+        searchField.textProperty().addListener((observable, oldValue, newValue) ->{
+            if (!existChanges()) {
+                filteredProducts.setPredicate(product -> {
+                    if (newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lowerCaseText = newValue.toLowerCase();
+                    if (product.getName().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if (product.getProductClassDto().getProductType().toLowerCase().contains(lowerCaseText)) {
+                        return true;
+                    } else if(product.getProductClassDto().getClassification().toLowerCase().contains(lowerCaseText)){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                });
+                if (!filteredProducts.isEmpty()) {
+                    showList(FXCollections.observableArrayList(filteredProducts), listView, ProductListViewCell.class);
+                }
+            }
+        } );
     }
 
     @Override
