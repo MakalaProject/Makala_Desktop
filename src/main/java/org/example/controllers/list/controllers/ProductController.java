@@ -189,7 +189,7 @@ public class ProductController extends ProductParentController implements IListC
         checkFields();
         if(!nombreField.getText().isEmpty() && !minField.getText().isEmpty() && !maxField.getText().isEmpty() && !stockField.getText().isEmpty() && !precioField.getText().isEmpty()){
             if(Integer.parseInt(minField.getText())>0 && Integer.parseInt(maxField.getText())>0 && Float.parseFloat(precioField.getText())>0){
-                if (Integer.parseInt(minField.getText()) <= Integer.parseInt(maxField.getText())){
+                if (Integer.parseInt(minField.getText()) < Integer.parseInt(maxField.getText())){
                     Product product = (Product) actualPropertiesController.getObject();
                     if (product != null) {
                         setInfo(product);
@@ -236,6 +236,7 @@ public class ProductController extends ProductParentController implements IListC
                         product.setPictures(returnedProduct.getPictures());
                         actualPropertiesController.setObject(returnedProduct);
                         actualProduct = product;
+                        actualProduct.getClassificationsPerType().setAll(Request.getJ("classifications/products/filter-list?productType=" + actualProduct.getProductClassDto().getProductType(), ProductClassDto[].class, false));
                         pictureList = new ArrayList<>(product.getPictures());
                         comboBox.setValue(actualProduct.getProductClassDto().getProductType());
                         Product p = listView.getSelectionModel().getSelectedItem();
@@ -253,7 +254,7 @@ public class ProductController extends ProductParentController implements IListC
                     }
 
                 }else {
-                    showAlertEmptyFields("El mínimo no puede ser mayor al maximo");
+                    showAlertEmptyFields("El mínimo no puede ser mayor o igual al maximo");
                 }
             }else {
                 showAlertEmptyFields("Los campos númericos no pueden ser 0");

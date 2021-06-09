@@ -38,7 +38,7 @@ public class RibbonProduct extends Product {
 
     @Override
     public Integer formatMin() {
-        return max/10;
+        return min/10;
     }
 
     @Override

@@ -187,6 +187,7 @@ public class GiftController extends GiftParentController implements IListControl
         Gift gift = new Gift();
         setInfo(gift);
         if (!actualGift.equals(gift)){
+            listView.getSelectionModel().select(actualGift);
             if(!showAlertUnsavedElement(actualGift.getName(), gift.getIdentifier())) {
                 listView.getSelectionModel().select(gift);
             }else{
