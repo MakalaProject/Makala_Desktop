@@ -14,6 +14,7 @@ import java.util.List;
 public class Gift implements IChangeable<Integer> {
     private Integer idGift;
     private String name;
+    @EqualsAndHashCode.Exclude
     private BigDecimal price;
     private String privacy;
     private BigDecimal laborPrice;
@@ -26,6 +27,7 @@ public class Gift implements IChangeable<Integer> {
     private final String identifier = "regalo";
     private int rating;
     private boolean toDelete;
+    @EqualsAndHashCode.Exclude
     private int totalTime = 0;
     @EqualsAndHashCode.Exclude
     private int stock = 0;

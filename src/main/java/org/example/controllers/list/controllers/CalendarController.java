@@ -41,6 +41,7 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -84,11 +85,21 @@ public class CalendarController implements Initializable, IListController<Calend
                 }
                 else if(t1.equals("Envios")){
                     identifier = "Envios";
+                    if(mesPage.getDate().compareTo(LocalDate.now()) == 0){
+                        shippings.clear();
+                        shippings.addAll(Request.getJ("orders/basics?date="+mesPage.getDate()+"&sells=false", Order[].class, false ));
+                        shippingShown = false;
+                    }
                     updateButton.setVisible(false);
                     showShippingActivities();
                 }
                 else if(t1.equals("Ventas")){
                     identifier = "Ventas";
+                    if(mesPage.getDate().compareTo(LocalDate.now()) != 0){
+                        orders.clear();
+                        orders.addAll(Request.getJ("orders/basics?date="+mesPage.getDate()+"&sells=true", Order[].class, false ));
+                        ordersShown = false;
+                    }
                     updateButton.setVisible(false);
                     showOrderActivities();
                 }
@@ -163,6 +174,31 @@ public class CalendarController implements Initializable, IListController<Calend
             LocalDate date = mesPage.getDate();
             dayLabel.setText(Formatter.FormatCalendar(date));
             diaDayView.setDate(date);
+            if(calendarType.getValue().equals("Produccion")){
+                identifier = "Produccion";
+                updateButton.setVisible(true);
+                showNormalActivities();
+            }
+            else if(calendarType.getValue().equals("Envios")){
+                identifier = "Envios";
+                if(mesPage.getDate().compareTo(LocalDate.now()) == 0){
+                    shippings.clear();
+                    shippings.addAll(Request.getJ("orders/basics?date="+mesPage.getDate()+"&sells=false", Order[].class, false ));
+                    shippingShown = false;
+                }
+                updateButton.setVisible(false);
+                showShippingActivities();
+            }
+            else if(calendarType.getValue().equals("Ventas")){
+                identifier = "Ventas";
+                if(mesPage.getDate().compareTo(LocalDate.now()) != 0){
+                    orders.clear();
+                    orders.addAll(Request.getJ("orders/basics?date="+mesPage.getDate()+"&sells=true", Order[].class, false ));
+                    ordersShown = false;
+                }
+                updateButton.setVisible(false);
+                showOrderActivities();
+            }
         });
     }
 
@@ -273,6 +309,7 @@ public class CalendarController implements Initializable, IListController<Calend
 
     private void showShippingActivities(){
         if(!shippingShown) {
+            shippingActivities.clear();
             LocalTime time = LocalTime.of(9, 0);
             for (Order order : shippings) {
                 Entry<Order> calendarShippingActivities = new Entry<>("Envio de venta " + order.getIdOrder());
@@ -298,11 +335,12 @@ public class CalendarController implements Initializable, IListController<Calend
 
     private void showOrderActivities(){
         if(!ordersShown) {
-            LocalTime time = LocalTime.of(9, 0);
-            for (Order order : shippings) {
+            orderActivities.clear();
+            LocalDateTime time = LocalDateTime.of(mesPage.getDate(), LocalTime.of(9,0));
+            for (Order order : orders) {
                 Entry<Order> calendarShippingActivities = new Entry<>("Venta " + order.getIdOrder());
-                calendarShippingActivities.setInterval(order.getDate().toLocalDate(), time, order.getDate().toLocalDate(), time.plusMinutes(18));
-                time = time.plusMinutes(18);
+                calendarShippingActivities.setInterval(order.getDate().toLocalDate(), time.toLocalTime(), order.getDate().toLocalDate(), time.toLocalTime().plusMinutes(15));
+                time = time.plusMinutes(15);
                 calendarShippingActivities.setUserObject(order);
                 orderActivities.add(calendarShippingActivities);
             }
