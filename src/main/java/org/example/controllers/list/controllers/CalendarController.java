@@ -299,7 +299,7 @@ public class CalendarController implements Initializable, IListController<Calend
     private void showOrderActivities(){
         if(!ordersShown) {
             LocalTime time = LocalTime.of(9, 0);
-            for (Order order : shippings) {
+            for (Order order : orders) {
                 Entry<Order> calendarShippingActivities = new Entry<>("Venta " + order.getIdOrder());
                 calendarShippingActivities.setInterval(order.getDate().toLocalDate(), time, order.getDate().toLocalDate(), time.plusMinutes(18));
                 time = time.plusMinutes(18);

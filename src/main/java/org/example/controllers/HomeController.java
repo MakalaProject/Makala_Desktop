@@ -71,7 +71,7 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Notification notification = (Notification) Request.getJ("notifications", Notification.class);
         if(notification.isNextMonthBusy() || notification.isWeek3Busy()){
-            notifications.setStyle("-fx-fill: RED;");
+            notifications.setFill(Color.RED);
         }
         settings.setOnMouseClicked(mouseEvent -> {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/admin_info.fxml"));
