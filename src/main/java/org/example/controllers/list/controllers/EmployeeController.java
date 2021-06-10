@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.SelectListDepart;
+import org.example.customCells.InternalListViewCell;
 import org.example.customCells.UserListViewCell;
 import org.example.model.Department;
 import org.example.model.Employee;
@@ -40,10 +41,7 @@ public class EmployeeController extends UserParentController<Employee> {
     @FXML
     TextField contraseñaField;
     @FXML ListView<WorkDays> workDayList;
-    @FXML
-    TextField idField;
-    @FXML
-    AnchorPane propertiesAnchorPane;
+    @FXML TextField idField;
     @FXML FontAwesomeIconView addWorkDays;
     int index = 0;
     private static final ObservableList<Department> departmentsItems = FXCollections.observableArrayList();
@@ -210,12 +208,14 @@ public class EmployeeController extends UserParentController<Employee> {
 
     private void showDepartmentsList(ObservableList<Department> list){
         departmentList.setItems(FXCollections.observableList(list.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
-        departmentList.prefHeightProperty().bind(Bindings.size(departmentList.getItems()).multiply(23.7));
+        departmentList.setPrefHeight(departmentList.getItems().size() * 35 + 2);
+        departmentList.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 
     private void showWorkDayList(){
         workDayList.setItems(workDayItems);
-        workDayList.prefHeightProperty().bind(Bindings.size(workDayItems).multiply(23.7));
+        workDayList.setPrefHeight(workDayList.getItems().size() * 35 + 2);
+        workDayList.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 
     @Override

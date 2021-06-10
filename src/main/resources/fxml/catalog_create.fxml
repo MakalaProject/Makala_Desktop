@@ -10,31 +10,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="503.0" prefWidth="519.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.CatalogCreateController">
-            <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="478.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                <children>
-                    <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="394.0" layoutY="77.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="56.42857170104992" AnchorPane.topAnchor="51.285715103149414" />
-                    <ImageView fx:id="catalogImage" fitHeight="184.0" fitWidth="178.0" layoutX="144.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="144.0" AnchorPane.topAnchor="52.0">
-                        <effect>
-                            <DropShadow />
-                        </effect>
-                        <image>
-                            <Image url="@../Images/catalog.png" />
-                        </image>
-                    </ImageView>
-                    <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <children>
-                            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="548.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
-                        </children>
-                    </AnchorPane>
-                    <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="396.0" layoutY="239.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="54.42857170104992" AnchorPane.topAnchor="213.2857151031494" />
-                </children>
-                <opaqueInsets>
-                    <Insets />
-                </opaqueInsets>
-                <effect>
-                    <DropShadow />
-                </effect></AnchorPane>
-    <ScrollPane fitToWidth="true" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
+    <ScrollPane fitToWidth="true" layoutY="255.0" prefHeight="248.0" prefWidth="519.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
         <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
             <children>
                 <Label layoutX="53.0" layoutY="274.0" prefHeight="28.0" prefWidth="107.0" text="Nombre*" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="30.0">
@@ -71,7 +47,7 @@
                                 <FontAwesomeIconView fx:id="giftButton" fill="WHITE" glyphName="PLUS" layoutX="466.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="4.285715103149414" />
                             </children>
                         </AnchorPane>
-                        <ListView fx:id="giftListView" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+                        <ListView fx:id="giftListView" fixedCellSize="35.0" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
                     </children>
                 </VBox>
             </children>
@@ -82,6 +58,30 @@
                <Font name="Roboto Light" size="17.0" />
            </font>
        </Label>
+            <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="478.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <children>
+                    <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="394.0" layoutY="77.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="56.42857170104992" AnchorPane.topAnchor="51.285715103149414" />
+                    <ImageView fx:id="catalogImage" fitHeight="184.0" fitWidth="178.0" layoutX="144.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="144.0" AnchorPane.topAnchor="52.0">
+                        <effect>
+                            <DropShadow />
+                        </effect>
+                        <image>
+                            <Image url="@../Images/catalog.png" />
+                        </image>
+                    </ImageView>
+                    <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                            <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="548.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+                        </children>
+                    </AnchorPane>
+                    <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="396.0" layoutY="239.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="54.42857170104992" AnchorPane.topAnchor="213.2857151031494" />
+                </children>
+                <opaqueInsets>
+                    <Insets />
+                </opaqueInsets>
+                <effect>
+                    <DropShadow />
+                </effect></AnchorPane>
 
 
 </AnchorPane>

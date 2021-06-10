@@ -1,4 +1,5 @@
 package org.example.controllers.list.controllers;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -7,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.ProductParentController;
@@ -36,7 +37,9 @@ public class ProductController extends ProductParentController implements IListC
     @FXML ComboBox<String> comboBox;
     @FXML ListView<Product> listView;
     @FXML ToggleSwitch editSwitch;
+    @FXML AnchorPane disablePropertiesAnchorPane;
     FilteredList<Product> filteredProducts;
+    @FXML Label requireLabel;
     Product actualProduct;
     private final ObservableList<Product> productObservableList = FXCollections.observableArrayList();
     private final ObservableList<Product> actualList = FXCollections.observableArrayList();
@@ -55,7 +58,8 @@ public class ProductController extends ProductParentController implements IListC
         comboBox.getSelectionModel().select(0);
         //Switch to edit
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView(fieldsAnchorPane, editSwitch, updateButton);
+            editSwitch.requestFocus();
+            editView(disableInfoAnchorPane, disableImageAnchorPane, requireLabel, editSwitch,updateButton);
         });
         selectClassification();
         filteredProducts = new FilteredList<>(actualList, p ->true);
@@ -250,7 +254,7 @@ public class ProductController extends ProductParentController implements IListC
                         listView.scrollTo(product);
                         updateView();
                         editSwitch.setSelected(false);
-                        editView(fieldsAnchorPane, editSwitch, updateButton);
+                        editView(disableInfoAnchorPane, disableImageAnchorPane, requireLabel, editSwitch,updateButton);
                     }
 
                 }else {
@@ -361,7 +365,7 @@ public class ProductController extends ProductParentController implements IListC
         }
         //Disable edit option
         editSwitch.setSelected(false);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
+        editView(disableInfoAnchorPane, disableImageAnchorPane, requireLabel, editSwitch,updateButton);
         index = productObservableList.indexOf(actualProduct);
         //Put general information
         for (IControllerProducts controller : propertiesControllers) {
@@ -400,13 +404,13 @@ public class ProductController extends ProductParentController implements IListC
             nombreField.setEditable(false);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
-            propertiesVBox.setDisable(true);
+            disablePropertiesAnchorPane.setVisible(true);
         }else {
             userClicked = false;
             nombreField.setEditable(true);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
-            propertiesVBox.setDisable(false);
+            disablePropertiesAnchorPane.setVisible(false);
         }
     }
 

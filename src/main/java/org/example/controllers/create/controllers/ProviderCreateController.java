@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.SelectListProduct;
 import org.example.controllers.parent.controllers.UserGenericController;
+import org.example.customCells.InternalListViewCell;
 import org.example.model.Adress.Address;
 import org.example.model.Adress.City;
 import org.example.model.ChangedVerificationFields;
@@ -145,7 +146,8 @@ public class ProviderCreateController extends UserGenericController<Provider> {
 
     public void showProductsList(ObservableList<Product> products){
         productsListView.setItems(FXCollections.observableList(products.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
-        productsListView.prefHeightProperty().bind(Bindings.size(productsListView.getItems()).multiply(23.7));
+        productsListView.setPrefHeight(productsListView.getItems().size() * 35 + 2);
+        productsListView.setCellFactory(cellList -> new InternalListViewCell<>());
     }
     protected void checkFields() {
         super.checkFields();

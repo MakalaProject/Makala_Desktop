@@ -4,6 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -50,6 +51,8 @@ public class CatalogController extends CatalogParentController implements Initia
     @FXML TextField searchField;
     @FXML ToggleSwitch editSwitch;
     @FXML protected AnchorPane fieldsAnchorPane;
+    @FXML AnchorPane disableImageAnchorPane;
+    @FXML Label requireLabel;
     Catalog actualCatalog = new Catalog();
     private ObservableList<Catalog> catalogObservableList = FXCollections.observableArrayList();
     FilteredList<Catalog> filteredCatalog;
@@ -88,7 +91,8 @@ public class CatalogController extends CatalogParentController implements Initia
         });
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView(fieldsAnchorPane, editSwitch, updateButton);
+            editSwitch.requestFocus();
+            editView(fieldsAnchorPane, disableImageAnchorPane,requireLabel, editSwitch, updateButton);
         });
 
 
@@ -195,7 +199,7 @@ public class CatalogController extends CatalogParentController implements Initia
             listView.scrollTo(catalog);
             giftListView.getItems().setAll(actualCatalog.getGifts());
             editSwitch.setSelected(false);
-            editView(fieldsAnchorPane, editSwitch, updateButton);
+            editView(fieldsAnchorPane, disableImageAnchorPane,requireLabel, editSwitch, updateButton);
         }else {
             checkFields();
             showAlertEmptyFields("Tienes un campo indispensable vacio");
@@ -246,7 +250,7 @@ public class CatalogController extends CatalogParentController implements Initia
         index = catalogObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
         showGiftsList(giftObservableList);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
+        editView(fieldsAnchorPane, disableImageAnchorPane,requireLabel, editSwitch, updateButton);
         putFields();
     }
 

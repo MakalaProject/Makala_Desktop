@@ -108,8 +108,7 @@ public class CatalogParentController implements Initializable {
 
     protected void showGiftsList(ObservableList<Gift> list){
         giftListView.setItems(FXCollections.observableList(list.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList())));
-        double b = giftListView.getFixedCellSize();
-        giftListView.prefHeightProperty().bind(Bindings.size(giftListView.getItems()).multiply(35));
+        giftListView.setPrefHeight(giftListView.getItems().size() * 35 + 2);
         giftListView.setCellFactory(cellList -> new CatalogGiftListViewCell());
     }
 

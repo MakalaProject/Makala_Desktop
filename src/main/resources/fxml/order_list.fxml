@@ -16,7 +16,7 @@
             <children>
                 <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="35.0" size="20" AnchorPane.leftAnchor="14.571428298950195" AnchorPane.topAnchor="17.85714340209961" />
                 <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
-                <VBox layoutY="109.0" prefHeight="1.0" prefWidth="435.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
+                <VBox layoutY="56.0" prefHeight="893.0" prefWidth="434.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="56.0">
                     <children>
                         <ListView fx:id="listView" prefHeight="0.0" prefWidth="435.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6; ">
                         </ListView>
@@ -25,10 +25,10 @@
             </children>
         </AnchorPane>
 
-        <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
+        <AnchorPane fx:id="informationPane" style="-fx-background-color: #E3DAD8;">
             <children>
                 <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="42.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" disable="true" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                    <AnchorPane style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                         <children>
                                 <AnchorPane layoutY="13.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <Label layoutX="36.0" layoutY="71.0" prefHeight="28.0" prefWidth="115.0" text="Precio Envio" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="71.0">
@@ -120,7 +120,7 @@
                                           </AnchorPane>
                                           <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                               <children>
-                                                  <ListView fx:id="giftListView" prefHeight="0.0">
+                                                  <ListView fx:id="giftListView" style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0">
                                     <VBox.margin>
                                        <Insets />
                                     </VBox.margin>
@@ -148,7 +148,7 @@
                                           </AnchorPane>
                                           <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                               <children>
-                                                  <ListView fx:id="commentsListView" prefHeight="0.0" />
+                                                  <ListView fx:id="commentsListView"  style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0" />
                                               </children>
                                               <VBox.margin>
                                                   <Insets />
@@ -157,6 +157,7 @@
                                       </VBox>
                         <AnchorPane fx:id="blockPane" layoutX="5.0" layoutY="1.0" prefHeight="512.0" prefWidth="497.0" AnchorPane.bottomAnchor="617.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0" />
                                 </AnchorPane>
+                     <AnchorPane fx:id="fieldsAnchorPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </ScrollPane>

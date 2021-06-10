@@ -31,7 +31,7 @@ public class Hole implements IChangeable<Integer> {
 
     @Override
     public String toString(){
-        return "Separacion: " + holeNumber.toString() + " x: " + holeDimensions.getX().toString() + " y: " +  holeDimensions.getY().toString();
+        return "División: " + holeNumber.toString() + " x: " + holeDimensions.getX().toString() + " y: " +  holeDimensions.getY().toString();
     }
 }
 

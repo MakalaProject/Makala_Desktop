@@ -53,7 +53,8 @@ public abstract class ProductParentController implements Initializable, IControl
     @FXML protected ComboBox<ProductClassDto> clasificacionComboBox;
     @FXML protected ComboBox<String> tipoComboBox;
     @FXML protected VBox propertiesVBox;
-    @FXML protected AnchorPane fieldsAnchorPane;
+    @FXML protected AnchorPane disableImageAnchorPane;
+    @FXML protected AnchorPane disableInfoAnchorPane;
     @FXML protected FontAwesomeIconView deletePicture;
     @FXML protected FontAwesomeIconView nextPicture;
     @FXML protected FontAwesomeIconView previousPicture;
