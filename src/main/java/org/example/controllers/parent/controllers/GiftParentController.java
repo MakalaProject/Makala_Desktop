@@ -21,6 +21,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
+import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IPictureController;
 import org.example.interfaces.ListToChangeTools;
@@ -226,11 +227,14 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalProductsListView.getItems().clear();
         internalRibbonsListView.getItems().clear();
         internalPapersListView.getItems().setAll(actualPapersObservableList);
-        internalPapersListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualPapersObservableList) ).multiply(23.7));
+        internalPapersListView.setPrefHeight(actualPapersObservableList.size() * 35 + 2);
+        internalPapersListView.setCellFactory(listCell -> new InternalListViewCell<>());
         internalRibbonsListView.getItems().setAll(actualRibbonsObservableList);
-        internalRibbonsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualRibbonsObservableList) ).multiply(23.7));
+        internalRibbonsListView.setPrefHeight(actualRibbonsObservableList.size() * 35 + 2);
+        internalRibbonsListView.setCellFactory(listCell -> new InternalListViewCell<>());
         internalProductsListView.getItems().setAll(actualProductsObservableList);
-        internalProductsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(actualProductsObservableList)).multiply(23.7));
+        internalProductsListView.setPrefHeight(actualProductsObservableList.size() * 35 + 2);
+        internalProductsListView.setCellFactory(listCell -> new InternalListViewCell<>());
     }
     protected void checkInternalProducts(){
         if (actualGift.getStaticProducts().size() > 0 ){

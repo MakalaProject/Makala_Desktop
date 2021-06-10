@@ -29,8 +29,8 @@
 
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
             <children>
-                <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="284.0" pannable="true" prefHeight="655.0" prefWidth="511.0" style="-fx-background-color: #E3DAD8;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="284.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefHeight="653.0" prefWidth="496.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="253.0" pannable="true" prefHeight="686.0" prefWidth="510.0" style="-fx-background-color: #E3DAD8;" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="253.0">
+                    <AnchorPane layoutY="257.0" prefHeight="653.0" prefWidth="496.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                   <AnchorPane fx:id="productsAnchorPane" layoutY="375.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="350.0">
                      <children>
                          <VBox AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -57,7 +57,7 @@
                              </AnchorPane>
                              <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalProductsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
+                                     <ListView fx:id="internalProductsListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8 " />
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -86,7 +86,7 @@
                              </AnchorPane>
                              <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalPapersListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
+                                     <ListView fx:id="internalPapersListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8" />
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -115,7 +115,7 @@
                              </AnchorPane>
                              <VBox layoutY="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalRibbonsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
+                                     <ListView fx:id="internalRibbonsListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8" />
                                  </children>
                               <VBox.margin>
                                  <Insets />
@@ -124,7 +124,7 @@
                          </VBox>
                      </children>
                   </AnchorPane>
-                <Label layoutX="45.0" layoutY="23.0" prefHeight="28.0" prefWidth="110.0" text="Nombre*" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="23.0">
+                <Label layoutX="46.0" layoutY="29.0" prefHeight="28.0" prefWidth="110.0" text="Nombre*" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="29.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
@@ -176,7 +176,7 @@
                      </font>
                   </Label>
                   <FontAwesomeIconView fx:id="manualButton" glyphName="EDIT" layoutX="400.0" layoutY="322.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="64.42857170104992" AnchorPane.topAnchor="296.2857151031494" />
-                <TextField fx:id="nombreField" layoutX="158.0" layoutY="20.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" promptText="México lindo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="79.0" AnchorPane.topAnchor="20.0">
+                <TextField fx:id="nombreField" layoutX="159.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" promptText="México lindo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="27.0">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -200,6 +200,12 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
+                  <Label fx:id="requireLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="-72.0" layoutY="3.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font name="Roboto Light" size="17.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane fx:id="fieldsAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -255,11 +261,7 @@
                         <Color red="0.01315789483487606" green="0.013036062009632587" blue="0.013036062009632587" />
                      </color></DropShadow>
                     </effect></AnchorPane>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="218.0" layoutY="255.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
-               <font>
-                  <Font name="Roboto Light" size="17.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="disableImageAnchorPane" prefHeight="215.0" prefWidth="510.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="38.0" />
             </children>
         </AnchorPane>
     </items>

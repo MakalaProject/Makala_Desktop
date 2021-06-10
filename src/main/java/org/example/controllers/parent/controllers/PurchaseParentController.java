@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import org.example.controllers.PurchaseProductController;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
 import org.example.controllers.elements.controllers.SelectListProviders;
+import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.*;
@@ -135,8 +136,9 @@ public class PurchaseParentController implements Initializable, IControllerCreat
         providerName.setText(provider.getFirstName());
     }
     public void setProductsList(){
-        productListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(purchaseProducts) ).multiply(23.7));
         productListView.getItems().setAll(purchaseProducts);
+        productListView.setPrefHeight(purchaseProducts.size() * 35 + 2);
+        productListView.setCellFactory(listCell -> new InternalListViewCell<>());
     }
 
     public void verifyProducts(){
