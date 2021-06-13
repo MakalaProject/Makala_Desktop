@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
+import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.*;
 import org.example.services.Request;
@@ -116,8 +117,10 @@ public class OrderPropertiesController implements Initializable, IControllerCrea
 
     protected void showOrderLists() {
         giftListView.getItems().setAll(giftsEditableObservableList);
-        giftListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(order.getGifts())).multiply(23.7));
+        giftListView.setPrefHeight(giftsEditableObservableList.size() * 35 + 2);
+        giftListView.setCellFactory(cellList -> new InternalListViewCell<>());
         commentsListView.getItems().setAll(commentsEditableObservableList);
-        commentsListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(order.getComments())).multiply(23.7));
+        commentsListView.setPrefHeight(commentsEditableObservableList.size() * 35 + 2);
+        commentsListView.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 }

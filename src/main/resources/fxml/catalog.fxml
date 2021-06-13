@@ -41,7 +41,7 @@
                         <ComboBox fx:id="clasificacionComboBox" layoutX="194.0" layoutY="337.0" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #CFC7C4;" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="70.0" />
 
 
-                        <VBox layoutY="131.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="131.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                        <VBox layoutY="131.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="131.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
                             <children>
                                 <AnchorPane>
                                     <children>

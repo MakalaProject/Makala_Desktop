@@ -55,7 +55,6 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected FontAwesomeIconView containerButton;
     @FXML protected FontAwesomeIconView papersButton;
     @FXML protected FontAwesomeIconView ribbonsButton;
-
     @FXML protected FontAwesomeIconView previousPicture;
     @FXML protected Label containerName;
     @FXML protected Rating giftRating;
@@ -65,6 +64,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
     @FXML protected ListView<RibbonProductToSend> internalRibbonsListView;
     protected Gift actualGift;
+    protected boolean editProduct;
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<RibbonProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
@@ -98,13 +98,13 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Fijo,Creados,Comestible", Product[].class, false));
 
         internalPapersListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView);
+            propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
         });
         internalRibbonsListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourceRibbons,false, internalRibbonsListView.getSelectionModel().getSelectedItem(), actualRibbonsObservableList, internalRibbonsListView);
+            propertiesGiftProducts(resourceRibbons,false, internalRibbonsListView.getSelectionModel().getSelectedItem(), actualRibbonsObservableList, internalRibbonsListView, editProduct);
         });
         internalProductsListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalRibbonsListView);
+            propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalRibbonsListView, editProduct);
             checkInternalProducts();
         });
 
@@ -125,7 +125,7 @@ public class GiftParentController implements Initializable, IPictureController, 
             Product product = loadDialog(internalProducts, FXCollections.observableArrayList());
             if (product != null) {
                 StaticProduct staticProduct = new StaticProduct(product.getIdProduct(), product.getName());
-                propertiesGiftProducts(resourceProducts,true, new GiftProductsToSend(staticProduct), actualProductsObservableList,internalProductsListView);
+                propertiesGiftProducts(resourceProducts,true, new GiftProductsToSend(staticProduct), actualProductsObservableList,internalProductsListView, editProduct);
             }
             checkInternalProducts();
         });
@@ -133,14 +133,14 @@ public class GiftParentController implements Initializable, IPictureController, 
         papersButton.setOnMouseClicked(mouseEvent -> {
             Product product = loadDialog(papersProducts, FXCollections.observableArrayList());
             if (product != null) {
-                propertiesGiftProducts(resourcePapers,true, new PaperProductToSend(product), actualPapersObservableList,internalPapersListView);
+                propertiesGiftProducts(resourcePapers,true, new PaperProductToSend(product), actualPapersObservableList,internalPapersListView, editProduct);
             }
         });
 
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
             Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
             if (product != null) {
-                propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualRibbonsObservableList,internalRibbonsListView);
+                propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualRibbonsObservableList,internalRibbonsListView, editProduct);
             }
         });
 
@@ -169,15 +169,15 @@ public class GiftParentController implements Initializable, IPictureController, 
             files = deletePicture();
         });
     }
-    protected <T extends GiftProductsParent> void propertiesGiftProducts(String resource, boolean isCreate, GiftProductsParent insideProduct, List<T> giftProducts, ListView<? extends GiftProductsParent> listViewProducts){
+    protected <T extends GiftProductsParent> void propertiesGiftProducts(String resource, boolean isCreate, GiftProductsParent insideProduct, List<T> giftProducts, ListView<? extends GiftProductsParent> listViewProducts, boolean editProduct){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(resource));
         try {
             Parent parent = fxmlLoader.load();
             IControllerCreate<GiftProductsParent> dialogController = fxmlLoader.getController();
             if (resource.equals(resourceProducts)){
-                dialogController.setProduct(insideProduct, isCreate, containerExtended, actualGift);
+                dialogController.setProduct(insideProduct, isCreate, containerExtended, actualGift, editProduct);
             }else {
-                dialogController.setProduct(insideProduct, isCreate);
+                dialogController.setProduct(insideProduct, isCreate, editProduct);
             }
             Scene scene = new Scene(parent);
             Stage stage = new Stage();

@@ -420,16 +420,16 @@ public class GiftController extends GiftParentController implements IListControl
         userClicked = false;
         if (!actualGift.getPrivacy().equals("Privado")){
             nombreField.setDisable(true);
+            editProduct = false;
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicGift);
             containerButton.setDisable(true);
-            productsAnchorPane.setDisable(true);
         }else {
             nombreField.setDisable(false);
+            editProduct = true;
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             containerButton.setDisable(false);
-            productsAnchorPane.setDisable(false);
         }
         privacidadComboBox.getSelectionModel().select(actualGift.getPrivacy());
     }

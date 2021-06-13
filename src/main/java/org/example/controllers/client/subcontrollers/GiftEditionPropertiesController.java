@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.customCells.InternalListViewCell;
 import org.example.model.GiftEditable;
 import org.example.model.Order;
 import org.example.model.ProductEdition;
@@ -64,6 +65,7 @@ public class GiftEditionPropertiesController implements Initializable {
 
     private void showList() {
         productsChangeableListView.setItems(productsChangeableObservableList);
-        productsChangeableListView.prefHeightProperty().bind(Bindings.size(FXCollections.observableList(productsChangeableObservableList)).multiply(23.7));
+        productsChangeableListView.setPrefHeight(productsChangeableObservableList.size() * 35 + 2);
+        productsChangeableListView.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 }

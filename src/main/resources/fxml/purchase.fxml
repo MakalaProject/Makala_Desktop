@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.PurchaseController">
+<SplitPane dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.PurchaseController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
             <children>
@@ -60,7 +60,7 @@
                               </AnchorPane>
                               <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                   <children>
-                                      <ListView fx:id="productListView" prefHeight="0.0" style="-fx-background-color: #A39D9B;" />
+                                      <ListView fx:id="productListView" fixedCellSize="35.0" prefHeight="0.0" style="-fx-background-color: #A39D9B;" />
                                   </children>
                                   <VBox.margin>
                                       <Insets bottom="10.0" />

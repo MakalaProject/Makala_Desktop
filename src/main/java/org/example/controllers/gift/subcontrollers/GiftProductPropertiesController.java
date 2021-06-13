@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.*;
@@ -28,6 +29,7 @@ public class GiftProductPropertiesController implements Initializable, IControll
     @FXML public TextField altoIntField;
     @FXML public TextField anchoIntField;
     @FXML public TextField largoIntField;
+    @FXML public AnchorPane disableAnchorPane;
     private BoxProduct boxProduct;
     private StaticProduct staticProduct;
     private Gift gift;
@@ -91,11 +93,16 @@ public class GiftProductPropertiesController implements Initializable, IControll
     }
 
     @Override
-    public void setProduct(GiftProductsToSend product, boolean isCreate, BoxProduct container, Gift gift){
+    public void setProduct(GiftProductsToSend product, boolean isCreate, BoxProduct container, Gift gift, boolean editProduct){
         this.create = isCreate;
         this.gift = gift;
         boxProduct = container;
         deleteButton.setVisible(!isCreate);
+        if (!editProduct){
+            updateButton.setVisible(false);
+            disableAnchorPane.setVisible(true);
+            deleteButton.setVisible(false);
+        }
         giftProductToSend = product;
         originalAmount = product.getAmount();
         titleLabel.setText(product.getProduct().getName());

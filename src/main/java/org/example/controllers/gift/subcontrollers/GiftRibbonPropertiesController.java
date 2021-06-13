@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.ChangedVerificationFields;
@@ -27,6 +28,7 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
     @FXML public TextField cantidadField;
     @FXML public FontAwesomeIconView updateButton;
     @FXML public FontAwesomeIconView deleteButton;
+    @FXML public AnchorPane disableAnchorPane;
 
 
     private RibbonProductToSend ribbonProductToSend = new RibbonProductToSend();
@@ -74,8 +76,13 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
     }
 
     @Override
-    public void setProduct(RibbonProductToSend ribbonProduct, boolean isCreate){
+    public void setProduct(RibbonProductToSend ribbonProduct, boolean isCreate, boolean editProduct){
         deleteButton.setVisible(!isCreate);
+        if (!editProduct){
+            updateButton.setVisible(false);
+            disableAnchorPane.setVisible(true);
+            deleteButton.setVisible(false);
+        }
         ribbonProductToSend = ribbonProduct;
         titleLabel.setText(ribbonProduct.getProduct().getName());
         cantidadField.setText(ribbonProduct.getAmount().toString());
