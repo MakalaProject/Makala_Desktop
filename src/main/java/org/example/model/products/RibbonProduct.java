@@ -27,8 +27,18 @@ public class RibbonProduct extends Product {
     }
 
     @Override
-    public void getRealStock(BigDecimal stock) {
+    public void setRealStock(BigDecimal stock) {
         this.stock = stock.multiply(new BigDecimal(10));
+    }
+
+    @Override
+    public void setMax(Integer minMax) {
+        this.max = minMax*10;
+    }
+
+    @Override
+    public void setMin(Integer minMax) {
+        this.min = minMax*10;
     }
 
     @Override
@@ -41,13 +51,4 @@ public class RibbonProduct extends Product {
         return min/10;
     }
 
-    @Override
-    public void getMax(Integer minMax) {
-        this.max = minMax*10;
-    }
-
-    @Override
-    public void getMin(Integer minMax) {
-        this.min = minMax*10;
-    }
 }

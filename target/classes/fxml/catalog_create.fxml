@@ -10,6 +10,54 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="503.0" prefWidth="519.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.CatalogCreateController">
+    <ScrollPane fitToWidth="true" layoutY="255.0" prefHeight="248.0" prefWidth="519.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+        <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+            <children>
+                <Label layoutX="53.0" layoutY="274.0" prefHeight="28.0" prefWidth="107.0" text="Nombre*" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="30.0">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+
+                <Label layoutX="53.0" layoutY="336.0" prefHeight="28.0" prefWidth="130.0" text="Clasificación" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="70.0">
+                    <font>
+                        <Font name="Roboto Light" size="20.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="nombreField" layoutX="193.0" layoutY="274.0" prefHeight="27.0" prefWidth="248.0" promptText="Corporativo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="30.0" />
+                <ComboBox fx:id="clasificacionComboBox" layoutX="194.0" layoutY="337.0" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #CFC7C4;" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="70.0" />
+
+
+                <VBox layoutY="131.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="131.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+                    <children>
+                        <AnchorPane>
+                            <children>
+                                <Label alignment="CENTER" prefHeight="39.0" prefWidth="517.0" style="-fx-background-color: #A39D9B;" text="Regalos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <font>
+                                        <Font name="Roboto Light" size="27.0" />
+                                    </font>
+                                    <effect>
+                                        <DropShadow blurType="TWO_PASS_BOX">
+                                            <color>
+                                                <Color red="0.5" green="0.5" blue="0.5" />
+                                            </color>
+                                        </DropShadow>
+                                    </effect>
+                                </Label>
+                                <FontAwesomeIconView fx:id="giftButton" fill="WHITE" glyphName="PLUS" layoutX="466.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="4.285715103149414" />
+                            </children>
+                        </AnchorPane>
+                        <ListView fx:id="giftListView" fixedCellSize="35.0" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
+                    </children>
+                </VBox>
+                <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-67.0" layoutY="-2.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+                    <font>
+                        <Font name="Roboto Light" size="17.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </ScrollPane>
             <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="478.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
                     <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="394.0" layoutY="77.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="56.42857170104992" AnchorPane.topAnchor="51.285715103149414" />
@@ -34,54 +82,6 @@
                 <effect>
                     <DropShadow />
                 </effect></AnchorPane>
-    <ScrollPane fitToWidth="true" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
-        <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
-            <children>
-                <Label layoutX="53.0" layoutY="274.0" prefHeight="28.0" prefWidth="107.0" text="Nombre*" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="30.0">
-                    <font>
-                        <Font name="Roboto Light" size="20.0" />
-                    </font>
-                </Label>
-
-                <Label layoutX="53.0" layoutY="336.0" prefHeight="28.0" prefWidth="130.0" text="Clasificación" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="296.0" AnchorPane.topAnchor="70.0">
-                    <font>
-                        <Font name="Roboto Light" size="20.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="nombreField" layoutX="193.0" layoutY="274.0" prefHeight="27.0" prefWidth="248.0" promptText="Corporativo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="193.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="30.0" />
-                <ComboBox fx:id="clasificacionComboBox" layoutX="194.0" layoutY="337.0" prefHeight="27.0" prefWidth="248.0" style="-fx-background-color: #CFC7C4;" AnchorPane.leftAnchor="194.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="70.0" />
-
-
-                <VBox layoutY="131.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="131.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-                    <children>
-                        <AnchorPane>
-                            <children>
-                                <Label alignment="CENTER" prefHeight="39.0" prefWidth="517.0" style="-fx-background-color: #A39D9B;" text="Regalos" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                    <font>
-                                        <Font name="Roboto Light" size="27.0" />
-                                    </font>
-                                    <effect>
-                                        <DropShadow blurType="TWO_PASS_BOX">
-                                            <color>
-                                                <Color red="0.5" green="0.5" blue="0.5" />
-                                            </color>
-                                        </DropShadow>
-                                    </effect>
-                                </Label>
-                                <FontAwesomeIconView fx:id="giftButton" fill="WHITE" glyphName="PLUS" layoutX="466.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="23.42857170104992" AnchorPane.topAnchor="4.285715103149414" />
-                            </children>
-                        </AnchorPane>
-                        <ListView fx:id="giftListView" prefHeight="0.0" prefWidth="200.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
-                    </children>
-                </VBox>
-            </children>
-        </AnchorPane>
-    </ScrollPane>
-       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
-           <font>
-               <Font name="Roboto Light" size="17.0" />
-           </font>
-       </Label>
 
 
 </AnchorPane>

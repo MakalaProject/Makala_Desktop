@@ -1,7 +1,5 @@
 package org.example.customCells;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -10,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import org.example.interfaces.IConstructor;
 import org.example.model.Accounting;
 import org.example.model.Formatter;
-import org.example.model.products.Product;
 
 import java.io.IOException;
 
@@ -43,7 +40,7 @@ public class MonthListViewCell extends ListCell<Accounting> implements IConstruc
                     e.printStackTrace();
                 }
             }
-            monthName.setText(Formatter.FormatMonth(month.getMonth()));
+            monthName.setText(Formatter.FormatMonth(month.getDate()));
             setText(null);
             setGraphic(anchorPane);
 

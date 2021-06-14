@@ -49,17 +49,14 @@ public class ExpirationProductsController implements Initializable, IListControl
         expiredListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
         urgentListView.getItems().setAll(urgentObservableList);
-        urgentListView.prefHeightProperty().bind(Bindings.size(urgentObservableList).multiply(23.7));
         urgentListView.setPrefHeight(urgentObservableList.size() * 35 + 2);
         urgentListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
         warningListView.getItems().setAll(warningObservableList);
-        warningListView.prefHeightProperty().bind(Bindings.size(warningObservableList).multiply(23.7));
         warningListView.setPrefHeight(warningObservableList.size() * 35 + 2);
         warningListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
         stableListView.getItems().setAll(stableObservableList);
-        stableListView.prefHeightProperty().bind(Bindings.size(stableObservableList).multiply(23.7));
         stableListView.setPrefHeight(stableObservableList.size() * 35 + 2);
         stableListView.setCellFactory(listCell -> new InternalListViewCell<>());
 

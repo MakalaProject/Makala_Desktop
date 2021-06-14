@@ -11,5 +11,4 @@ import java.time.LocalDateTime;
 public class DataAnalysis {
     private LocalDate date;
     private String timeFilter;
-
 }

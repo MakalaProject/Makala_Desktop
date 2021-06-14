@@ -32,7 +32,7 @@ public class SelectListGifts implements Initializable {
     FontAwesomeIconView saveButton;
     private Catalog catalog = new Catalog();
     FilteredList<Gift> filteredGifts;
-    private final ObservableList<Gift> gifts = FXCollections.observableList(Request.getJ("gifts/criteria-general?size=1000", Gift[].class, true));
+    private final ObservableList<Gift> gifts = FXCollections.observableList(Request.getJ("gifts/criteria-general-manage", Gift[].class, false));
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

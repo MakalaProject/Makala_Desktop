@@ -146,7 +146,6 @@ public class StatisticsController implements Initializable, IListController<Data
                 validation = true;
             }
             paintChart(statistics);
-
         });
 
         productTypeButton.setOnMouseClicked(mouseEvent -> {

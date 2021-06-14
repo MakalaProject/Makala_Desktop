@@ -241,7 +241,6 @@ public class CatalogController extends CatalogParentController implements Initia
         }
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
         giftObservableList.setAll(actualCatalog.getGifts());
-        giftListView.getItems().setAll(giftObservableList);
     }
 
     @Override
@@ -249,9 +248,9 @@ public class CatalogController extends CatalogParentController implements Initia
         actualCatalog = listView.getSelectionModel().getSelectedItem();
         index = catalogObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
         editSwitch.setSelected(false);
-        showGiftsList(giftObservableList);
         editView(fieldsAnchorPane, disableImageAnchorPane,requireLabel, editSwitch, updateButton);
         putFields();
+        showGiftsList(giftObservableList);
     }
 
     @Override

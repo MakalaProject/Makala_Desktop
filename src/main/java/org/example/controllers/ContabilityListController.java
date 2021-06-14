@@ -28,7 +28,7 @@ public class ContabilityListController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         monthsListView.setOnMouseClicked(mouseEvent -> {
             actualAccounting = monthsListView.getSelectionModel().getSelectedItem();
-            titleLabel.setText("Detalles de: " + Formatter.FormatMonth(actualAccounting.getMonth()));
+            titleLabel.setText("Detalles de: " + Formatter.FormatMonth(actualAccounting.getDate()));
             vendidoField.setText(actualAccounting.getSold().toString());
             gastosField.setText(actualAccounting.getBought().toString());
             gananciaField.setText(actualAccounting.getBalance().toString());
