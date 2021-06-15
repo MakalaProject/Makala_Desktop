@@ -15,12 +15,12 @@
             <Font size="15.0" />
         </font>
     </TextField>
-   <Label layoutX="19.0" layoutY="100.0" prefHeight="28.0" prefWidth="112.0" text="Este mes">
+   <Label layoutX="4.0" layoutY="100.0" prefHeight="46.0" prefWidth="127.0" text="Siguiente mes">
       <font>
          <Font name="Roboto Light" size="20.0" />
       </font>
    </Label>
-   <TextField fx:id="mesField" editable="false" focusTraversable="false" layoutX="131.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="226.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="97.0">
+   <TextField fx:id="mesField" editable="false" focusTraversable="false" layoutX="131.0" layoutY="97.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="217.0" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.rightAnchor="28.0" AnchorPane.topAnchor="97.0">
       <font>
          <Font size="15.0" />
       </font>

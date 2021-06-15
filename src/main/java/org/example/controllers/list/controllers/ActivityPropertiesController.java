@@ -64,8 +64,8 @@ public class ActivityPropertiesController implements Initializable {
         }
         empleadoComboBox.setItems(employees);
         empleadoComboBox.setValue(workDay.getEmployee());
-        fechaInicioField.setText(Formatter.FormatDate(actualActivity.getStartDate()));
-        fechaFinField.setText(Formatter.FormatDate(actualActivity.getEndDate()));
+        fechaInicioField.setText(Formatter.FormatDateTime(actualActivity.getUserObject().getDate()));
+        fechaFinField.setText(Formatter.FormatDateTime(actualActivity.getUserObject().getDate().plusSeconds(actualActivity.getUserObject().getTime())));
         tiempoField.setText(actualActivity.getUserObject().getTime().toString());
         tareaTextArea.setText(actualActivity.getUserObject().getTask());
         repeticionesField.setText(actualActivity.getUserObject().getAmount().toString());

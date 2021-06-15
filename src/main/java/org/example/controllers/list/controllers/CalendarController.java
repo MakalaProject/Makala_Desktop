@@ -10,6 +10,7 @@ import com.calendarfx.view.DetailedDayView;
 import com.calendarfx.view.page.DayPage;
 import com.calendarfx.view.page.MonthPage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -62,17 +63,24 @@ public class CalendarController implements Initializable, IListController<Calend
     ObservableList<Calendar> shippingCalendars = FXCollections.observableArrayList();
     ObservableList<Calendar> ordersCallendars = FXCollections.observableArrayList();
     ObservableList<String> calendarOptions = FXCollections.observableArrayList("Produccion", "Envios", "Ventas");
-    ArrayList<CalendarActivity> activities = new ArrayList<>(Request.getJ("calendars/basic/filter-list", CalendarActivity[].class, false));
-    ArrayList<Order> orders = new ArrayList<>(Request.getJ("orders/basics?sells=true", Order[].class, false ));
-    ArrayList<Order> shippings = new ArrayList<>(Request.getJ("orders/basics?sells=false", Order[].class, false ));
+    ArrayList<CalendarDetailedActivity> activities = new ArrayList<>();
+    ArrayList<Order> orders = new ArrayList<>(/*Request.getJ("orders/basics?sells=true", Order[].class, false )*/);
+    ArrayList<Order> shippings = new ArrayList<>(/*Request.getJ("orders/basics?sells=false", Order[].class, false )*/);
     ArrayList<Employee> employees = new ArrayList<>();
     Map<Calendar, String> map = new HashMap<>();
     boolean activitiesShown = false;
     boolean ordersShown = false;
     boolean shippingShown = false;
     String identifier = "";
+    Stage loadingStage;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Thread thread = new Thread(() ->{
+
+        });
+        thread.start();
+        activities = new ArrayList<>(Request.getJ("calendars/calendar-time/filter-list?timeFilter=TODAY", CalendarDetailedActivity[].class, false));
+        loadingStage.close();
         dayLabel.setText(Formatter.FormatCalendar(LocalDate.now()));
         calendarType.setItems(calendarOptions);
         calendarType.valueProperty().addListener(new ChangeListener<String>() {
@@ -81,6 +89,11 @@ public class CalendarController implements Initializable, IListController<Calend
                 if(t1.equals("Produccion")){
                     identifier = "Produccion";
                     updateButton.setVisible(true);
+                    if(mesPage.getDate().compareTo(LocalDate.now()) != 0){
+                        activities.clear();
+                        activities.addAll(Request.getJ("calendars/calendar-time/filter-list?date="+mesPage.getDate(), CalendarDetailedActivity[].class, false ));
+                        activitiesShown = false;
+                    }
                     showNormalActivities();
                 }
                 else if(t1.equals("Envios")){
@@ -115,6 +128,8 @@ public class CalendarController implements Initializable, IListController<Calend
                         ActivityPropertiesController loadDialog = new ActivityPropertiesController();
                         fxmlLoader.setController(loadDialog);
                         Parent parent = fxmlLoader.load();
+                        Entry<CalendarDetailedActivity> fullEntry = (Entry<CalendarDetailedActivity>) entryDetailsParameter.getEntry();
+                        fullEntry.setUserObject((CalendarDetailedActivity) Request.find("calendars/general", fullEntry.getUserObject().getIdActivity(), fullEntry.getUserObject().getIdEmployee(), CalendarDetailedActivity.class));
                         loadDialog.setObject((Entry<CalendarDetailedActivity>) entryDetailsParameter.getEntry());
                         Scene scene = new Scene(parent);
                         Stage stage = new Stage();
@@ -176,6 +191,12 @@ public class CalendarController implements Initializable, IListController<Calend
             diaDayView.setDate(date);
             if(calendarType.getValue().equals("Produccion")){
                 identifier = "Produccion";
+                if(mesPage.getDate().compareTo(LocalDate.now()) != 0){
+                    activities.clear();
+                    activities.addAll(Request.getJ("calendars/calendar-time/filter-list?date="+mesPage.getDate(), CalendarDetailedActivity[].class, false ));
+                    activitiesShown = false;
+
+                }
                 updateButton.setVisible(true);
                 showNormalActivities();
             }
@@ -247,28 +268,61 @@ public class CalendarController implements Initializable, IListController<Calend
 
     private void showNormalActivities(){
         if(!activitiesShown) {
+            allActivities.clear();
             int id;
-            for (CalendarActivity activity : activities) {
-                Employee employee = (Employee) Request.find("users/employees", activity.getIdEmployee(), Employee.class);
-                employees.add(employee);
-                activity.setEmployee(employee);
+            for (CalendarDetailedActivity activity : activities) {
+                boolean validation = false;
+                id = activity.getIdEmployee();
+                for(Employee employee : employees){
+                    if(id == employee.getIdUser()){
+                        validation = true;
+                        for(CalendarDetailedActivity activitie2 : activities){
+                            if(activitie2.getIdEmployee() == id){
+                                activity.setEmployee(employee);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+                if(!validation) {
+                    Employee employee = (Employee) Request.find("users/employees", activity.getIdEmployee(), Employee.class);
+                    employees.add(employee);
+                    activity.setEmployee(employee);
+                }
             }
             LocalTime time = LocalTime.of(9, 0);
-            activities.sort(Comparator.comparing(CalendarActivity::getIdEmployee));
-            id = activities.get(0).getIdEmployee();
-            for (CalendarActivity activity : activities) {
-                CalendarDetailedActivity calendarDetailedActivity = (CalendarDetailedActivity) Request.find("calendars/general", activity.getIdActivity(), activity.getIdEmployee(), CalendarDetailedActivity.class);
-                calendarDetailedActivity.setEmployee(activity.getEmployee());
-                Entry<CalendarDetailedActivity> calendarActivityEntry = new Entry<>("Actividad de " + activity.getEmployee().getFirstName());
-                if (id != activity.getIdEmployee()) {
-                    time = LocalTime.of(9, 0);
+            activities.sort(Comparator.comparing(CalendarDetailedActivity::getIdOrderGift));
+            int currentOrder = 0;
+            for (CalendarDetailedActivity calendarDetailedActivity : activities) {
+                Entry<CalendarDetailedActivity> calendarActivityEntry = new Entry<>("Actividad de " + calendarDetailedActivity.getEmployee().getFirstName());
+                if (currentOrder != calendarDetailedActivity.getIdOrderGift()) {
+                    time = calendarDetailedActivity.getDate().toLocalTime();
                 }
-                calendarActivityEntry.setInterval(calendarDetailedActivity.getDate().toLocalDate(), time, calendarDetailedActivity.getDate().toLocalDate(), time.plusMinutes(18));
-                time = time.plusMinutes(18);
+                currentOrder = calendarDetailedActivity.getIdOrderGift();
+                LocalTime entryTime = LocalTime.from(time);
+                entryTime = entryTime.plusSeconds(calendarDetailedActivity.getTime());
+                boolean validation = false;
+                if(entryTime.compareTo(time.plusMinutes(15)) < 0){
+                    entryTime = LocalTime.from(time);
+                    entryTime = entryTime.plusMinutes(15);
+                    validation = true;
+                }else{
+                    if(entryTime.plusSeconds(-3000).compareTo(time.plusMinutes(15)) > 0){
+                        entryTime = entryTime.plusSeconds(-3000);
+                    }
+                }
+                calendarActivityEntry.setInterval(calendarDetailedActivity.getDate().toLocalDate(), time, calendarDetailedActivity.getDate().toLocalDate(), entryTime);
+                if(!validation){
+                    time = LocalTime.from(entryTime);
+                }else {
+                    time = time.plusMinutes(15);
+                }
                 calendarActivityEntry.setUserObject(calendarDetailedActivity);
                 allActivities.add(calendarActivityEntry);
-                id = activity.getIdEmployee();
+                id = calendarDetailedActivity.getIdEmployee();
             }
+            calendars.clear();
             for (Calendar.Style s : Calendar.Style.values()) {
                 calendar = new Calendar("Empleado");
                 calendar.setStyle(s);

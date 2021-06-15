@@ -160,7 +160,6 @@ public class ProductController extends ProductParentController implements IListC
 
     @Override
     public void delete() {
-
         try {
             Request.deleteJ( "products", actualProduct.getIdProduct());
         } catch (Exception e) {

@@ -22,6 +22,7 @@ public class CalendarDetailedActivity {
     Integer amount;
     String imageLink;
     Integer idOrder;
+    Integer idOrderGift = 0;
     ArrayList<Product> productsUsed;
     Employee employee = new Employee();
 }

@@ -18,6 +18,4 @@ public abstract class DataAnalysisReceived<D> {
     public abstract Integer getId();
     public abstract String getRoute();
     public abstract D getObject();
-
-
 }
