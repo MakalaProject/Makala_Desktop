@@ -30,19 +30,6 @@
             <Font name="Roboto Light" size="20.0" />
         </font>
     </Label>
-    <Label alignment="CENTER" layoutY="486.0" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="486.0">
-        <font>
-            <Font name="Roboto Light" size="27.0" />
-        </font>
-        <effect>
-            <DropShadow blurType="TWO_PASS_BOX">
-                <color>
-                    <Color red="0.5" green="0.5" blue="0.5" />
-                </color>
-            </DropShadow>
-        </effect>
-    </Label>
-    <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" layoutX="451.0" layoutY="519.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="493.2857151031494" />
 
     <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -67,12 +54,33 @@
         <effect>
             <DropShadow />
         </effect></AnchorPane>
-    <ListView fx:id="departmentList" layoutX="116.0" layoutY="531.0" prefHeight="328.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="531.0" />
     <TextField fx:id="nombresField" layoutX="175.0" layoutY="303.0" prefHeight="27.0" prefWidth="248.0" promptText="Juan" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="303.0" />
     <TextField fx:id="apellidosField" layoutX="175.0" layoutY="342.0" prefHeight="27.0" prefWidth="248.0" promptText="Perez" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="342.0" />
     <TextField fx:id="telefonoField" layoutX="175.0" layoutY="381.0" prefHeight="31.0" prefWidth="405.0" promptText="3423127689" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="381.0" />
     <TextField fx:id="contraseñaField" layoutX="175.0" layoutY="418.0" prefHeight="27.0" prefWidth="248.0" promptText="*****" style="-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="418.0" />
-    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="266.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="266.0">
+   <VBox layoutX="10.0" layoutY="435.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="470.0">
+      <children>
+         <AnchorPane>
+            <children>
+                <Label alignment="CENTER" prefHeight="45.0" prefWidth="518.0" style="-fx-background-color: #A39D9B;" text="Departamentos" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="Roboto Light" size="27.0" />
+                    </font>
+                    <effect>
+                        <DropShadow blurType="TWO_PASS_BOX">
+                            <color>
+                                <Color red="0.5" green="0.5" blue="0.5" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                </Label>
+                <FontAwesomeIconView fx:id="editDepartmentButton" fill="WHITE" glyphName="EDIT" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="38.42857170104992" AnchorPane.topAnchor="7.0" />
+            </children>
+         </AnchorPane>
+          <ListView fx:id="departmentList" fixedCellSize="35.0" prefHeight="0.0" prefWidth="598.0" />
+      </children>
+   </VBox>
+    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutY="265.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="265.0">
         <font>
             <Font name="Roboto Light" size="17.0" />
         </font>

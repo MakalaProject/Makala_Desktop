@@ -45,7 +45,7 @@ public class StaticProduct extends Product {
     }
 
     @Override
-    public void getRealStock(BigDecimal stock) {
+    public void setRealStock(BigDecimal stock) {
         this.stock = stock;
     }
 

@@ -27,8 +27,7 @@ public class PaperProduct extends Product {
         return stock.divide(new BigDecimal(100));
     }
 
-    @Override
-    public void getRealStock(BigDecimal stock) {
+    public void setRealStock(BigDecimal stock) {
         this.stock = stock.multiply(new BigDecimal(100));
     }
 
@@ -43,12 +42,12 @@ public class PaperProduct extends Product {
     }
 
     @Override
-    public void getMax(Integer minMax) {
-        this.max = minMax*100;
+    public void setMax(Integer max) {
+        this.max = max*100;
     }
 
     @Override
-    public void getMin(Integer minMax) {
-        this.min = minMax*100;
+    public void setMin(Integer min) {
+        this.min = min*100;
     }
 }

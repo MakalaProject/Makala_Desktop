@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
+import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.products.*;
 import org.example.services.Request;
@@ -170,7 +171,8 @@ public class CraftedProductController extends StaticParentProductController<Craf
 
     public void showList(){
         internalProductsListView.setItems(insideProductList);
-        internalProductsListView.prefHeightProperty().bind(Bindings.size(insideProductList).multiply(24));
+        internalProductsListView.setPrefHeight(insideProductList.size() * 35 + 2);
+        internalProductsListView.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 
     public void clearController(){

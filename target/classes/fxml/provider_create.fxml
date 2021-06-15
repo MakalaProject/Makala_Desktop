@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="714.0" prefWidth="645.0" style="-fx-background-color: #E3DAD8;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.create.controllers.ProviderCreateController">
-    <ScrollPane fitToWidth="true" layoutY="293.0" pannable="true" prefHeight="567.0" prefWidth="645.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="293.0">
+    <ScrollPane fitToWidth="true" layoutY="257.0" pannable="true" prefHeight="457.0" prefWidth="645.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
         <AnchorPane fx:id="fieldsAnchorPane" style="-fx-background-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="260.0">
             <children>
                 <Label layoutX="27.0" layoutY="229.0" prefHeight="28.0" prefWidth="110.0" text="Email" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="449.0" AnchorPane.topAnchor="229.0">
@@ -18,27 +18,27 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label prefHeight="28.0" prefWidth="138.0" text="Nombres*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="418.0" AnchorPane.topAnchor="25.0">
+                <Label prefHeight="28.0" prefWidth="138.0" text="Nombres*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="464.0" AnchorPane.topAnchor="25.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="25.0" layoutY="65.0" prefHeight="28.0" prefWidth="140.0" text="Apellidos" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="421.0" AnchorPane.topAnchor="65.0">
+                <Label layoutX="25.0" layoutY="65.0" prefHeight="28.0" prefWidth="133.0" text="Apellidos" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="469.0" AnchorPane.topAnchor="65.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="24.0" layoutY="105.0" prefHeight="28.0" prefWidth="143.0" text="Telefono*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="419.0" AnchorPane.topAnchor="105.0">
+                <Label layoutX="24.0" layoutY="105.0" prefHeight="28.0" prefWidth="143.0" text="Telefono*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="459.0" AnchorPane.topAnchor="105.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="25.0" layoutY="145.0" prefHeight="28.0" prefWidth="184.0" text="Tiempo de entrega*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="393.0" AnchorPane.topAnchor="145.0">
+                <Label layoutX="25.0" layoutY="145.0" prefHeight="28.0" prefWidth="182.0" text="Tiempo de entrega*" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="145.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="25.0" layoutY="185.0" prefHeight="28.0" prefWidth="141.0" text="Tarjeta" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="185.0">
+                <Label layoutX="25.0" layoutY="185.0" prefHeight="28.0" prefWidth="144.0" text="No. cuenta" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="458.0" AnchorPane.topAnchor="185.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
@@ -49,7 +49,7 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                <Label layoutX="23.0" layoutY="269.0" prefHeight="21.0" prefWidth="47.0" text="Tipo" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="445.0" AnchorPane.topAnchor="269.0">
+                <Label layoutX="23.0" layoutY="269.0" prefHeight="28.0" prefWidth="134.0" text="Tipo" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="468.0" AnchorPane.topAnchor="269.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
@@ -122,14 +122,14 @@
                         <ListView fx:id="productsListView" prefHeight="0.0" prefWidth="494.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </VBox>
+             <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="-44.0" layoutY="1.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                 <font>
+                     <Font name="Roboto Light" size="17.0" />
+                 </font>
+             </Label>
             </children>
         </AnchorPane>
     </ScrollPane>
-    <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="26.0" layoutY="263.0" prefHeight="22.0" prefWidth="594.0" text="Los campos marcados con * son obligatorios" textAlignment="CENTER" textFill="#757575" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="263.0">
-        <font>
-            <Font name="Roboto Light" size="17.0" />
-        </font>
-    </Label>
     <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <children>
                     <ImageView fx:id="productImage" fitHeight="180.0" fitWidth="231.0" layoutX="214.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="213.66586303710938" AnchorPane.topAnchor="50.0">

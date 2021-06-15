@@ -12,5 +12,4 @@ public class Address {
     private String address;
     private Integer cp;
     private City city;
-
 }

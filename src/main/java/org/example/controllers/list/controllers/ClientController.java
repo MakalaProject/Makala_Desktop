@@ -11,6 +11,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.client.subcontrollers.OrderPropertiesController;
 import org.example.controllers.parent.controllers.UserParentController;
+import org.example.customCells.InternalListViewCell;
 import org.example.customCells.UserListViewCell;
 import javafx.scene.control.*;
 import org.example.model.*;
@@ -101,8 +102,8 @@ public class ClientController extends UserParentController<Client> {
         ordersObservableList.addAll(Request.getJ("orders/basic-page-filter?idClient="+ actualUser.getIdUser(), Order[].class, true));
         correoField.setText(actualUser.getMail());
         historyList.setItems(ordersObservableList);
-        historyList.getStylesheets().add(getClass().getResource("/configurations/style.css").toString());
-        historyList.prefHeightProperty().bind(Bindings.size(ordersObservableList).multiply(24));
+        historyList.setPrefHeight(ordersObservableList.size() * 35 + 2);
+        historyList.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 
     @Override

@@ -53,10 +53,23 @@ public interface IListController<D>{
     void putFields();
     default void editView(AnchorPane anchorPane, ToggleSwitch editSwitch, FontAwesomeIconView updateButton){
         if (editSwitch.isSelected()){
-            anchorPane.setDisable(false);
+            anchorPane.setVisible(false);
             updateButton.setVisible(true);
         }else {
-            anchorPane.setDisable(true);
+            anchorPane.setVisible(true);
+            updateButton.setVisible(false);
+        }
+    }
+    default void editView(AnchorPane anchorPane, AnchorPane anchorPane2, Label infoLabel, ToggleSwitch editSwitch, FontAwesomeIconView updateButton){
+        if (editSwitch.isSelected()){
+            anchorPane.setVisible(false);
+            anchorPane2.setVisible(false);
+            infoLabel.setVisible(true);
+            updateButton.setVisible(true);
+        }else {
+            anchorPane.setVisible(true);
+            anchorPane2.setVisible(true);
+            infoLabel.setVisible(false);
             updateButton.setVisible(false);
         }
     }

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.PurchaseController">
+<SplitPane dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.PurchaseController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
             <children>
@@ -30,7 +30,7 @@
         <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="710.0" prefWidth="634.0" style="-fx-background-color: #E3DAD8;">
             <children>
                 <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" layoutY="258.0" pannable="true" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="254.0">
-                    <AnchorPane fx:id="fieldsAnchorPane" layoutY="257.0" prefWidth="499.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                    <AnchorPane layoutY="257.0" prefWidth="499.0" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                         <Label layoutX="45.0" layoutY="23.0" prefHeight="28.0" prefWidth="113.0" text="Día de orden" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="341.0" AnchorPane.topAnchor="23.0">
                             <font>
                                 <Font name="Roboto Light" size="20.0" />
@@ -60,7 +60,7 @@
                               </AnchorPane>
                               <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                   <children>
-                                      <ListView fx:id="productListView" prefHeight="0.0" />
+                                      <ListView fx:id="productListView" fixedCellSize="35.0" prefHeight="0.0" style="-fx-background-color: #A39D9B;" />
                                   </children>
                                   <VBox.margin>
                                       <Insets bottom="10.0" />
@@ -129,6 +129,7 @@
                             </font>
                         </Label>
                         <AnchorPane fx:id="disableAnchorPane" layoutX="104.0" layoutY="70.0" prefHeight="399.0" prefWidth="499.0" AnchorPane.bottomAnchor="188.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <AnchorPane fx:id="fieldsAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="254.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

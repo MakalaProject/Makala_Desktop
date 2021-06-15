@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.ChangedVerificationFields;
@@ -23,6 +24,7 @@ import java.util.ResourceBundle;
 public class GiftPaperPropertiesController implements Initializable, IControllerCreate<PaperProductToSend> {
     @FXML public Label titleLabel;
     @FXML public TextField largoField;
+    @FXML public AnchorPane disableAnchorPane;
     @FXML public TextField anchoField;
     @FXML public TextField cantidadField;
     @FXML public FontAwesomeIconView updateButton;
@@ -91,8 +93,13 @@ public class GiftPaperPropertiesController implements Initializable, IController
     }
 
     @Override
-    public void setProduct(PaperProductToSend product, boolean isCreate){
+    public void setProduct(PaperProductToSend product, boolean isCreate, boolean editProduct){
         deleteButton.setVisible(!isCreate);
+        if (!editProduct){
+            updateButton.setVisible(false);
+            disableAnchorPane.setVisible(true);
+            deleteButton.setVisible(false);
+        }
         paperProductToSend = product;
         titleLabel.setText(product.getProduct().getName());
         cantidadField.setText(product.getAmount().toString());

@@ -11,13 +11,6 @@ public class Client extends User{
     private String mail;
     private int gifts;
     private boolean frequentClient;
-    public Client(){
-        mail = "xx";
-        password = "";
-        firstName = "Nuevo";
-        lastName = "Cliente";
-        phone = "33000";
-    }
    @Override
    public String getIdentifier(){
         return "Cliente";

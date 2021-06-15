@@ -94,7 +94,7 @@
                       </AnchorPane>
                       <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                           <children>
-                              <ListView fx:id="productListView" prefHeight="0.0" />
+                              <ListView fx:id="productListView" style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0" />
                           </children>
                           <VBox.margin>
                               <Insets bottom="10.0" />

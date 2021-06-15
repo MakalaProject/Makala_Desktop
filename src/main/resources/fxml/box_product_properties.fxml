@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="375.0" prefWidth="452.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <Label layoutX="92.0" layoutY="93.0" prefHeight="28.0" prefWidth="88.0" text="Alto ext." AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="294.0" AnchorPane.topAnchor="40.0">
         <font>
             <Font name="Roboto Light" size="20.0" />
@@ -93,7 +93,7 @@
          <Cursor fx:constant="TEXT" />
       </cursor>
     </TextField>
-   <VBox layoutY="334.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="334.0">
+   <VBox layoutY="334.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="334.0">
       <children>
          <AnchorPane prefHeight="33.0" prefWidth="200.0">
             <children>
@@ -112,17 +112,10 @@
                 <FontAwesomeIconView fx:id="addHoleButton" fill="WHITE" glyphName="PLUS" layoutX="394.0" layoutY="30.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="30.42857170104992" AnchorPane.topAnchor="4.285715103149414" />
             </children>
          </AnchorPane>
-         <VBox>
-            <children>
-               <ListView fx:id="holesListView" fixedCellSize="25.7" prefHeight="0.0" prefWidth="452.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; " />
-            </children>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-         </VBox>
+         <ListView fx:id="holesListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; " />
       </children>
    </VBox>
-   <CheckBox fx:id="isClosed" layoutX="192.0" layoutY="287.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="135.0" text="Caja cerrada" AnchorPane.leftAnchor="192.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="287.0">
+   <CheckBox fx:id="isClosed" layoutX="187.0" layoutY="288.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="135.0" text="Caja cerrada" AnchorPane.leftAnchor="187.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="288.0">
       <font>
          <Font name="Roboto Light" size="17.0" />
       </font>

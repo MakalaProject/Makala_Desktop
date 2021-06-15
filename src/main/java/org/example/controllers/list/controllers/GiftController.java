@@ -47,6 +47,8 @@ public class GiftController extends GiftParentController implements IListControl
     @FXML protected FontAwesomeIconView addButton;
     @FXML protected ComboBox<String> privacidadComboBox;
     @FXML TextField searchField;
+    @FXML AnchorPane disableImageAnchorPane;
+    @FXML Label requireLabel;
     @FXML ListView<Gift> listView;
     @FXML ToggleSwitch editSwitch;
     @FXML protected FontAwesomeIconView manualButton;
@@ -96,7 +98,8 @@ public class GiftController extends GiftParentController implements IListControl
         });
 
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView(fieldsAnchorPane, editSwitch, updateButton);
+            editSwitch.requestFocus();
+            editView(fieldsAnchorPane, disableImageAnchorPane, requireLabel, editSwitch, updateButton);
         });
 
 
@@ -297,7 +300,7 @@ public class GiftController extends GiftParentController implements IListControl
                     putFields();
                     privacyProduct();
                     editSwitch.setSelected(false);
-                    editView(fieldsAnchorPane, editSwitch, updateButton);
+                    editView(fieldsAnchorPane, disableImageAnchorPane, requireLabel, editSwitch, updateButton);
                     listView.getSelectionModel().select(listIndex);
                     updateView();
                 }else {
@@ -402,7 +405,7 @@ public class GiftController extends GiftParentController implements IListControl
             giftObservableList.set(index, actualGift);
         }
         editSwitch.setSelected(false);
-        editView(fieldsAnchorPane, editSwitch, updateButton);
+        editView(fieldsAnchorPane, disableImageAnchorPane, requireLabel, editSwitch, updateButton);
         privacyProduct();
         putFields();
         actualGift.setContainer(containerExtended);
@@ -417,16 +420,16 @@ public class GiftController extends GiftParentController implements IListControl
         userClicked = false;
         if (!actualGift.getPrivacy().equals("Privado")){
             nombreField.setDisable(true);
+            editProduct = false;
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicGift);
             containerButton.setDisable(true);
-            productsAnchorPane.setDisable(true);
         }else {
             nombreField.setDisable(false);
+            editProduct = true;
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             containerButton.setDisable(false);
-            productsAnchorPane.setDisable(false);
         }
         privacidadComboBox.getSelectionModel().select(actualGift.getPrivacy());
     }

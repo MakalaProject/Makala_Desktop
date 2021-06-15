@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.SelectListDepart;
 import org.example.controllers.elements.controllers.SelectListProduct;
 import org.example.controllers.parent.controllers.UserGenericController;
+import org.example.customCells.InternalListViewCell;
 import org.example.model.Department;
 import org.example.model.Employee;
 import org.example.model.ChangedVerificationFields;
@@ -90,8 +91,11 @@ public class EmployeeCreateController extends UserGenericController<Employee> {
             }
         });
     }
+
     private void showListDepartments(){
         departmentList.setItems(FXCollections.observableArrayList(departments));
+        departmentList.setPrefHeight(departmentList.getItems().size() * 35 + 2);
+        departmentList.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 
     protected void checkFields(){

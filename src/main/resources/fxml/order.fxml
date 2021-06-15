@@ -15,7 +15,7 @@
     <AnchorPane fx:id="informationPane" minHeight="0.0" minWidth="0.0" prefHeight="670.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
             <ScrollPane fx:id="scrollPane" fitToWidth="true" hbarPolicy="ALWAYS" pannable="true" prefHeight="645.0" prefWidth="634.0" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="41.0">
-                <AnchorPane fx:id="fieldsAnchorPane" style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                <AnchorPane style="-fx-background-color: #E3DAD8  #E3DAD8 white  #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                     <Label layoutX="36.0" layoutY="71.0" prefHeight="28.0" prefWidth="123.0" text="Precio Envio" AnchorPane.leftAnchor="36.0" AnchorPane.rightAnchor="460.0" AnchorPane.topAnchor="71.0">
                         <font>
                             <Font name="Roboto Light" size="20.0" />
@@ -105,7 +105,7 @@
                          </AnchorPane>
                          <VBox layoutY="40.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                              <children>
-                                 <ListView fx:id="giftListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
+                                 <ListView fx:id="giftListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8 " />
                              </children>
                              <VBox.margin>
                                  <Insets />
@@ -129,7 +129,7 @@
                          </AnchorPane>
                          <VBox layoutY="289.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                              <children>
-                                 <ListView fx:id="commentsListView" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8; -fx-control-inner-background: #f9f7f6; "/>
+                                 <ListView fx:id="commentsListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8;" />
                              </children>
                              <VBox.margin>
                                  <Insets />

@@ -11,8 +11,6 @@ import javafx.scene.control.ListView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.controllers.elements.controllers.ProductionPlanifierInfo;
-import org.example.controllers.elements.controllers.StatisticsProductInfo;
-import org.example.customCells.ProductListViewCell;
 import org.example.customCells.ProductPlanifierListViewCell;
 import org.example.interfaces.IListController;
 import org.example.model.products.Product;
@@ -21,7 +19,6 @@ import org.example.services.Request;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.ResourceBundle;
 

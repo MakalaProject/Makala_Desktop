@@ -15,14 +15,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.example.model.DataAnalysisReceived;
 import org.example.model.Provider;
 import org.example.model.products.Product;
 import org.example.services.Request;
 
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ProductionPlanifierInfo implements Initializable {

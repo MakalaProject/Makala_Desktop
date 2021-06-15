@@ -32,10 +32,10 @@ public interface IControllerCreate<D> {
         alert.showAndWait();
     }
 
-    default void setProduct(D product, boolean isCreate){
+    default void setProduct(D product, boolean isCreate, boolean editProduct){
 
     }
-    default void setProduct(D product, boolean isCreate, BoxProduct container, Gift gift){
+    default void setProduct(D product, boolean isCreate, BoxProduct container, Gift gift, boolean editProduct){
 
     }
 }

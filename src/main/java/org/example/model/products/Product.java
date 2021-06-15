@@ -77,7 +77,7 @@ public class Product implements IPaths, IChangeable<Integer> {
         return null;
     };
 
-    public void getRealStock(BigDecimal stock){
+    public void setRealStock(BigDecimal stock){
 
     };
 
@@ -89,11 +89,11 @@ public class Product implements IPaths, IChangeable<Integer> {
         return min;
     };
 
-    public void getMax(Integer minMax){
+    public void setMax(Integer minMax){
         this.max = minMax;
     }
 
-    public void getMin(Integer minMax){
+    public void setMin(Integer minMax){
         this.min = minMax;
     }
 }

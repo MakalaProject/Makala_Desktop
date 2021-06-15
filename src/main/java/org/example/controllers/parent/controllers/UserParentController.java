@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +26,7 @@ public abstract class UserParentController <D extends User> extends UserGenericC
     @FXML protected FontAwesomeIconView deleteButton;
     @FXML protected FontAwesomeIconView addButton;
     @FXML protected ListView<D> listView;
+    @FXML protected Label requireLabel;
     protected D actualUser;
     protected final ObservableList<D> userObservableList = FXCollections.observableArrayList();
     protected FilteredList<D> filteredUsers;
@@ -45,7 +47,8 @@ public abstract class UserParentController <D extends User> extends UserGenericC
                 update();
         });
         editSwitch.setOnMouseClicked(mouseEvent -> {
-            editView(fieldsAnchorPane,editSwitch,updateButton);
+            editSwitch.requestFocus();
+            editView();
         });
         deleteButton.setOnMouseClicked(mouseEvent -> {
             deleteAlert(actualUser.getIdentifier().toLowerCase());
@@ -78,9 +81,10 @@ public abstract class UserParentController <D extends User> extends UserGenericC
 
     protected void editView() {
         editView(fieldsAnchorPane,editSwitch,updateButton);
+        if (requireLabel != null) {
+            requireLabel.setVisible(editSwitch.isSelected());
+        }
     }
-
-
 
     @Override
     public void update() {

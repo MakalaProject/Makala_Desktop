@@ -14,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.customCells.CatalogGiftListViewCell;
+import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
 import org.example.interfaces.ListToChangeTools;
@@ -61,7 +63,8 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
         ObservableList<Hole> holes = FXCollections.observableList(holeList.stream().filter(hole -> !hole.isToDelete()).collect(Collectors.toList()));
         holes.sort(Comparator.comparing(Hole::getHoleNumber));
         holesListView.setItems(holes);
-        holesListView.prefHeightProperty().bind(Bindings.size(holes).multiply(26.1));
+        holesListView.setPrefHeight(holes.size() * 35 + 2);
+        holesListView.setCellFactory(cellList -> new InternalListViewCell<>());
     }
 
     @Override
@@ -73,7 +76,6 @@ public class BoxProductController extends StaticParentProductController<BoxProdu
     public String getResource() {
         return "/fxml/box_product_properties.fxml";
     }
-
 
     @Override
     public BoxProduct getObject(){

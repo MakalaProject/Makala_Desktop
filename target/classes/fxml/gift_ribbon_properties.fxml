@@ -55,6 +55,7 @@
          <Font name="Roboto Light" size="15.0" />
       </font>
    </Label>
+   <AnchorPane fx:id="disableAnchorPane" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    <padding>
       <Insets bottom="30.0" />
    </padding>
