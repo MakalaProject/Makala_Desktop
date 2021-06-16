@@ -63,7 +63,7 @@ public class CalendarController implements Initializable, IListController<Calend
     ObservableList<Calendar> shippingCalendars = FXCollections.observableArrayList();
     ObservableList<Calendar> ordersCallendars = FXCollections.observableArrayList();
     ObservableList<String> calendarOptions = FXCollections.observableArrayList("Produccion", "Envios", "Ventas");
-    ArrayList<CalendarDetailedActivity> activities = new ArrayList<>();
+    ArrayList<CalendarDetailedActivity> activities = new ArrayList<>(Request.getJ("calendars/calendar-time/filter-list?timeFilter=TODAY", CalendarDetailedActivity[].class, false));
     ArrayList<Order> orders = new ArrayList<>(/*Request.getJ("orders/basics?sells=true", Order[].class, false )*/);
     ArrayList<Order> shippings = new ArrayList<>(/*Request.getJ("orders/basics?sells=false", Order[].class, false )*/);
     ArrayList<Employee> employees = new ArrayList<>();
@@ -75,12 +75,7 @@ public class CalendarController implements Initializable, IListController<Calend
     Stage loadingStage;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Thread thread = new Thread(() ->{
 
-        });
-        thread.start();
-        activities = new ArrayList<>(Request.getJ("calendars/calendar-time/filter-list?timeFilter=TODAY", CalendarDetailedActivity[].class, false));
-        loadingStage.close();
         dayLabel.setText(Formatter.FormatCalendar(LocalDate.now()));
         calendarType.setItems(calendarOptions);
         calendarType.valueProperty().addListener(new ChangeListener<String>() {
@@ -93,6 +88,10 @@ public class CalendarController implements Initializable, IListController<Calend
                         activities.clear();
                         activities.addAll(Request.getJ("calendars/calendar-time/filter-list?date="+mesPage.getDate(), CalendarDetailedActivity[].class, false ));
                         activitiesShown = false;
+                    }else{
+                        activities.clear();
+                        activities.addAll(Request.getJ("calendars/calendar-time/filter-list?date="+mesPage.getDate(), CalendarDetailedActivity[].class, false ));
+                        activitiesShown = false;
                     }
                     showNormalActivities();
                 }
@@ -101,6 +100,10 @@ public class CalendarController implements Initializable, IListController<Calend
                     if(mesPage.getDate().compareTo(LocalDate.now()) != 0){
                         shippings.clear();
                         shippings.addAll(Request.getJ("orders/basics?date="+mesPage.getDate()+"&sells=false", Order[].class, false ));
+                        shippingShown = false;
+                    }else{
+                        shippings.clear();
+                        shippings.addAll(Request.getJ("orders/basics?timeFilter=TODAY&sells=false", Order[].class, false ));
                         shippingShown = false;
                     }
                     updateButton.setVisible(false);
@@ -111,6 +114,10 @@ public class CalendarController implements Initializable, IListController<Calend
                     if(mesPage.getDate().compareTo(LocalDate.now()) != 0){
                         orders.clear();
                         orders.addAll(Request.getJ("orders/basics?date="+mesPage.getDate()+"&sells=true", Order[].class, false ));
+                        ordersShown = false;
+                    }else{
+                        orders.clear();
+                        orders.addAll(Request.getJ("orders/basics?timeFilter=TODAY&sells=true", Order[].class, false ));
                         ordersShown = false;
                     }
                     updateButton.setVisible(false);

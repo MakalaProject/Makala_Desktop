@@ -38,6 +38,7 @@ public class PurchaseCreateController extends PurchaseParentController {
             if (!productListView.getItems().isEmpty() && !priceField.getText().isEmpty()){
                 if (Float.parseFloat(priceField.getText()) > 0) {
                     setInfo(purchase);
+
                     if ((purchase.getPayDate() != null && purchase.getReceivedDate() != null) || (purchase.getPayDate() == null && purchase.getReceivedDate() == null) || (purchase.getPayDate() != null && purchase.getReceivedDate() == null)) {
                         if (purchase.getReceivedDate() != null){
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -67,6 +68,7 @@ public class PurchaseCreateController extends PurchaseParentController {
             }
         });
     }
+
 
     private void createPurchase(MouseEvent mouseEvent){
         Purchase returnedPurchase = null;

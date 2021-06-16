@@ -47,7 +47,6 @@ public class PurchaseListViewCell extends ListCell<Purchase> implements IConstru
                     e.printStackTrace();
                 }
             }
-
             purchaseDate.setText(String.valueOf(purchase) + "- " +Formatter.FormatDate(purchase.getOrderDate()));
             if (purchase.getReceivedDate()!=null){
                 infLabel.setText("Recibida");

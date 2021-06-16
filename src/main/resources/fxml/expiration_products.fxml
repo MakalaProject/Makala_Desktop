@@ -35,7 +35,7 @@
                    <Insets />
                </VBox.margin>
            </Label>
-           <ListView fx:id="expiredListView" style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
+           <ListView fx:id="expiredListView" style=" -fx-selection-bar:  #E3DAD8" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
                <VBox.margin>
                    <Insets bottom="10.0" />
                </VBox.margin></ListView>
@@ -51,7 +51,7 @@
                    </DropShadow>
                </effect>
            </Label>
-           <ListView fx:id="urgentListView" style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
+           <ListView fx:id="urgentListView" style=" -fx-selection-bar:  #E3DAD8" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
                <VBox.margin>
                    <Insets bottom="10.0" />
                </VBox.margin>
@@ -68,7 +68,7 @@
                    </DropShadow>
                </effect>
            </Label>
-           <ListView fx:id="warningListView" style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
+           <ListView fx:id="warningListView" style=" -fx-selection-bar:  #E3DAD8" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
                <VBox.margin>
                    <Insets bottom="10.0" />
                </VBox.margin></ListView>
@@ -84,7 +84,7 @@
                    </DropShadow>
                </effect>
            </Label>
-           <ListView fx:id="stableListView" style="-fx-background-color: #A39D9B;" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
+           <ListView fx:id="stableListView" style=" -fx-selection-bar:  #E3DAD8" fixedCellSize="35.0" prefHeight="0.0" prefWidth="600.0">
                <VBox.margin>
                    <Insets bottom="10.0" />
                </VBox.margin></ListView>

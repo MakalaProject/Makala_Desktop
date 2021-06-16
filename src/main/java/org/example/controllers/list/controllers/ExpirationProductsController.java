@@ -24,7 +24,9 @@ import org.example.services.Request;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 public class ExpirationProductsController implements Initializable, IListController<PackageProduct> {
     @FXML ListView<PackageProduct> expiredListView;
@@ -36,14 +38,32 @@ public class ExpirationProductsController implements Initializable, IListControl
     private ObservableList<PackageProduct> urgentObservableList;
     private ObservableList<PackageProduct> warningObservableList;
     private ObservableList<PackageProduct> stableObservableList;
-
+    private ObservableList<PackageProduct> allObservableList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        allObservableList = FXCollections.observableList(Request.getJ("packages/filter-list?classification=ALL", PackageProduct[].class,false));
         expiredObservableList = FXCollections.observableList(Request.getJ("packages/filter-list?classification=EXPIRED", PackageProduct[].class,false));
         urgentObservableList = FXCollections.observableList(Request.getJ("packages/filter-list?classification=URGENT", PackageProduct[].class,false));
         warningObservableList = FXCollections.observableList(Request.getJ("packages/filter-list?classification=WARNING", PackageProduct[].class,false));
         stableObservableList = FXCollections.observableList(Request.getJ("packages/filter-list?classification=STABLE", PackageProduct[].class,false));
+
+        LocalDate date = LocalDate.now();
+        for(PackageProduct p : allObservableList) {
+            if(p.getExpiryDate().compareTo(date) < 0){
+                expiredObservableList.add(p);
+            }
+            else if(p.getExpiryDate().compareTo(date) >= 0 && p.getExpiryDate().compareTo(date.plusWeeks(2)) <= 0){
+                urgentObservableList.add(p);
+            }
+            else if(p.getExpiryDate().compareTo(date.plusWeeks(2)) > 0){
+                warningObservableList.add(p);
+            }
+            else{
+                stableObservableList.add(p);
+            }
+        }
+        
         expiredListView.getItems().setAll(expiredObservableList);
         expiredListView.setPrefHeight(expiredObservableList.size() * 35 + 2);
         expiredListView.setCellFactory(listCell -> new InternalListViewCell<>());

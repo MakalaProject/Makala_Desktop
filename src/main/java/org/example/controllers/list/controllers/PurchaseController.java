@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
+import org.example.controllers.create.controllers.PurchaseCreateController;
 import org.example.controllers.parent.controllers.PurchaseParentController;
 import org.example.customCells.GiftListViewCell;
 import org.example.customCells.PurchaseListViewCell;
@@ -48,7 +49,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
         purchaseObservableList.setAll(Request.getJ("purchases", Purchase[].class, true));
-        purchaseObservableList.sort(Comparator.comparing(Purchase::getOrderDate).reversed());
+        purchaseObservableList.sort(Comparator.comparing(Purchase::getId).reversed());
         showList(purchaseObservableList, listView, PurchaseListViewCell.class);
         FilteredList<Purchase> filteredPurchases = new FilteredList<>(purchaseObservableList, p ->true);
         searchField.textProperty().addListener((observable, oldValue, newValue) ->{
@@ -115,6 +116,8 @@ public class PurchaseController extends PurchaseParentController implements ILis
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/purchase_create.fxml"));
         try {
             Parent parent = fxmlLoader.load();
+            PurchaseCreateController purchaseCreateController = fxmlLoader.getController();
+            purchaseCreateController.setActualEmployee(actualEmployee);
             Scene scene = new Scene(parent);
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -124,7 +127,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
             if(object != null){
                 actualPurchase = object;
                 purchaseObservableList.add(object);
-                purchaseObservableList.sort(Comparator.comparing(Purchase::getOrderDate).reversed());
+                purchaseObservableList.sort(Comparator.comparing(Purchase::getId).reversed());
                 showList(purchaseObservableList,listView, PurchaseListViewCell.class);
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
@@ -279,6 +282,7 @@ public class PurchaseController extends PurchaseParentController implements ILis
             editSwitch.setSelected(true);
             editProduct = false;
             disableAnchorPane.setVisible(true);
+            fieldsAnchorPane.setVisible(false);
             editSwitch.setVisible(false);
             updateButton.setVisible(false);
         }else{
