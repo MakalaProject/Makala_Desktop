@@ -187,7 +187,7 @@ public class ProviderController extends UserParentController<Provider> {
                     showAlertEmptyFields("Debes agregar productos");
                 }
             }else {
-                showAlertEmptyFields("El tiempo de entrega debe ser mayor a 0");
+                showAlertEmptyFields("El tiempo de entrega debe ser mayor a 0 y el número de teléfono debe tener 10 digitos");
             }
         }else{
             showAlertEmptyFields("No puedes dejar campos marcados con * vacios");

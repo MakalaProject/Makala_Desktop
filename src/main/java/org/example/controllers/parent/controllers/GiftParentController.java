@@ -64,7 +64,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
     @FXML protected ListView<RibbonProductToSend> internalRibbonsListView;
     protected Gift actualGift;
-    protected boolean editProduct;
+    protected boolean editProduct = true;
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<RibbonProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
