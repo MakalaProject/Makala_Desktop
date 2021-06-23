@@ -74,7 +74,6 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
         });
         listView.getSelectionModel().select(0);
         updateView();
-
         editSwitch.setOnMouseClicked(mouseEvent -> {
             editView(fieldsAnchorPane, editSwitch, updateButton);
             updateButton.setVisible(actualOrder.getShippingDate() == null);
