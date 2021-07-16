@@ -35,7 +35,7 @@ public class ImageService {
                         ObjectUtils.asMap(
                         "folder", "Makala",
                                 "transformation",
-                                new Transformation().width(400).height(400).crop("limit")));
+                                new Transformation().width(1500).height(1000).crop("limit")));
                 urls.add((String)uploadResult.get("url"));
             }
             return urls;

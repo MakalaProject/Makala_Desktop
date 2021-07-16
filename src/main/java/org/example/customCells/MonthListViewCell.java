@@ -40,7 +40,7 @@ public class MonthListViewCell extends ListCell<Accounting> implements IConstruc
                     e.printStackTrace();
                 }
             }
-            monthName.setText(Formatter.FormatMonth(month.getDate()));
+            monthName.setText(Formatter.FormatMonth(month.getMonth()));
             setText(null);
             setGraphic(anchorPane);
 

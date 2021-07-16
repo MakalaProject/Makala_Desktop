@@ -357,6 +357,7 @@ public class GiftController extends GiftParentController implements IListControl
                 actualGift = object;
                 giftObservableList.add(object);
                 userClicked = false;
+                actualList.add(object);
                 showList(giftObservableList,listView,GiftListViewCell.class);
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
