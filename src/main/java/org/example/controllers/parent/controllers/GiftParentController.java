@@ -72,7 +72,7 @@ public class GiftParentController implements Initializable, IPictureController, 
 
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
-
+    protected final ObservableList<BowProductToSend> actualBowObservableList = FXCollections.observableArrayList();
 
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
     protected final String resourcePapers = "/fxml/gift_paper_properties.fxml";
@@ -101,10 +101,10 @@ public class GiftParentController implements Initializable, IPictureController, 
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
         });
         internalBowsListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourceRibbons,false, internalBowsListView.getSelectionModel().getSelectedItem(), actualRibbonsObservableList, internalRibbonsListView, editProduct);
+            //propertiesGiftProducts(resourceRibbons,false, internalBowsListView.getSelectionModel().getSelectedItem(), actualBowObservableList, internalBowsListView, editProduct);
         });
         internalProductsListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalRibbonsListView, editProduct);
+            propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalProductsListView, editProduct);
             checkInternalProducts();
         });
 
@@ -142,10 +142,10 @@ public class GiftParentController implements Initializable, IPictureController, 
 
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
             setChargedRibbons();
-            Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
+            /*Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
             if (product != null) {
                 propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualRibbonsObservableList,internalRibbonsListView, editProduct);
-            }
+            }*/
         });
 
         //------------------------------------------------IMAGE BUTTONS--------------------------------------------------------------------
@@ -209,7 +209,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     private void setChargedRibbons(){
         if(!chargedRibbons){
             chargedRibbons = true;
-            ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
+            //ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
         }
     }
 
@@ -255,17 +255,19 @@ public class GiftParentController implements Initializable, IPictureController, 
         return null;
     }
     protected void showProductsList() {
+
         internalPapersListView.getItems().clear();
         internalProductsListView.getItems().clear();
-        internalRibbonsListView.getItems().clear();
+        //internalRibbonsListView.getItems().clear();
+
         internalPapersListView.getItems().setAll(actualPapersObservableList);
         internalPapersListView.setPrefHeight(actualPapersObservableList.size() * 35 + 2);
         internalPapersListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
-        internalRibbonsListView.getItems().setAll(actualRibbonsObservableList);
+        /*internalRibbonsListView.getItems().setAll(actualRibbonsObservableList);
         internalRibbonsListView.setPrefHeight(actualRibbonsObservableList.size() * 35 + 2);
 
-        internalRibbonsListView.setCellFactory(listCell -> new InternalListViewCell<>());
+        internalRibbonsListView.setCellFactory(listCell -> new InternalListViewCell<>());*/
         internalProductsListView.getItems().setAll(actualProductsObservableList);
         internalProductsListView.setPrefHeight(actualProductsObservableList.size() * 35 + 2);
         internalProductsListView.setCellFactory(listCell -> new InternalListViewCell<>());
@@ -280,10 +282,10 @@ public class GiftParentController implements Initializable, IPictureController, 
 
     protected void setExtendedInternalProducts(Gift gift){
         ArrayList<Integer> idProducts = new ArrayList<>(actualGift.getStaticProducts().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
-        ArrayList<Integer> idRibbons = new ArrayList<>(actualGift.getRibbons().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
+        //ArrayList<Integer> idRibbons = new ArrayList<>(actualGift.getRibbons().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
         ArrayList<Integer> idPapers = new ArrayList<>(actualGift.getPapers().stream().map(p -> p.getProduct().getIdProduct()).collect(Collectors.toList()));
         actualGift.setInternalProducts(Request.postArray("products/statics/find-list",idProducts, StaticProduct[].class));
-        actualGift.setInternalRibbons(Request.postArray("products/basics/find-list",idRibbons, RibbonProduct[].class));
+        //actualGift.setInternalRibbons(Request.postArray("products/basics/find-list",idRibbons, RibbonProduct[].class));
         actualGift.setInternalPapers(Request.postArray("products/basics/find-list",idPapers, PaperProduct[].class));
         containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
         gift.setContainer(containerExtended);
@@ -294,10 +296,10 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setName(nombreField.getText());
         new ListToChangeTools<GiftProductsToSend,Integer>().setToDeleteItems(productsObservableList, actualProductsObservableList);
         new ListToChangeTools<PaperProductToSend,Integer>().setToDeleteItems(papersObservableList, actualPapersObservableList);
-        new ListToChangeTools<RibbonProductToSend,Integer>().setToDeleteItems(ribbonsObservableList, actualRibbonsObservableList);
+        //new ListToChangeTools<RibbonProductToSend,Integer>().setToDeleteItems(ribbonsObservableList, actualRibbonsObservableList);
         gift.setStaticProducts(actualProductsObservableList);
         gift.setPapers(actualPapersObservableList);
-        gift.setRibbons(actualRibbonsObservableList);
+        //gift.setRibbons(actualRibbonsObservableList);
         gift.setPictures(pictureList);
         gift.setContainer(containerExtended);
         gift.setLaborPrice(new BigDecimal(!laborCostField.getText().isEmpty() ? laborCostField.getText() : "0"));

@@ -67,7 +67,7 @@ public abstract class ProductParentController implements Initializable, IControl
     protected static final ObservableList<String> typeItems = FXCollections.observableArrayList("Fijo","Contenedores","Granel","Comestible", "Papeles", "Listones","Creados");
     protected static final ObservableList<String> privacyItems = FXCollections.observableArrayList( "Privado","Publico", "Premium");
     protected static final ObservableList<ProductClassDto> classificationItems = FXCollections.observableArrayList(Request.getJ( "classifications/products", ProductClassDto[].class, false));
-    protected static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new BoxProductController(), new RibbonProductController(), new PaperProductController(), new BulkProductController(), new CraftedProductController()};
+    protected static final IControllerProducts[] propertiesControllers = {new StaticProductController(), new BoxProductController(), new PaperProductController(), new BulkProductController(), new CraftedProductController()};
 
     protected IControllerProducts actualPropertiesController;
     protected int imageIndex = 0;
