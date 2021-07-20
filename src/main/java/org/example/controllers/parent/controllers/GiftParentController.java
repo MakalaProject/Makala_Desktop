@@ -21,6 +21,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
+import org.example.controllers.elements.controllers.SelectListDepart;
+import org.example.controllers.gift.subcontrollers.SelectListDecoration;
 import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IPictureController;
@@ -101,9 +103,8 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalPapersListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
         });
-        internalBowsListView.setOnMouseClicked(mouseEvent -> {
-            //propertiesGiftProducts(resourceRibbons,false, internalBowsListView.getSelectionModel().getSelectedItem(), actualBowObservableList, internalBowsListView, editProduct);
-        });
+
+
         internalProductsListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalProductsListView, editProduct);
             checkInternalProducts();
@@ -142,10 +143,28 @@ public class GiftParentController implements Initializable, IPictureController, 
 
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
             setChargedRibbons();
-            /*Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
-            if (product != null) {
-                propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualRibbonsObservableList,internalRibbonsListView, editProduct);
-            }*/
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
+            try {
+                SelectListDecoration dialogController = new SelectListDecoration();
+                fxmlLoader.setController(dialogController);
+                Parent parent = fxmlLoader.load();
+                ArrayList<Bow> decorationList = new ArrayList<>();
+                dialogController.setDecoration(decorationList);
+                Scene scene = new Scene(parent);
+                Stage stage = new Stage();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.setScene(scene);
+                stage.showAndWait();
+                ArrayList<Bow> returnedDecorations = (ArrayList<Bow>) stage.getUserData();
+                if (returnedDecorations!= null) {
+                    /*
+                    departmentsItems.setAll(employee.getDepartments());
+                    showDepartmentsList(departmentsItems);*/
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         });
 
         //------------------------------------------------IMAGE BUTTONS--------------------------------------------------------------------

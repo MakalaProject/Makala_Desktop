@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.controlsfx.control.*?>
+
+<AnchorPane fx:id="informationPane" prefHeight="513.0" prefWidth="495.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="255.0" mouseTransparent="true" prefHeight="604.0" prefWidth="519.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+            <AnchorPane layoutY="257.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
+                <children>
+                    <Label prefHeight="28.0" prefWidth="152.0" text="Nombre*" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="52.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="nameField" prefHeight="31.0" prefWidth="208.0" promptText="Moño plus" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="50.0" />
+
+                    <Label prefHeight="28.0" prefWidth="151.0" text="Precio*" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="95.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="priceField" prefHeight="31.0" prefWidth="128.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="206.0" AnchorPane.topAnchor="94.0" />
+                    <Label layoutX="390.0" layoutY="206.0" text="\$" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="105.0" />
+
+                    <Label prefHeight="28.0" prefWidth="151.0" text="Descripción*" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="164.0">
+                        <font>
+                            <Font name="Roboto Light" size="20.0" />
+                        </font>
+                    </Label>
+
+                    <TextArea fx:id="descriptionTextArea" prefHeight="67.0" prefWidth="239.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="150.0">
+
+                    </TextArea>
+                    <Label fx:id="requireLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="7.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <font>
+                            <Font name="Roboto Light" size="17.0" />
+                        </font>
+                    </Label>
+                    <AnchorPane fx:id="fieldsAnchorPane" prefHeight="165.0" prefWidth="517.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                </children>
+            </AnchorPane>
+        </ScrollPane>
+        <AnchorPane layoutX="2.0" layoutY="3.0" prefHeight="257.0" prefWidth="517.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <FontAwesomeIconView fx:id="imageButton" fill="#a39d9b" glyphName="PLUS" layoutX="361.0" layoutY="239.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="128.42857170104992" AnchorPane.topAnchor="213.2857151031494" />
+                <FontAwesomeIconView fx:id="deletePicture" fill="#a39d9b" glyphName="TIMES_CIRCLE" layoutX="368.0" layoutY="75.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="122.42857170104992" AnchorPane.topAnchor="49.285715103149414" />
+                <ImageView fx:id="decorationImage" fitHeight="180.0" fitWidth="231.0" layoutX="169.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="168.0" AnchorPane.topAnchor="50.0">
+                    <effect>
+                        <DropShadow />
+                    </effect>
+                    <image>
+                        <Image url="@../Images/bow.png" />
+                    </image>
+                </ImageView>
+
+                <AnchorPane layoutX="2.0" layoutY="2.0" prefHeight="39.0" prefWidth="515.0" style="-fx-background-color: #A39D9B;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <FontAwesomeIconView fx:id="updateButton" fill="WHITE" glyphName="SAVE" layoutX="364.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="27.571428298950195" AnchorPane.rightAnchor="123.4285717010498" AnchorPane.topAnchor="4.285715103149414" />
+                        <ToggleSwitch fx:id="editSwitch" layoutX="410.0" layoutY="10.0" prefWidth="90.0" text="Editar" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="10.0">
+                            <font>
+                                <Font name="Roboto Thin" size="13.0" />
+                            </font>
+                        </ToggleSwitch>
+                        <FontAwesomeIconView fx:id="deleteButton" fill="WHITE" glyphName="TRASH" layoutX="4.0" layoutY="30.0" selectionFill="BLACK" size="30" wrappingWidth="18.571428298950195" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="4.285715103149414" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="disableImageAnchorPane" layoutX="2.0" layoutY="40.0" prefHeight="215.0" prefWidth="517.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="39.0" />
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <effect>
+                <DropShadow />
+            </effect></AnchorPane>
+    </children>
+</AnchorPane>
