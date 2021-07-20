@@ -11,17 +11,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.example.interfaces.IControllerCreate;
+import org.example.model.BowProductToSend;
 import org.example.model.ChangedVerificationFields;
 import org.example.model.FocusVerificationFields;
-import org.example.model.RibbonProductToSend;
-import org.example.model.products.Action;
+
 
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class GiftRibbonPropertiesController implements Initializable, IControllerCreate<RibbonProductToSend> {
+public class GiftBowPropertiesController implements Initializable, IControllerCreate<BowProductToSend> {
     @FXML
     public Label titleLabel;
     @FXML public TextField largoField;
@@ -31,7 +31,7 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
     @FXML public AnchorPane disableAnchorPane;
 
 
-    private RibbonProductToSend ribbonProductToSend = new RibbonProductToSend();
+    private BowProductToSend bowProductToSend = new BowProductToSend();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -41,52 +41,23 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
         cantidadField.textProperty().addListener(new ChangedVerificationFields(cantidadField, false, 2));
 
         updateButton.setOnMouseClicked(mouseEvent -> {
-            if (!cantidadField.getText().isEmpty() && !largoField.getText().isEmpty()) {
-                if (Integer.parseInt(cantidadField.getText()) > 0 && Float.parseFloat(largoField.getText())>0) {
-                    setInfo(ribbonProductToSend);
-                    Node source = (Node) mouseEvent.getSource();
-                    Stage stage = (Stage) source.getScene().getWindow();
-                    stage.close();
-                    ribbonProductToSend.setAction(Action.UPDATE);
-                    stage.setUserData(ribbonProductToSend);
-                }else {
-                    showAlertEmptyFields("Los valores de los campos no pueden ser 0");
-                    checkFields();
-                }
-            }else {
-                showAlertEmptyFields("No puedes dejar campos vacios");
-                checkFields();
-            }
-            checkFields();
+
         });
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Eliminar producto");
-            alert.setContentText("¿Seguro quieres eliminarlo?");
-            Optional<ButtonType> result = alert.showAndWait();
-            Node source = (Node)  mouseEvent.getSource();
-            Stage stage  = (Stage) source.getScene().getWindow();
-            if (result.get() == ButtonType.OK){
-                ribbonProductToSend.setAction(Action.DELETE);
-                stage.setUserData(ribbonProductToSend);
-            }
-            stage.close();
+
         });
     }
 
     @Override
-    public void setProduct(RibbonProductToSend ribbonProduct, boolean isCreate, boolean editProduct){
+    public void setProduct(BowProductToSend ribbonProduct, boolean isCreate, boolean editProduct){
         deleteButton.setVisible(!isCreate);
         if (!editProduct){
             updateButton.setVisible(false);
             disableAnchorPane.setVisible(true);
             deleteButton.setVisible(false);
         }
-        ribbonProductToSend = ribbonProduct;
-        titleLabel.setText(ribbonProduct.getProduct().getName());
-        cantidadField.setText(ribbonProduct.getAmount().toString());
-        largoField.setText(ribbonProduct.getLengthCm().toString());
+
     }
 
     protected void checkFields(){
@@ -103,8 +74,7 @@ public class GiftRibbonPropertiesController implements Initializable, IControlle
     }
 
     @Override
-    public void setInfo(RibbonProductToSend ribbonProductToSend) {
-        ribbonProductToSend.setLengthCm(new BigDecimal(largoField.getText()));
-        ribbonProductToSend.setAmount(Integer.parseInt(cantidadField.getText()));
+    public void setInfo(BowProductToSend ribbonProductToSend) {
+
     }
 }

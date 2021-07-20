@@ -392,12 +392,12 @@ public class GiftController extends GiftParentController implements IListControl
         stepList = new ArrayList<>(actualGift.getSteps());
         giftRating.setRating(actualGift.getRating());
         giftRating.setOpacity(1);
-        ribbonsObservableList.setAll(actualGift.getRibbons());
+        //ribbonsObservableList.setAll(actualGift.getRibbons());
         papersObservableList.setAll(actualGift.getPapers());
         productsObservableList.setAll(actualGift.getStaticProducts());
         actualProductsObservableList.setAll(actualGift.getStaticProducts());
         actualPapersObservableList.setAll(actualGift.getPapers());
-        actualRibbonsObservableList.setAll(actualGift.getRibbons());
+        //actualRibbonsObservableList.setAll(actualGift.getRibbons());
         showProductsList();
         checkInternalProducts();
     }
@@ -453,7 +453,7 @@ public class GiftController extends GiftParentController implements IListControl
         laborCostField.setText("");
         containerName.setText("");
         internalPapersListView.getItems().clear();
-        internalRibbonsListView.getItems().clear();
+        //internalRibbonsListView.getItems().clear();
         internalProductsListView.getItems().clear();
     }
 
