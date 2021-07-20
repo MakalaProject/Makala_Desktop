@@ -45,6 +45,8 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected FontAwesomeIconView updateButton;
     @FXML protected FontAwesomeIconView imageButton;
     @FXML protected TextField precioField;
+    @FXML protected TextField flowersField;
+    @FXML protected TextField applicationsField;
     @FXML protected TextField laborCostField;
     @FXML protected ImageView giftImage;
     @FXML protected AnchorPane fieldsAnchorPane;
@@ -68,8 +70,6 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected boolean editProduct = true;
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
 
-
-
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<BowProductToSend> actualBowObservableList = FXCollections.observableArrayList();
@@ -84,7 +84,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected List<String> deleteFiles = new ArrayList<>();
     protected ArrayList<Picture> pictureList = new ArrayList<>();
     protected final ObservableList<Product> papersProducts = FXCollections.observableArrayList();
-    protected final ObservableList<String> privacyItems = FXCollections.observableArrayList( "Privado","Publico", "Premium");
+    protected final ObservableList<String> privacyItems = FXCollections.observableArrayList( "Privado","Público", "Premium");
     protected final ObservableList<Product> containerProducts = FXCollections.observableArrayList();
     protected final ObservableList<Bow> bowProducts = FXCollections.observableArrayList();
     protected final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
