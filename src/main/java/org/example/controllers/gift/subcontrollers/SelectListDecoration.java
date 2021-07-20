@@ -33,7 +33,7 @@ public class SelectListDecoration implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        titleLabel.setText("Decoracioes");
+        titleLabel.setText("Decoraciones");
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         saveButton.setOnMouseClicked(mouseEvent -> {
             List<Bow> bowList = new ArrayList<>(checkListView.getCheckModel().getCheckedItems());

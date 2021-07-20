@@ -133,13 +133,10 @@ public class GiftProductPropertiesController implements Initializable, IControll
 
     private boolean volumeValidation(){
         staticProduct = (StaticProduct) Request.find("products/statics", giftProductToSend.getProduct().getIdProduct(), StaticProduct.class);
-        if(boxProduct.verifyProductBounds(giftProductToSend.getHoleNumber(), staticProduct)){
-            if (!create){
-                return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)).add(staticProduct.getVolume().multiply(new BigDecimal(originalAmount))).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
-            }
-            return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
+        if (!create){
+            return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)).add(staticProduct.getVolume().multiply(new BigDecimal(originalAmount))).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
         }
-        return false;
+        return boxProduct.getAvailableVolume(giftProductToSend.getHoleNumber(), gift.getProductsVolume(giftProductToSend.getHoleNumber(),boxProduct)).compareTo(staticProduct.getVolume().multiply(new BigDecimal(giftProductToSend.getAmount()))) >= 0;
     }
 
     @Override

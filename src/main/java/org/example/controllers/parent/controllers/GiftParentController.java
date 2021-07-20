@@ -74,11 +74,9 @@ public class GiftParentController implements Initializable, IPictureController, 
 
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<BowProductToSend> actualBowObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<Bow> actualBowObservableList = FXCollections.observableArrayList();
 
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
-    protected final String resourcePapers = "/fxml/gift_paper_properties.fxml";
-    protected final String resourceRibbons = "/fxml/gift_ribbon_properties.fxml";
     protected final String resourceProducts = "/fxml/gift_product_properties.fxml";
 
     protected int imageIndex = 0;
@@ -132,7 +130,27 @@ public class GiftParentController implements Initializable, IPictureController, 
             setChargedTextiles();
             Product product = loadDialog(papersProducts, FXCollections.observableArrayList());
             if (product != null) {
-                propertiesGiftProducts(resourcePapers,true, new PaperProductToSend(product), actualPapersObservableList,internalPapersListView, editProduct);
+                actualPapersObservableList.clear();
+                if (containerExtended.getHolesDimensions().size() > 0){
+                    ArrayList<PaperProductToSend> paperProductsToSend = new ArrayList<>();
+                    for (Hole h:containerExtended.getHolesDimensions()){
+                        PaperProductToSend paper = new PaperProductToSend();
+                        paper.setAmount(1);
+                        paper.setHeightCm(h.getHoleDimensions().getY().add(new BigDecimal(5)));
+                        paper.setWidthCm(h.getHoleDimensions().getX().add(new BigDecimal(5)));
+                        paper.setProduct(product);
+                        paperProductsToSend.add(paper);
+                    }
+                    actualPapersObservableList.setAll(paperProductsToSend);
+                }else {
+                    PaperProductToSend paperProductToSend = new PaperProductToSend();
+                    paperProductToSend.setAmount(1);
+                    paperProductToSend.setHeightCm(containerExtended.getMeasures().getY().add(new BigDecimal(5)));
+                    paperProductToSend.setWidthCm(containerExtended.getMeasures().getX().add(new BigDecimal(5)));
+                    paperProductToSend.setProduct(product);
+                    actualPapersObservableList.add(paperProductToSend);
+                }
+                showProductsList();
             }
         });
 
@@ -153,9 +171,8 @@ public class GiftParentController implements Initializable, IPictureController, 
                 stage.showAndWait();
                 ArrayList<Bow> returnedDecorations = (ArrayList<Bow>) stage.getUserData();
                 if (returnedDecorations!= null) {
-                    /*
-                    departmentsItems.setAll(employee.getDepartments());
-                    showDepartmentsList(departmentsItems);*/
+                    actualBowObservableList.setAll(returnedDecorations);
+                    showProductsList();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
