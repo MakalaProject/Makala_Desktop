@@ -11,7 +11,7 @@ import java.util.List;
 public class Catalog {
     private int idCatalog;
     private String name;
-    private String path = "/images/catalog.png";
+    private String path = "/Images/catalog.png";
     private CatalogClassification catalogClassification;
     private List<Gift> gifts = new ArrayList<>();
     private String route = "catalogs";

@@ -237,7 +237,7 @@ public class CatalogController extends CatalogParentController implements Initia
         if(actualCatalog.getPath() != null && !actualCatalog.getPath().equals("")){
             catalogImage.setImage(new Image(actualCatalog.getPath()));
         }else{
-            catalogImage.setImage(new Image(getClass().getResource("/images/catalog.png").toString()));
+            catalogImage.setImage(new Image(getClass().getResource("/Images/catalog.png").toString()));
         }
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
         giftObservableList.setAll(actualCatalog.getGifts());

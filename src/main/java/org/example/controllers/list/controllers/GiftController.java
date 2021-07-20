@@ -344,6 +344,14 @@ public class GiftController extends GiftParentController implements IListControl
     }
 
     public void add(){
+        if(containerProducts.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sin cajas");
+            alert.setHeaderText("No se puede crear un regalo");
+            alert.setContentText("Antes de crear un regalo, es necesario crear una caja");
+            alert.showAndWait();
+            return;
+        }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_create.fxml"));
         try {
             Parent parent = fxmlLoader.load();

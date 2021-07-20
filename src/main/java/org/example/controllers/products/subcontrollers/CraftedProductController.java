@@ -65,7 +65,6 @@ public class CraftedProductController extends StaticParentProductController<Craf
                 propertiesInternalProduct(true, insideProduct);
             }
         });
-
         addContainerButton.setOnMouseClicked(mouseEvent -> {
             Product product = loadDialog(containerProducts, FXCollections.observableArrayList(craftedProduct.getProductContainer()));
             if (product != null) {

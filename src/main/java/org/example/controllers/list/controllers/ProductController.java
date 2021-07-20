@@ -289,10 +289,6 @@ public class ProductController extends ProductParentController implements IListC
                 listView.scrollTo(object);
                 updateView();
             }
-            if(actualProduct != null) {
-                actualPropertiesController.setObject(actualProduct);
-                updateView();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -400,13 +396,11 @@ public class ProductController extends ProductParentController implements IListC
     private void privacyProduct(){
         if (!actualProduct.getPrivacy().equals("Privado")){
             userClicked = false;
-            nombreField.setEditable(false);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(publicProduct);
             disablePropertiesAnchorPane.setVisible(true);
         }else {
             userClicked = false;
-            nombreField.setEditable(true);
             privacidadComboBox.getItems().clear();
             privacidadComboBox.getItems().addAll(privacyItems);
             disablePropertiesAnchorPane.setVisible(false);

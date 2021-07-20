@@ -35,10 +35,18 @@ public class GiftCreateController extends GiftParentController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
-        actualGift.setContainer(containerProducts.get(0));
-        container = actualGift.getContainer();
-        containerName.setText(container.getName());
-        containerExtended = (BoxProduct)Request.find("products/boxes",actualGift.getContainer().getIdProduct(),BoxProduct.class);
+        if(!containerProducts.isEmpty()) {
+            actualGift.setContainer(containerProducts.get(0));
+            container = actualGift.getContainer();
+            containerName.setText(container.getName());
+            containerExtended = (BoxProduct) Request.find("products/boxes", actualGift.getContainer().getIdProduct(), BoxProduct.class);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Sin cajas");
+            alert.setHeaderText("No se puede crear un regalo");
+            alert.setContentText("Antes de crear un regalo, es necesario crear una caja");
+            alert.showAndWait();
+        }
         privacidadComboBox.getItems().addAll(createItems);
         privacidadComboBox.getSelectionModel().select(0);
         updateButton.setOnMouseClicked(mouseEvent -> {

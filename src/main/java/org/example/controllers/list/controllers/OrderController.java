@@ -209,20 +209,22 @@ public class OrderController implements Initializable, IControllerCreate<Order>,
     @Override
     public void updateView() {
         actualOrder = listView.getSelectionModel().getSelectedItem();
-        actualOrder = (Order)Request.find("orders", actualOrder.getIdOrder(), Order.class);
-        index = orderObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
-        putFields();
-        if(actualOrder.getShippingDate() == null) {
-            blockPane.setVisible(false);
-            editSwitch.setVisible(true);
-            editSwitch.setSelected(false);
-            editView(fieldsAnchorPane, editSwitch, updateButton);
-        }else{
-            blockPane.setVisible(true);
-            editSwitch.setSelected(true);
-            editSwitch.setVisible(false);
-            editView(fieldsAnchorPane, editSwitch, updateButton);
-            updateButton.setVisible(false);
+        if(actualOrder != null) {
+            actualOrder = (Order) Request.find("orders", actualOrder.getIdOrder(), Order.class);
+            index = orderObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+            putFields();
+            if (actualOrder.getShippingDate() == null) {
+                blockPane.setVisible(false);
+                editSwitch.setVisible(true);
+                editSwitch.setSelected(false);
+                editView(fieldsAnchorPane, editSwitch, updateButton);
+            } else {
+                blockPane.setVisible(true);
+                editSwitch.setSelected(true);
+                editSwitch.setVisible(false);
+                editView(fieldsAnchorPane, editSwitch, updateButton);
+                updateButton.setVisible(false);
+            }
         }
 
     }
