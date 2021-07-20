@@ -64,6 +64,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
     @FXML protected ListView<RibbonProductToSend> internalRibbonsListView;
     protected Gift actualGift;
+    public boolean chargedRibbons, chargedTextiles, chargedProducts, chargedContainers;
     protected boolean editProduct = true;
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<RibbonProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
@@ -92,10 +93,6 @@ public class GiftParentController implements Initializable, IPictureController, 
         precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
         precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
         actualGift = new Gift();
-        papersProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Papeles", Product[].class, false));
-        containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&idClass=21", Product[].class, false));
-        ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
-        internalProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Fijo,Creados,Comestible", Product[].class, false));
 
         internalPapersListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
@@ -112,6 +109,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         //------------------------------------------------PRODUCTS BUTTONS --------------------------------------------------------------------
 
         containerButton.setOnMouseClicked(mouseEvent -> {
+            setChargedContainers();
             Product product = loadDialog(containerProducts, FXCollections.observableArrayList(actualGift.getContainer()));
             if (product != null) {
                 actualGift.setContainer(product);
@@ -122,6 +120,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         });
 
         productsButton.setOnMouseClicked(mouseEvent -> {
+            setChargedProducts();
             Product product = loadDialog(internalProducts, FXCollections.observableArrayList());
             if (product != null) {
                 StaticProduct staticProduct = new StaticProduct(product.getIdProduct(), product.getName());
@@ -131,6 +130,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         });
 
         papersButton.setOnMouseClicked(mouseEvent -> {
+            setChargedTextiles();
             Product product = loadDialog(papersProducts, FXCollections.observableArrayList());
             if (product != null) {
                 propertiesGiftProducts(resourcePapers,true, new PaperProductToSend(product), actualPapersObservableList,internalPapersListView, editProduct);
@@ -138,6 +138,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         });
 
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
+            setChargedRibbons();
             Product product = loadDialog(ribbonsProducts, FXCollections.observableArrayList());
             if (product != null) {
                 propertiesGiftProducts(resourceRibbons,true, new RibbonProductToSend(product), actualRibbonsObservableList,internalRibbonsListView, editProduct);
@@ -201,6 +202,34 @@ public class GiftParentController implements Initializable, IPictureController, 
             e.printStackTrace();
         }
     }
+
+    private void setChargedRibbons(){
+        if(!chargedRibbons){
+            chargedRibbons = true;
+            ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
+        }
+    }
+
+    private void setChargedTextiles(){
+        if(!chargedTextiles){
+            chargedTextiles = true;
+            papersProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Papeles", Product[].class, false));
+        }
+    }
+
+    private void setChargedProducts(){
+        if (!chargedProducts){
+            chargedProducts = true;
+            internalProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Fijo,Creados,Comestible", Product[].class, false));
+        }
+    }
+    private void setChargedContainers(){
+        if(!chargedContainers){
+            chargedContainers = true;
+            containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&idClass=21", Product[].class, false));
+        }
+    }
+
     protected Product loadDialog(ObservableList<Product> productsList, ObservableList<Product> productListToDelete) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_containers.fxml"));
         try {
@@ -272,13 +301,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setRating(actualGift.getRating());
         gift.sortList();
     }
-    protected BigDecimal obtainPrice(Gift gift){
-        BigDecimal price = gift.getProductsTotalPrice().add(actualGift.getLaborPrice());
-        Gain gain = (Gain)Request.getJ("gain-factors/find-one?price="+price.intValue(), Gain.class);
-        price = price.divide(gain.getFactor(), 2, RoundingMode.HALF_UP);
-        price = price.multiply(new BigDecimal(1.16));
-        return price.setScale(2, RoundingMode.CEILING);
-    }
+
     //--------------------------------------------------------------------------- IMAGE METHODS--------------------------------------------------------------
     @Override
     public void decreaseIndex() {

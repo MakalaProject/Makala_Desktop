@@ -83,8 +83,8 @@ public class LoginController implements Initializable {
                     Stage stage = new Stage();
                     stage.getIcons().add(new Image(getClass().getResource("/Images/logo.png").toString()));
                     stage.setScene(scene);
-                    stage.setMinHeight(700);
-                    stage.setMinWidth(1300);
+                    stage.setMinHeight(500);
+                    stage.setMinWidth(1000);
                     stage.show();
                     ((Node)(event.getSource())).getScene().getWindow().hide();
                 } catch (IOException e) {

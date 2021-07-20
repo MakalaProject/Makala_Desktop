@@ -54,7 +54,7 @@ public class GiftController extends GiftParentController implements IListControl
     @FXML protected FontAwesomeIconView manualButton;
     private final ObservableList<Gift> giftObservableList = FXCollections.observableArrayList();
     private final ObservableList<Gift> actualList = FXCollections.observableArrayList();
-    protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Publico");
+    protected static final ObservableList<String> publicGift = FXCollections.observableArrayList( "Oculto", "Premium", "Público");
     private int index;
     private ArrayList<Step> stepList = new ArrayList<>();
     ManualController dialogController;
@@ -352,6 +352,7 @@ public class GiftController extends GiftParentController implements IListControl
             alert.showAndWait();
             return;
         }
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_create.fxml"));
         try {
             Parent parent = fxmlLoader.load();
@@ -375,6 +376,8 @@ public class GiftController extends GiftParentController implements IListControl
             e.printStackTrace();
         }
     }
+
+
 
     @Override
     public void putFields() {
