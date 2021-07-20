@@ -42,13 +42,13 @@ public class ManualStepController implements Initializable, IControllerCreate<St
     @FXML protected TextField tiempoField;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
-    @FXML protected ListView<RibbonProductToSend> internalRibbonsListView;
+    @FXML protected ListView<BowProductToSend> internalRibbonsListView;
     @FXML protected FontAwesomeIconView imageButton;
     @FXML protected FontAwesomeIconView deletePicture;
     @FXML protected ImageView stepImage;
 
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<RibbonProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<BowProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<Product> containerObservableList = FXCollections.observableArrayList();
     Gift actualGift;
@@ -139,8 +139,8 @@ public class ManualStepController implements Initializable, IControllerCreate<St
         });
 
         internalRibbonsListView.setOnMouseClicked(mouseEvent -> {
-            RibbonProductToSend product = internalRibbonsListView.getSelectionModel().getSelectedItem();
-            setElementText(product.getProduct().getIdProduct(), product, "{r:");
+            BowProductToSend bow = internalRibbonsListView.getSelectionModel().getSelectedItem();
+            //setElementText(product.getProduct().getIdProduct(), product, "{r:");
         });
 
         imageButton.setOnMouseClicked(mouseEvent -> {

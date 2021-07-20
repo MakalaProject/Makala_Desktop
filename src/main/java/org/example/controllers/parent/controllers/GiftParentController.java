@@ -62,14 +62,17 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected BoxProduct containerExtended;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
-    @FXML protected ListView<RibbonProductToSend> internalRibbonsListView;
+    @FXML protected ListView<BowProductToSend> internalBowsListView;
     protected Gift actualGift;
     protected boolean editProduct = true;
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<RibbonProductToSend> ribbonsObservableList = FXCollections.observableArrayList();
+
+
+
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<RibbonProductToSend> actualRibbonsObservableList = FXCollections.observableArrayList();
+
+
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
     protected final String resourcePapers = "/fxml/gift_paper_properties.fxml";
     protected final String resourceRibbons = "/fxml/gift_ribbon_properties.fxml";
@@ -82,7 +85,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected final ObservableList<Product> papersProducts = FXCollections.observableArrayList();
     protected final ObservableList<String> privacyItems = FXCollections.observableArrayList( "Privado","Publico", "Premium");
     protected final ObservableList<Product> containerProducts = FXCollections.observableArrayList();
-    protected final ObservableList<Product> ribbonsProducts = FXCollections.observableArrayList();
+    protected final ObservableList<Bow> bowProducts = FXCollections.observableArrayList();
     protected final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
 
     protected boolean userClicked = false;
@@ -100,8 +103,8 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalPapersListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
         });
-        internalRibbonsListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourceRibbons,false, internalRibbonsListView.getSelectionModel().getSelectedItem(), actualRibbonsObservableList, internalRibbonsListView, editProduct);
+        internalBowsListView.setOnMouseClicked(mouseEvent -> {
+            propertiesGiftProducts(resourceRibbons,false, internalBowsListView.getSelectionModel().getSelectedItem(), actualRibbonsObservableList, internalRibbonsListView, editProduct);
         });
         internalProductsListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalRibbonsListView, editProduct);
@@ -229,8 +232,10 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalPapersListView.getItems().setAll(actualPapersObservableList);
         internalPapersListView.setPrefHeight(actualPapersObservableList.size() * 35 + 2);
         internalPapersListView.setCellFactory(listCell -> new InternalListViewCell<>());
+
         internalRibbonsListView.getItems().setAll(actualRibbonsObservableList);
         internalRibbonsListView.setPrefHeight(actualRibbonsObservableList.size() * 35 + 2);
+
         internalRibbonsListView.setCellFactory(listCell -> new InternalListViewCell<>());
         internalProductsListView.getItems().setAll(actualProductsObservableList);
         internalProductsListView.setPrefHeight(actualProductsObservableList.size() * 35 + 2);
