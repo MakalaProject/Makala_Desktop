@@ -97,6 +97,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
         actualGift = new Gift();
 
+
         internalPapersListView.setOnMouseClicked(mouseEvent -> {
             propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
         });
@@ -107,7 +108,6 @@ public class GiftParentController implements Initializable, IPictureController, 
             propertiesGiftProducts(resourceProducts,false, internalProductsListView.getSelectionModel().getSelectedItem(), actualProductsObservableList, internalProductsListView, editProduct);
             checkInternalProducts();
         });
-
 
         //------------------------------------------------PRODUCTS BUTTONS --------------------------------------------------------------------
 
@@ -302,6 +302,8 @@ public class GiftParentController implements Initializable, IPictureController, 
         //gift.setRibbons(actualRibbonsObservableList);
         gift.setPictures(pictureList);
         gift.setContainer(containerExtended);
+        gift.setApplications(new BigDecimal(applicationsField.getText()));
+        gift.setFlowers(new BigDecimal(flowersField.getText()));
         gift.setLaborPrice(new BigDecimal(!laborCostField.getText().isEmpty() ? laborCostField.getText() : "0"));
         gift.setIdGift(actualGift.getIdGift());
         gift.setPrice(actualGift.getPrice());
