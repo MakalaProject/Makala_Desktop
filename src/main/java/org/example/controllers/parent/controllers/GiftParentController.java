@@ -66,7 +66,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected BoxProduct containerExtended;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
-    @FXML protected ListView<BowProductToSend> internalBowsListView;
+    @FXML protected ListView<Bow> internalBowsListView;
     protected Gift actualGift;
     public boolean chargedRibbons, chargedTextiles, chargedProducts, chargedContainers;
     protected boolean editProduct = true;
@@ -98,11 +98,6 @@ public class GiftParentController implements Initializable, IPictureController, 
         precioField.focusedProperty().addListener(new FocusVerificationFields(precioField, true, 4,2));
         precioField.textProperty().addListener(new ChangedVerificationFields(precioField, true, 4,2));
         actualGift = new Gift();
-
-
-        internalPapersListView.setOnMouseClicked(mouseEvent -> {
-            propertiesGiftProducts(resourcePapers,false, internalPapersListView.getSelectionModel().getSelectedItem(), actualPapersObservableList, internalPapersListView, editProduct);
-        });
 
 
         internalProductsListView.setOnMouseClicked(mouseEvent -> {

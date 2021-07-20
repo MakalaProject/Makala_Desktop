@@ -21,7 +21,7 @@ public class Gift implements IChangeable<Integer> {
     private String privacy;
     private BigDecimal laborPrice;
     private List<GiftProductsToSend> staticProducts = new ArrayList<>();
-    private List<BowProductToSend> ribbons = new ArrayList<>();
+    private List<Bow> ribbons = new ArrayList<>();
     private List<PaperProductToSend> papers = new ArrayList<>();
     private Product container;
     private List<Picture> pictures;
@@ -44,7 +44,7 @@ public class Gift implements IChangeable<Integer> {
 
     public void setSelectedProducts(){
         staticProducts.removeIf(GiftProductsToSend::isToDelete);
-        ribbons.removeIf(BowProductToSend::isToDelete);
+        ribbons.removeIf(Bow::isToDelete);
         papers.removeIf(PaperProductToSend::isToDelete);
     }
     public void setInternalProducts(List<StaticProduct> staticProducts){
@@ -91,7 +91,7 @@ public class Gift implements IChangeable<Integer> {
     }
 
     public void sortList(){
-            ribbons.sort(Comparator.comparing(BowProductToSend::getId));
+            ribbons.sort(Comparator.comparing(Bow::getId));
         papers.sort(Comparator.comparing(PaperProductToSend::getIdProduct));
         staticProducts.sort(Comparator.comparing(GiftProductsToSend::getIdProduct));
     }
@@ -101,15 +101,7 @@ public class Gift implements IChangeable<Integer> {
         return idGift;
     }
 
-    public void setInternalBow(List<Bow> ribbons) {
-        for(Bow p: ribbons){
-            for(BowProductToSend p2: this.ribbons){
-                if (p.getId().equals(p2.getBow().getId())){
-                    p2.setBow(p);
-                }
-            }
-        }
-    }
+
     public void setInternalPapers(List<PaperProduct> papers) {
         for(PaperProduct p: papers){
             for(PaperProductToSend p2: this.papers){
