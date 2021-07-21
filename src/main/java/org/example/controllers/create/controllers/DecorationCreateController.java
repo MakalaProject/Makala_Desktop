@@ -5,8 +5,7 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.DecorationsParentController;
 import org.example.interfaces.IControllerCreate;
-import org.example.model.Bow;
-import org.example.model.Catalog;
+import org.example.model.Decoration;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
@@ -16,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DecorationCreateController extends DecorationsParentController implements Initializable, IControllerCreate<Bow> {
+public class DecorationCreateController extends DecorationsParentController implements Initializable, IControllerCreate<Decoration> {
 
-    Bow decoration = new Bow();
+    Decoration decoration = new Decoration();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
@@ -27,16 +26,16 @@ public class DecorationCreateController extends DecorationsParentController impl
             if(!priceField.getText().isEmpty() && !descriptionTextArea.getText().isEmpty() && !priceField.getText().isEmpty()){
                 if(Integer.parseInt(priceField.getText()) > 0) {
                     setInfo(decoration);
-                    Bow returnedDecoration = null;
+                    Decoration returnedDecoration = null;
                     try {
-                        returnedDecoration = (Bow) Request.postJ(decoration.getRoute(),decoration);
+                        returnedDecoration = (Decoration) Request.postJ(decoration.getRoute(),decoration);
                         decoration.setId(returnedDecoration.getId());
                         if(!decoration.getPath().equals("/images/bow.png")) {
                             List<String> images = new ArrayList<>();
                             images.add(decoration.getPath());
                             images = ImageService.uploadImages(images);
                             decoration.setPath(images.get(0));
-                            decoration = (Bow) Request.putJ(decoration.getRoute(), decoration);
+                            decoration = (Decoration) Request.putJ(decoration.getRoute(), decoration);
                         }
                     } catch (Exception e) {
                         duplyElementAlert(decoration.getIdentifier());
@@ -59,7 +58,7 @@ public class DecorationCreateController extends DecorationsParentController impl
     }
 
     @Override
-    public void setInfo(Bow decoration) {
+    public void setInfo(Decoration decoration) {
         decoration.setName(nameField.getText());
         if(imageFile != null) {
             decoration.setPath(imageFile);

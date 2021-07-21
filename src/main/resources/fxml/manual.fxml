@@ -60,7 +60,7 @@
                                 <DropShadow />
                             </effect>
                             <image>
-                                <Image url="@../Images/catalog.png" />
+                                <Image url="@../images/catalog.png" />
                             </image>
                         </ImageView>
                         <Label fx:id="giftName" alignment="CENTER" layoutX="179.0" layoutY="264.0" prefHeight="30.0" prefWidth="222.0" style="-fx-border-color: #A39D9B;" text="Manual">

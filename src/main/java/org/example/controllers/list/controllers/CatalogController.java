@@ -1,47 +1,35 @@
 package org.example.controllers.list.controllers;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
-import org.example.controllers.elements.controllers.SelectListDepart;
-import org.example.controllers.elements.controllers.SelectListGifts;
 import org.example.controllers.parent.controllers.CatalogParentController;
 import org.example.customCells.CatalogListViewCell;
-import org.example.customCells.GiftListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
-import org.example.interfaces.ListToChangeTools;
 import org.example.model.*;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import org.example.model.products.Product;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class CatalogController extends CatalogParentController implements Initializable, IListController<Catalog>, IControllerCreate<Catalog> {
 
@@ -237,7 +225,7 @@ public class CatalogController extends CatalogParentController implements Initia
         if(actualCatalog.getPath() != null && !actualCatalog.getPath().equals("")){
             catalogImage.setImage(new Image(actualCatalog.getPath()));
         }else{
-            catalogImage.setImage(new Image(getClass().getResource("/Images/catalog.png").toString()));
+            catalogImage.setImage(new Image(getClass().getResource("/images/catalog.png").toString()));
         }
         clasificacionComboBox.getSelectionModel().select(actualCatalog.getCatalogClassification());
         giftObservableList.setAll(actualCatalog.getGifts());

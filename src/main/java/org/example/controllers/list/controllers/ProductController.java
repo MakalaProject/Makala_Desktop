@@ -1,5 +1,4 @@
 package org.example.controllers.list.controllers;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
@@ -338,7 +337,7 @@ public class ProductController extends ProductParentController implements IListC
     @Override
     public void cleanForm() {
         actualProduct = null;
-        productImage.setImage(new Image(getClass().getResource("/Images/product.png").toString()));
+        productImage.setImage(new Image(getClass().getResource("/images/product.png").toString()));
         nombreField.setText("");
         maxField.setText("");
         minField.setText("");

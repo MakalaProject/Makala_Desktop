@@ -352,7 +352,6 @@ public class GiftController extends GiftParentController implements IListControl
             alert.showAndWait();
             return;
         }
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_create.fxml"));
         try {
             Parent parent = fxmlLoader.load();

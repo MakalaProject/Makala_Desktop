@@ -68,7 +68,7 @@ public interface IPictureController {
     }
 
     default String getDefaultPicture(){
-        return getClass().getResource("/Images/product.png").toString();
+        return getClass().getResource("/images/product.png").toString();
     }
 
     default List<String> uploadImage(Stage s){

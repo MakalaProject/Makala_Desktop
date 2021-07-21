@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 
-<SplitPane dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.CatalogController">
+<SplitPane dividerPositions="0.456725755995829" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="861.0" prefWidth="961.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controllers.list.controllers.DecorationController">
     <items>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: white;">
             <children>
@@ -22,7 +22,7 @@
         </AnchorPane>
         <AnchorPane fx:id="informationPane" style="-fx-background-color: white;">
             <children>
-                <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="255.0" mouseTransparent="true" prefHeight="604.0" prefWidth="519.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+                <ScrollPane fitToHeight="true" fitToWidth="true" layoutY="255.0" prefHeight="604.0" prefWidth="519.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
                     <AnchorPane layoutY="257.0" style="-fx-background-color: #E3DAD8;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="257.0">
                         <children>
                             <Label prefHeight="28.0" prefWidth="152.0" text="Nombre*" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="351.0" AnchorPane.topAnchor="52.0">
@@ -38,14 +38,14 @@
                                 </font>
                             </Label>
                             <TextField fx:id="priceField" prefHeight="31.0" prefWidth="128.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="206.0" AnchorPane.topAnchor="94.0" />
-                            <Label layoutX="390.0" layoutY="206.0" text="\$" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="105.0" />
+                            <Label layoutX="390.0" layoutY="206.0" text="\$" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="105.0" />
                             <Label prefHeight="28.0" prefWidth="151.0" text="Descripción*" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="352.0" AnchorPane.topAnchor="164.0">
                                 <font>
                                     <Font name="Roboto Light" size="20.0" />
                                 </font>
                             </Label>
 
-                            <TextArea fx:id="descriptionTextArea" prefHeight="67.0" prefWidth="239.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="150.0">
+                            <TextArea fx:id="descriptionTextArea" layoutX="184.0" prefHeight="67.0" prefWidth="274.0" AnchorPane.leftAnchor="184.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="150.0">
 
                             </TextArea>
                             <Label fx:id="requireLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="7.0" prefHeight="29.0" prefWidth="511.0" text="Los campos marcados con * son obligatorios" textFill="#757575" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -53,7 +53,7 @@
                                     <Font name="Roboto Light" size="17.0" />
                                 </font>
                             </Label>
-                            <AnchorPane fx:id="fieldsAnchorPane" prefHeight="165.0" prefWidth="517.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            <AnchorPane fx:id="fieldsAnchorPane" prefHeight="589.0" prefWidth="519.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="0.0" />
                         </children>
                     </AnchorPane>
                 </ScrollPane>
@@ -66,7 +66,7 @@
                                 <DropShadow />
                             </effect>
                             <image>
-                                <Image url="@../Images/bow.png" />
+                                <Image url="@../images/bow.png" />
                             </image>
                         </ImageView>
 

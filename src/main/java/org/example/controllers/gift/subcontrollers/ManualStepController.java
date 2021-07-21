@@ -2,8 +2,6 @@ package org.example.controllers.gift.subcontrollers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +15,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.apache.commons.text.StringSubstitutor;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.interfaces.IControllerCreate;
 import org.example.model.*;
@@ -25,10 +22,8 @@ import org.example.model.products.Action;
 import org.example.model.products.Product;
 
 import java.io.File;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ManualStepController implements Initializable, IControllerCreate<Step> {
     @FXML FontAwesomeIconView updateButton;
@@ -65,7 +60,7 @@ public class ManualStepController implements Initializable, IControllerCreate<St
         deleteButton.setOnMouseClicked(mouseEvent -> {
             if(!actualStep.isPublic()){
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
+                Image image = new Image(getClass().getResource("/images/delete.png").toString(), 50, 70, false, false);
                 ImageView imageView = new ImageView(image);
                 alert.setGraphic(imageView);
                 alert.setTitle("Eliminar paso");
@@ -82,7 +77,7 @@ public class ManualStepController implements Initializable, IControllerCreate<St
                 }
             }else{
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
+                Image image = new Image(getClass().getResource("/images/delete.png").toString(), 50, 70, false, false);
                 ImageView imageView = new ImageView(image);
                 alert.setGraphic(imageView);
                 alert.setTitle("Accion imposible");
@@ -225,7 +220,7 @@ public class ManualStepController implements Initializable, IControllerCreate<St
     public void setObject(Gift gift){
         actualGift = gift;
         papersObservableList.setAll(actualGift.getPapers());
-        ribbonsObservableList.setAll(actualGift.getRibbons());
+        //ribbonsObservableList.setAll(actualGift.getRibbons());
         productsObservableList.setAll(actualGift.getStaticProducts());
         containerObservableList.setAll(actualGift.getContainer());
         showList();

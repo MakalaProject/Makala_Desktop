@@ -1,12 +1,8 @@
 package org.example.controllers.parent.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,13 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.controlsfx.control.Rating;
 import org.example.controllers.elements.controllers.SelectContainerProduct;
-import org.example.controllers.elements.controllers.SelectListDepart;
 import org.example.controllers.gift.subcontrollers.SelectListDecoration;
 import org.example.customCells.InternalListViewCell;
 import org.example.interfaces.IControllerCreate;
@@ -33,7 +27,6 @@ import org.example.services.Request;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +59,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected BoxProduct containerExtended;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
-    @FXML protected ListView<Bow> internalBowsListView;
+    @FXML protected ListView<Decoration> internalBowsListView;
     protected Gift actualGift;
     public boolean chargedRibbons, chargedTextiles, chargedProducts, chargedContainers;
     protected boolean editProduct = true;
@@ -74,7 +67,7 @@ public class GiftParentController implements Initializable, IPictureController, 
 
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<Bow> actualBowObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<Decoration> actualDecorationObservableList = FXCollections.observableArrayList();
 
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
     protected final String resourceProducts = "/fxml/gift_product_properties.fxml";
@@ -86,7 +79,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected final ObservableList<Product> papersProducts = FXCollections.observableArrayList();
     protected final ObservableList<String> privacyItems = FXCollections.observableArrayList( "Privado","Público", "Premium");
     protected final ObservableList<Product> containerProducts = FXCollections.observableArrayList();
-    protected final ObservableList<Bow> bowProducts = FXCollections.observableArrayList();
+    protected final ObservableList<Decoration> decorationProducts = FXCollections.observableArrayList();
     protected final ObservableList<Product> internalProducts = FXCollections.observableArrayList();
 
     protected boolean userClicked = false;
@@ -162,16 +155,16 @@ public class GiftParentController implements Initializable, IPictureController, 
                 SelectListDecoration dialogController = new SelectListDecoration();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                ArrayList<Bow> decorationList = new ArrayList<>();
+                ArrayList<Decoration> decorationList = new ArrayList<>();
                 dialogController.setDecoration(decorationList);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();
-                ArrayList<Bow> returnedDecorations = (ArrayList<Bow>) stage.getUserData();
+                ArrayList<Decoration> returnedDecorations = (ArrayList<Decoration>) stage.getUserData();
                 if (returnedDecorations!= null) {
-                    actualBowObservableList.setAll(returnedDecorations);
+                    actualDecorationObservableList.setAll(returnedDecorations);
                     showProductsList();
                 }
             } catch (Exception e) {
@@ -389,7 +382,7 @@ public class GiftParentController implements Initializable, IPictureController, 
 
     @Override
     public String getDefaultPicture(){
-        return getClass().getResource("/Images/gift.png").toString();
+        return getClass().getResource("/images/gift.png").toString();
     }
 
     @Override

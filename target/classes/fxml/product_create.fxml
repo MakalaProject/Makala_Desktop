@@ -157,7 +157,7 @@
                             <DropShadow />
                         </effect>
                         <image>
-                            <Image url="@../Images/product.png" />
+                            <Image url="@../images/product.png" />
                         </image>
             <cursor>
                <Cursor fx:constant="OPEN_HAND" />

@@ -130,7 +130,7 @@
                         <DropShadow />
                     </effect>
                     <image>
-                        <Image url="@../Images/user.png" />
+                        <Image url="@../images/user.png" />
                     </image>
                 </ImageView>
             </children>

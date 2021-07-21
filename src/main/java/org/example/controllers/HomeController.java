@@ -41,6 +41,7 @@ public class HomeController implements Initializable {
     @FXML JFXButton regalosButton;
     @FXML JFXButton clientesButton;
     @FXML JFXButton comprasButton;
+    @FXML JFXButton decoracionesButton;
     @FXML JFXButton caducidadButton;
     @FXML JFXButton rebajasButton;
     @FXML JFXButton ventasButton;
@@ -61,6 +62,7 @@ public class HomeController implements Initializable {
     @FXML AnchorPane topPane;
 
     Parent root;
+    int boludo;
     FXMLLoader loader;
     String rootResourceName = "";
     boolean menuIsOpen = false;
@@ -147,6 +149,8 @@ public class HomeController implements Initializable {
         productosButton.setOnMouseClicked( new HomeLoader("/fxml/product.fxml", "product", "Productos",productosButton));
 
         proveedoresButton.setOnMouseClicked(new HomeLoader("/fxml/provider.fxml","provider", "Proveedores", proveedoresButton));
+
+        decoracionesButton.setOnMouseClicked(new HomeLoader("/fxml/decorations.fxml","provider", "Decoraciones", decoracionesButton));
 
         catalogosButton.setOnMouseClicked(new HomeLoader("/fxml/catalog.fxml","catalog", "Catalogos", catalogosButton));
 

@@ -4,7 +4,7 @@ import org.example.interfaces.IChangeable;
 
 public class BowProductToSend implements IChangeable<Integer> {
     protected boolean toDelete;
-    protected Bow bow;
+    protected Decoration decoration;
     public boolean isToDelete() {
         return toDelete;
     }
@@ -18,11 +18,11 @@ public class BowProductToSend implements IChangeable<Integer> {
         this.toDelete = toDelete;
     }
 
-    public Bow getBow() {
-        return bow;
+    public Decoration getBow() {
+        return decoration;
     }
 
-    public void setBow(Bow bow) {
-        this.bow = bow;
+    public void setBow(Decoration decoration) {
+        this.decoration = decoration;
     }
 }

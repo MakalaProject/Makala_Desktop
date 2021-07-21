@@ -81,7 +81,7 @@
                         <DropShadow />
                      </effect>
                      <image>
-                        <Image url="@../Images/catalog.png" />
+                        <Image url="@../images/catalog.png" />
                      </image>
                   </ImageView>
 

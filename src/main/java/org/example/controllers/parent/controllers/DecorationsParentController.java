@@ -11,19 +11,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.model.Bow;
-import org.example.model.CatalogClassification;
-import org.example.model.Gift;
-import org.example.services.Request;
+import org.example.model.ChangedVerificationFields;
+import org.example.model.Decoration;
+import org.example.model.FocusVerificationFields;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class DecorationsParentController implements Initializable {
     @FXML
-    protected ListView<Bow> decorationListView;
+    protected ListView<Decoration> decorationListView;
     @FXML protected FontAwesomeIconView updateButton;
     @FXML protected FontAwesomeIconView imageButton;
     @FXML protected FontAwesomeIconView deletePicture;
@@ -33,11 +33,12 @@ public class DecorationsParentController implements Initializable {
     @FXML protected ImageView decorationImage;
 
     protected String imageFile;
-    protected ObservableList<Bow> decorationObservableList = FXCollections.observableArrayList();
+    protected ObservableList<Decoration> decorationObservableList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        priceField.focusedProperty().addListener(new FocusVerificationFields(priceField, true, 2,2));
+        priceField.textProperty().addListener(new ChangedVerificationFields(priceField, true, 2,2));
         imageButton.setOnMouseClicked(mouseEvent -> {
             imageButton.requestFocus();
             Stage s = (Stage)((Node)(mouseEvent.getSource())).getScene().getWindow();
@@ -92,7 +93,7 @@ public class DecorationsParentController implements Initializable {
         }else{
             descriptionTextArea.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }
-        if (priceField.getText().isEmpty() || Integer.parseInt(priceField.getText()) == 0) {
+        if (priceField.getText().isEmpty() || new BigDecimal(priceField.getText()).compareTo(new BigDecimal(0)) < 1) {
             priceField.setStyle("-fx-background-color: #fea08c; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");
         }else{
             priceField.setStyle("-fx-background-color: #E3DAD8; -fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-border-width: 2;");

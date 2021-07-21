@@ -9,7 +9,7 @@
    <children>
       <ImageView fx:id="productImage" fitHeight="192.0" fitWidth="286.0" layoutX="28.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="28.0" AnchorPane.rightAnchor="28.2867431640625" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../Images/product.png" />
+            <Image url="@../images/product.png" />
          </image>
       </ImageView>
       <Label fx:id="productName" alignment="CENTER" layoutX="56.0" layoutY="208.0" prefHeight="33.0" prefWidth="184.0" text="Label" AnchorPane.leftAnchor="56.0" AnchorPane.rightAnchor="56.2867431640625" AnchorPane.topAnchor="208.0">

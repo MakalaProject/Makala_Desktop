@@ -33,7 +33,7 @@
                                             <FontAwesomeIconView fill="WHITE" glyphName="CUBES" size="20" />
                                         </graphic>
                                     </JFXButton>
-                              <JFXButton fx:id="tiempoStockButton1" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="486.0" prefHeight="27.0" prefWidth="200.0" text="Decoraciones" textFill="WHITE">
+                              <JFXButton fx:id="decoracionesButton" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="486.0" prefHeight="27.0" prefWidth="200.0" text="Decoraciones" textFill="WHITE">
                                  <font>
                                     <Font size="17.0" />
                                  </font>

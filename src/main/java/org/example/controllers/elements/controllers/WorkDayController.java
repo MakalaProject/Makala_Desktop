@@ -12,14 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import org.example.exceptions.ProductDeleteException;
 import org.example.interfaces.IListController;
-import org.example.interfaces.ListToChangeTools;
-import org.example.model.Step;
 import org.example.model.WorkDays;
 import org.example.model.products.Action;
 import org.example.services.Request;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -35,7 +32,7 @@ public class WorkDayController implements Initializable, IListController<WorkDay
 
         deleteButton.setOnMouseClicked(mouseEvent -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            Image image = new Image(getClass().getResource("/Images/delete.png").toString(), 50, 70, false, false);
+            Image image = new Image(getClass().getResource("/images/delete.png").toString(), 50, 70, false, false);
             ImageView imageView = new ImageView(image);
             alert.setGraphic(imageView);
             alert.setTitle("Eliminar intervalo de trabajo");

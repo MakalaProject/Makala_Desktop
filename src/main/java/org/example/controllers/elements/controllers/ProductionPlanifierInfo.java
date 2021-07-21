@@ -65,7 +65,7 @@ public class ProductionPlanifierInfo implements Initializable {
         if(data.getPictures().size() != 0) {
             imagen.setImage(new Image(data.getPictures().get(0).getPath()));
         }else {
-            imagen.setImage(new Image(getClass().getResource("/Images/product.png").toString()));
+            imagen.setImage(new Image(getClass().getResource("/images/product.png").toString()));
         }
         if(data.getProductClassDto().getProductType().equals("Listones")){
             unidadField.setText("m");

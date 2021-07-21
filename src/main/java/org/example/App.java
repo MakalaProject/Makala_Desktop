@@ -19,7 +19,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("/fxml/login"));
-        stage.getIcons().add(new Image(getClass().getResource("/Images/logo.png").toString()));
+        stage.getIcons().add(new Image(getClass().getResource("/images/logo.png").toString()));
         stage.setScene(scene);
         stage.setMinHeight(700);
         stage.setMinWidth(800);

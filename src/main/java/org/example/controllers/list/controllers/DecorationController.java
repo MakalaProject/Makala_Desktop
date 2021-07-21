@@ -19,10 +19,11 @@ import javafx.stage.Stage;
 import org.controlsfx.control.ToggleSwitch;
 import org.example.controllers.parent.controllers.DecorationsParentController;
 import org.example.customCells.CatalogListViewCell;
+import org.example.customCells.DecorationListViewCell;
 import org.example.interfaces.IControllerCreate;
 import org.example.interfaces.IListController;
-import org.example.model.Bow;
-import org.example.model.Catalog;
+import org.example.model.Decoration;
+import org.example.model.Gift;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
@@ -33,24 +34,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DecorationController extends DecorationsParentController implements Initializable, IListController<Bow>, IControllerCreate<Bow> {
+public class DecorationController extends DecorationsParentController implements Initializable, IListController<Decoration>, IControllerCreate<Decoration> {
     @FXML FontAwesomeIconView deleteButton;
     @FXML FontAwesomeIconView addButton;
-    @FXML ListView<Bow> listView;
+    @FXML ListView<Decoration> listView;
     @FXML TextField searchField;
     @FXML ToggleSwitch editSwitch;
     @FXML protected AnchorPane fieldsAnchorPane;
     @FXML AnchorPane disableImageAnchorPane;
     @FXML Label requireLabel;
-    Bow actualDecoration = new Bow();
-    private ObservableList<Bow> decorationObservableList = FXCollections.observableArrayList();
-    FilteredList<Bow> filteredDecorations;
+    Decoration actualDecoration = new Decoration();
+    private ObservableList<Decoration> decorationObservableList = FXCollections.observableArrayList();
+    private final ObservableList<Decoration> actualList = FXCollections.observableArrayList();
+    FilteredList<Decoration> filteredDecorations;
     private int index;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url, resourceBundle);
-        decorationObservableList.setAll(Request.getJ("catalogs",Bow[].class, false));
-        showList(decorationObservableList, listView, CatalogListViewCell.class);
+
+        decorationObservableList.setAll(Request.getJ("decorations/basics", Decoration[].class, false));
+        actualList.setAll(decorationObservableList);
+        showList(decorationObservableList, listView, DecorationListViewCell.class);
         filteredDecorations = new FilteredList<>(decorationObservableList, p ->true);
         //Check if the list is empty to update the view and show its values at the beggining
         if(!decorationObservableList.isEmpty()){
@@ -116,11 +120,12 @@ public class DecorationController extends DecorationsParentController implements
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.showAndWait();
-            Bow object = (Bow) stage.getUserData();
+            Decoration object = (Decoration) stage.getUserData();
             if(object != null){
                 actualDecoration = object;
                 decorationObservableList.add(object);
-                showList(decorationObservableList, listView, CatalogListViewCell.class);
+                actualList.add(object);
+                showList(decorationObservableList, listView, DecorationListViewCell.class);
                 listView.getSelectionModel().select(object);
                 listView.scrollTo(object);
                 updateView();
@@ -136,21 +141,22 @@ public class DecorationController extends DecorationsParentController implements
     @Override
     public void delete() {
         try {
-            Request.deleteJ( "catalogs", actualDecoration.getId());
+            Request.deleteJ( "decorations", actualDecoration.getId());
 
         } catch (Exception e) {
             errorAlert(e.getMessage());
             return;
         }
+
         if (listView.getItems().size() > 1) {
             decorationObservableList.remove(index);
             listView.getSelectionModel().select(0);
             updateView();
-            showList(FXCollections.observableList(decorationObservableList), listView, CatalogListViewCell.class);
+            showList(FXCollections.observableList(decorationObservableList), listView, DecorationListViewCell.class);
         }else {
             actualDecoration = null;
             decorationObservableList.remove(index);
-            showList(FXCollections.observableList(decorationObservableList), listView, CatalogListViewCell.class);
+            showList(FXCollections.observableList(decorationObservableList), listView, DecorationListViewCell.class);
             cleanForm();
         }
     }
@@ -159,24 +165,27 @@ public class DecorationController extends DecorationsParentController implements
     @Override
     public void update() {
         if(!priceField.getText().isEmpty() && !descriptionTextArea.getText().isEmpty() && !priceField.getText().isEmpty()){
-            if(Integer.parseInt(priceField.getText()) > 0) {
-                Bow decoration = new Bow();
+            if(new BigDecimal(priceField.getText()).compareTo(new BigDecimal(0)) > 0) {
+                int listIndex = listView.getSelectionModel().getSelectedIndex();
+                Decoration decoration = new Decoration();
                 setInfo(decoration);
                 try {
-                    Bow returnedDecoration = (Bow) Request.putJ(decoration.getRoute(), decoration);
+                    Decoration returnedDecoration = (Decoration) Request.putJ(decoration.getRoute(), decoration);
                     if (imageFile != null && !imageFile.equals("") && !imageFile.contains("http://res.cloudinary.com")) {
                         ArrayList<String> pictures = new ArrayList<>();
                         pictures.add(decoration.getPath());
                         List<String> images = ImageService.uploadImages(pictures);
                         decoration.setPath(images.get(0));
                         imageFile = decoration.getPath();
-                        returnedDecoration = (Bow) Request.putJ(decoration.getRoute(), decoration);
+                        returnedDecoration = (Decoration) Request.putJ(decoration.getRoute(), decoration);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 actualDecoration = decoration;
                 decorationObservableList.set(index, actualDecoration);
+                Decoration g = listView.getItems().get(listIndex);
+                actualList.set(actualList.indexOf(g), actualDecoration);
                 listView.getSelectionModel().select(actualDecoration);
                 listView.scrollTo(decoration);
                 editSwitch.setSelected(false);
@@ -198,7 +207,7 @@ public class DecorationController extends DecorationsParentController implements
         if(actualDecoration == null){
             return false;
         }
-        Bow decoration = new Bow();
+        Decoration decoration = new Decoration();
         setInfo(decoration);
         if (!actualDecoration.equals(decoration)){
             if(!showAlertUnsavedElement(decoration.getName(), decoration.getIdentifier())) {
@@ -219,7 +228,7 @@ public class DecorationController extends DecorationsParentController implements
         if(actualDecoration.getPath() != null && !actualDecoration.getPath().equals("")){
             decorationImage.setImage(new Image(actualDecoration.getPath()));
         }else{
-            decorationImage.setImage(new Image(getClass().getResource("/Images/catalog.png").toString()));
+            decorationImage.setImage(new Image(getClass().getResource("/images/catalog.png").toString()));
         }
         descriptionTextArea.setText(actualDecoration.getDescription());
         priceField.setText(actualDecoration.getPrice().toString());
@@ -228,7 +237,16 @@ public class DecorationController extends DecorationsParentController implements
     @Override
     public void updateView(){
         actualDecoration = listView.getSelectionModel().getSelectedItem();
-        index = decorationObservableList.indexOf(listView.getSelectionModel().getSelectedItem());
+        index = decorationObservableList.indexOf(actualDecoration);
+        if(actualDecoration.getPrice() == null) {
+            actualDecoration = (Decoration) Request.find(actualDecoration.getRoute(), actualDecoration.getIdDeco(), Decoration.class);
+            int listIndex = listView.getSelectionModel().getSelectedIndex();
+            actualList.set(actualList.indexOf(listView.getSelectionModel().getSelectedItem()), actualDecoration);
+            if(listView.getItems().get(listIndex) != actualDecoration) {
+                listView.getItems().set(listIndex, actualDecoration);
+            }
+            decorationObservableList.set(index, actualDecoration);
+        }
         editSwitch.setSelected(false);
         editView(fieldsAnchorPane, disableImageAnchorPane,requireLabel, editSwitch, updateButton);
         putFields();
@@ -242,7 +260,7 @@ public class DecorationController extends DecorationsParentController implements
     }
 
     @Override
-    public void setInfo(Bow decoration) {
+    public void setInfo(Decoration decoration) {
         decoration.setName(nameField.getText());
         decoration.setPath(imageFile);
         decoration.setId(actualDecoration.getId());

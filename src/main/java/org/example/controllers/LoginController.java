@@ -81,7 +81,7 @@ public class LoginController implements Initializable {
                     homeController.setAdministrator(employee);
                     Scene scene = new Scene(rootHome);
                     Stage stage = new Stage();
-                    stage.getIcons().add(new Image(getClass().getResource("/Images/logo.png").toString()));
+                    stage.getIcons().add(new Image(getClass().getResource("/images/logo.png").toString()));
                     stage.setScene(scene);
                     stage.setMinHeight(500);
                     stage.setMinWidth(1000);
