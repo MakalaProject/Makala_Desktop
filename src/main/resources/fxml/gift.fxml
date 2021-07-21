@@ -134,22 +134,6 @@
                         <Font name="Roboto Light" size="20.0" />
                     </font>
                 </Label>
-                        <TextField fx:id="flowersField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="398.0">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="TEXT" />
-                            </cursor>
-                        </TextField>
-                    <TextField fx:id="applicationsField" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="349.0">
-                        <font>
-                            <Font size="15.0" />
-                        </font>
-                        <cursor>
-                            <Cursor fx:constant="TEXT" />
-                        </cursor>
-                    </TextField>
                         <Label text="\$" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="358.0" />
                         <Label text="\$" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="408.0" />
                 <Label layoutX="18.0" layoutY="29.0" prefHeight="28.0" prefWidth="140.0" text="Nombre*" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="336.0" AnchorPane.topAnchor="29.0">
@@ -235,6 +219,22 @@
                      </font>
                   </Label>
                   <AnchorPane fx:id="fieldsAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <TextField fx:id="flowersField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="398.0">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                    <TextField fx:id="applicationsField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="349.0">
+                        <font>
+                            <Font size="15.0" />
+                        </font>
+                        <cursor>
+                            <Cursor fx:constant="TEXT" />
+                        </cursor>
+                    </TextField>
             </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
