@@ -1,31 +1,24 @@
 package org.example.controllers.create.controllers;
 
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.example.controllers.parent.controllers.GiftParentController;
 import org.example.model.*;
 import org.example.model.products.BoxProduct;
-import org.example.model.products.StaticProduct;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
-import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class GiftCreateController extends GiftParentController {
     @FXML protected ComboBox<String> privacidadComboBox;
@@ -35,17 +28,12 @@ public class GiftCreateController extends GiftParentController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         super.initialize(url,resourceBundle);
+        setChargedContainers();
         if(!containerProducts.isEmpty()) {
             actualGift.setContainer(containerProducts.get(0));
             container = actualGift.getContainer();
             containerName.setText(container.getName());
             containerExtended = (BoxProduct) Request.find("products/boxes", actualGift.getContainer().getIdProduct(), BoxProduct.class);
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Sin cajas");
-            alert.setHeaderText("No se puede crear un regalo");
-            alert.setContentText("Antes de crear un regalo, es necesario crear una caja");
-            alert.showAndWait();
         }
         privacidadComboBox.getItems().addAll(createItems);
         privacidadComboBox.getSelectionModel().select(0);
@@ -55,7 +43,7 @@ public class GiftCreateController extends GiftParentController {
                     Gift gift = new Gift();
                     setExtendedInternalProducts(gift);
                     setInfo(gift);
-                    if(gift.getRibbons().size()>0 && gift.getStaticProducts().size()>0) {
+                    if(gift.getDecorations().size()>0 && gift.getStaticProducts().size()>0) {
                         Gift newGift = null;
                         try {
                             gift.setPictures(new ArrayList<>());
@@ -72,7 +60,7 @@ public class GiftCreateController extends GiftParentController {
                             newGift.setPictures(new ArrayList<>());
                             newGift.setPictures(pictures);
                             gift.setPapers(null);
-                            gift.setRibbons(null);
+                            gift.setDecorations(null);
                             gift.setStaticProducts(null);
                             gift = (Gift) Request.putJ(gift.getRoute(), gift);
                             newGift = gift;

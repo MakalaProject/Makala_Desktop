@@ -16,7 +16,9 @@ public class Gift implements IChangeable<Integer> {
     private String name;
     @EqualsAndHashCode.Exclude
     private BigDecimal price;
+    @EqualsAndHashCode.Exclude
     private BigDecimal flowers;
+    @EqualsAndHashCode.Exclude
     private BigDecimal applications;
     private String privacy;
     private BigDecimal laborPrice;

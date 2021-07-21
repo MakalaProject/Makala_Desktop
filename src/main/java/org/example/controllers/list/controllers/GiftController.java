@@ -1,7 +1,6 @@
 package org.example.controllers.list.controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -10,35 +9,27 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import org.controlsfx.control.Rating;
 import org.controlsfx.control.ToggleSwitch;
-import org.example.controllers.elements.controllers.SelectContainerProduct;
 import org.example.controllers.parent.controllers.GiftParentController;
 import org.example.customCells.GiftListViewCell;
 import org.example.interfaces.*;
 import org.example.model.*;
-import org.example.model.products.*;
 import org.example.services.ImageService;
 import org.example.services.Request;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 
 public class GiftController extends GiftParentController implements IListController<Gift> {
@@ -61,7 +52,7 @@ public class GiftController extends GiftParentController implements IListControl
     FilteredList<Gift> filteredGifts;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        giftObservableList.addAll(Request.getJ("/gifts/criteria-basic?size=10000",Gift[].class, true));
+        giftObservableList.addAll(Request.getJ("/gifts/criteria-basic",Gift[].class, false));
         actualList.setAll(giftObservableList);
         super.initialize(url, resourceBundle);
         privacidadComboBox.getItems().addAll(privacyItems);
@@ -233,7 +224,7 @@ public class GiftController extends GiftParentController implements IListControl
     public void update() {
         if(!nombreField.getText().isEmpty() && !laborCostField.getText().isEmpty()){
             if (Float.parseFloat(laborCostField.getText())>0) {
-                if(actualGift.getRibbons().size()>0 && actualGift.getStaticProducts().size()>0) {
+                if(actualGift.getDecorations().size()>0 && actualGift.getStaticProducts().size()>0) {
                     int listIndex = listView.getSelectionModel().getSelectedIndex();
                     Gift gift = new Gift();
                     setInfo(gift);
@@ -243,7 +234,7 @@ public class GiftController extends GiftParentController implements IListControl
                         gift.setPictures(new ArrayList<>());
                         if(!actualGift.getPrivacy().equals("Privado")){
                             gift.setStaticProducts(null);
-                            gift.setRibbons(null);
+                            gift.setDecorations(null);
                             gift.setPapers(null);
                         }
                         Request.putJ(gift.getRoute(), gift);
@@ -278,7 +269,7 @@ public class GiftController extends GiftParentController implements IListControl
                         }
                         if(!gift.getPrivacy().equals("Privado")){
                             gift.setStaticProducts(null);
-                            gift.setRibbons(null);
+                            gift.setDecorations(null);
                             gift.setPapers(null);
                         }
                         returnedGift = (Gift) Request.putJ(gift.getRoute(), gift);
@@ -344,6 +335,7 @@ public class GiftController extends GiftParentController implements IListControl
     }
 
     public void add(){
+        /*
         if(containerProducts.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Sin cajas");
@@ -351,7 +343,7 @@ public class GiftController extends GiftParentController implements IListControl
             alert.setContentText("Antes de crear un regalo, es necesario crear una caja");
             alert.showAndWait();
             return;
-        }
+        }*/
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gift_create.fxml"));
         try {
             Parent parent = fxmlLoader.load();
@@ -382,6 +374,7 @@ public class GiftController extends GiftParentController implements IListControl
     public void putFields() {
         actualGift.sortList();
         nombreField.setText(actualGift.getName());
+        applicationsField.setText(actualGift.getApplications().toString());
         precioField.setText(actualGift.getPrice().setScale(2, RoundingMode.HALF_EVEN).toString());
         laborCostField.setText(actualGift.getLaborPrice().toString());
         containerName.setText(actualGift.getContainer().getName());

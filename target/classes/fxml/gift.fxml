@@ -115,7 +115,7 @@
                              </AnchorPane>
                              <VBox layoutY="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                  <children>
-                                     <ListView fx:id="internalRibbonsListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8" />
+                                     <ListView fx:id="internalBowsListView" fixedCellSize="35.0" prefHeight="0.0" style=" -fx-selection-bar:  #E3DAD8" />
                                  </children>
                               <VBox.margin>
                                  <Insets />

@@ -169,9 +169,10 @@ public class DecorationController extends DecorationsParentController implements
                 int listIndex = listView.getSelectionModel().getSelectedIndex();
                 Decoration decoration = new Decoration();
                 setInfo(decoration);
+                Decoration returnedDecoration = null;
                 try {
-                    Decoration returnedDecoration = (Decoration) Request.putJ(decoration.getRoute(), decoration);
-                    if (imageFile != null && !imageFile.equals("") && !imageFile.contains("http://res.cloudinary.com")) {
+                    returnedDecoration = (Decoration) Request.putJ(decoration.getRoute(), decoration);
+                    if (imageFile != null && !imageFile.equals("") && (!imageFile.contains("http://res.cloudinary.com") && !imageFile.contains("/images/bow.png"))) {
                         ArrayList<String> pictures = new ArrayList<>();
                         pictures.add(decoration.getPath());
                         List<String> images = ImageService.uploadImages(pictures);
@@ -182,10 +183,13 @@ public class DecorationController extends DecorationsParentController implements
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                actualDecoration = decoration;
-                decorationObservableList.set(index, actualDecoration);
+                actualDecoration = returnedDecoration;
                 Decoration g = listView.getItems().get(listIndex);
                 actualList.set(actualList.indexOf(g), actualDecoration);
+                if(listView.getItems().get(listIndex) != actualDecoration) {
+                    listView.getItems().set(listIndex, actualDecoration);
+                }
+                decorationObservableList.set(index, actualDecoration);
                 listView.getSelectionModel().select(actualDecoration);
                 listView.scrollTo(decoration);
                 editSwitch.setSelected(false);

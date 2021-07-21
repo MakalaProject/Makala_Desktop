@@ -59,17 +59,18 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected BoxProduct containerExtended;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
-    @FXML protected ListView<Decoration> internalBowsListView;
+    @FXML protected ListView<DecorationToSend> internalBowsListView;
     protected Gift actualGift;
     public boolean chargedRibbons, chargedTextiles, chargedProducts, chargedContainers;
     protected boolean editProduct = true;
-    protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
 
+    protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<Decoration> actualDecorationObservableList = FXCollections.observableArrayList();
 
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
+
     protected final String resourceProducts = "/fxml/gift_product_properties.fxml";
 
     protected int imageIndex = 0;
@@ -149,7 +150,6 @@ public class GiftParentController implements Initializable, IPictureController, 
 
         ribbonsButton.setOnMouseClicked(mouseEvent -> {
             setChargedRibbons();
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/select_list_generic.fxml"));
             try {
                 SelectListDecoration dialogController = new SelectListDecoration();
@@ -171,6 +171,8 @@ public class GiftParentController implements Initializable, IPictureController, 
                 e.printStackTrace();
             }
         });
+
+
 
         //------------------------------------------------IMAGE BUTTONS--------------------------------------------------------------------
 
@@ -250,7 +252,7 @@ public class GiftParentController implements Initializable, IPictureController, 
             internalProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Fijo,Creados,Comestible", Product[].class, false));
         }
     }
-    private void setChargedContainers(){
+    protected void setChargedContainers(){
         if(!chargedContainers){
             chargedContainers = true;
             containerProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&idClass=21", Product[].class, false));

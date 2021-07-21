@@ -21,6 +21,10 @@ public class Decoration implements IChangeable<Integer> {
         return this.idDeco;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
     public void setId(Integer idDeco) {
         this.idDeco = idDeco;
