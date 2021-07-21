@@ -291,8 +291,9 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalPapersListView.setPrefHeight(actualPapersObservableList.size() * 35 + 2);
         internalPapersListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
-        internalBowsListView.getItems().setAll(actualDecorationObservableList);
-        internalBowsListView.setPrefHeight(actualDecorationObservableList.size() * 35 + 2);
+        ObservableList<DecorationToSend> dec = FXCollections.observableList(actualDecorationObservableList.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList()));
+        internalBowsListView.getItems().setAll(dec);
+        internalBowsListView.setPrefHeight(dec.size() * 35 + 2);
         internalBowsListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
         internalProductsListView.getItems().setAll(actualProductsObservableList);

@@ -42,6 +42,13 @@ public class SelectListDecoration implements Initializable {
                 newList.add(new DecorationToSend(d));
             }
             new ListToChangeTools<DecorationToSend,Integer>().setToDeleteItems(decorations, newList);
+            for(DecorationToSend d : newList){
+                for (DecorationToSend d1 : decorations){
+                    if(d1.getDecoration().getId().equals(d.getDecoration().getId())){
+                        d.setId(d1.getId());
+                    }
+                }
+            }
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
             stage.setUserData(newList);

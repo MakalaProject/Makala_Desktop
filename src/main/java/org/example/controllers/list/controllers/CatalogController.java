@@ -222,7 +222,7 @@ public class CatalogController extends CatalogParentController implements Initia
     public void putFields() {
         nombreField.setText(actualCatalog.getName());
         imageFile = actualCatalog.getPath();
-        if(actualCatalog.getPath() != null && !actualCatalog.getPath().equals("")){
+        if(actualCatalog.getPath() != null && !actualCatalog.getPath().equals("/images/catalog.png")){
             catalogImage.setImage(new Image(actualCatalog.getPath()));
         }else{
             catalogImage.setImage(new Image(getClass().getResource("/images/catalog.png").toString()));
