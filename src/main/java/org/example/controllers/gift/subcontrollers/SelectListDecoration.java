@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.Decoration;
+import org.example.model.DecorationToSend;
+import org.example.services.Request;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class SelectListDecoration implements Initializable {
     @FXML
     CheckListView<Decoration> checkListView;
 
-    private ArrayList<Decoration> decorations;
+    private ArrayList<DecorationToSend> decorations;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,27 +36,28 @@ public class SelectListDecoration implements Initializable {
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         saveButton.setOnMouseClicked(mouseEvent -> {
             List<Decoration> decorationList = new ArrayList<>(checkListView.getCheckModel().getCheckedItems());
-            new ListToChangeTools<Decoration,Integer>().setToDeleteItems(decorations, decorationList);
+            boolean newItem = true;
+            List<DecorationToSend> newList = new ArrayList<>();
+            for (Decoration d : decorationList) {
+                newList.add(new DecorationToSend(d));
+            }
+            new ListToChangeTools<DecorationToSend,Integer>().setToDeleteItems(decorations, newList);
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.setUserData(decorations);
+            stage.setUserData(newList);
             stage.close();
         });
     }
 
-    public void setDecoration(ArrayList<Decoration> decorations){
-        this.decorations = decorations;
-        //checkListView.setItems(FXCollections.observableArrayList(Request.getJ("departments", Department[].class, false)));
-        ArrayList<Decoration> bows = new ArrayList<>();
+    public void setDecoration(ArrayList<DecorationToSend> decorations){
+        checkListView.getItems().setAll(FXCollections.observableArrayList(Request.getJ("decorations/basics", Decoration[].class, false)));
         for (Decoration decoration : checkListView.getItems()) {
-            for (Decoration decoration2 : decorations) {
-                if (decoration.getId().equals(decoration2.getId()) && !decoration2.isToDelete()){
+            for (DecorationToSend decoration2 : decorations) {
+                if (decoration.getId().equals(decoration2.getDecoration().getId()) && !decoration2.isToDelete()){
                     checkListView.getCheckModel().check(decoration);
-                    bows.add(decoration);
                 }
             }
         }
-
-
+        this.decorations = decorations;
     }
 }

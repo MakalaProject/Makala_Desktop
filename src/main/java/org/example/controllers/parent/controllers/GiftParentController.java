@@ -66,9 +66,10 @@ public class GiftParentController implements Initializable, IPictureController, 
 
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<Decoration> actualDecorationObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<DecorationToSend> decorationsObservableList = FXCollections.observableArrayList();
 
+    protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<DecorationToSend> actualDecorationObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
 
     protected final String resourceProducts = "/fxml/gift_product_properties.fxml";
@@ -155,14 +156,14 @@ public class GiftParentController implements Initializable, IPictureController, 
                 SelectListDecoration dialogController = new SelectListDecoration();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                ArrayList<Decoration> decorationList = new ArrayList<>();
+                ArrayList<DecorationToSend> decorationList = new ArrayList<>(actualDecorationObservableList);
                 dialogController.setDecoration(decorationList);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();
-                ArrayList<Decoration> returnedDecorations = (ArrayList<Decoration>) stage.getUserData();
+                ArrayList<DecorationToSend> returnedDecorations = (ArrayList<DecorationToSend>) stage.getUserData();
                 if (returnedDecorations!= null) {
                     actualDecorationObservableList.setAll(returnedDecorations);
                     showProductsList();
@@ -235,7 +236,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     private void setChargedRibbons(){
         if(!chargedRibbons){
             chargedRibbons = true;
-            //ribbonsProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Listones", Product[].class, false));
+            decorationProducts.setAll(Request.getJ("decorations/basics", Decoration[].class, false));
         }
     }
 
@@ -284,16 +285,16 @@ public class GiftParentController implements Initializable, IPictureController, 
 
         internalPapersListView.getItems().clear();
         internalProductsListView.getItems().clear();
-        //internalRibbonsListView.getItems().clear();
+        internalBowsListView.getItems().clear();
 
         internalPapersListView.getItems().setAll(actualPapersObservableList);
         internalPapersListView.setPrefHeight(actualPapersObservableList.size() * 35 + 2);
         internalPapersListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
-        /*internalRibbonsListView.getItems().setAll(actualRibbonsObservableList);
-        internalRibbonsListView.setPrefHeight(actualRibbonsObservableList.size() * 35 + 2);
+        internalBowsListView.getItems().setAll(actualDecorationObservableList);
+        internalBowsListView.setPrefHeight(actualDecorationObservableList.size() * 35 + 2);
+        internalBowsListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
-        internalRibbonsListView.setCellFactory(listCell -> new InternalListViewCell<>());*/
         internalProductsListView.getItems().setAll(actualProductsObservableList);
         internalProductsListView.setPrefHeight(actualProductsObservableList.size() * 35 + 2);
         internalProductsListView.setCellFactory(listCell -> new InternalListViewCell<>());
@@ -322,10 +323,10 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setName(nombreField.getText());
         new ListToChangeTools<GiftProductsToSend,Integer>().setToDeleteItems(productsObservableList, actualProductsObservableList);
         new ListToChangeTools<PaperProductToSend,Integer>().setToDeleteItems(papersObservableList, actualPapersObservableList);
-        //new ListToChangeTools<RibbonProductToSend,Integer>().setToDeleteItems(ribbonsObservableList, actualRibbonsObservableList);
+        new ListToChangeTools<DecorationToSend,Integer>().setToDeleteItems(decorationsObservableList, actualDecorationObservableList);
         gift.setStaticProducts(actualProductsObservableList);
         gift.setPapers(actualPapersObservableList);
-        //gift.setRibbons(actualRibbonsObservableList);
+        gift.setDecorations(actualDecorationObservableList);
         gift.setPictures(pictureList);
         gift.setContainer(containerExtended);
         gift.setApplications(new BigDecimal(applicationsField.getText()));
