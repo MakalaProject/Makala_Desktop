@@ -23,7 +23,7 @@ public class Gift implements IChangeable<Integer> {
     private String privacy;
     private BigDecimal laborPrice;
     private List<GiftProductsToSend> staticProducts = new ArrayList<>();
-    private List<DecorationToSend> decorations = new ArrayList<>();
+    private List<Decoration> decorations = new ArrayList<>();
     private List<PaperProductToSend> papers = new ArrayList<>();
     private Product container;
     private List<Picture> pictures;
@@ -46,7 +46,7 @@ public class Gift implements IChangeable<Integer> {
 
     public void setSelectedProducts(){
         staticProducts.removeIf(GiftProductsToSend::isToDelete);
-        decorations.removeIf(DecorationToSend::isToDelete);
+        decorations.removeIf(Decoration::isToDelete);
         papers.removeIf(PaperProductToSend::isToDelete);
     }
     public void setInternalProducts(List<StaticProduct> staticProducts){
@@ -93,7 +93,7 @@ public class Gift implements IChangeable<Integer> {
     }
 
     public void sortList(){
-        decorations.sort(Comparator.comparing(DecorationToSend::getId));
+        decorations.sort(Comparator.comparing(Decoration::getId));
         papers.sort(Comparator.comparing(PaperProductToSend::getIdProduct));
         staticProducts.sort(Comparator.comparing(GiftProductsToSend::getIdProduct));
     }

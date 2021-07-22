@@ -218,7 +218,6 @@
                         <Font name="Roboto Light" size="17.0" />
                      </font>
                   </Label>
-                  <AnchorPane fx:id="fieldsAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <TextField fx:id="flowersField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="196.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="398.0">
                             <font>
                                 <Font size="15.0" />
@@ -235,6 +234,7 @@
                             <Cursor fx:constant="TEXT" />
                         </cursor>
                     </TextField>
+                  <AnchorPane fx:id="fieldsAnchorPane" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

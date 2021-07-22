@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import org.controlsfx.control.CheckListView;
 import org.example.interfaces.ListToChangeTools;
 import org.example.model.Decoration;
-import org.example.model.DecorationToSend;
 import org.example.services.Request;
 
 import java.net.URL;
@@ -28,7 +27,7 @@ public class SelectListDecoration implements Initializable {
     @FXML
     CheckListView<Decoration> checkListView;
 
-    private ArrayList<DecorationToSend> decorations;
+    private ArrayList<Decoration> decorations;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -36,24 +35,19 @@ public class SelectListDecoration implements Initializable {
         checkListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         saveButton.setOnMouseClicked(mouseEvent -> {
             List<Decoration> decorationList = new ArrayList<>(checkListView.getCheckModel().getCheckedItems());
-            boolean newItem = true;
-            List<DecorationToSend> newList = new ArrayList<>();
-            for (Decoration d : decorationList) {
-                newList.add(new DecorationToSend(d));
-            }
-            new ListToChangeTools<DecorationToSend,Integer>().setToDeleteItems(decorations, newList);
+            new ListToChangeTools<Decoration,Integer>().setToDeleteItems(decorations, decorationList);
             Node source = (Node)  mouseEvent.getSource();
             Stage stage  = (Stage) source.getScene().getWindow();
-            stage.setUserData(newList);
+            stage.setUserData(decorationList);
             stage.close();
         });
     }
 
-    public void setDecoration(ArrayList<DecorationToSend> decorations){
+    public void setDecoration(ArrayList<Decoration> decorations){
         checkListView.getItems().setAll(FXCollections.observableArrayList(Request.getJ("decorations/basics", Decoration[].class, false)));
         for (Decoration decoration : checkListView.getItems()) {
-            for (DecorationToSend decoration2 : decorations) {
-                if (decoration.getId().equals(decoration2.getDecoration().getId()) && !decoration2.isToDelete()){
+            for (Decoration decoration2 : decorations) {
+                if (decoration.getId().equals(decoration2.getId()) && !decoration2.isToDelete()){
                     checkListView.getCheckModel().check(decoration);
                 }
             }
