@@ -182,7 +182,7 @@
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="flowersField" editable="false" layoutX="181.0" layoutY="222.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                  <TextField fx:id="flowersField" layoutX="181.0" layoutY="222.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
                      <tooltip>
                         <Tooltip text="El precio se calcula de manera automatica" />
                      </tooltip>

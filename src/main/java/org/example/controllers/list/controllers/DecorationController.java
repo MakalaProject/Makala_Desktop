@@ -229,10 +229,10 @@ public class DecorationController extends DecorationsParentController implements
     public void putFields() {
         nameField.setText(actualDecoration.getName());
         imageFile = actualDecoration.getPath();
-        if(actualDecoration.getPath() != null && !actualDecoration.getPath().equals("")){
+        if(actualDecoration.getPath() != null && (!actualDecoration.getPath().equals("") && !actualDecoration.getPath().equals("/images/bow.png"))){
             decorationImage.setImage(new Image(actualDecoration.getPath()));
         }else{
-            decorationImage.setImage(new Image(getClass().getResource("/images/catalog.png").toString()));
+            decorationImage.setImage(new Image(getClass().getResource("/images/bow.png").toString()));
         }
         descriptionTextArea.setText(actualDecoration.getDescription());
         priceField.setText(actualDecoration.getPrice().toString());
@@ -270,6 +270,5 @@ public class DecorationController extends DecorationsParentController implements
         decoration.setId(actualDecoration.getId());
         decoration.setDescription(descriptionTextArea.getText());
         decoration.setPrice(new BigDecimal(priceField.getText()));
-
     }
 }
