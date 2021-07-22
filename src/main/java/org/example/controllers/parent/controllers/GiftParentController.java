@@ -59,17 +59,17 @@ public class GiftParentController implements Initializable, IPictureController, 
     protected BoxProduct containerExtended;
     @FXML protected ListView<GiftProductsToSend> internalProductsListView;
     @FXML protected ListView<PaperProductToSend> internalPapersListView;
-    @FXML protected ListView<DecorationToSend> internalBowsListView;
+    @FXML protected ListView<Decoration> internalBowsListView;
     protected Gift actualGift;
     public boolean chargedRibbons, chargedTextiles, chargedProducts, chargedContainers;
     protected boolean editProduct = true;
 
     protected final ObservableList<PaperProductToSend> papersObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> productsObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<DecorationToSend> decorationsObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<Decoration> decorationsObservableList = FXCollections.observableArrayList();
 
     protected final ObservableList<PaperProductToSend> actualPapersObservableList = FXCollections.observableArrayList();
-    protected final ObservableList<DecorationToSend> actualDecorationObservableList = FXCollections.observableArrayList();
+    protected final ObservableList<Decoration> actualDecorationObservableList = FXCollections.observableArrayList();
     protected final ObservableList<GiftProductsToSend> actualProductsObservableList = FXCollections.observableArrayList();
 
     protected final String resourceProducts = "/fxml/gift_product_properties.fxml";
@@ -156,14 +156,14 @@ public class GiftParentController implements Initializable, IPictureController, 
                 SelectListDecoration dialogController = new SelectListDecoration();
                 fxmlLoader.setController(dialogController);
                 Parent parent = fxmlLoader.load();
-                ArrayList<DecorationToSend> decorationList = new ArrayList<>(actualDecorationObservableList);
+                ArrayList<Decoration> decorationList = new ArrayList<>(actualDecorationObservableList);
                 dialogController.setDecoration(decorationList);
                 Scene scene = new Scene(parent);
                 Stage stage = new Stage();
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.setScene(scene);
                 stage.showAndWait();
-                ArrayList<DecorationToSend> returnedDecorations = (ArrayList<DecorationToSend>) stage.getUserData();
+                ArrayList<Decoration> returnedDecorations = (ArrayList<Decoration>) stage.getUserData();
                 if (returnedDecorations!= null) {
                     actualDecorationObservableList.setAll(returnedDecorations);
                     showProductsList();
@@ -291,7 +291,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         internalPapersListView.setPrefHeight(actualPapersObservableList.size() * 35 + 2);
         internalPapersListView.setCellFactory(listCell -> new InternalListViewCell<>());
 
-        ObservableList<DecorationToSend> dec = FXCollections.observableList(actualDecorationObservableList.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList()));
+        ObservableList<Decoration> dec = FXCollections.observableList(actualDecorationObservableList.stream().filter(l -> !l.isToDelete()).collect(Collectors.toList()));
         internalBowsListView.getItems().setAll(dec);
         internalBowsListView.setPrefHeight(dec.size() * 35 + 2);
         internalBowsListView.setCellFactory(listCell -> new InternalListViewCell<>());
@@ -324,7 +324,7 @@ public class GiftParentController implements Initializable, IPictureController, 
         gift.setName(nombreField.getText());
         new ListToChangeTools<GiftProductsToSend,Integer>().setToDeleteItems(productsObservableList, actualProductsObservableList);
         new ListToChangeTools<PaperProductToSend,Integer>().setToDeleteItems(papersObservableList, actualPapersObservableList);
-        new ListToChangeTools<DecorationToSend,Integer>().setToDeleteItems(decorationsObservableList, actualDecorationObservableList);
+        new ListToChangeTools<Decoration,Integer>().setToDeleteItems(decorationsObservableList, actualDecorationObservableList);
         gift.setStaticProducts(actualProductsObservableList);
         gift.setPapers(actualPapersObservableList);
         gift.setDecorations(actualDecorationObservableList);
