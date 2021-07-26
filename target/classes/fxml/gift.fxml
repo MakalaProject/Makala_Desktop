@@ -18,12 +18,8 @@
                 <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="35.0" size="20" AnchorPane.leftAnchor="14.571428298950195" AnchorPane.topAnchor="17.85714340209961" />
                 <TextField fx:id="searchField" layoutX="43.0" layoutY="12.0" prefHeight="27.0" prefWidth="305.0" promptText="Buscar..." style="-fx-border-color: white white lightgray white; -fx-border-insets: 0; -fx-border-width: 2;" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="12.0" />
                 <FontAwesomeIconView fx:id="addButton" focusTraversable="true" glyphName="PLUS" layoutX="380.0" layoutY="39.0" size="30" wrappingWidth="39.285713195800895" AnchorPane.rightAnchor="14.714286804199105" AnchorPane.topAnchor="13.285715103149414" />
-            <VBox layoutY="67.0" prefHeight="762.0" prefWidth="434.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">
-               <children>
-                      <ListView fx:id="listView" prefHeight="0.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6;">
+                <ListView fx:id="listView" layoutX="1.0" layoutY="60.0" prefHeight="883.0" prefWidth="430.0" style=" -fx-selection-bar: black; -fx-control-inner-background: #f9f7f6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                   </ListView>
-               </children>
-            </VBox>
             </children>
         </AnchorPane>
 
@@ -65,7 +61,7 @@
                              </VBox>
                              <AnchorPane>
                                  <children>
-                                     <Label alignment="CENTER" layoutX="2.0" layoutY="-4.0" style="-fx-background-color: #A39D9B;" text="Papeles" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                     <Label alignment="CENTER" layoutX="2.0" layoutY="-4.0" style="-fx-background-color: #A39D9B;" text="Telas" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                          <font>
                                              <Font name="Roboto Light" size="27.0" />
                                          </font>
@@ -124,7 +120,7 @@
                          </VBox>
                      </children>
                   </AnchorPane>
-                <Label prefHeight="28.0" prefWidth="118.0" text="Flores" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="401.0">
+                <Label prefHeight="28.0" prefWidth="118.0" text="Flores" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="363.0" AnchorPane.topAnchor="401.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
                     </font>
@@ -151,7 +147,7 @@
                                     <Font name="Roboto Light" size="20.0" />
                                 </font>
                             </Label>
-                            <FontAwesomeIconView fx:id="containerButton" glyphName="EDIT" layoutX="399.0" layoutY="139.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="65.42857170104992" AnchorPane.topAnchor="113.28571510314941" />
+                            <FontAwesomeIconView fx:id="containerButton" glyphName="EDIT" layoutX="399.0" layoutY="139.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="405.5714282989501" AnchorPane.rightAnchor="65.42857170104992" AnchorPane.topAnchor="113.28571510314941" />
                 <Label layoutX="48.0" layoutY="68.0" prefHeight="28.0" prefWidth="111.0" text="Privacidad" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="68.0">
                     <font>
                         <Font name="Roboto Light" size="20.0" />
@@ -170,10 +166,10 @@
                      </font>
                   </Label>
                   <Label layoutX="390.0" layoutY="206.0" text="\$" AnchorPane.rightAnchor="94.0" AnchorPane.topAnchor="206.0" />
-                        <Rating fx:id="giftRating" disable="true" layoutX="191.0" layoutY="245.0" rating="5.0">
+                        <Rating fx:id="giftRating" disable="true" layoutX="191.0" layoutY="245.0" rating="5.0" AnchorPane.leftAnchor="191.0" AnchorPane.rightAnchor="132.0" AnchorPane.topAnchor="245.0">
 
                         </Rating>
-                  <Label layoutX="43.0" layoutY="247.0" prefHeight="28.0" prefWidth="142.0" text="Rating" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="247.0">
+                  <Label layoutX="43.0" layoutY="247.0" prefHeight="28.0" prefWidth="142.0" text="Rating" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="247.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
@@ -183,13 +179,13 @@
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="43.0" layoutY="297.0" prefHeight="28.0" prefWidth="134.0" text="Manual" AnchorPane.leftAnchor="18.0" AnchorPane.topAnchor="297.0">
+                  <Label layoutX="43.0" layoutY="297.0" prefHeight="28.0" prefWidth="134.0" text="Manual" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="347.0" AnchorPane.topAnchor="297.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <FontAwesomeIconView fx:id="manualButton" glyphName="EDIT" layoutX="400.0" layoutY="322.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="64.42857170104992" AnchorPane.topAnchor="296.2857151031494" />
-                <TextField fx:id="nombreField" layoutX="159.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" promptText="México lindo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="27.0">
+                  <FontAwesomeIconView fx:id="manualButton" glyphName="EDIT" layoutX="400.0" layoutY="322.0" size="30" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="405.5714282989501" AnchorPane.rightAnchor="64.42857170104992" AnchorPane.topAnchor="296.2857151031494" />
+                <TextField fx:id="nombreField" layoutX="183.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" promptText="México lindo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="183.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="27.0">
                     <font>
                         <Font size="15.0" />
                     </font>
