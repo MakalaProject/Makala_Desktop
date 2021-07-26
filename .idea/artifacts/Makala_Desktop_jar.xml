@@ -6,98 +6,60 @@
         <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="Makala_Desktop" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/12.2.0/ikonli-core-12.2.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/de/jensd/fontawesomefx-fontawesome/4.7.0-9.1.2/fontawesomefx-fontawesome-4.7.0-9.1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-expression/4.2.3.RELEASE/spring-expression-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/calendarfx/view/11.10.1/view-11.10.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/cloudinary/cloudinary-http44/1.29.0/cloudinary-http44-1.29.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mnode/ical4j/ical4j/4.0.0-alpha2/ical4j-4.0.0-alpha2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/saygoer/fastjson/1.1-unwrap/fastjson-1.1-unwrap.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.11/commons-codec-1.11.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/11.0.2/javafx-media-11.0.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/de/jensd/fontawesomefx-commons/9.1.2/fontawesomefx-commons-9.1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/threeten/threeten-extra/1.5.0/threeten-extra-1.5.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpmime/4.4/httpmime-4.4.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.3.RELEASE/spring-context-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-text/1.9/commons-text-1.9.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/typhon0/AnimateFX/1.2.0/AnimateFX-1.2.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.3.RELEASE/spring-core-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/15/javafx-fxml-15-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.3.RELEASE/spring-aop-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.2.3.RELEASE/spring-beans-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/9.0.10/jfoenix-9.0.10.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.0.Final/mapstruct-processor-1.3.0.Final.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-javafx/12.2.0/ikonli-javafx-12.2.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-fontawesome-pack/12.2.0/ikonli-fontawesome-pack-12.2.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/eu/hansolo/Medusa/11.7/Medusa-11.7.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/15/javafx-fxml-15.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.11/commons-codec-1.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-expression/4.2.3.RELEASE/spring-expression-4.2.3.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/saygoer/fastjson/1.1-unwrap/fastjson-1.1-unwrap.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.3.RELEASE/spring-webmvc-4.2.3.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/de/jensd/fontawesomefx-fontawesome/4.7.0-9.1.2/fontawesomefx-fontawesome-4.7.0-9.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-beans/4.2.3.RELEASE/spring-beans-4.2.3.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpmime/4.4/httpmime-4.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-text/1.9/commons-text-1.9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/eu/hansolo/Medusa/11.7/Medusa-11.7.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.graphics.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/out/artifacts/javafx-sdk-16/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/calendarfx/view/11.10.1/view-11.10.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-fxml/15/javafx-fxml-15-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/15.0.1/javafx-graphics-15.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/aopalliance/aopalliance/1.0/aopalliance-1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/threeten/threeten-extra/1.5.0/threeten-extra-1.5.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-aop/4.2.3.RELEASE/spring-aop-4.2.3.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-core/12.2.0/ikonli-core-12.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-fontawesome-pack/12.2.0/ikonli-fontawesome-pack-12.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.11/commons-lang3-3.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/kordamp/ikonli/ikonli-javafx/12.2.0/ikonli-javafx-12.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/11.0.2/javafx-media-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/jfoenix/jfoenix/9.0.10/jfoenix-9.0.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-web/4.2.3.RELEASE/spring-web-4.2.3.RELEASE.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.3.0.Final/mapstruct-processor-1.3.0.Final.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/11.0.2/javafx-media-11.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/io/github/typhon0/AnimateFX/1.2.0/AnimateFX-1.2.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-context/4.2.3.RELEASE/spring-context-4.2.3.RELEASE.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/controlsfx/controlsfx/11.0.3/controlsfx-11.0.3.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/cloudinary/cloudinary-core/1.29.0/cloudinary-core-1.29.0.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-media/11.0.2/javafx-media-11.0.2-win.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-webmvc/4.2.3.RELEASE/spring-webmvc-4.2.3.RELEASE.jar" path-in-jar="/" />
-      <element id="library" level="project" name="Maven: aopalliance:aopalliance:1.0" />
-      <element id="library" level="project" name="Maven: com.calendarfx:view:11.10.1" />
-      <element id="library" level="project" name="Maven: com.cloudinary:cloudinary-core:1.29.0" />
-      <element id="library" level="project" name="Maven: com.cloudinary:cloudinary-http44:1.29.0" />
-      <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.8.6" />
-      <element id="library" level="project" name="Maven: com.jfoenix:jfoenix:9.0.10" />
-      <element id="library" level="project" name="Maven: com.saygoer:fastjson:1.1-unwrap" />
-      <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.11" />
-      <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
-      <element id="library" level="project" name="Maven: de.jensd:fontawesomefx-commons:9.1.2" />
-      <element id="library" level="project" name="Maven: de.jensd:fontawesomefx-fontawesome:4.7.0-9.1.2" />
-      <element id="library" level="project" name="Maven: eu.hansolo:Medusa:11.7" />
-      <element id="library" level="project" name="Maven: io.github.typhon0:AnimateFX:1.2.0" />
-      <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
-      <element id="library" level="project" name="Maven: org.apache.commons:commons-collections4:4.1" />
-      <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.11" />
-      <element id="library" level="project" name="Maven: org.apache.commons:commons-text:1.9" />
-      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpclient:4.5.13" />
-      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpcore:4.4.13" />
-      <element id="library" level="project" name="Maven: org.apache.httpcomponents:httpmime:4.4" />
-      <element id="library" level="project" name="Maven: org.controlsfx:controlsfx:11.0.3" />
-      <element id="library" level="project" name="Maven: org.kordamp.ikonli:ikonli-core:12.2.0" />
-      <element id="library" level="project" name="Maven: org.kordamp.ikonli:ikonli-fontawesome-pack:12.2.0" />
-      <element id="library" level="project" name="Maven: org.kordamp.ikonli:ikonli-javafx:12.2.0" />
-      <element id="library" level="project" name="Maven: org.mapstruct:mapstruct-processor:1.3.0.Final" />
-      <element id="library" level="project" name="Maven: org.mnode.ical4j:ical4j:4.0.0-alpha2" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:11.0.2" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:win:11.0.2" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:15.0.1" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:win:15.0.1" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:15" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-fxml:win:15" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:15.0.1" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:win:15.0.1" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-media:11.0.2" />
-      <element id="library" level="project" name="Maven: org.openjfx:javafx-media:win:11.0.2" />
-      <element id="library" level="project" name="Maven: org.projectlombok:lombok:1.18.20" />
-      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.25" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-aop:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-beans:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-context:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-core:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-web:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:4.2.3.RELEASE" />
-      <element id="library" level="project" name="Maven: org.threeten:threeten-extra:1.5.0" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/15.0.1/javafx-controls-15.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/mnode/ical4j/ical4j/4.0.0-alpha2/ical4j-4.0.0-alpha2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/cloudinary/cloudinary-http44/1.29.0/cloudinary-http44-1.29.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/de/jensd/fontawesomefx-commons/9.1.2/fontawesomefx-commons-9.1.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/springframework/spring-core/4.2.3.RELEASE/spring-core-4.2.3.RELEASE.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

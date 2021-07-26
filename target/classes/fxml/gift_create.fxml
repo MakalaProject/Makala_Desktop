@@ -120,7 +120,7 @@
                                     <Font name="Roboto Light" size="20.0" />
                                 </font>
                             </Label>
-                            <Label fx:id="containerName" alignment="CENTER" layoutX="158.0" layoutY="106.0" prefHeight="30.0" prefWidth="283.0" style="-fx-border-color: #A39D9B;" text="Container" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="106.0">
+                            <Label fx:id="containerName" alignment="CENTER" layoutX="182.0" layoutY="106.0" prefHeight="30.0" prefWidth="262.0" style="-fx-border-color: #A39D9B;" text="Container" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="76.0" AnchorPane.topAnchor="106.0">
                                 <font>
                                     <Font name="Roboto Light" size="20.0" />
                                 </font>
@@ -136,21 +136,21 @@
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="435.0" layoutY="148.0" text="\$" />
+                  <Label layoutX="432.0" layoutY="152.0" text="\$" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="152.0" />
                   <Label layoutX="44.0" layoutY="186.0" prefHeight="28.0" prefWidth="136.0" text="Mano de Obra*" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="186.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="439.0" layoutY="192.0" text="\$" />
-                <TextField fx:id="nombreField" layoutX="159.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="33.0" prefWidth="277.0" promptText="México lindo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="159.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="27.0">
+                  <Label layoutX="432.0" layoutY="191.0" text="\$" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="191.0" />
+                <TextField fx:id="nombreField" layoutX="185.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="257.0" promptText="México lindo" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="27.0">
                     <font>
                         <Font size="15.0" />
                     </font>
 
                 </TextField>
-                <ComboBox fx:id="privacidadComboBox" layoutX="158.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="278.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="158.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="66.0" />
-                  <TextField fx:id="precioField" editable="false" layoutX="183.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                <ComboBox fx:id="privacidadComboBox" layoutX="185.0" layoutY="66.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="257.0" style="-fx-background-color: #E3DAD8; -fx-border-color: #A39D9B; -fx-border-radius: 10;" AnchorPane.leftAnchor="185.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="66.0" />
+                  <TextField fx:id="precioField" editable="false" layoutX="189.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="232.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="99.0" AnchorPane.topAnchor="142.0">
                       <tooltip><Tooltip text="El precio se calcula de manera automatica" /></tooltip>
                       <font>
                         <Font size="15.0" />
@@ -159,7 +159,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <TextField fx:id="laborCostField" layoutX="182.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="241.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+                  <TextField fx:id="laborCostField" layoutX="189.0" layoutY="182.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="234.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="257.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -172,17 +172,17 @@
                             <Font name="Roboto Light" size="17.0" />
                         </font>
                     </Label>
-                  <Label layoutX="46.0" layoutY="225.0" prefHeight="28.0" prefWidth="90.0" text="Flores*">
+                  <Label layoutX="46.0" layoutY="225.0" prefHeight="28.0" prefWidth="90.0" text="Flores*" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="384.0" AnchorPane.topAnchor="225.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="46.0" layoutY="260.0" prefHeight="28.0" prefWidth="136.0" text="Aplicaciones">
+                  <Label layoutX="46.0" layoutY="260.0" prefHeight="28.0" prefWidth="136.0" text="Aplicaciones" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="338.0" AnchorPane.topAnchor="260.0">
                      <font>
                         <Font name="Roboto Light" size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="flowersField" editable="false" layoutX="181.0" layoutY="222.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="238.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0">
+                  <TextField fx:id="flowersField" layoutX="190.0" layoutY="222.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="229.0" promptText="cm" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="222.0">
                      <tooltip>
                         <Tooltip text="El precio se calcula de manera automatica" />
                      </tooltip>
@@ -193,7 +193,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <TextField fx:id="applicationsField" layoutX="182.0" layoutY="257.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="241.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;">
+                  <TextField fx:id="applicationsField" layoutX="190.0" layoutY="183.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="229.0" promptText="30" style="-fx-border-color: #E3DAD8  #E3DAD8 white  #E3DAD8; -fx-background-color: #E3DAD8; -fx-border-width: 2;" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="101.0" AnchorPane.topAnchor="183.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -201,8 +201,8 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <Label layoutX="432.0" layoutY="231.0" text="\$" />
-                  <Label layoutX="432.0" layoutY="266.0" text="\$" />
+                  <Label layoutX="432.0" layoutY="231.0" text="\$" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="231.0" />
+                  <Label layoutX="432.0" layoutY="266.0" text="\$" AnchorPane.leftAnchor="432.0" AnchorPane.rightAnchor="81.0" AnchorPane.topAnchor="266.0" />
             </AnchorPane>
                 </ScrollPane>
                 <AnchorPane layoutX="2.0" layoutY="3.0" style="-fx-background-color: white; -fx-border-color: #E3DAD8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -227,11 +227,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
-                        <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="397.0" layoutY="158.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42" AnchorPane.topAnchor="124.57143020629883">
+                        <FontAwesomeIconView fx:id="nextPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_RIGHT" layoutX="397.0" layoutY="158.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.rightAnchor="92.42" AnchorPane.topAnchor="124.57143020629883">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
-                        <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="90.0" layoutY="159.0" size="39" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="125.57143020629883">
+                        <FontAwesomeIconView fx:id="previousPicture" fill="#a39d9b" glyphName="ARROW_CIRCLE_LEFT" layoutX="90.0" layoutY="159.0" size="39" visible="false" wrappingWidth="27.57142829895008" AnchorPane.leftAnchor="90.0" AnchorPane.topAnchor="125.57143020629883">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></FontAwesomeIconView>
