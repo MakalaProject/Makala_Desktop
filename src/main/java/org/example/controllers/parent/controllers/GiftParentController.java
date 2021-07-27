@@ -243,7 +243,7 @@ public class GiftParentController implements Initializable, IPictureController, 
     private void setChargedTextiles(){
         if(!chargedTextiles){
             chargedTextiles = true;
-            papersProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Papeles", Product[].class, false));
+            papersProducts.setAll(Request.getJ("products/basics/filter-list?privacy=publico&productTypes=Telas", Product[].class, false));
         }
     }
 
