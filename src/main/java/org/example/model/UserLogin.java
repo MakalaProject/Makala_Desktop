@@ -1,15 +1,19 @@
 package org.example.model;
 
+
+import lombok.Data;
+
+@Data
 public class UserLogin {
-    private final String id;
+    private final String username;
     private final String password;
 
-    public UserLogin(String id, String password) {
-        this.id = id;
+    public UserLogin(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
     public String getRoute() {
-        return "users/employees/verify";
+        return "login";
     }
 }

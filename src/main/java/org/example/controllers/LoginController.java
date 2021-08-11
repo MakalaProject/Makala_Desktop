@@ -2,9 +2,11 @@ package org.example.controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Base64;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import com.google.gson.Gson;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import org.example.exceptions.ProductDeleteException;
@@ -19,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import org.example.services.TokenSingleton;
 
 public class LoginController implements Initializable {
 
@@ -39,22 +42,36 @@ public class LoginController implements Initializable {
         if(userField.getText().isBlank() || passwordField.getText().isBlank()){
             alertLabel.setVisible(true);
             alertLabel.setText("Llena todos los campos!!");
-        }else{
+        }else {
             UserLogin user = new UserLogin(userField.getText(), passwordField.getText());
-            employee = Request.post(user.getRoute(), user, Employee.class);
+            //Logín and get token
+
+            try {
+                employee = Request.postLogin(user.getRoute(), user, Employee.class);
+            } catch (Exception e) {
+                alertLabel.setVisible(true);
+                alertLabel.setText("ID o contraseña incorrectas");
+                return;
+            }
+            //Decode the JWT to get the roles
+            String[] chunks = TokenSingleton.getSingleton().getToken().split("\\.");
+            Base64.Decoder decoder = Base64.getDecoder();
+            String payload = new String(decoder.decode(chunks[1]));
+            Payload decodedPayload = new Gson().fromJson(payload, Payload.class);
+            TokenSingleton.getSingleton().setPayload(decodedPayload);
             boolean access = false;
-            if (employee != null){
-                for (Department department:employee.getDepartments()) {
-                    access = department.getDepartName().equals("Administracion");
-                    if(access){
-                        break;
-                    }
+            //Verify if the payload contains the "ADMIN" role
+            for (Authorities a : decodedPayload.getAuthorities()) {
+                if (a.getAuthority().equals("ADMIN")) {
+                    access = true;
+                    break;
                 }
             }
             if(!access){
                 alertLabel.setVisible(true);
                 alertLabel.setText("ID o contraseña incorrectas");
             }else{
+                Employee employee = (Employee) Request.find("users/employees", Integer.parseInt( userField.getText()), Employee.class);
                 if (employee.isFirstLogin()){
                     Optional<String> result = null;
                     do{

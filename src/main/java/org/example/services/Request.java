@@ -25,13 +25,10 @@ import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 
 public class Request<D> {
-    public static final String REST_URL = "http://25.4.107.19:9080/";
+    public static final String REST_URL = "http://25.4.107.19:9085/";
     private static Stage stage = new Stage();
 
     private static final Gson deserializerGson = new GsonBuilder()
@@ -73,6 +70,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
                 .header("Content-Type", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .PUT(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         try {
@@ -94,6 +92,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + s + "?id=" + id))
                 .header("Content-Type", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .DELETE()
                 .build();
         try {
@@ -121,6 +120,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .uri(URI.create(REST_URL + link))
                 .build();
         List<D> list = null;
@@ -161,6 +161,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .uri(URI.create(REST_URL + link))
                 .build();
         try {
@@ -191,6 +192,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .uri(URI.create(REST_URL +link+"/find?id=" + id))
                 .build();
         try {
@@ -218,6 +220,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .uri(URI.create(REST_URL +link+"/find?id=" + id + "&idEmployee=" + id2))
                 .build();
         try {
@@ -245,6 +248,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
                 .header("accept", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .uri(URI.create(REST_URL +link))
                 .build();
         try {
@@ -275,6 +279,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
                 .header("Content-Type", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         try {
@@ -294,7 +299,8 @@ public class Request<D> {
         return null;
     }
 
-    public static <D> D post(String link, Object object, Class<D> dclass){
+    //Post for login, get the token and use it t create the singleton
+    public static <D> D postLogin(String link, Object object, Class<D> dclass) throws Exception {
         String jsonString = serializergson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
@@ -304,11 +310,14 @@ public class Request<D> {
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            D ob = (D)deserializerGson.fromJson(response.body(), dclass);
-            System.out.println(response.body());
-            if (response.statusCode() != 404){
-                return ob;
+            //If repsonse is not ok
+            if(response.statusCode() != 200){
+                throw new Exception();
             }
+            //Create the singleton by the header obtained on the login
+            List<String> headers = response.headers().allValues("Authorization");
+            TokenSingleton.getInstance(headers.get(0));
+            System.out.println(response.body());
 
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -321,12 +330,14 @@ public class Request<D> {
         return null;
     }
 
+
     public static <D> D postk(String link, Object object, Class<D> dclass) throws Exception {
         String jsonString = serializergson.toJson(object);
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
                 .header("Content-Type", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         try {
@@ -359,6 +370,7 @@ public class Request<D> {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(REST_URL + link))
                 .header("Content-Type", "application/json")
+                .header("Authorization", TokenSingleton.getSingleton().getToken())
                 .POST(HttpRequest.BodyPublishers.ofString(jsonString))
                 .build();
         try {
